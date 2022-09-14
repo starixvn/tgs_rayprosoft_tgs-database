@@ -6,8 +6,8 @@ public static class ServiceExtensions
 {
     public static IServiceCollection AddWebApiServices(this IServiceCollection services)
     {
-        services.AddScoped<IRequestAnalyzer, RequestAnalyzer>();
-        services.AddScoped<ILocalIpFinder, LocalIpFinder>();
+        _ = services.AddScoped<IRequestAnalyzer, RequestAnalyzer>();
+        _ = services.AddScoped<ILocalIpFinder, LocalIpFinder>();
 
         return services;
     }

@@ -11,7 +11,7 @@ public static class ServiceExtensions
     /// </summary>
     public static IServiceCollection AddApiClient(this IServiceCollection services)
     {
-        services.AddScoped<IApiClientLogger, ApiClientLogger>();
+        _ = services.AddScoped<IApiClientLogger, ApiClientLogger>();
         return services;
     }
 }

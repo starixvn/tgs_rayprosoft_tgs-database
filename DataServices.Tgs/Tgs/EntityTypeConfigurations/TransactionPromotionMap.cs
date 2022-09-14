@@ -1,0 +1,31 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using TGS.Core.DataServices.Tgs.Models;
+
+namespace TGS.Core.DataServices.Tgs.EntityTypeConfigurations;
+
+internal class TransactionPromotionMap : IEntityTypeConfiguration<TransactionPromotion>
+{
+    void IEntityTypeConfiguration<TransactionPromotion>.Configure(EntityTypeBuilder<TransactionPromotion> builder)
+    {
+        _ = builder.ToTable("transaction_promotions");
+
+        _ = builder.HasKey(e => new
+        {
+            e.TransactionId,
+            e.PromotionId
+        })
+            .HasName("pk_transaction_promotions");
+
+        _ = builder.HasIndex(e => e.TransactionId)
+            .HasDatabaseName("ix_transactions_transaction_id");
+
+        _ = builder
+            .HasOne(e => e.Promotion)
+            .WithMany()
+            .HasConstraintName("fk_transaction_promotion_promotion_id");
+
+        _ = builder.HasIndex(e => e.PromotionId)
+            .HasDatabaseName("ix_transaction_Promotion_id");
+    }
+}

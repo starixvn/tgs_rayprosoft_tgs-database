@@ -5,12 +5,6 @@ namespace TGS.Core.Infrastructures.IO;
 
 public static class BinaryUtil
 {
-    public static byte[] HexStringToBytes(string hex)
-        => Enumerable.Range(0, hex.Length)
-            .Where(x => x % 2 == 0)
-            .Select(x => Convert.ToByte(hex.Substring(x, 2), 16))
-            .ToArray();
-
     public static byte[] ConcatenateBytes(byte[] a, byte[] b)
     {
         var r = new byte[a.Length + b.Length];
@@ -20,4 +14,10 @@ public static class BinaryUtil
 
         return r;
     }
+
+    public static byte[] HexStringToBytes(string hex)
+            => Enumerable.Range(0, hex.Length)
+            .Where(x => x % 2 == 0)
+            .Select(x => Convert.ToByte(hex.Substring(x, 2), 16))
+            .ToArray();
 }

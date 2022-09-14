@@ -72,14 +72,9 @@ internal class RedisList<T> : IRedisList<T>
     }
 
     string IRedisList<T>.GetKey()
-    {
-        if (string.IsNullOrEmpty(_keyPrefix))
-        {
-            throw new ArgumentNullException(nameof(_keyPrefix), "Key prefix should be set before using actual methods");
-        }
-
-        return $"{_keyPrefix}_{GetType().Name}_{typeof(T).Name}";
-    }
+        => string.IsNullOrEmpty(_keyPrefix)
+            ? throw new ArgumentNullException(nameof(_keyPrefix), "Key prefix should be set before using actual methods")
+            : $"{_keyPrefix}_{GetType().Name}_{typeof(T).Name}";
 
     async Task<T[]> IRedisList<T>.GetRangeAsync(long start, long count)
     {
@@ -87,12 +82,9 @@ internal class RedisList<T> : IRedisList<T>
         var db = _repository.GetDb();
 
         var range = await db.ListRangeAsync(key, start, start + count - 1);
-        if (range == null)
-        {
-            return Array.Empty<T>();
-        }
-
-        return range
+        return range == null
+            ? Array.Empty<T>()
+            : range
             .Select(x => JsonSerializer.Deserialize<T>(x))
             .ToArray();
     }

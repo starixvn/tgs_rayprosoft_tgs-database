@@ -9,7 +9,7 @@ public static class ApplicationBuilderExtensions
     public static IApplicationBuilder UseApiLogger(this IApplicationBuilder app, string logPrefix = "",
         string[] bypassRouting = null)
     {
-        app.UseWhen(context => bypassRouting == null ||
+        _ = app.UseWhen(context => bypassRouting == null ||
             bypassRouting.All(
                 r => !context.Request.Path.StartsWithSegments(r)),
             builder => builder.UseMiddleware<ApiLoggerMiddleware>(logPrefix));
@@ -20,7 +20,7 @@ public static class ApplicationBuilderExtensions
     public static IApplicationBuilder UseGameApiLogger(this IApplicationBuilder app, string logPrefix = "",
         string[] bypassRouting = null)
     {
-        app.UseWhen(context => bypassRouting == null ||
+        _ = app.UseWhen(context => bypassRouting == null ||
                 bypassRouting.All(
                     r => !context.Request.Path.StartsWithSegments(r)),
                     builder => builder.UseMiddleware<GameApiLoggerMiddleware>(logPrefix));

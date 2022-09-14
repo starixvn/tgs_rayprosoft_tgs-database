@@ -25,14 +25,7 @@ public static class Consts
             {HealthStatus.Degraded, StatusCodes.Status500InternalServerError}
         };
 
-    public static readonly GameType[] Sports =
-                    {
-        GameType.Sportsbook,
-        GameType.VirtualSports,
-        GameType.ESports
-    };
-
-    public static GameType[] SlotGroup =
+    public static readonly GameType[] SlotGroup =
     {
         GameType.Fishing,
         GameType.Arcade,
@@ -40,8 +33,15 @@ public static class Consts
         GameType.TableGame
     };
 
-    public static GameType[] SportsGroup =
-            {
+    public static readonly GameType[] Sports =
+                        {
+        GameType.Sportsbook,
+        GameType.VirtualSports,
+        GameType.ESports
+    };
+
+    public static readonly GameType[] SportsGroup =
+    {
         GameType.Sportsbook,
         GameType.ESports
     };
@@ -58,14 +58,14 @@ public static class Consts
 
         public static class UserInfo
         {
-            public static string BrandKey = "Brand";
-            public static string LicenseeKey = "Licensee";
-            public static string PortalKey = "Portal";
-            public static string ResellerKey = "Reseller";
-            public static string RolenameKey = "Rolename";
-            public static string RoleTypeKey = "RoleType";
-            public static string UserIdKey = "UserId";
-            public static string UsernameKey = "Username";
+            public static readonly string BrandKey = "Brand";
+            public static readonly string LicenseeKey = "Licensee";
+            public static readonly string PortalKey = "Portal";
+            public static readonly string ResellerKey = "Reseller";
+            public static readonly string RolenameKey = "Rolename";
+            public static readonly string RoleTypeKey = "RoleType";
+            public static readonly string UserIdKey = "UserId";
+            public static readonly string UsernameKey = "Username";
         }
     }
 

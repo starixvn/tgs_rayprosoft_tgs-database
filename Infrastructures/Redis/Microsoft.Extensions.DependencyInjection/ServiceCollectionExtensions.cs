@@ -11,11 +11,11 @@ public static class ServiceCollectionExtensions
     /// </summary>
     public static RedisConfiguration AddRedisServices(this IServiceCollection services)
     {
-        services.AddSingleton<IRedisRepository, RedisRepository>();
-        services.AddSingleton<IRedisCacheManager, RedisCacheManager>();
+        _ = services.AddSingleton<IRedisRepository, RedisRepository>();
+        _ = services.AddSingleton<IRedisCacheManager, RedisCacheManager>();
 
-        services.AddTransient(typeof(IRedisList<>), typeof(RedisList<>));
-        services.AddTransient(typeof(IRedisSortedSet<>), typeof(RedisSortedSet<>));
+        _ = services.AddTransient(typeof(IRedisList<>), typeof(RedisList<>));
+        _ = services.AddTransient(typeof(IRedisSortedSet<>), typeof(RedisSortedSet<>));
 
         var configuration = new RedisConfiguration(services);
 

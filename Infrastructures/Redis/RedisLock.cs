@@ -19,8 +19,10 @@ internal sealed class RedisLock : IRedisLock
         Func<IRedisLockSummary, TResult> handleFailureFunc,
         TimeSpan? waitTime, TimeSpan? retryInterval)
     {
-        if (execFunc == null || handleFailureFunc == null)
-            throw new ArgumentNullException();
+        if (execFunc is null)
+            throw new ArgumentNullException(nameof(execFunc));
+        if (handleFailureFunc is null)
+            throw new ArgumentNullException(nameof(handleFailureFunc));
 
         var needRetry = waitTime.HasValue && retryInterval.HasValue && waitTime.Value.TotalMilliseconds > 0 &&
                         retryInterval.Value.TotalMilliseconds > 0;
@@ -60,8 +62,8 @@ internal sealed class RedisLock : IRedisLock
         TimeSpan? waitTime,
         TimeSpan? retryInterval)
     {
-        if (execFunc == null)
-            throw new ArgumentNullException();
+        if (execFunc is null)
+            throw new ArgumentNullException(nameof(execFunc));
 
         var needRetry = waitTime.HasValue && retryInterval.HasValue && waitTime.Value.TotalMilliseconds > 0 &&
                         retryInterval.Value.TotalMilliseconds > 0;

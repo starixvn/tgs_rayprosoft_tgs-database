@@ -1,6 +1,4 @@
-﻿using System.Diagnostics.Eventing.Reader;
-
-namespace TGS.Core.Models.Settings;
+﻿namespace TGS.Core.Models.Settings;
 
 public record PromotionTypeGroup
 {

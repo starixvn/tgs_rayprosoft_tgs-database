@@ -32,11 +32,11 @@ public static class PlayerCodeGenerator
         while (num >= nbase)
         {
             var r = num % nbase;
-            newNumber.Insert(0, chars[(int)r]);
+            _ = newNumber.Insert(0, chars[(int)r]);
             num = num / nbase;
         }
         // the last number to convert
-        newNumber.Insert(0, chars[(int)num]);
+        _ = newNumber.Insert(0, chars[(int)num]);
 
         return newNumber.ToString().ToLower();
     }

@@ -14,5 +14,5 @@ public record BatchBetResult
     public int TransactionsCount { get; init; }
     public BatchBetResultData[] Errors { get; init; } = Array.Empty<BatchBetResultData>();
     public BatchBetResultData[] Results { get; init; } = Array.Empty<BatchBetResultData>();
-    public Dictionary<string, decimal> PlayerBalances { get; init; } = new ();
+    public Dictionary<string, decimal> PlayerBalances { get; init; } = new();
 }

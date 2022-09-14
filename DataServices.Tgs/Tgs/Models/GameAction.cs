@@ -1,0 +1,60 @@
+﻿using System;
+using System.Collections.Generic;
+using TGS.Core.Models.Enums;
+
+namespace TGS.Core.DataServices.Tgs.Models;
+
+public class GameAction
+{
+    public decimal Amount { get; set; }
+
+    public decimal Balance { get; set; }
+
+    public string BetType { get; set; }
+
+    public bool? ClosingRoundExplicitRequest { get; set; }
+
+    public string ExternalBetId { get; set; }
+
+    public string ExternalGameActionGroupId { get; set; }
+
+    public string ExternalTransactionId { get; set; }
+
+    public string ExtraData { get; set; }
+
+    public virtual ICollection<GameAction> FollowUpGameActions { get; set; }
+
+    public virtual GameActionBatch GameActionBatch { get; set; }
+
+    public Guid? GameActionBatchId { get; set; }
+
+    public Guid Id { get; set; }
+
+    public bool IsClosingRound { get; set; }
+
+    public string JackpotContribution { get; init; }
+
+    public string PlayerCode { get; set; }
+
+    public string PlayerIp { get; set; }
+
+    public DateTimeOffset RecordedOn { get; set; }
+
+    public virtual GameAction ReferencedGameAction { get; set; }
+
+    public Guid? ReferencedGameActionId { get; set; }
+
+    public virtual Round Round { get; set; }
+
+    public Guid RoundId { get; set; }
+
+    public DateTimeOffset? SentOn { get; set; }
+
+    public decimal Turnover { get; set; }
+
+    public GameActionType Type { get; set; }
+
+    public decimal UnsettledBets { get; set; }
+
+    public decimal WinLoss { get; set; }
+}

@@ -10,9 +10,9 @@ public interface IRequestAnalyzer
 
 public sealed class RequestAnalyzer : IRequestAnalyzer
 {
-    private readonly ILocalIpFinder _localIpFinder;
     private const string HttpForwardFor = "X-FORWARDED-FOR";
     private const string UnknownIp = "0.0.0.0";
+    private readonly ILocalIpFinder _localIpFinder;
 
     public RequestAnalyzer(ILocalIpFinder localIpFinder)
     {

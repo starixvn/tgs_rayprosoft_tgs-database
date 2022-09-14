@@ -31,11 +31,11 @@ internal sealed class RedisCacheManager : IRedisCacheManager
         var db = _repository.GetDb();
         var existingKey = await db.KeyExistsAsync(cacheKey);
         var serializedValues = data.Select(d => (RedisValue)JsonSerializer.Serialize(d)).ToArray();
-        await db.ListRightPushAsync(cacheKey, serializedValues);
+        _ = await db.ListRightPushAsync(cacheKey, serializedValues);
 
         if (existingKey == false)
         {
-            await db.KeyExpireAsync(cacheKey, CapExpiry(expiresIn));
+            _ = await db.KeyExpireAsync(cacheKey, CapExpiry(expiresIn));
         }
     }
 
@@ -61,7 +61,7 @@ internal sealed class RedisCacheManager : IRedisCacheManager
         var db = _repository.GetDb();
         var flags = GetCommandFlags(fireAndForget);
 
-        await db.KeyDeleteAsync(cacheKeys, flags);
+        _ = await db.KeyDeleteAsync(cacheKeys, flags);
 
         return keys.Length;
     }
@@ -106,10 +106,7 @@ internal sealed class RedisCacheManager : IRedisCacheManager
         var cacheKey = FormCacheKey(cacheType, key);
         var db = _repository.GetDb();
         var values = await db.ListRangeAsync(cacheKey);
-        if (values.Length == 0)
-            return await createFunc();
-
-        return values.Select(v => JsonSerializer.Deserialize<T>(v)).ToList();
+        return values.Length == 0 ? await createFunc() : values.Select(v => JsonSerializer.Deserialize<T>(v)).ToList();
     }
 
     public async Task<RedisValue[]> GetSetAllMembersAsync(string cacheType, string key, bool fireAndForget = false)
@@ -187,7 +184,7 @@ internal sealed class RedisCacheManager : IRedisCacheManager
             await db.HashSetAsync(cacheKey, hashFields);
 
             var flags = GetCommandFlags(fireAndForget);
-            await db.KeyExpireAsync(cacheKey, expiresIn, flags);
+            _ = await db.KeyExpireAsync(cacheKey, expiresIn, flags);
         }
         catch (Exception ex)
         {
@@ -341,7 +338,7 @@ internal sealed class RedisCacheManager : IRedisCacheManager
             var count = await db.SetAddAsync(cacheKey, values, flags);
             if (expiresIn != null)
             {
-                await db.KeyExpireAsync(cacheKey, CapExpiry(expiresIn));
+                _ = await db.KeyExpireAsync(cacheKey, CapExpiry(expiresIn));
             }
 
             return count;
@@ -403,7 +400,7 @@ internal sealed class RedisCacheManager : IRedisCacheManager
         var createdValue = await createFunc();
         var serializedValue = JsonSerializer.Serialize(createdValue);
         var flags = GetCommandFlags(cacheWithFireAndForget);
-        await db.StringSetAsync(cacheKey, serializedValue, expiresIn, When.Always, flags);
+        _ = await db.StringSetAsync(cacheKey, serializedValue, expiresIn, When.Always, flags);
         return createdValue;
     }
 
@@ -413,12 +410,7 @@ internal sealed class RedisCacheManager : IRedisCacheManager
         var db = _repository.GetDb();
         var value = await db.StringGetAsync(cacheKey);
 
-        if (value.IsNullOrEmpty)
-        {
-            return createFunc != null ? await createFunc() : default;
-        }
-
-        return JsonSerializer.Deserialize<T>(value);
+        return value.IsNullOrEmpty ? createFunc != null ? await createFunc() : default : JsonSerializer.Deserialize<T>(value);
     }
 
     #endregion Internal Methods

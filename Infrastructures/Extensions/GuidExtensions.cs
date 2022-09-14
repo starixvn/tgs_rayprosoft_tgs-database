@@ -7,7 +7,13 @@ namespace TGS.Core.Infrastructures.Extensions;
 
 public static class GuidExtensions
 {
-    private static long _counter = DateTime.UtcNow.Ticks;
+    private static long _Counter = DateTime.UtcNow.Ticks;
+
+    public static Guid NewSequentialGuid()
+    {
+        return RuntimeInformation.IsOSPlatform(OSPlatform.Windows)
+            ? NewSequentialGuidByWindows() : NewSequentialGuidByNonWindows();
+    }
 
     public static string ToStringWithoutHyphens(this Guid obj)
     {
@@ -19,50 +25,11 @@ public static class GuidExtensions
         return obj.ToString().ToUpper();
     }
 
-    [DllImport("rpcrt4.dll", SetLastError = true), SuppressUnmanagedCodeSecurity]
-    private static extern int UuidCreateSequential(out Guid guid);
-
-    public static Guid NewSequentialGuid()
-    {
-        return RuntimeInformation.IsOSPlatform(OSPlatform.Windows)
-            ? NewSequentialGuidByWindows() : NewSequentialGuidByNonWindows();
-    }
-
-    private static Guid NewSequentialGuidByWindows()
-    {
-        const int RPC_S_OK = 0;
-        var hr = UuidCreateSequential(out var guid);
-        if (hr != RPC_S_OK)
-            throw new InvalidOperationException("UuidCreateSequential failed: " + hr);
-        var s = guid.ToByteArray();
-
-        // reverse 0~3
-        var tmp = s[3];
-        s[3] = s[0];
-        s[0] = tmp;
-
-        tmp = s[2];
-        s[2] = s[1];
-        s[1] = tmp;
-
-        // reverse 4~5
-        tmp = s[5];
-        s[5] = s[4];
-        s[4] = tmp;
-
-        // reverse 6~7
-        tmp = s[7];
-        s[7] = s[6];
-        s[6] = tmp;
-
-        return new Guid(s);
-    }
-
     //https://github.com/aspnet/EntityFrameworkCore/blob/master/src/EFCore/ValueGeneration/SequentialGuidValueGenerator.cs
     private static Guid NewSequentialGuidByNonWindows()
     {
         var guidBytes = Guid.NewGuid().ToByteArray();
-        var counterBytes = BitConverter.GetBytes(Interlocked.Increment(ref _counter));
+        var counterBytes = BitConverter.GetBytes(Interlocked.Increment(ref _Counter));
 
         if (!BitConverter.IsLittleEndian)
         {
@@ -80,4 +47,28 @@ public static class GuidExtensions
 
         return new Guid(guidBytes);
     }
+
+    private static Guid NewSequentialGuidByWindows()
+    {
+        const int RPC_S_OK = 0;
+        var hr = UuidCreateSequential(out var guid);
+        if (hr != RPC_S_OK)
+            throw new InvalidOperationException("UuidCreateSequential failed: " + hr);
+        var s = guid.ToByteArray();
+
+        // reverse 0~3
+        (s[0], s[3]) = (s[3], s[0]);
+        (s[2], s[1]) = (s[1], s[2]);
+
+        // reverse 4~5
+        (s[4], s[5]) = (s[5], s[4]);
+
+        // reverse 6~7
+        (s[6], s[7]) = (s[7], s[6]);
+
+        return new Guid(s);
+    }
+
+    [DllImport("rpcrt4.dll", SetLastError = true), SuppressUnmanagedCodeSecurity]
+    private static extern int UuidCreateSequential(out Guid guid);
 }

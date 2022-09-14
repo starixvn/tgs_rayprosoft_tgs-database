@@ -15,7 +15,7 @@ public sealed class RedisRepository : IRedisRepository
     void IRedisRepository.DeleteKey(string key)
     {
         var db = GetDatabase();
-        db.KeyDelete(key);
+        _ = db.KeyDelete(key);
     }
 
     Task IRedisRepository.DeleteKeyAsync(string key)

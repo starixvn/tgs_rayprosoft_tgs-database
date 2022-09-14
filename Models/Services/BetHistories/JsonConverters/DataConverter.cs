@@ -40,11 +40,11 @@ public class DataConverter : JsonConverter<BaseData>
                 break;
 
             default:
-            {
-                var type = value.GetType();
-                JsonSerializer.Serialize(writer, value, type, options);
-                break;
-            }
+                {
+                    var type = value.GetType();
+                    JsonSerializer.Serialize(writer, value, type, options);
+                    break;
+                }
         }
     }
 }

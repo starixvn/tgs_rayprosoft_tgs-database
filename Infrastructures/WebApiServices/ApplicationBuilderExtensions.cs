@@ -21,7 +21,7 @@ public static class ApplicationBuilderExtensions
     /// </summary>
     public static IApplicationBuilder UseGlobalExceptionHandler(this IApplicationBuilder app)
     {
-        app.UseExceptionHandler(new ExceptionHandlerOptions
+        _ = app.UseExceptionHandler(new ExceptionHandlerOptions
         {
             ExceptionHandler = async context =>
             {

@@ -12,8 +12,8 @@ public sealed class InvalidGameActionException : Exception
         ErrorCode = errorCode;
     }
 
-    public InvalidGameActionException(string message, Exception ex, InvalidGameActionErrorCode errorCode = InvalidGameActionErrorCode.None) : 
-        base(message, ex)
+    public InvalidGameActionException(string message, Exception ex, InvalidGameActionErrorCode errorCode = InvalidGameActionErrorCode.None)
+        : base(message, ex)
     {
         ErrorCode = errorCode;
     }

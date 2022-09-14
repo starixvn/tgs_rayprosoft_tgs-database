@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TGS.Core.Models.GameProviders.Settings.KY;
+﻿using TGS.Core.Models.GameProviders.Settings.KY;
 
 namespace TGS.Core.Models.GameProviders.Settings;
 
@@ -37,4 +31,3 @@ public record KYConfiguration : PluggableConfigurationBase
     /// </value>
     public KYBrandMerchant[] BrandMerchants { get; set; }
 }
-

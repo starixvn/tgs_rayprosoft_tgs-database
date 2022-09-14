@@ -20,8 +20,8 @@ public static class InvitationCodeGenerator
     private static string GenerateString(int num)
     {
         var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        
-        var bytes =  Guid.NewGuid().ToByteArray();
+
+        var bytes = Guid.NewGuid().ToByteArray();
         var values = Enumerable.Range(0, num)
             .Select(i => chars[(bytes[i] + bytes[num + i]) % 35]);
 

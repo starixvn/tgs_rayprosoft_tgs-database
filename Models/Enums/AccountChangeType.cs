@@ -30,6 +30,7 @@ public enum AccountChangeType
     ///     The promotion vip level season
     /// </summary>
     PromotionVipLevelSeason = 3850,
+
     PromotionVipLevelBirthday = 3860,
 
     /// <summary>
@@ -40,6 +41,7 @@ public enum AccountChangeType
 
     //Credit上分、Debit下分、Refund退款、Revision修正
     GameDebit = 10100,
+
     GameCredit = 10200,
     GameRefund = 10300,
     GameRevision = 10400,

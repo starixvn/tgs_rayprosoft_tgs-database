@@ -23,10 +23,10 @@ public static class ExceptionExtensions
         {
             if (i > 0)
             {
-                sb.Append("; INNER ").Append(i).Append(':').Append(' ');
+                _ = sb.Append("; INNER ").Append(i).Append(':').Append(' ');
             }
 
-            sb.Append(ex.Message);
+            _ = sb.Append(ex.Message);
             ex = ex.InnerException;
             ++i;
         }

@@ -1,10 +1,9 @@
 ﻿using System;
 
-namespace TGS.Core.Models.GameProviders.Settings
+namespace TGS.Core.Models.GameProviders.Settings;
+
+public record AWCConfiguration : PluggableConfigurationBase
 {
-    public record AWCConfiguration : PluggableConfigurationBase
-    {
-        public Uri ApiUrl { get; init; }
-        public Uri ApiRecordUrl { get; init; }
-    }
+    public Uri ApiUrl { get; init; }
+    public Uri ApiRecordUrl { get; init; }
 }

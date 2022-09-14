@@ -11,8 +11,6 @@ public interface IRedisCacheManager
 
     Task CacheListAsync<T>(object cacheType, object key, TimeSpan? expiresIn, T data);
 
-    Task<List<T>> GetListAsync<T>(object cacheType, object key, Func<Task<List<T>>> createFunc);
-
     Task ClearCacheAsync(object cacheType, object key, bool fireAndForget = false);
 
     Task<int> ClearCacheByBatchAsync(CacheKey[] keys, bool fireAndForget = false);
@@ -29,22 +27,26 @@ public interface IRedisCacheManager
     /// <returns>Amount of deleted keys</returns>
     Task<int> ClearCacheByPatternAsync(object cacheType, string pattern, bool fireAndForget = false);
 
-    Task<T> SafeGetAndCacheAsync<T>(object cacheType, object key, TimeSpan? expiresIn, Func<Task<T>> getData);
+    Task<List<T>> GetListAsync<T>(object cacheType, object key, Func<Task<List<T>>> createFunc);
 
-    Task<T> SafeGetAsync<T>(object cacheType, object key, Func<Task<T>> getData);
-
-    Task SafeCacheAsync<T>(object cacheType, object key, TimeSpan? expiresIn, T data);
-
-    Task SetKeyExpirationInAsync(object cacheType, object key, TimeSpan expiresIn);
+    Task<RedisValue[]> GetSetAllMembersAsync(string cacheType, string key, bool fireAndForget = false);
 
     Task<long> IncrementAsync(object cacheType, object key, long value = 1);
 
-    Task<T> SafeGetAndCacheForeverAsync<T>(object cacheType, object key, Func<Task<T>> getData);
+    Task SafeCacheAsync<T>(object cacheType, object key, TimeSpan? expiresIn, T data);
 
     Task SafeCacheForeverAsync<T>(object cacheType, object key, T data);
 
     Task SafeCacheHashSetAsync(object cacheType, object key, HashEntry[] hashFields, TimeSpan? expiresIn,
         bool fireAndForget = false);
+
+    Task<HashEntry[]> SafeGetAllHashSetAsync(object cacheType, object key, bool fireAndForget = false);
+
+    Task<T> SafeGetAndCacheAsync<T>(object cacheType, object key, TimeSpan? expiresIn, Func<Task<T>> getData);
+
+    Task<T> SafeGetAndCacheForeverAsync<T>(object cacheType, object key, Func<Task<T>> getData);
+
+    Task<T> SafeGetAsync<T>(object cacheType, object key, Func<Task<T>> getData);
 
     Task<RedisValue[]> SafeGetHashSetAsync(object cacheType, object key, RedisValue[] hashFields,
         bool fireAndForget = false);
@@ -52,10 +54,8 @@ public interface IRedisCacheManager
     Task<RedisValue> SafeGetHashSetAsync(object cacheType, object key, RedisValue hashField,
         bool fireAndForget = false);
 
-    Task<HashEntry[]> SafeGetAllHashSetAsync(object cacheType, object key, bool fireAndForget = false);
-
     Task<long> SetAddAsync(string cacheType, string key, RedisValue[] values, TimeSpan? expiresIn,
         bool fireAndForget = false);
 
-    Task<RedisValue[]> GetSetAllMembersAsync(string cacheType, string key, bool fireAndForget = false);
+    Task SetKeyExpirationInAsync(object cacheType, object key, TimeSpan expiresIn);
 }

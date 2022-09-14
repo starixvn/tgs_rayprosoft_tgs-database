@@ -23,16 +23,13 @@ public class ValidStatus : IValidStatus<Status>
 
     Status[] IValidStatus<Status>.GetStatus(PlayerType playerType, GameActionType type)
     {
-        if (type.IsNotAllOf(GameActionType.LockAmount, GameActionType.PlaceBet))
-        {
-            return ClosingBet;
-        }
-
-        return playerType switch
-        {
-            PlayerType.TestPlayer => ClosingBet,
-            _                     => Default
-        };
+        return type.IsNotAllOf(GameActionType.LockAmount, GameActionType.PlaceBet)
+            ? ClosingBet
+            : playerType switch
+            {
+                PlayerType.TestPlayer => ClosingBet,
+                _ => Default
+            };
     }
 }
 
@@ -52,15 +49,12 @@ public class ValidGameStatus : IValidStatus<GameStatus>
 
     GameStatus[] IValidStatus<GameStatus>.GetStatus(PlayerType playerType, GameActionType type)
     {
-        if (type.IsNotAllOf(GameActionType.LockAmount, GameActionType.PlaceBet))
-        {
-            return ClosingBet;
-        }
-
-        return playerType switch
-        {
-            PlayerType.TestPlayer => ClosingBet,
-            _                     => Default
-        };
+        return type.IsNotAllOf(GameActionType.LockAmount, GameActionType.PlaceBet)
+            ? ClosingBet
+            : playerType switch
+            {
+                PlayerType.TestPlayer => ClosingBet,
+                _ => Default
+            };
     }
 }

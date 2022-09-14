@@ -9,8 +9,9 @@ namespace TGS.Core.Infrastructures.WebApiServices;
 
 public interface ILocalIpFinder
 {
-    bool IsLocal(string ip);
     IpInfo GetIpInfo(string ip);
+
+    bool IsLocal(string ip);
 }
 
 /// <summary>
@@ -19,6 +20,11 @@ public interface ILocalIpFinder
 /// </summary>
 public sealed class LocalIpFinder : ILocalIpFinder
 {
+    private static readonly HashSet<byte> FirstBytesForLocals =
+            new(Locals.Select(e => e.FirstByte)
+                    .Union( // any IP in the range of 240.x.x.x - 255.x.x.x is local, or 240.0.0.0/4
+                        Enumerable.Range(240, 15).Select(i => (byte)i)));
+
     // https://tools.ietf.org/html/rfc6890
     private static readonly Ip4AndMask[] Locals =
     {
@@ -40,13 +46,19 @@ public sealed class LocalIpFinder : ILocalIpFinder
         new(@"255.255.255.255/32")
     };
 
-    private static readonly HashSet<byte> FirstBytesForLocals =
-        new(Locals.Select(e => e.FirstByte)
-                .Union( // any IP in the range of 240.x.x.x - 255.x.x.x is local, or 240.0.0.0/4
-                    Enumerable.Range(240, 15).Select(i => (byte) i)));
-
     private readonly ConcurrentDictionary<string, bool> _knownLocalIps =
         new(StringComparer.OrdinalIgnoreCase);
+
+    IpInfo ILocalIpFinder.GetIpInfo(string ip)
+    {
+        if (!IsLocalInternal(ip, out var isValid))
+        {
+            return new() { IsLocal = false, IsValid = isValid };
+        }
+
+        _ = _knownLocalIps.AddOrUpdate(ip, true, (s, b) => true);
+        return new() { IsLocal = true, IsValid = isValid };
+    }
 
     bool ILocalIpFinder.IsLocal(string ip)
     {
@@ -60,19 +72,29 @@ public sealed class LocalIpFinder : ILocalIpFinder
             return false;
         }
 
-        _knownLocalIps.AddOrUpdate(ip, true, (s, b) => true);
+        _ = _knownLocalIps.AddOrUpdate(ip, true, (s, b) => true);
         return true;
     }
 
-    IpInfo ILocalIpFinder.GetIpInfo(string ip)
+    internal static uint ComputeMask(int bitLimit)
     {
-        if (!IsLocalInternal(ip, out var isValid))
+        uint mask = 0;
+        var i = 0;
+        for (var byteIndex = 0; byteIndex < 4; ++byteIndex)
         {
-            return new() {IsLocal = false, IsValid = isValid};
+            var b = 0;
+            for (var bitIndex = 0; bitIndex < 8; ++bitIndex)
+            {
+                if (i == bitLimit) break;
+                ++i;
+                b |= 1 << (7 - bitIndex);
+            }
+
+            mask |= (uint)(b << (8 * byteIndex));
+            if (i == bitLimit) break;
         }
 
-        _knownLocalIps.AddOrUpdate(ip, true, (s, b) => true);
-        return new() {IsLocal = true, IsValid = isValid};
+        return mask;
     }
 
     private static bool IsLocalInternal(string ip, out bool isValid)
@@ -102,29 +124,14 @@ public sealed class LocalIpFinder : ILocalIpFinder
         return Locals.Any(data => (ipAsUInt & data.Mask) == data.Ip);
     }
 
-    internal static uint ComputeMask(int bitLimit)
-    {
-        uint mask = 0;
-        var i = 0;
-        for (var byteIndex = 0; byteIndex < 4; ++byteIndex)
-        {
-            var b = 0;
-            for (var bitIndex = 0; bitIndex < 8; ++bitIndex)
-            {
-                if (i == bitLimit) break;
-                ++i;
-                b |= 1 << (7 - bitIndex);
-            }
-
-            mask |= (uint) (b << (8 * byteIndex));
-            if (i == bitLimit) break;
-        }
-
-        return mask;
-    }
-
     private readonly struct Ip4AndMask
     {
+        internal readonly byte FirstByte;
+
+        internal readonly uint Ip;
+
+        internal readonly uint Mask;
+
         internal Ip4AndMask(string info)
         {
             var arr = info.Split('/');
@@ -136,10 +143,6 @@ public sealed class LocalIpFinder : ILocalIpFinder
             Ip = BitConverter.ToUInt32(bytes, 0);
             Mask = ComputeMask(bits);
         }
-
-        internal readonly byte FirstByte;
-        internal readonly uint Ip;
-        internal readonly uint Mask;
     }
 }
 

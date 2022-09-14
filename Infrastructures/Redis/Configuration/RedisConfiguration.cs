@@ -15,7 +15,7 @@ public class RedisConfiguration
     public RedisConfiguration RegisterRedisConnectionFactory<TRedisConnectionFactory>()
                 where TRedisConnectionFactory : class, IRedisConnectionFactory
     {
-        Services.AddSingleton<IRedisConnectionFactory, TRedisConnectionFactory>();
+        _ = Services.AddSingleton<IRedisConnectionFactory, TRedisConnectionFactory>();
 
         return this;
     }

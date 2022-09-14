@@ -14,14 +14,14 @@ public interface ICodeMapper
         string externalCode,
         Guid id);
 
-    Task<string> InternalToExternalAsync(
-        string internalCode,
-        Guid id);
-
     Task<Dictionary<string, string>> GetMapByExternalCodeAsync(
         Guid id);
 
     Task<Dictionary<string, string>> GetMapByInternalCodeAsync(
+        Guid id);
+
+    Task<string> InternalToExternalAsync(
+                string internalCode,
         Guid id);
 }
 

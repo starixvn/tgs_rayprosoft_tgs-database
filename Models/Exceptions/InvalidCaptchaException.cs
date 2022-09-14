@@ -6,6 +6,5 @@ public sealed class InvalidCaptchaException : Exception
 {
     public InvalidCaptchaException(string message) : base(message)
     {
-            
     }
 }

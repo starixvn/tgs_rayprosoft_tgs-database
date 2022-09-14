@@ -1,5 +1,4 @@
-﻿using System;
-using TGS.Core.Models.GameProviders.Settings.Avia;
+﻿using TGS.Core.Models.GameProviders.Settings.Avia;
 
 namespace TGS.Core.Models.GameProviders.Settings;
 

@@ -4,29 +4,29 @@ namespace TGS.Core.Infrastructures.Redis;
 
 public interface IRedisList<T>
 {
-    Task<T[]> GetRangeAsync(long start, long count);
+    Task AddToEndAsync(T item);
 
-    Task<T[]> TakeAsync(long count, long skip = 0);
+    Task AddToEndAsync(T[] items);
 
     Task AddToStartAsync(T item);
 
     Task AddToStartAsync(T[] items);
 
-    Task AddToEndAsync(T item);
-
-    Task AddToEndAsync(T[] items);
-
-    Task<T> PopFromStartAsync();
-
-    Task<T> PopFromEndAsync();
-
-    Task ShrinkAsync(long maxSize);
+    Task ClearAsync();
 
     Task<long> CountAsync();
 
-    Task ClearAsync();
+    string GetKey();
+
+    Task<T[]> GetRangeAsync(long start, long count);
+
+    Task<T> PopFromEndAsync();
+
+    Task<T> PopFromStartAsync();
 
     void SetKeyPrefix(string keyPrefix);
 
-    string GetKey();
+    Task ShrinkAsync(long maxSize);
+
+    Task<T[]> TakeAsync(long count, long skip = 0);
 }

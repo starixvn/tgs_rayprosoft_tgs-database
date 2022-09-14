@@ -9,7 +9,7 @@ namespace TGS.Core.Infrastructures.ErrorMappers;
 
 internal class CompositeErrorMapper : IErrorMapper
 {
-    private IErrorMapper[] _mappers;
+    private readonly IErrorMapper[] _mappers;
 
     public CompositeErrorMapper(IServiceProvider serviceProvider, ErrorMapperTypeCollection types)
     {

@@ -2,6 +2,10 @@
 
 public class PagedResponse<T> : MessageResponse
 {
+    public T[] Items { get; set; }
+
+    public int TotalCount { get; set; }
+
     public PagedResponse()
     {
     }
@@ -11,7 +15,4 @@ public class PagedResponse<T> : MessageResponse
         TotalCount = count;
         Items = items;
     }
-
-    public int TotalCount { get; set; }
-    public T[] Items { get; set; }
 }

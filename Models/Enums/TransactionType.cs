@@ -23,11 +23,13 @@ public enum TransactionType
     /// </summary>
     //Deposit = 1000,
     Deposited = 1100,
+
     /// <summary>
     /// 提款 2000~2999
     /// </summary>
     //Withdraw = 2000,
     WithdrawLock = 2100,
+
     WithdrawCommit = 2200,
     WithdrawRollback = 2300,
     /// <summary>
@@ -44,6 +46,7 @@ public enum TransactionType
     /// The promotion vip level season
     /// </summary>
     PromotionVipLevelSeason = 3850,
+
     PromotionVipLevelBirthday = 3860,
 
     /// <summary>
@@ -60,6 +63,7 @@ public enum TransactionType
     /// </summary>
     //Adjust = 5000,
     AgentAdjust = 5100,
+
     SystemAdjust = 5200,
     TransferAdjust = 5300,
     BonusAdjust = 5400,
@@ -77,6 +81,7 @@ public enum TransactionType
 
     //Credit上分、Debit下分、Refund退款、Revision修正
     GameDebit = 10100,
+
     GameCredit = 10200,
     GameRefund = 10300,
     GameRevision = 10400,

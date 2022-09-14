@@ -8,7 +8,7 @@ namespace TGS.Core.Infrastructures.ErrorMappers;
 
 public class ErrorMapperBuilder
 {
-    private ErrorMapperTypeCollection _mapperTypes;
+    private readonly ErrorMapperTypeCollection _mapperTypes;
 
     public IServiceCollection Services { get; }
 
@@ -23,7 +23,7 @@ public class ErrorMapperBuilder
         _mapperTypes = desc?.ImplementationInstance as ErrorMapperTypeCollection ?? new ErrorMapperTypeCollection();
 
         if (desc == null)
-            services.AddSingleton(_mapperTypes);
+            _ = services.AddSingleton(_mapperTypes);
 
         services.TryAddSingleton<IErrorMapper, CompositeErrorMapper>();
     }

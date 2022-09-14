@@ -12,46 +12,7 @@ namespace TGS.Core.Infrastructures.ErrorMappers;
 
 public sealed class TgsErrorMapper : IErrorMapper
 {
-    private static readonly IReadOnlyDictionary<Type, TgsApiError> TgsApiErrorByException =
-        new Dictionary<Type, TgsApiError>
-        {
-            {typeof(InvalidCredentialsException), InvalidCredentials},
-            {typeof(MissingTokenException), InvalidOrExpiredPlayerToken},
-            {typeof(PlayerLoginExpiredException), InvalidOrExpiredPlayerToken},
-            {typeof(InvalidCaptchaException), InvalidCaptcha},
-            {typeof(ClientIdNotFoundException), ClientIdNotFound},
-            {typeof(PlayerNotFoundException), PlayerNotFound},
-            {typeof(PlayerDisabledException), UserBlocked},
-            {typeof(CountryRestrictedException), CountryRestricted},
-            {typeof(CurrencyNotMatchingException), CurrencyMismatch},
-            {typeof(PlayerHasInsufficientFundsException), InsufficientFunds},
-            {typeof(InvalidInvitationCodeException), InvalidInvitationCode},
-            {typeof(InvalidGameActionException), InvalidGameAction},
-            {typeof(InvalidAmountException), InvalidAmount},
-            {typeof(ArgumentException), InvalidArguments},
-            {typeof(ModelBindingException), InvalidArguments},
-            {typeof(FormatException), IncorrectFormat},
-            {typeof(BrandUnderMaintenanceException), UnderMaintenance},
-            {typeof(GameProviderUnderMaintenanceException), UnderMaintenance},
-            {typeof(GameUnderMaintenanceException), UnderMaintenance},
-            {typeof(InvalidStatusException), InvalidStatus},
-            {typeof(InvalidOperationException), SystemError},
-            {typeof(OperationNotAllowedException), OperationNotAllowed},
-            {typeof(GameProviderApiErrorException), ProviderApiError}
-        };
-
-    private static readonly IReadOnlyDictionary<InvalidGameActionErrorCode, TgsApiError>
-        TgsApiErrorByInvalidGameActionErrorCode =
-            new Dictionary<InvalidGameActionErrorCode, TgsApiError>
-            {
-                {Duplicate, DuplicateTransaction},
-                {TransactionNotFound, TransactionIdNotFound},
-                {TransactionBeingCancelledNotFound, TransactionIdNotFound},
-                {TransactionBeingReferencedNotFound, TransactionIdNotFound},
-                {RoundNotFound, RoundIdNotFound}
-            };
-
-    private static readonly IReadOnlyDictionary<TgsApiError, int> HttpCodeByException =
+    private static readonly IReadOnlyDictionary<TgsApiError, int> _HttpCodeByException =
         new Dictionary<TgsApiError, int>
         {
             {InvalidCredentials, Status401Unauthorized},
@@ -77,6 +38,45 @@ public sealed class TgsErrorMapper : IErrorMapper
             {ProviderApiError, Status500InternalServerError}
         };
 
+    private static readonly IReadOnlyDictionary<Type, TgsApiError> _TgsApiErrorByException =
+        new Dictionary<Type, TgsApiError>
+    {
+            {typeof(InvalidCredentialsException), InvalidCredentials},
+            {typeof(MissingTokenException), InvalidOrExpiredPlayerToken},
+            {typeof(PlayerLoginExpiredException), InvalidOrExpiredPlayerToken},
+            {typeof(InvalidCaptchaException), InvalidCaptcha},
+            {typeof(ClientIdNotFoundException), ClientIdNotFound},
+            {typeof(PlayerNotFoundException), PlayerNotFound},
+            {typeof(PlayerDisabledException), UserBlocked},
+            {typeof(CountryRestrictedException), CountryRestricted},
+            {typeof(CurrencyNotMatchingException), CurrencyMismatch},
+            {typeof(PlayerHasInsufficientFundsException), InsufficientFunds},
+            {typeof(InvalidInvitationCodeException), InvalidInvitationCode},
+            {typeof(InvalidGameActionException), InvalidGameAction},
+            {typeof(InvalidAmountException), InvalidAmount},
+            {typeof(ArgumentException), InvalidArguments},
+            {typeof(ModelBindingException), InvalidArguments},
+            {typeof(FormatException), IncorrectFormat},
+            {typeof(BrandUnderMaintenanceException), UnderMaintenance},
+            {typeof(GameProviderUnderMaintenanceException), UnderMaintenance},
+            {typeof(GameUnderMaintenanceException), UnderMaintenance},
+            {typeof(InvalidStatusException), InvalidStatus},
+            {typeof(InvalidOperationException), SystemError},
+            {typeof(OperationNotAllowedException), OperationNotAllowed},
+            {typeof(GameProviderApiErrorException), ProviderApiError}
+    };
+
+    private static readonly IReadOnlyDictionary<InvalidGameActionErrorCode, TgsApiError>
+        _TgsApiErrorByInvalidGameActionErrorCode =
+            new Dictionary<InvalidGameActionErrorCode, TgsApiError>
+            {
+                {Duplicate, DuplicateTransaction},
+                {TransactionNotFound, TransactionIdNotFound},
+                {TransactionBeingCancelledNotFound, TransactionIdNotFound},
+                {TransactionBeingReferencedNotFound, TransactionIdNotFound},
+                {RoundNotFound, RoundIdNotFound}
+            };
+
     int IErrorMapper.GetApiErrorByException(Exception exception)
     {
         if (exception == null)
@@ -85,13 +85,13 @@ public sealed class TgsErrorMapper : IErrorMapper
         }
 
         if (exception is InvalidGameActionException e &&
-            TgsApiErrorByInvalidGameActionErrorCode.TryGetValue(e.ErrorCode, out var error))
+            _TgsApiErrorByInvalidGameActionErrorCode.TryGetValue(e.ErrorCode, out var error))
         {
             return (int)error;
         }
 
         var type = exception.GetType();
-        return TgsApiErrorByException.TryGetValue(type, out error) ? (int)error : (int)SystemError;
+        return _TgsApiErrorByException.TryGetValue(type, out error) ? (int)error : (int)SystemError;
     }
 
     int IErrorMapper.GetHttpStatusByException(Exception exception)
@@ -103,16 +103,16 @@ public sealed class TgsErrorMapper : IErrorMapper
 
         int statusCode;
         if (exception is InvalidGameActionException e &&
-            TgsApiErrorByInvalidGameActionErrorCode.TryGetValue(e.ErrorCode, out var error))
+            _TgsApiErrorByInvalidGameActionErrorCode.TryGetValue(e.ErrorCode, out var error))
         {
-            return HttpCodeByException.TryGetValue(error, out statusCode)
+            return _HttpCodeByException.TryGetValue(error, out statusCode)
                 ? statusCode
                 : Status500InternalServerError;
         }
 
         var type = exception.GetType();
-        return TgsApiErrorByException.TryGetValue(type, out error) &&
-            HttpCodeByException.TryGetValue(error, out statusCode)
+        return _TgsApiErrorByException.TryGetValue(type, out error) &&
+            _HttpCodeByException.TryGetValue(error, out statusCode)
                 ? statusCode
                 : Status500InternalServerError;
     }

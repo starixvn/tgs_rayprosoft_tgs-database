@@ -28,7 +28,7 @@ rootCommand.SetHandler<string>(
     async connectionString =>
     {
         var dbOptionsBuilder = new DbContextOptionsBuilder<TgsRepository>();
-        dbOptionsBuilder
+        _ = dbOptionsBuilder
             .UseNpgsql(connectionString, serverOption =>
             {
             })

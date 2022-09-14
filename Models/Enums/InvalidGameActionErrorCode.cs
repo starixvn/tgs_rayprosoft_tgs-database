@@ -11,5 +11,5 @@ public enum InvalidGameActionErrorCode
     TransactionBeingReferencedNotFound,
     RoundNotFound,
     GameNotFound,
-    ActionProhibited        
+    ActionProhibited
 }

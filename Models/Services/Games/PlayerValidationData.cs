@@ -6,5 +6,5 @@ public record PlayerValidationData
 {
     public string PlayerCode { get; init; }
     public string GameProviderCode { get; init; }
-    public PlatformType? PlatformType {  get; init; }
+    public PlatformType? PlatformType { get; init; }
 }

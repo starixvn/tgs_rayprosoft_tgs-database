@@ -5,6 +5,24 @@ namespace TGS.Core.Infrastructures.IO;
 
 public class BitStream : Stream
 {
+    public override bool CanRead => true;
+
+    public override bool CanSeek => true;
+
+    public override bool CanWrite => true;
+
+    /// <summary>
+    /// Bit length of the stream
+    /// </summary>
+    public override long Length => Source.Length * 8;
+
+    /// <summary>
+    /// Bit position of the stream
+    /// </summary>
+    public override long Position { get; set; }
+
+    private byte[] Source { get; }
+
     /// <summary>
     /// Initialize the stream with capacity
     /// </summary>
@@ -22,24 +40,6 @@ public class BitStream : Stream
     {
         Source = source;
     }
-
-    private byte[] Source { get; }
-
-    public override bool CanRead => true;
-
-    public override bool CanSeek => true;
-
-    public override bool CanWrite => true;
-
-    /// <summary>
-    /// Bit length of the stream
-    /// </summary>
-    public override long Length => Source.Length * 8;
-
-    /// <summary>
-    /// Bit position of the stream
-    /// </summary>
-    public override long Position { get; set; }
 
     public override void Flush()
     {
@@ -64,19 +64,14 @@ public class BitStream : Stream
 
         // Stream byte position and in-byte position
         var posCount = tempPos >> 3;
-        var posMod = (int) (tempPos - ((tempPos >> 3) << 3));
+        var posMod = (int)(tempPos - ((tempPos >> 3) << 3));
 
         while (tempPos < Position + offset + count && tempPos < Length)
         {
             // Copy the bit from the stream to buffer
-            if ((Source[posCount] & (0x1 << (7 - posMod))) != 0)
-            {
-                buffer[readPosCount] = (byte) (buffer[readPosCount] | (0x1 << (7 - readPosMod)));
-            }
-            else
-            {
-                buffer[readPosCount] = (byte) (buffer[readPosCount] & (0xffffffff - (0x1 << (7 - readPosMod))));
-            }
+            buffer[readPosCount] = (Source[posCount] & (0x1 << (7 - posMod))) != 0
+                ? (byte)(buffer[readPosCount] | (0x1 << (7 - readPosMod)))
+                : (byte)(buffer[readPosCount] & (0xffffffff - (0x1 << (7 - readPosMod))));
 
             // Increment position cursors
             tempPos++;
@@ -101,7 +96,7 @@ public class BitStream : Stream
             }
         }
 
-        var bits = (int) (tempPos - Position - offset);
+        var bits = (int)(tempPos - Position - offset);
         Position = tempPos;
         return bits;
     }
@@ -116,7 +111,7 @@ public class BitStream : Stream
     {
         Position = origin switch
         {
-            SeekOrigin.Begin   => offset,
+            SeekOrigin.Begin => offset,
             SeekOrigin.Current => Position + offset,
             SeekOrigin.End => Length + offset,
             _ => throw new ArgumentOutOfRangeException(nameof(origin), origin, null)
@@ -147,19 +142,14 @@ public class BitStream : Stream
 
         // Stream byte position and in-byte position
         var posCount = tempPos >> 3;
-        var posMod = (int) (tempPos - ((tempPos >> 3) << 3));
+        var posMod = (int)(tempPos - ((tempPos >> 3) << 3));
 
         while (tempPos < Position + count && tempPos < Length)
         {
             // Copy the bit from buffer to the stream
-            if ((buffer[readPosCount] & (0x1 << (7 - readPosMod))) != 0)
-            {
-                Source[posCount] = (byte) (Source[posCount] | (0x1 << (7 - posMod)));
-            }
-            else
-            {
-                Source[posCount] = (byte) (Source[posCount] & (0xffffffff - (0x1 << (7 - posMod))));
-            }
+            Source[posCount] = (buffer[readPosCount] & (0x1 << (7 - readPosMod))) != 0
+                ? (byte)(Source[posCount] | (0x1 << (7 - posMod)))
+                : (byte)(Source[posCount] & (0xffffffff - (0x1 << (7 - posMod))));
 
             // Increment position cursors
             tempPos++;

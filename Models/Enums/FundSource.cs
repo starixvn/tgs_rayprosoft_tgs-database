@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TGS.Core.Models.Enums;
+﻿namespace TGS.Core.Models.Enums;
 
 /// <summary>
 /// 資金來源
@@ -16,9 +10,10 @@ public enum FundSource
     /// Tgs -> GP
     /// </summary>
     FundOut = 1,
+
     /// <summary>
     /// 轉入
-    /// GP -> Tgs 
+    /// GP -> Tgs
     /// </summary>
     FundIn = 2,
 }

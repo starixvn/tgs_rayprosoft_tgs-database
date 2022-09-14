@@ -54,14 +54,9 @@ internal sealed class RedisSortedSet<T> : IRedisSortedSet<T>
     }
 
     string IRedisSortedSet<T>.GetKey()
-    {
-        if (string.IsNullOrEmpty(_keyPrefix))
-        {
-            throw new ArgumentNullException(nameof(_keyPrefix), "Key prefix should be set before using actual methods");
-        }
-
-        return $"{_keyPrefix}_{GetType().Name}_{typeof(T).Name}";
-    }
+        => string.IsNullOrEmpty(_keyPrefix)
+            ? throw new ArgumentNullException(nameof(_keyPrefix), "Key prefix should be set before using actual methods")
+            : $"{_keyPrefix}_{GetType().Name}_{typeof(T).Name}";
 
     async Task<T> IRedisSortedSet<T>.GetWithMaxScoreAsync()
     {
@@ -70,11 +65,7 @@ internal sealed class RedisSortedSet<T> : IRedisSortedSet<T>
 
         var items = await db.SortedSetRangeByRankAsync(key, 0, 0, Order.Descending);
 
-        if (items == null || items.Length != 1)
-        {
-            return default(T);
-        }
-        return DeserializeItem(items[0]);
+        return items == null || items.Length != 1 ? default : DeserializeItem(items[0]);
     }
 
     async Task<T> IRedisSortedSet<T>.GetWithMinScoreAsync()
@@ -84,11 +75,7 @@ internal sealed class RedisSortedSet<T> : IRedisSortedSet<T>
 
         var items = await db.SortedSetRangeByRankAsync(key, 0, 0, Order.Ascending);
 
-        if (items == null || items.Length != 1)
-        {
-            return default(T);
-        }
-        return DeserializeItem(items[0]);
+        return items == null || items.Length != 1 ? default : DeserializeItem(items[0]);
     }
 
     void IRedisSortedSet<T>.SetKeyPrefix(string prefix)
@@ -141,7 +128,7 @@ internal sealed class RedisSortedSet<T> : IRedisSortedSet<T>
         return JsonSerializer.Deserialize<T>(item);
     }
 
-    private int ToInt(long value)
+    private static int ToInt(long value)
     {
         return (int)value;
     }
