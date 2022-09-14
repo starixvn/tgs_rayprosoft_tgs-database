@@ -4,11 +4,8 @@
     <TargetFramework>net6.0</TargetFramework>
     <AssemblyName>TGS.Core.DataServices.Tgs</AssemblyName>
     <RootNamespace>TGS.Core.DataServices</RootNamespace>
-    <GlobalNugetConfig>$(UserProfile)\AppData\Roaming\NuGet\NuGet.Config</GlobalNugetConfig>
-    <GlobalNugetConfig Condition="'$(UserProfile)'==''">$(HOME)/.nuget/NuGet/NuGet.Config</GlobalNugetConfig>
-    <DockerfileBuildArguments>--build-arg "BuildConfiguration=$(Configuration)" --secret id=nuget,src="$(GlobalNugetConfig)"</DockerfileBuildArguments>
+    <DockerfileBuildArguments>--build-arg "BuildConfiguration=$(Configuration)"</DockerfileBuildArguments>
     <DockerfileTag Condition="$(DockerfileTag) == ''">tgs/migration</DockerfileTag>
-    <DockerfileContext>..\..\..</DockerfileContext>
     <PackageId>Tgs.Core</PackageId>
     <Version>1.0.1</Version>
     <Authors>Raypro</Authors>
