@@ -7,9 +7,9 @@ FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /app
 WORKDIR /src
 COPY . .
-WORKDIR "DataServices.Tgs/"
+WORKDIR "MigrationEntry/"
 RUN dotnet tool restore
-RUN dotnet build "DataServices.Tgs.csproj"
+RUN dotnet build "MigrationEntry.csproj"
 
 FROM build AS publish
 RUN dotnet ef migrations bundle -o /app/efbundle

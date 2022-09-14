@@ -2,8 +2,6 @@
 
   <PropertyGroup>
     <RootNamespace>TGS.Core.DataServices</RootNamespace>
-    <DockerfileBuildArguments>--build-arg "BuildConfiguration=$(Configuration)"</DockerfileBuildArguments>
-    <DockerfileTag Condition="$(DockerfileTag) == ''">tgs/migration</DockerfileTag>
     <PackageId>Tgs.Core</PackageId>
     <Version>1.0.1</Version>
     <Authors>Raypro</Authors>
@@ -12,6 +10,10 @@
     <RepositoryUrl>https://gitlab.com/rayprosoft/tgs-database.git</RepositoryUrl>
     <TargetFramework>net6.0</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="tgs.appsettings.json" />
+  </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Tgs\DataInitializers\Games\365.csv" />
@@ -140,13 +142,8 @@
     </PackageReference>
     <PackageReference Include="Dapper" Version="2.0.123" />
     <PackageReference Include="EFCore.NamingConventions" Version="6.0.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.9">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="6.0.9" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="6.0.9" />
-    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.0" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.6" />
     <PackageReference Include="PhoenixToolkits.NuGet.BuildTools" Version="0.0.2">
       <PrivateAssets>All</PrivateAssets>
@@ -163,9 +160,6 @@
     </PackageReference>
     <PackageReference Include="Tgs.Logging" Version="0.0.19" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="6.0.1"/>
-    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0"/>
-    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="6.0.0"/>
   </ItemGroup>
 
   <ItemGroup>
@@ -175,14 +169,6 @@
     <ProjectReference Include="..\Models\Models.csproj">
       <PrivateAssets>All</PrivateAssets>
     </ProjectReference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="tgs.appsettings.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </None>
   </ItemGroup>
 
 </Project>
