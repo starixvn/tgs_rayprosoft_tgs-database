@@ -9,6 +9,12 @@
     <DockerfileBuildArguments>--build-arg "BuildConfiguration=$(Configuration)" --secret id=nuget,src="$(GlobalNugetConfig)"</DockerfileBuildArguments>
     <DockerfileTag Condition="$(DockerfileTag) == ''">tgs/migration</DockerfileTag>
     <DockerfileContext>..\..\..</DockerfileContext>
+    <PackageId>Tgs.Core</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>Raypro</Authors>
+    <Product>Tgs.Core</Product>
+    <PackageProjectUrl>https://gitlab.com/rayprosoft/tgs-database</PackageProjectUrl>
+    <RepositoryUrl>https://gitlab.com/rayprosoft/tgs-database.git</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
@@ -62,15 +68,6 @@
     <None Remove="Tgs\SqlScripts\Indexes\rounds_createdon.sql" />
     <None Remove="Tgs\SqlScripts\Indexes\rounds_external_closed_on.sql" />
     <None Remove="Tgs\SqlScripts\PaymentInitial\applepay.sql" />
-    <None Remove="tgs.appsettings.json" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="tgs.appsettings.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
   </ItemGroup>
 
   <ItemGroup>
@@ -205,13 +202,28 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="6.0.9" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.0" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.6" />
+    <PackageReference Include="PhoenixToolkits.NuGet.BuildTools" Version="0.0.2" />
     <PackageReference Include="Tgs.Core.Infrastructures.Security" Version="0.0.1" />
     <PackageReference Include="Tgs.Core.Infrastructures.Utility" Version="0.0.3" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Infrastructures\Infrastructures.csproj" />
-    <ProjectReference Include="..\Models\Models.csproj" />
+    <ProjectReference Include="..\Infrastructures\Infrastructures.csproj">
+      <IncludeAssets></IncludeAssets>
+      <PrivateAssets>All</PrivateAssets>
+    </ProjectReference>
+    <ProjectReference Include="..\Models\Models.csproj">
+      <IncludeAssets></IncludeAssets>
+      <PrivateAssets>All</PrivateAssets>
+    </ProjectReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="tgs.appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
