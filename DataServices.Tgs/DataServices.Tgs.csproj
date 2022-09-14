@@ -1,8 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <AssemblyName>TGS.Core.DataServices.Tgs</AssemblyName>
     <RootNamespace>TGS.Core.DataServices</RootNamespace>
     <DockerfileBuildArguments>--build-arg "BuildConfiguration=$(Configuration)"</DockerfileBuildArguments>
     <DockerfileTag Condition="$(DockerfileTag) == ''">tgs/migration</DockerfileTag>
@@ -12,60 +10,8 @@
     <Product>Tgs.Core</Product>
     <PackageProjectUrl>https://gitlab.com/rayprosoft/tgs-database</PackageProjectUrl>
     <RepositoryUrl>https://gitlab.com/rayprosoft/tgs-database.git</RepositoryUrl>
+    <TargetFramework>net6.0</TargetFramework>
   </PropertyGroup>
-
-  <ItemGroup>
-    <None Remove="Tgs\DataInitializers\Games\365.csv" />
-    <None Remove="Tgs\DataInitializers\Games\AB.csv" />
-    <None Remove="Tgs\DataInitializers\Games\Avia.csv" />
-    <None Remove="Tgs\DataInitializers\Games\AWC_AELOTTO.csv" />
-    <None Remove="Tgs\DataInitializers\Games\AWC_AWS.csv" />
-    <None Remove="Tgs\DataInitializers\Games\AWC_COCKFIGHT.csv" />
-    <None Remove="Tgs\DataInitializers\Games\AWC_FACAI.csv" />
-    <None Remove="Tgs\DataInitializers\Games\AWC_FS.csv" />
-    <None Remove="Tgs\DataInitializers\Games\AWC_KM.csv" />
-    <None Remove="Tgs\DataInitializers\Games\AWC_LUDO.csv" />
-    <None Remove="Tgs\DataInitializers\Games\AWC_PGS.csv" />
-    <None Remove="Tgs\DataInitializers\Games\AWC_RCB.csv" />
-    <None Remove="Tgs\DataInitializers\Games\AWC_SG.csv" />
-    <None Remove="Tgs\DataInitializers\Games\AWC_SPADE.csv" />
-    <None Remove="Tgs\DataInitializers\Games\AWC_VENUS.csv" />
-    <None Remove="Tgs\DataInitializers\Games\AWC_YL.csv" />
-    <None Remove="Tgs\DataInitializers\Games\BC.csv" />
-    <None Remove="Tgs\DataInitializers\Games\DG.csv" />
-    <None Remove="Tgs\DataInitializers\Games\EVO.csv" />
-    <None Remove="Tgs\DataInitializers\Games\JILI.csv" />
-    <None Remove="Tgs\DataInitializers\Games\JILITF.csv" />
-    <None Remove="Tgs\DataInitializers\Games\JOKER.csv" />
-    <None Remove="Tgs\DataInitializers\Games\LY.csv" />
-    <None Remove="Tgs\DataInitializers\Games\PPTF.csv" />
-    <None Remove="Tgs\DataInitializers\Games\SW.csv" />
-    <None Remove="Tgs\DataInitializers\Games\TCG.csv" />
-    <None Remove="Tgs\DataInitializers\Games\TF.csv" />
-    <None Remove="Tgs\DataInitializers\Games\WGFM.csv" />
-    <None Remove="Tgs\DataInitializers\Games\WGVIA.csv" />
-    <None Remove="Tgs\DataInitializers\Games\WM.csv" />
-    <None Remove="Tgs\DataInitializers\Games\WMTF.csv" />
-    <None Remove="Tgs\SqlScripts\Functions\agent_get_agents_with_team_counts.sql" />
-    <None Remove="Tgs\SqlScripts\Functions\agent_get_all_sub_agents.sql" />
-    <None Remove="Tgs\SqlScripts\Functions\agent_update_path.sql" />
-    <None Remove="Tgs\SqlScripts\Functions\brand_game_providers_status_changes.sql" />
-    <None Remove="Tgs\SqlScripts\Functions\game_action_get_game_actions_by_external_group_id.sql" />
-    <None Remove="Tgs\SqlScripts\Functions\promotion_revert_amount_used.sql" />
-    <None Remove="Tgs\SqlScripts\Functions\report_generate_brand_game_provider_aggregate_by_closed_on.sql" />
-    <None Remove="Tgs\SqlScripts\Functions\report_generate_game_provider_aggregate_by_closed_on.sql" />
-    <None Remove="Tgs\SqlScripts\Functions\report_get_player_first_deposit_details.sql" />
-    <None Remove="Tgs\SqlScripts\Functions\report_get_player_no_second_deposit_details.sql" />
-    <None Remove="Tgs\SqlScripts\Indexes\brand_fuzzy_query_trgm.sql" />
-    <None Remove="Tgs\SqlScripts\Indexes\game_actions_external_group_id.sql" />
-    <None Remove="Tgs\SqlScripts\Indexes\game_actions_external_transaction_id.sql" />
-    <None Remove="Tgs\SqlScripts\Indexes\ix_rounds_external_round_id_composite.sql" />
-    <None Remove="Tgs\SqlScripts\Indexes\licensee_fuzzy_query_trgm.sql" />
-    <None Remove="Tgs\SqlScripts\Indexes\players_brand_id_email.sql" />
-    <None Remove="Tgs\SqlScripts\Indexes\rounds_createdon.sql" />
-    <None Remove="Tgs\SqlScripts\Indexes\rounds_external_closed_on.sql" />
-    <None Remove="Tgs\SqlScripts\PaymentInitial\applepay.sql" />
-  </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Tgs\DataInitializers\Games\365.csv" />
@@ -189,7 +135,9 @@
 
   <ItemGroup>
     <PackageReference Include="ClosedXML" Version="0.95.4" />
-    <PackageReference Include="CsvHelper" Version="28.0.1" />
+    <PackageReference Include="CsvHelper" Version="28.0.1">
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
     <PackageReference Include="Dapper" Version="2.0.123" />
     <PackageReference Include="EFCore.NamingConventions" Version="6.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.9">
@@ -198,30 +146,36 @@
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="6.0.9" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="6.0.9" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="6.0.1">
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0">
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="6.0.0">
+    </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.0" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.6" />
     <PackageReference Include="PhoenixToolkits.NuGet.BuildTools" Version="0.0.2">
       <PrivateAssets>All</PrivateAssets>
     </PackageReference>
     <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
-    <PackageReference Include="Tgs.Core.Infrastructures.Security" Version="0.0.1" />
-    <PackageReference Include="Tgs.Core.Infrastructures.Utility" Version="0.0.3" />
-    <PackageReference Include="Microsoft.IO.RecyclableMemoryStream" Version="2.2.1" />
     <PackageReference Include="StackExchange.Redis" Version="2.6.66" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.23.1" />
     <PackageReference Include="TGS.Core.Infrastructures.Json" Version="0.0.1" />
+    <PackageReference Include="Tgs.Core.Infrastructures.Security" Version="0.0.1">
+      <PrivateAssets>All</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Tgs.Core.Infrastructures.Utility" Version="0.0.3">
+      <PrivateAssets>All</PrivateAssets>
+    </PackageReference>
     <PackageReference Include="Tgs.Logging" Version="0.0.19" />
-    <PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.1" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Infrastructures\Infrastructures.csproj">
-      <IncludeAssets></IncludeAssets>
       <PrivateAssets>All</PrivateAssets>
     </ProjectReference>
     <ProjectReference Include="..\Models\Models.csproj">
-      <IncludeAssets></IncludeAssets>
       <PrivateAssets>All</PrivateAssets>
     </ProjectReference>
   </ItemGroup>
