@@ -8,7 +8,7 @@ RUN --mount=type=secret,id=nuget,dst=/pat cp /pat ~/.nuget/NuGet/NuGet.Config
 WORKDIR /app
 WORKDIR /src
 COPY . .
-WORKDIR "/src/src/Core/DataServices.Tgs"
+WORKDIR "DataServices.Tgs/"
 RUN dotnet tool restore
 RUN dotnet build "DataServices.Tgs.csproj"
 
