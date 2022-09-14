@@ -14,7 +14,7 @@ public partial class DataInitializer
 {
     internal record PragmaticPlayGameProvider : IGameProvider
     {
-        private static readonly string EndpointPath = "?key={KEY}&stylename={SECURELOGIN}";
+        private static readonly string _EndpointPath = "?key={KEY}&stylename={SECURELOGIN}";
         private readonly IGame[] _games;
 
         public PragmaticPlayGameProvider()
@@ -22,15 +22,12 @@ public partial class DataInitializer
             _games = LoadGamesFromCsv(GameProviderConst.PragmaticPlay)
                 .Select(g =>
                 {
-                    if (g.EndpointPath.IsNotNullOrEmpty())
+                    return g.EndpointPath.IsNotNullOrEmpty()
+                        ? g
+                        : ((Game)g with
                     {
-                        return g;
-                    }
-
-                    return (Game)g with
-                    {
-                        EndpointPath = EndpointPath
-                    };
+                        EndpointPath = _EndpointPath
+                    });
                 })
                 .ToArray();
         }

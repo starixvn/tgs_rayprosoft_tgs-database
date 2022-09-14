@@ -6,11 +6,11 @@ namespace TGS.Core.Infrastructures.Utility;
 
 public static class InvitationCodeGenerator
 {
-    private static readonly object Instance = new();
+    private static readonly object _Instance = new();
 
     public static string NewId()
     {
-        lock (Instance)
+        lock (_Instance)
         {
             Thread.Sleep(1);
             return GenerateString(6);

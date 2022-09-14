@@ -18,8 +18,8 @@ public partial class DataInitializer
     {
         private readonly IGame[] _games;
 
-        private readonly Dictionary<int, GameProviderBetLimit> BetLimitMapper =
-            new Dictionary<int, GameProviderBetLimit>
+        private readonly Dictionary<int, GameProviderBetLimit> _betLimitMapper =
+            new()
             {
                 {280301, new(GuidExtensions.NewSequentialGuid(), "CNY", 5, 500, 500)},
                 {280302, new(GuidExtensions.NewSequentialGuid(), "CNY", 10, 1000, 1000)},
@@ -65,12 +65,7 @@ public partial class DataInitializer
             _games = LoadGamesFromCsv(GameProviderConst.SexyGaming)
                 .Select(g =>
                 {
-                    if (g.EndpointPath.IsNotNullOrEmpty())
-                    {
-                        return g;
-                    }
-
-                    return (Game)g with { EndpointPath = string.Empty };
+                    return g.EndpointPath.IsNotNullOrEmpty() ? g : ((Game)g with { EndpointPath = string.Empty });
                 })
                 .ToArray();
         }
@@ -119,7 +114,7 @@ public partial class DataInitializer
 
         ushort IGameProvider.UniqueId => 5;
 
-        GameProviderBetLimit[] IGameProvider.BetLimits => BetLimitMapper.Select(x => x.Value).ToArray();
+        GameProviderBetLimit[] IGameProvider.BetLimits => _betLimitMapper.Select(x => x.Value).ToArray();
 
         PluggableConfigurationBase IGameProvider.GetConfiguration() =>
             new SexyGamingConfiguration
@@ -130,7 +125,7 @@ public partial class DataInitializer
                 Cert = "OFIHXL0mfK8AcohvyTs",
                 BetLimit = new SexyGamingBetLimit
                 {
-                    SexybcrtMapper = BetLimitMapper.ToDictionary(o => o.Key, o => o.Value.CurrencyCode)
+                    SexybcrtMapper = _betLimitMapper.ToDictionary(o => o.Key, o => o.Value.CurrencyCode)
                 }
             };
 
@@ -146,7 +141,7 @@ public partial class DataInitializer
 
     internal record SexyGamingGameProviderConfiguration : IGameProviderConfiguration
     {
-        private static readonly string _endpoint = string.Empty;
+        private static readonly string _Endpoint = string.Empty;
 
         Guid IGameProviderConfiguration.Id => new("BE8B70A3-A8FA-ECEF-BFAD-7A3455B9EF0F");
 
@@ -156,8 +151,8 @@ public partial class DataInitializer
 
         string IGameProviderConfiguration.SecretKey => "dfqqxrchghagdhmfnmzttxgzsfockhmm";
 
-        string IGameProviderConfiguration.DesktopEndpoint => _endpoint;
+        string IGameProviderConfiguration.DesktopEndpoint => _Endpoint;
 
-        string IGameProviderConfiguration.MobileEndpoint => _endpoint;
+        string IGameProviderConfiguration.MobileEndpoint => _Endpoint;
     }
 }

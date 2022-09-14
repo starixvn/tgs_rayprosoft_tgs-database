@@ -21,15 +21,7 @@ public partial class DataInitializer
         public AWC_AELOTTOGameProvider()
         {
             _games = LoadGamesFromCsv(GameProviderConst.AWC_AELOTTO)
-                .Select(g =>
-                {
-                    if (g.EndpointPath.IsNotNullOrEmpty())
-                    {
-                        return g;
-                    }
-
-                    return (Game)g with { EndpointPath = string.Empty };
-                })
+                .Select(g => g.EndpointPath.IsNotNullOrEmpty() ? g : ((Game)g with { EndpointPath = string.Empty }))
                 .ToArray();
         }
 
@@ -90,7 +82,7 @@ public partial class DataInitializer
 
     internal record AWC_AELOTTOGameProviderConfiguration : IGameProviderConfiguration
     {
-        private static readonly string _endpoint = string.Empty;
+        private static readonly string _Endpoint = string.Empty;
 
         Guid IGameProviderConfiguration.Id => new("ED5E5E92-959C-7E5A-024A-17E6C379C518");
 
@@ -100,9 +92,9 @@ public partial class DataInitializer
 
         string IGameProviderConfiguration.SecretKey => "algpidxzgdfsafvtnthehtmymmqjmquj";
 
-        string IGameProviderConfiguration.DesktopEndpoint => _endpoint;
+        string IGameProviderConfiguration.DesktopEndpoint => _Endpoint;
 
-        string IGameProviderConfiguration.MobileEndpoint => _endpoint;
+        string IGameProviderConfiguration.MobileEndpoint => _Endpoint;
 
         string IGameProviderConfiguration.ConfigurationData => JsonSerializer.Serialize(new
         {

@@ -15,7 +15,7 @@ public sealed class ValidateModelFilter : IAsyncActionFilter
         if (context.ModelState.IsValid)
             return next();
 
-        string GetErrorMessage(ModelError err)
+        static string GetErrorMessage(ModelError err)
             => err.ErrorMessage.IsNullOrEmpty()
                 ? err.Exception?.Message ?? string.Empty
                 : err.ErrorMessage;

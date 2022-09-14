@@ -21,12 +21,12 @@ public static class IdVerification
 
         if (id.Length == 15)
         {
-            id = id.Substring(0, 6) + "19" + id.Substring(6, 10);
+            id = string.Concat(id.AsSpan(0, 6), "19", id.AsSpan(6, 10));
         }
 
         if (id.Length != 15
             && id.Length != 18
-            || cityCodes.All(x => x != id.Substring(0, 2))
+            || cityCodes.All(x => x != id[..2])
             || !DateTimeOffset.TryParse(
                 $"{id.Substring(6, 4)}/{id.Substring(10, 2)}/{id.Substring(12, 2)}",
                 out var birth)

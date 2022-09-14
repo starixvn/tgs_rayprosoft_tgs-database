@@ -6,11 +6,11 @@ namespace TGS.Core.Infrastructures.Utility;
 
 public static class PlayerCodeGenerator
 {
-    private static readonly object Instance = new object();
+    private static readonly object _Instance = new();
 
     public static string NewId()
     {
-        lock (Instance)
+        lock (_Instance)
         {
             Thread.Sleep(1);
             var ticks = DateTime.Now.Ticks;
@@ -33,7 +33,7 @@ public static class PlayerCodeGenerator
         {
             var r = num % nbase;
             _ = newNumber.Insert(0, chars[(int)r]);
-            num = num / nbase;
+            num /= nbase;
         }
         // the last number to convert
         _ = newNumber.Insert(0, chars[(int)num]);

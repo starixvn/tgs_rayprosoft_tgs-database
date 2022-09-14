@@ -19,15 +19,7 @@ public partial class DataInitializer
         public IMESportsGameProvider()
         {
             _games = LoadGamesFromCsv(GameProviderConst.IMESports)
-                .Select(g =>
-                {
-                    if (g.EndpointPath.IsNotNullOrEmpty())
-                    {
-                        return g;
-                    }
-
-                    return (Game)g with { EndpointPath = string.Empty };
-                })
+                .Select(g => g.EndpointPath.IsNotNullOrEmpty() ? g : ((Game)g with { EndpointPath = string.Empty }))
                 .ToArray();
         }
 
@@ -97,7 +89,7 @@ public partial class DataInitializer
 
     internal record IMESportsGameProviderConfiguration : IGameProviderConfiguration
     {
-        private static readonly string _endpoint = string.Empty;
+        private static readonly string _Endpoint = string.Empty;
 
         Guid IGameProviderConfiguration.Id => new("5FB4F65C-6C0D-44A4-A711-E7DB385AA2A8");
 
@@ -107,8 +99,8 @@ public partial class DataInitializer
 
         string IGameProviderConfiguration.SecretKey => "VNFFu2kqkWz6PcZcjfkwdZQxnuWdyqn5NDB7gL7skw8Y";
 
-        string IGameProviderConfiguration.DesktopEndpoint => _endpoint;
+        string IGameProviderConfiguration.DesktopEndpoint => _Endpoint;
 
-        string IGameProviderConfiguration.MobileEndpoint => _endpoint;
+        string IGameProviderConfiguration.MobileEndpoint => _Endpoint;
     }
 }

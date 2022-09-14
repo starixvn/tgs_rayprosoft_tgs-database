@@ -20,15 +20,7 @@ public partial class DataInitializer
         public BigGamingGameProvider()
         {
             _games = LoadGamesFromCsv(GameProviderConst.BigGaming)
-                .Select(g =>
-                {
-                    if (g.EndpointPath.IsNotNullOrEmpty())
-                    {
-                        return g;
-                    }
-
-                    return (Game)g with { EndpointPath = string.Empty };
-                })
+                .Select(g => g.EndpointPath.IsNotNullOrEmpty() ? g : ((Game)g with { EndpointPath = string.Empty }))
                 .ToArray();
         }
 
@@ -73,10 +65,12 @@ public partial class DataInitializer
 
         GameProviderBetLimit[] IGameProvider.BetLimits => Array.Empty<GameProviderBetLimit>();
 
-        PluggableConfigurationBase IGameProvider.GetConfiguration() => new BigGamingConfiguration
+        PluggableConfigurationBase IGameProvider.GetConfiguration()
         {
-            ServiceEndpointUrl = new("http://localhost:62330"),
-            BrandMerchants = new BigGamingBrandMerchant[]
+            return new BigGamingConfiguration
+            {
+                ServiceEndpointUrl = new("http://localhost:62330"),
+                BrandMerchants = new BigGamingBrandMerchant[]
             {
                 new()
                 {
@@ -88,7 +82,7 @@ public partial class DataInitializer
                     SecretKey = "8153503006031672EF300005E5EF6AEF"
                 }
             },
-            OppositeBets = new OppositeBetSetting[]
+                OppositeBets = new OppositeBetSetting[]
             {
                 new()
                 {
@@ -114,9 +108,7 @@ public partial class DataInitializer
                     {
                         "2"
                     },
-                    Patterns = new OppositeBetSetting.Pattern[]
-                    {
-                    }
+                    Patterns = Array.Empty<OppositeBetSetting.Pattern>()
                 },
                 new()
                 {
@@ -125,9 +117,7 @@ public partial class DataInitializer
                     {
                         "3"
                     },
-                    Patterns = new OppositeBetSetting.Pattern[]
-                    {
-                    }
+                    Patterns = Array.Empty<OppositeBetSetting.Pattern>()
                 },
                 new()
                 {
@@ -211,9 +201,7 @@ public partial class DataInitializer
                     {
                         "13"
                     },
-                    Patterns = new OppositeBetSetting.Pattern[]
-                    {
-                    }
+                    Patterns = Array.Empty<OppositeBetSetting.Pattern>()
                 },
                 new()
                 {
@@ -235,12 +223,11 @@ public partial class DataInitializer
                     {
                         "15"
                     },
-                    Patterns = new OppositeBetSetting.Pattern[]
-                    {
-                    }
+                    Patterns = Array.Empty<OppositeBetSetting.Pattern>()
                 }
             }
-        };
+            };
+        }
 
         SubGameProvider[] IGameProvider.SubGameProviders => new SubGameProvider[]
         {
@@ -250,15 +237,15 @@ public partial class DataInitializer
 
     internal class BigGamingGameProviderConfiguration : IGameProviderConfiguration
     {
-        private static readonly string _endpoint = string.Empty;
+        private static readonly string _Endpoint = string.Empty;
 
         string IGameProviderConfiguration.ClientId => "BG-PG";
 
-        string IGameProviderConfiguration.DesktopEndpoint => _endpoint;
+        string IGameProviderConfiguration.DesktopEndpoint => _Endpoint;
 
         Guid IGameProviderConfiguration.Id => new("A9E3B270-79F5-B455-F476-679D693C82E7");
 
-        string IGameProviderConfiguration.MobileEndpoint => _endpoint;
+        string IGameProviderConfiguration.MobileEndpoint => _Endpoint;
 
         string IGameProviderConfiguration.Name => "Configuration BigGaming";
 

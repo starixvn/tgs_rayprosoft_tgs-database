@@ -21,15 +21,7 @@ public partial class DataInitializer
         public AWC_YLGameProvider()
         {
             _games = LoadGamesFromCsv(GameProviderConst.AWC_YL)
-                .Select(g =>
-                {
-                    if (g.EndpointPath.IsNotNullOrEmpty())
-                    {
-                        return g;
-                    }
-
-                    return (Game)g with { EndpointPath = string.Empty };
-                })
+                .Select(g => g.EndpointPath.IsNotNullOrEmpty() ? g : ((Game)g with { EndpointPath = string.Empty }))
                 .ToArray();
         }
 
@@ -99,7 +91,7 @@ public partial class DataInitializer
 
     internal record AWC_YLGameProviderConfiguration : IGameProviderConfiguration
     {
-        private static readonly string _endpoint = string.Empty;
+        private static readonly string _Endpoint = string.Empty;
 
         Guid IGameProviderConfiguration.Id => new("3304b836-8de0-4938-91e5-5dc0b87a710e");
 
@@ -109,9 +101,9 @@ public partial class DataInitializer
 
         string IGameProviderConfiguration.SecretKey => "UgBneXlVvEiTWrUZLyYsmKROodyfCANp";
 
-        string IGameProviderConfiguration.DesktopEndpoint => _endpoint;
+        string IGameProviderConfiguration.DesktopEndpoint => _Endpoint;
 
-        string IGameProviderConfiguration.MobileEndpoint => _endpoint;
+        string IGameProviderConfiguration.MobileEndpoint => _Endpoint;
 
         string IGameProviderConfiguration.ConfigurationData => JsonSerializer.Serialize(new
         {

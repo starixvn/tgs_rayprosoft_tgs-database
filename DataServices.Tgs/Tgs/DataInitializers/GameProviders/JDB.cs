@@ -23,15 +23,7 @@ public partial class DataInitializer
         public JDBGameProvider()
         {
             _games = LoadGamesFromCsv(GameProviderConst.JDB)
-                .Select(g =>
-                {
-                    if (g.EndpointPath.IsNotNullOrEmpty())
-                    {
-                        return g;
-                    }
-
-                    return (Game)g with { EndpointPath = string.Empty };
-                })
+                .Select(g => g.EndpointPath.IsNotNullOrEmpty() ? g : ((Game)g with { EndpointPath = string.Empty }))
                 .ToArray();
         }
 
@@ -111,7 +103,7 @@ public partial class DataInitializer
 
     private record JDBGameProviderConfiguration : IGameProviderConfiguration
     {
-        private static readonly string _endpoint = "https://app-test.insvr.com/go.ashx";
+        private static readonly string _Endpoint = "https://app-test.insvr.com/go.ashx";
 
         Guid IGameProviderConfiguration.Id => new("02B92A19-EB3E-40D2-97E9-0283F2AE010C");
 
@@ -121,8 +113,8 @@ public partial class DataInitializer
 
         string IGameProviderConfiguration.SecretKey => "7Wc7cfMdgHEIPq6h88uu8tIXZxZrl3zBI89Ohp5e";
 
-        string IGameProviderConfiguration.DesktopEndpoint => _endpoint;
+        string IGameProviderConfiguration.DesktopEndpoint => _Endpoint;
 
-        string IGameProviderConfiguration.MobileEndpoint => _endpoint;
+        string IGameProviderConfiguration.MobileEndpoint => _Endpoint;
     }
 }

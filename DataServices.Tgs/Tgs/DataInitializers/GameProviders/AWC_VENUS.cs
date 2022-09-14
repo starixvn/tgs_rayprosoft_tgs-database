@@ -21,15 +21,7 @@ public partial class DataInitializer
         public AWC_VENUSGameProvider()
         {
             _games = LoadGamesFromCsv(GameProviderConst.AWC_VENUS)
-                .Select(g =>
-                {
-                    if (g.EndpointPath.IsNotNullOrEmpty())
-                    {
-                        return g;
-                    }
-
-                    return (Game)g with { EndpointPath = string.Empty };
-                })
+                .Select(g => g.EndpointPath.IsNotNullOrEmpty() ? g : ((Game)g with { EndpointPath = string.Empty }))
                 .ToArray();
         }
 
@@ -97,7 +89,7 @@ public partial class DataInitializer
 
     internal record AWC_VENUSGameProviderConfiguration : IGameProviderConfiguration
     {
-        private static readonly string _endpoint = string.Empty;
+        private static readonly string _Endpoint = string.Empty;
 
         Guid IGameProviderConfiguration.Id => new("c6e0a799-3471-4752-a73f-3981fdc31336");
 
@@ -107,9 +99,9 @@ public partial class DataInitializer
 
         string IGameProviderConfiguration.SecretKey => "waUMzINTTiZMsNmTxZnPfOdeeZCdvKRI";
 
-        string IGameProviderConfiguration.DesktopEndpoint => _endpoint;
+        string IGameProviderConfiguration.DesktopEndpoint => _Endpoint;
 
-        string IGameProviderConfiguration.MobileEndpoint => _endpoint;
+        string IGameProviderConfiguration.MobileEndpoint => _Endpoint;
 
         string IGameProviderConfiguration.ConfigurationData => JsonSerializer.Serialize(new
         {

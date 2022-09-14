@@ -21,12 +21,7 @@ public partial class DataInitializer
             _games = LoadGamesFromCsv(GameProviderConst.WGSports)
                 .Select(g =>
                 {
-                    if (g.EndpointPath.IsNotNullOrEmpty())
-                    {
-                        return g;
-                    }
-
-                    return (Game)g with { EndpointPath = string.Empty };
+                    return g.EndpointPath.IsNotNullOrEmpty() ? g : ((Game)g with { EndpointPath = string.Empty });
                 })
                 .ToArray();
         }
@@ -69,7 +64,7 @@ public partial class DataInitializer
 
         PluggableConfigurationBase IGameProvider.GetConfiguration() => new WGSportsConfiguration
         {
-            AmountMaximum = ((decimal)Math.Pow(10, 12)) - 1,
+            AmountMaximum = (decimal)Math.Pow(10, 12) - 1,
             AmountFormat = "12,2",
             ServiceEndpointUrl = new Uri("http://localhost:62330"),
             ApiUrl = new("https://api.jsc080.net/index.php"),

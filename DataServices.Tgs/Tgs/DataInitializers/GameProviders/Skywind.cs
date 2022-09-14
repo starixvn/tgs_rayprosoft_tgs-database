@@ -22,12 +22,7 @@ public partial class DataInitializer
             _games = LoadGamesFromCsv(GameProviderConst.Skywind)
                 .Select(g =>
                 {
-                    if (g.EndpointPath.IsNotNullOrEmpty())
-                    {
-                        return g;
-                    }
-
-                    return (Game)g with { EndpointPath = string.Empty };
+                    return g.EndpointPath.IsNotNullOrEmpty() ? g : ((Game)g with { EndpointPath = string.Empty });
                 })
                 .ToArray();
         }
@@ -107,7 +102,7 @@ public partial class DataInitializer
 
     internal record SkywindGameProviderConfiguration : IGameProviderConfiguration
     {
-        private static readonly string _endpoint = string.Empty;
+        private static readonly string _Endpoint = string.Empty;
 
         Guid IGameProviderConfiguration.Id => new("F62443F9-672D-73C4-AAA3-220465462E11");
 
@@ -117,8 +112,8 @@ public partial class DataInitializer
 
         string IGameProviderConfiguration.SecretKey => "jpeooyzplajhrcvejptbcjljftdbebvg";
 
-        string IGameProviderConfiguration.DesktopEndpoint => _endpoint;
+        string IGameProviderConfiguration.DesktopEndpoint => _Endpoint;
 
-        string IGameProviderConfiguration.MobileEndpoint => _endpoint;
+        string IGameProviderConfiguration.MobileEndpoint => _Endpoint;
     }
 }

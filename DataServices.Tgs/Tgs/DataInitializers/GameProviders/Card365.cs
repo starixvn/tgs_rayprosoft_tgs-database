@@ -14,22 +14,14 @@ public partial class DataInitializer
 {
     internal record Card365GameProvider : IGameProvider
     {
-        private const int _UniqueId = 19;
+        private const int UniqueId = 19;
 
         private readonly IGame[] _games;
 
         public Card365GameProvider()
         {
             _games = LoadGamesFromCsv(GameProviderConst.Card365)
-                .Select(g =>
-                {
-                    if (g.EndpointPath.IsNotNullOrEmpty())
-                    {
-                        return g;
-                    }
-
-                    return (Game)g with { EndpointPath = string.Empty };
-                })
+                .Select(g => g.EndpointPath.IsNotNullOrEmpty() ? g : ((Game)g with { EndpointPath = string.Empty }))
                 .ToArray();
         }
 
@@ -71,7 +63,7 @@ public partial class DataInitializer
 
         bool IGameProvider.AllowKickPlayer => false;
 
-        ushort IGameProvider.UniqueId => _UniqueId;
+        ushort IGameProvider.UniqueId => UniqueId;
 
         GameProviderBetLimit[] IGameProvider.BetLimits => Array.Empty<GameProviderBetLimit>();
 

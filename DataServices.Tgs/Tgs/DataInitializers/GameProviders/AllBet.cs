@@ -23,15 +23,7 @@ public partial class DataInitializer
         public AllBetGameProvider()
         {
             _games = LoadGamesFromCsv(GameProviderConst.AllBet)
-                .Select(g =>
-                {
-                    if (g.EndpointPath.IsNotNullOrEmpty())
-                    {
-                        return g;
-                    }
-
-                    return (Game)g with { EndpointPath = string.Empty };
-                })
+                .Select(g => g.EndpointPath.IsNotNullOrEmpty() ? g : ((Game)g with { EndpointPath = string.Empty }))
                 .ToArray();
         }
 
@@ -119,7 +111,7 @@ public partial class DataInitializer
 
     internal record AllBetGameProviderConfiguration : IGameProviderConfiguration
     {
-        private static readonly string _endpoint = string.Empty;
+        private static readonly string _Endpoint = string.Empty;
 
         Guid IGameProviderConfiguration.Id => new("E33902DF-99FF-41CD-8A70-05A3F90A4EE5");
 
@@ -129,8 +121,8 @@ public partial class DataInitializer
 
         string IGameProviderConfiguration.SecretKey => "AbofHphhDbPJJcnGMJcLQiXfvsbytGnjToWKkQzI";
 
-        string IGameProviderConfiguration.DesktopEndpoint => _endpoint;
+        string IGameProviderConfiguration.DesktopEndpoint => _Endpoint;
 
-        string IGameProviderConfiguration.MobileEndpoint => _endpoint;
+        string IGameProviderConfiguration.MobileEndpoint => _Endpoint;
     }
 }

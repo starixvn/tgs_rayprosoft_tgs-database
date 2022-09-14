@@ -20,13 +20,13 @@ public interface ILocalIpFinder
 /// </summary>
 public sealed class LocalIpFinder : ILocalIpFinder
 {
-    private static readonly HashSet<byte> FirstBytesForLocals =
-            new(Locals.Select(e => e.FirstByte)
-                    .Union( // any IP in the range of 240.x.x.x - 255.x.x.x is local, or 240.0.0.0/4
-                        Enumerable.Range(240, 15).Select(i => (byte)i)));
+    // any IP in the range of 240.x.x.x - 255.x.x.x is local, or 240.0.0.0/4
+    private static readonly HashSet<byte> _FirstBytesForLocals = new(
+        _Locals.Select(e => e._firstByte)
+            .Union(Enumerable.Range(240, 15).Select(i => (byte)i)));
 
     // https://tools.ietf.org/html/rfc6890
-    private static readonly Ip4AndMask[] Locals =
+    private static readonly Ip4AndMask[] _Locals =
     {
         new(@"0.0.0.0/8"),
         new(@"10.0.0.0/8"),
@@ -85,13 +85,16 @@ public sealed class LocalIpFinder : ILocalIpFinder
             var b = 0;
             for (var bitIndex = 0; bitIndex < 8; ++bitIndex)
             {
-                if (i == bitLimit) break;
+                if (i == bitLimit)
+                    break;
+
                 ++i;
                 b |= 1 << (7 - bitIndex);
             }
 
             mask |= (uint)(b << (8 * byteIndex));
-            if (i == bitLimit) break;
+            if (i == bitLimit)
+                break;
         }
 
         return mask;
@@ -115,22 +118,22 @@ public sealed class LocalIpFinder : ILocalIpFinder
 
         var bytes = address.GetAddressBytes();
         // that eliminates 90% of possible addresses starting with byte that is never local
-        if (!FirstBytesForLocals.Contains(bytes[0]))
+        if (!_FirstBytesForLocals.Contains(bytes[0]))
         {
             return false;
         }
 
         var ipAsUInt = BitConverter.ToUInt32(bytes, 0);
-        return Locals.Any(data => (ipAsUInt & data.Mask) == data.Ip);
+        return _Locals.Any(data => (ipAsUInt & data._mask) == data._ip);
     }
 
     private readonly struct Ip4AndMask
     {
-        internal readonly byte FirstByte;
+        internal readonly byte _firstByte;
 
-        internal readonly uint Ip;
+        internal readonly uint _ip;
 
-        internal readonly uint Mask;
+        internal readonly uint _mask;
 
         internal Ip4AndMask(string info)
         {
@@ -139,9 +142,9 @@ public sealed class LocalIpFinder : ILocalIpFinder
             var bits = arr.Length < 2 ? 8 : int.Parse(arr[1].Trim());
             var address = IPAddress.Parse(ip);
             var bytes = address.GetAddressBytes();
-            FirstByte = bytes[0];
-            Ip = BitConverter.ToUInt32(bytes, 0);
-            Mask = ComputeMask(bits);
+            _firstByte = bytes[0];
+            _ip = BitConverter.ToUInt32(bytes, 0);
+            _mask = ComputeMask(bits);
         }
     }
 }

@@ -15,15 +15,7 @@ public partial class DataInitializer
         public BetConstructProvider()
         {
             _games = LoadGamesFromCsv(GameProviderConst.BetConstruct)
-                .Select(g =>
-                {
-                    if (g.EndpointPath.IsNotNullOrEmpty())
-                    {
-                        return g;
-                    }
-
-                    return (Game)g with { EndpointPath = string.Empty };
-                })
+                .Select(g => g.EndpointPath.IsNotNullOrEmpty() ? g : ((Game)g with { EndpointPath = string.Empty }))
                 .ToArray();
         }
 

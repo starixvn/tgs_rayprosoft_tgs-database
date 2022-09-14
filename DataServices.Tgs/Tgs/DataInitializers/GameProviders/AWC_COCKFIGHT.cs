@@ -21,15 +21,7 @@ public partial class DataInitializer
         public AWC_COCKFIGHTGameProvider()
         {
             _games = LoadGamesFromCsv(GameProviderConst.AWC_COCKFIGHT)
-                .Select(g =>
-                {
-                    if (g.EndpointPath.IsNotNullOrEmpty())
-                    {
-                        return g;
-                    }
-
-                    return (Game)g with { EndpointPath = string.Empty };
-                })
+                .Select(g => g.EndpointPath.IsNotNullOrEmpty() ? g : ((Game)g with { EndpointPath = string.Empty }))
                 .ToArray();
         }
 
@@ -96,7 +88,7 @@ public partial class DataInitializer
 
     internal record AWC_COCKFIGHTGameProviderConfiguration : IGameProviderConfiguration
     {
-        private static readonly string _endpoint = string.Empty;
+        private static readonly string _Endpoint = string.Empty;
 
         Guid IGameProviderConfiguration.Id => new("BE30EED9-DA11-4FC1-BD4A-12C39CDD8343");
 
@@ -106,9 +98,9 @@ public partial class DataInitializer
 
         string IGameProviderConfiguration.SecretKey => "xkagvlwagrdclklidtmwkpmpmhhhqzug";
 
-        string IGameProviderConfiguration.DesktopEndpoint => _endpoint;
+        string IGameProviderConfiguration.DesktopEndpoint => _Endpoint;
 
-        string IGameProviderConfiguration.MobileEndpoint => _endpoint;
+        string IGameProviderConfiguration.MobileEndpoint => _Endpoint;
 
         string IGameProviderConfiguration.ConfigurationData => JsonSerializer.Serialize(new
         {

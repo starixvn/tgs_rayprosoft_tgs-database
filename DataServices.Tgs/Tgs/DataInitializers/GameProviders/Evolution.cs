@@ -20,15 +20,7 @@ public partial class DataInitializer
         public EvolutionGameProvider()
         {
             _games = LoadGamesFromCsv(GameProviderConst.Evolution)
-                .Select(g =>
-                {
-                    if (g.EndpointPath.IsNotNullOrEmpty())
-                    {
-                        return g;
-                    }
-
-                    return (Game)g with { EndpointPath = string.Empty };
-                })
+                .Select(g => g.EndpointPath.IsNotNullOrEmpty() ? g : ((Game)g with { EndpointPath = string.Empty }))
                 .ToArray();
         }
 
@@ -107,7 +99,7 @@ public partial class DataInitializer
 
     internal record EvolutionGameProviderConfiguration : IGameProviderConfiguration
     {
-        private static readonly string _endpoint = string.Empty;
+        private static readonly string _Endpoint = string.Empty;
 
         Guid IGameProviderConfiguration.Id => new("C4B7D077-52CB-80B7-170A-6A6C29BB66D6");
 
@@ -117,8 +109,8 @@ public partial class DataInitializer
 
         string IGameProviderConfiguration.SecretKey => "myknltznkezsnslyarhlcgfaznlaxolf";
 
-        string IGameProviderConfiguration.DesktopEndpoint => _endpoint;
+        string IGameProviderConfiguration.DesktopEndpoint => _Endpoint;
 
-        string IGameProviderConfiguration.MobileEndpoint => _endpoint;
+        string IGameProviderConfiguration.MobileEndpoint => _Endpoint;
     }
 }

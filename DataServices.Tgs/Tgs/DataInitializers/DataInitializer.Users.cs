@@ -15,8 +15,7 @@ public partial class DataInitializer
         UserStatus status,
         Guid roleId,
         Guid departmentId,
-        Guid? userId = null,
-        RoleType roleType = RoleType.Admin)
+        Guid? userId = null)
     {
         var (salt, passwordHash) = _passwordHandler.GenerateCredential(UserPassword);
         userId ??= GuidExtensions.NewSequentialGuid();

@@ -2,7 +2,7 @@
 
 namespace TGS.Core.DataServices.Tgs.Migrations;
 
-public partial class addAllAgentRebateAmountConumn : Migration
+public partial class AddAllAgentRebateAmountConumn : Migration
 {
     protected override void Down(MigrationBuilder migrationBuilder)
     {

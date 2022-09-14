@@ -11,7 +11,7 @@ namespace TGS.Core.DataServices.Tgs.Migrations
 {
     [DbContext(typeof(TgsRepository))]
     [Migration("20211227090108_addAllAgentRebateAmountConumn")]
-    partial class addAllAgentRebateAmountConumn
+    partial class AddAllAgentRebateAmountConumn
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

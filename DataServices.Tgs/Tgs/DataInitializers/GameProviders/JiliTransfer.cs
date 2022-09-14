@@ -25,12 +25,7 @@ public partial class DataInitializer
             _games = LoadGamesFromCsv(GameProviderConst.JiliTransfer)
                 .Select(g =>
                 {
-                    if (g.EndpointPath.IsNotNullOrEmpty())
-                    {
-                        return g;
-                    }
-
-                    return (Game)g with { EndpointPath = string.Empty };
+                    return g.EndpointPath.IsNotNullOrEmpty() ? g : ((Game)g with { EndpointPath = string.Empty });
                 })
                 .ToArray();
         }

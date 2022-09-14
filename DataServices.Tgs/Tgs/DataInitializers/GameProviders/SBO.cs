@@ -22,12 +22,7 @@ public partial class DataInitializer
             _games = LoadGamesFromCsv(GameProviderConst.SBOBET)
                 .Select(g =>
                 {
-                    if (g.EndpointPath.IsNotNullOrEmpty())
-                    {
-                        return g;
-                    }
-
-                    return (Game)g with { EndpointPath = string.Empty };
+                    return g.EndpointPath.IsNotNullOrEmpty() ? g : ((Game)g with { EndpointPath = string.Empty });
                 })
                 .ToArray();
         }
@@ -134,7 +129,7 @@ public partial class DataInitializer
 
     internal record SBOGameProviderConfiguration : IGameProviderConfiguration
     {
-        private static readonly string _endpoint = string.Empty;
+        private static readonly string _Endpoint = string.Empty;
 
         Guid IGameProviderConfiguration.Id => new("CC8AA6E0-5A7F-44BC-B294-5097C3518C37");
 
@@ -144,8 +139,8 @@ public partial class DataInitializer
 
         string IGameProviderConfiguration.SecretKey => "JFYif2fxc6jtOo3fA3JuaItNQ6SAlZAtNYGhgVmZGzm";
 
-        string IGameProviderConfiguration.DesktopEndpoint => _endpoint;
+        string IGameProviderConfiguration.DesktopEndpoint => _Endpoint;
 
-        string IGameProviderConfiguration.MobileEndpoint => _endpoint;
+        string IGameProviderConfiguration.MobileEndpoint => _Endpoint;
     }
 }

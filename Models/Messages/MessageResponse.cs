@@ -1,4 +1,6 @@
-﻿namespace TGS.Core.Models.Messages;
+﻿using System;
+
+namespace TGS.Core.Models.Messages;
 
 public class MessageResponse
 {
@@ -12,6 +14,6 @@ public class MessageResponse
     {
         Valid = false;
         Message = string.Empty;
-        Errors = new string[] { };
+        Errors = Array.Empty<string>();
     }
 }

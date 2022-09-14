@@ -74,6 +74,7 @@ public static class XLSXUtility
 
             rowIdx++;
         }
+
         sheet.Cell(rowIdx + 1, 6).Value = "Sum";
         sheet.Cell(rowIdx + 1, 7).Value = sum;
         return workbook;
@@ -119,6 +120,7 @@ public static class XLSXUtility
 
             rowIdx++;
         }
+
         sheet.Cell(rowIdx + 1, 5).Value = "Sum";
         sheet.Cell(rowIdx + 1, 6).Value = sum;
         return workbook;

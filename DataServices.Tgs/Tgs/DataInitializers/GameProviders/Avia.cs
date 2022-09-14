@@ -21,15 +21,7 @@ public partial class DataInitializer
         public AviaGameProvider()
         {
             _games = LoadGamesFromCsv(GameProviderConst.Avia)
-                .Select(g =>
-                {
-                    if (g.EndpointPath.IsNotNullOrEmpty())
-                    {
-                        return g;
-                    }
-
-                    return (Game)g with { EndpointPath = string.Empty };
-                })
+                .Select(g => g.EndpointPath.IsNotNullOrEmpty() ? g : ((Game)g with { EndpointPath = string.Empty }))
                 .ToArray();
         }
 
@@ -111,7 +103,7 @@ public partial class DataInitializer
 
     internal record AviaGameProviderConfiguration : IGameProviderConfiguration
     {
-        private static readonly string _endpoint = string.Empty;
+        private static readonly string _Endpoint = string.Empty;
 
         Guid IGameProviderConfiguration.Id => new("CD18EDD5-B256-ED9B-21E0-098C0F8E8253");
 
@@ -121,8 +113,8 @@ public partial class DataInitializer
 
         string IGameProviderConfiguration.SecretKey => "trlaofrumaddwleppelnkxvbyhwlfabf";
 
-        string IGameProviderConfiguration.DesktopEndpoint => _endpoint;
+        string IGameProviderConfiguration.DesktopEndpoint => _Endpoint;
 
-        string IGameProviderConfiguration.MobileEndpoint => _endpoint;
+        string IGameProviderConfiguration.MobileEndpoint => _Endpoint;
     }
 }

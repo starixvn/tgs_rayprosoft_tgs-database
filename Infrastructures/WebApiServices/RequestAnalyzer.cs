@@ -31,12 +31,9 @@ public sealed class RequestAnalyzer : IRequestAnalyzer
 
         var forwardIps = context.Request.Headers[HttpForwardFor];
 
-        if (forwardIps.Count == 0)
-        {
-            return userHostAddress;
-        }
-
-        return forwardIps
+        return forwardIps.Count == 0
+            ? userHostAddress
+            : forwardIps
             .Select(e => e.Trim())
             .FirstOrDefault(e =>
             {
