@@ -67,7 +67,7 @@ build-migrations-image:
     - docker push $MigrationImageName:$Tag
   when: manual
   only:
-    - develop
+    - main
 
 push-migrations-k8s-template:
   stage: publish
@@ -84,7 +84,7 @@ push-migrations-k8s-template:
         .image.tag = strenv(Tag)
       ' artifacts/k8s/ef-migration/values.yaml
   only:
-    - develop
+    - main
   artifacts:
     name: HelmTemplate
     untracked: false
@@ -104,7 +104,7 @@ migrate-dev:
     - job: push-migrations-k8s-template
       artifacts: true
   only:
-    - develop
+    - main
   before_script:
     - export KUBECONFIG=$KubeConfig_Raypro_dev
   script:
@@ -150,7 +150,7 @@ migrate-staging:
       artifacts: true
   when: manual
   only:
-    - develop
+    - main
   before_script:
     - export KUBECONFIG=$KubeConfig_Raypro_staging
   script:
@@ -196,7 +196,7 @@ migrate-prod:
       artifacts: true
   when: manual
   only:
-    - develop
+    - main
   before_script:
     - export KUBECONFIG=$KubeConfig_Raypro_prod
   script:
