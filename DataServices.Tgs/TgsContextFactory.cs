@@ -4,8 +4,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using TGS.Core.DataServices.Base.Extensions;
+using TGS.Core.DataServices.Tgs;
 
-namespace TGS.Core.DataServices.Tgs.Migrations;
+namespace TGS.Core.DataServices;
 
 public class TgsContextFactory : IDesignTimeDbContextFactory<TgsRepository>
 {
