@@ -46,27 +46,38 @@ EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Migration|Any CPU = Migration|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{9FF0F9BC-2B1F-44A9-9AE6-3153CB91B5F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9FF0F9BC-2B1F-44A9-9AE6-3153CB91B5F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FF0F9BC-2B1F-44A9-9AE6-3153CB91B5F3}.Migration|Any CPU.ActiveCfg = Migration|Any CPU
+		{9FF0F9BC-2B1F-44A9-9AE6-3153CB91B5F3}.Migration|Any CPU.Build.0 = Migration|Any CPU
 		{9FF0F9BC-2B1F-44A9-9AE6-3153CB91B5F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9FF0F9BC-2B1F-44A9-9AE6-3153CB91B5F3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{70799034-77BC-4768-A7D5-266BC422E136}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{70799034-77BC-4768-A7D5-266BC422E136}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70799034-77BC-4768-A7D5-266BC422E136}.Migration|Any CPU.ActiveCfg = Migration|Any CPU
+		{70799034-77BC-4768-A7D5-266BC422E136}.Migration|Any CPU.Build.0 = Migration|Any CPU
 		{70799034-77BC-4768-A7D5-266BC422E136}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{70799034-77BC-4768-A7D5-266BC422E136}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F929AD69-6228-4347-8AE0-B0D77BD6FBD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F929AD69-6228-4347-8AE0-B0D77BD6FBD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F929AD69-6228-4347-8AE0-B0D77BD6FBD5}.Migration|Any CPU.ActiveCfg = Migration|Any CPU
+		{F929AD69-6228-4347-8AE0-B0D77BD6FBD5}.Migration|Any CPU.Build.0 = Migration|Any CPU
 		{F929AD69-6228-4347-8AE0-B0D77BD6FBD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F929AD69-6228-4347-8AE0-B0D77BD6FBD5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6A743768-B7AC-4FF0-B5B1-D3BC2C876D3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6A743768-B7AC-4FF0-B5B1-D3BC2C876D3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A743768-B7AC-4FF0-B5B1-D3BC2C876D3A}.Migration|Any CPU.ActiveCfg = Migration|Any CPU
+		{6A743768-B7AC-4FF0-B5B1-D3BC2C876D3A}.Migration|Any CPU.Build.0 = Migration|Any CPU
 		{6A743768-B7AC-4FF0-B5B1-D3BC2C876D3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6A743768-B7AC-4FF0-B5B1-D3BC2C876D3A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B5A9F395-179F-40B5-BE41-0A27EA2B15CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B5A9F395-179F-40B5-BE41-0A27EA2B15CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5A9F395-179F-40B5-BE41-0A27EA2B15CE}.Migration|Any CPU.ActiveCfg = Migration|Any CPU
+		{B5A9F395-179F-40B5-BE41-0A27EA2B15CE}.Migration|Any CPU.Build.0 = Migration|Any CPU
 		{B5A9F395-179F-40B5-BE41-0A27EA2B15CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B5A9F395-179F-40B5-BE41-0A27EA2B15CE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
