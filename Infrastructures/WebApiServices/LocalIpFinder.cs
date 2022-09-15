@@ -14,9 +14,7 @@ namespace TGS.Core.Infrastructures.WebApiServices;
 public sealed class LocalIpFinder : ILocalIpFinder
 {
     // any IP in the range of 240.x.x.x - 255.x.x.x is local, or 240.0.0.0/4
-    private static readonly HashSet<byte> _FirstBytesForLocals = new(
-        _Locals.Select(e => e._firstByte)
-            .Union(Enumerable.Range(240, 15).Select(i => (byte)i)));
+    private static readonly HashSet<byte> _FirstBytesForLocals;
 
     // https://tools.ietf.org/html/rfc6890
     private static readonly Ip4AndMask[] _Locals =
@@ -41,6 +39,13 @@ public sealed class LocalIpFinder : ILocalIpFinder
 
     private readonly ConcurrentDictionary<string, bool> _knownLocalIps =
         new(StringComparer.OrdinalIgnoreCase);
+
+    static LocalIpFinder()
+    {
+        _FirstBytesForLocals = new HashSet<byte>(_Locals
+            .Select(e => e._firstByte)
+            .Union(Enumerable.Range(240, 15).Select(i => (byte)i)));
+    }
 
     public IpInfo GetIpInfo(string ip)
     {
