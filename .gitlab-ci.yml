@@ -28,6 +28,7 @@ unit-test:
   only:
     - merge_requests
     - main
+  cache:
   artifacts:
     when: always
     reports:
