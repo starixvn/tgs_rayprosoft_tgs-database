@@ -16,9 +16,8 @@ build-code:
   only:
     - merge_requests
     - main
-  artifacts:
+  cache:
     untracked: true
-    expire_in: "1 days"
 
 unit-test:
   stage: test
@@ -26,7 +25,6 @@ unit-test:
     - dotnet test -c $BuildConfiguration -l:"junit;LogFilePath=../TestReports/{assembly}-TestReport.xml" --no-restore --no-build
   needs:
     - job: build-code
-      artifacts: true
   only:
     - merge_requests
     - main
@@ -39,7 +37,6 @@ push-nuget:
   stage: publish
   needs:
     - job: build-code
-      artifacts: true
     - unit-test
   only:
     - main
