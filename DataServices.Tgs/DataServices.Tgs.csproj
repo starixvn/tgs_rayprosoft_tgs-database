@@ -12,10 +12,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="tgs.appsettings.json" />
-  </ItemGroup>
-
-  <ItemGroup>
     <EmbeddedResource Include="Tgs\DataInitializers\Games\365.csv" />
     <EmbeddedResource Include="Tgs\DataInitializers\Games\AB.csv" />
     <EmbeddedResource Include="Tgs\DataInitializers\Games\AVIA.csv" />
@@ -160,6 +156,10 @@
     </PackageReference>
     <PackageReference Include="Tgs.Logging" Version="0.0.19" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.9">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
   <ItemGroup>
@@ -169,6 +169,20 @@
     <ProjectReference Include="..\Models\Models.csproj">
       <PrivateAssets>All</PrivateAssets>
     </ProjectReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="TgsContextFactory.cs">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="tgs.appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

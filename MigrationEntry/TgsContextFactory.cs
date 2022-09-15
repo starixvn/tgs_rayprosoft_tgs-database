@@ -6,7 +6,7 @@ using Microsoft.Extensions.Logging;
 using TGS.Core.DataServices.Base.Extensions;
 using TGS.Core.DataServices.Tgs;
 
-namespace TGS.Core.DataServices;
+namespace MigrationEntry;
 
 public class TgsContextFactory : IDesignTimeDbContextFactory<TgsRepository>
 {
