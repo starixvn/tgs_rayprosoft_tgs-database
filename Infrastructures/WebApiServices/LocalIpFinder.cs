@@ -7,13 +7,6 @@ using System.Net.Sockets;
 
 namespace TGS.Core.Infrastructures.WebApiServices;
 
-public interface ILocalIpFinder
-{
-    IpInfo GetIpInfo(string ip);
-
-    bool IsLocal(string ip);
-}
-
 /// <summary>
 /// based on:
 /// https://tools.ietf.org/html/rfc6890
@@ -49,7 +42,7 @@ public sealed class LocalIpFinder : ILocalIpFinder
     private readonly ConcurrentDictionary<string, bool> _knownLocalIps =
         new(StringComparer.OrdinalIgnoreCase);
 
-    IpInfo ILocalIpFinder.GetIpInfo(string ip)
+    public IpInfo GetIpInfo(string ip)
     {
         if (!IsLocalInternal(ip, out var isValid))
         {
@@ -60,7 +53,7 @@ public sealed class LocalIpFinder : ILocalIpFinder
         return new() { IsLocal = true, IsValid = isValid };
     }
 
-    bool ILocalIpFinder.IsLocal(string ip)
+    public bool IsLocal(string ip)
     {
         if (_knownLocalIps.ContainsKey(ip))
         {
