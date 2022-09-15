@@ -41,6 +41,7 @@ push-nuget:
     - unit-test
   only:
     - main
+  cache:
   script:
     - dotnet pack -c $BuildConfiguration "DataServices.Tgs/DataServices.Tgs.csproj" --no-restore
     - dotnet nuget push "DataServices.Tgs/bin/$BuildConfiguration/*.nupkg" -s "raypro-baget" -k $NugetApiKey --skip-duplicate
@@ -59,6 +60,7 @@ build-migrations-image:
     - unit-test
     - job: build-code
       artifacts: true
+  cache:
   script:
     - export Tag="$(date -d $CI_PIPELINE_CREATED_AT +%Y%m%d%H%M).$CI_PIPELINE_IID"
     - dotnet build "MigrationEntry/MigrationEntry.csproj" -c $BuildConfiguration -t:ContainerBuild -p:DockerfileTag="$MigrationImageName:$Tag" --no-restore
