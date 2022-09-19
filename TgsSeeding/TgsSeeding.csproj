@@ -9,15 +9,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="CsvHelper" Version="28.0.1" />
     <PackageReference Include="Microsoft.VisualStudio.Threading.Analyzers" Version="17.3.44">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="System.CommandLine.Hosting" Version="0.4.0-alpha.21617.1" />
+    <PackageReference Include="Tgs.Core.Infrastructures.Security" Version="0.0.1" />
+    <PackageReference Include="Tgs.Core.Infrastructures.Utility" Version="0.0.3" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\DataServices.Tgs\DataServices.Tgs.csproj" />
+    <ProjectReference Include="..\Infrastructures\Infrastructures.csproj" />
   </ItemGroup>
 
 </Project>

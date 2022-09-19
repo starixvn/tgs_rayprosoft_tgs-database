@@ -20,47 +20,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Tgs\DataInitializers\Games\365.csv" />
-    <EmbeddedResource Include="Tgs\DataInitializers\Games\AB.csv" />
-    <EmbeddedResource Include="Tgs\DataInitializers\Games\AVIA.csv" />
-    <EmbeddedResource Include="Tgs\DataInitializers\Games\AWC_AELOTTO.csv" />
-    <EmbeddedResource Include="Tgs\DataInitializers\Games\AWC_AWS.csv" />
-    <EmbeddedResource Include="Tgs\DataInitializers\Games\AWC_COCKFIGHT.csv" />
-    <EmbeddedResource Include="Tgs\DataInitializers\Games\AWC_FACAI.csv" />
-    <EmbeddedResource Include="Tgs\DataInitializers\Games\AWC_FS.csv" />
-    <EmbeddedResource Include="Tgs\DataInitializers\Games\AWC_KM.csv" />
-    <EmbeddedResource Include="Tgs\DataInitializers\Games\AWC_LUDO.csv" />
-    <EmbeddedResource Include="Tgs\DataInitializers\Games\AWC_PGS.csv" />
-    <EmbeddedResource Include="Tgs\DataInitializers\Games\AWC_RCB.csv" />
-    <EmbeddedResource Include="Tgs\DataInitializers\Games\AWC_SG.csv" />
-    <EmbeddedResource Include="Tgs\DataInitializers\Games\AWC_SPADE.csv" />
-    <EmbeddedResource Include="Tgs\DataInitializers\Games\AWC_VENUS.csv" />
-    <EmbeddedResource Include="Tgs\DataInitializers\Games\AWC_YL.csv" />
-    <EmbeddedResource Include="Tgs\DataInitializers\Games\DG.csv" />
-    <EmbeddedResource Include="Tgs\DataInitializers\Games\JILITF.csv" />
-    <EmbeddedResource Include="Tgs\DataInitializers\Games\JOKER.csv" />
-    <EmbeddedResource Include="Tgs\DataInitializers\Games\PPTF.csv" />
-    <EmbeddedResource Include="Tgs\DataInitializers\Games\TF.csv" />
-    <EmbeddedResource Include="Tgs\DataInitializers\Games\IMES.csv" />
-    <EmbeddedResource Include="Tgs\DataInitializers\Games\AG.csv" />
-    <EmbeddedResource Include="Tgs\DataInitializers\Games\BG.csv" />
-    <EmbeddedResource Include="Tgs\DataInitializers\Games\LY.csv" />
-    <EmbeddedResource Include="Tgs\DataInitializers\Games\JILI.csv" />
-    <EmbeddedResource Include="Tgs\DataInitializers\Games\PP.csv" />
-    <EmbeddedResource Include="Tgs\DataInitializers\Games\KY.csv" />
-    <EmbeddedResource Include="Tgs\DataInitializers\Games\BC.csv" />
-    <EmbeddedResource Include="Tgs\DataInitializers\Games\SABA.csv" />
-    <EmbeddedResource Include="Tgs\DataInitializers\Games\SBO.csv" />
-    <EmbeddedResource Include="Tgs\DataInitializers\Games\HABA.csv" />
-    <EmbeddedResource Include="Tgs\DataInitializers\Games\SG.csv" />
-    <EmbeddedResource Include="Tgs\DataInitializers\Games\EVO.csv" />
-    <EmbeddedResource Include="Tgs\DataInitializers\Games\SW.csv" />
-    <EmbeddedResource Include="Tgs\DataInitializers\Games\TCG.csv" />
-    <EmbeddedResource Include="Tgs\DataInitializers\Games\WGVIA.csv" />
-    <EmbeddedResource Include="Tgs\DataInitializers\Games\WGFM.csv" />
-    <EmbeddedResource Include="Tgs\DataInitializers\Games\VR.csv" />
-    <EmbeddedResource Include="Tgs\DataInitializers\Games\WM.csv" />
-    <EmbeddedResource Include="Tgs\DataInitializers\Games\WMTF.csv" />
     <EmbeddedResource Include="Tgs\Migrations\RefactorWithdrawForm.sql" />
     <EmbeddedResource Include="Tgs\SqlScripts\Functions\report_get_player_no_second_deposit_details.sql" />
     <EmbeddedResource Include="Tgs\SqlScripts\Functions\report_get_player_first_deposit_details.sql" />
@@ -136,14 +95,10 @@
     <EmbeddedResource Include="Tgs\SqlScripts\Functions\game_provider_get_currencies_by_external_code.sql" />
     <EmbeddedResource Include="Tgs\SqlScripts\Functions\game_provider_get_currencies_by_internal_code.sql" />
     <EmbeddedResource Include="Tgs\SqlScripts\Views\vw_valid_game_actions.sql" />
-    <EmbeddedResource Include="Tgs\DataInitializers\Games\JDB.csv" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="ClosedXML" Version="0.95.4" />
-    <PackageReference Include="CsvHelper" Version="28.0.1">
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
     <PackageReference Include="Dapper" Version="2.0.123" />
     <PackageReference Include="EFCore.NamingConventions" Version="6.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="6.0.9" />
@@ -157,12 +112,6 @@
     <PackageReference Include="StackExchange.Redis" Version="2.6.66" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.23.1" />
     <PackageReference Include="TGS.Core.Infrastructures.Json" Version="0.0.1" />
-    <PackageReference Include="Tgs.Core.Infrastructures.Security" Version="0.0.1">
-      <PrivateAssets>All</PrivateAssets>
-    </PackageReference>
-    <PackageReference Include="Tgs.Core.Infrastructures.Utility" Version="0.0.3">
-      <PrivateAssets>All</PrivateAssets>
-    </PackageReference>
     <PackageReference Include="Tgs.Logging" Version="0.0.19" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.9">
