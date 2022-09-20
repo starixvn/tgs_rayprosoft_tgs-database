@@ -9,6 +9,8 @@ namespace TGS.Core.DataServices.Tgs;
 
 public class TgsRepository : DbContext, ITgsRepository
 {
+    public DbSet<AdjustPlayerRecord> AdjustPlayerRecord { get; set; }
+
     public DbSet<AdminLog> AdminLogs { get; set; }
 
     public DbSet<AgentBankInfo> AgentBankInfos { get; set; }
