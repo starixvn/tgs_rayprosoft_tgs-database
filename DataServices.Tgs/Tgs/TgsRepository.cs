@@ -9,7 +9,7 @@ namespace TGS.Core.DataServices.Tgs;
 
 public class TgsRepository : DbContext, ITgsRepository
 {
-    public DbSet<AdjustPlayerRecord> AdjustPlayerRecord { get; set; }
+    public DbSet<AdjustPlayerRecord> AdjustPlayerRecords { get; set; }
 
     public DbSet<AdminLog> AdminLogs { get; set; }
 

@@ -15,12 +15,12 @@ public partial class DataInitializer
 {
     internal record SkywindGameProvider : IGameProvider
     {
-        private readonly IGame[] _games;
+        private readonly IGame[]? _games;
 
         public SkywindGameProvider()
         {
             _games = LoadGamesFromCsv(GameProviderConst.Skywind)
-                .Select(g =>
+                ?.Select(g =>
                 {
                     return g.EndpointPath.IsNotNullOrEmpty() ? g : ((Game)g with { EndpointPath = string.Empty });
                 })
@@ -67,7 +67,7 @@ public partial class DataInitializer
             new IDLanguage("id")
         };
 
-        IGame[] IGameProvider.Games => _games;
+        IGame[]? IGameProvider.Games => _games;
 
         bool IGameProvider.AllowKickPlayer => false;
 

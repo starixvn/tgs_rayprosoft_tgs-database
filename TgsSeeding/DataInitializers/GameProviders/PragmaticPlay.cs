@@ -15,12 +15,12 @@ public partial class DataInitializer
     internal record PragmaticPlayGameProvider : IGameProvider
     {
         private static readonly string _EndpointPath = "?key={KEY}&stylename={SECURELOGIN}";
-        private readonly IGame[] _games;
+        private readonly IGame[]? _games;
 
         public PragmaticPlayGameProvider()
         {
             _games = LoadGamesFromCsv(GameProviderConst.PragmaticPlay)
-                .Select(g =>
+                ?.Select(g =>
                 {
                     return g.EndpointPath.IsNotNullOrEmpty()
                         ? g
@@ -72,7 +72,7 @@ public partial class DataInitializer
             new KRLanguage("ko")
         };
 
-        IGame[] IGameProvider.Games => _games;
+        IGame[]? IGameProvider.Games => _games;
 
         ushort IGameProvider.UniqueId => 3;
 

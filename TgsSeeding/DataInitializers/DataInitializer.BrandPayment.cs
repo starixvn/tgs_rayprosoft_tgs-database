@@ -95,7 +95,7 @@ public partial class DataInitializer
                 }))
     };
 
-    private async Task GenerateApplePayInitialData()
+    private async Task GenerateApplePayInitialDataAsync()
     {
         var assembly = Assembly.GetExecutingAssembly();
         using var stream =
@@ -106,7 +106,7 @@ public partial class DataInitializer
         }
 
         using var reader = new StreamReader(stream);
-        var cmdText = reader.ReadToEnd();
+        var cmdText = await reader.ReadToEndAsync().ConfigureAwait(false);
         _ = await _repository.ExecuteSqlCommandAsync(cmdText, CommandType.Text);
     }
 
@@ -154,7 +154,7 @@ public partial class DataInitializer
                                              {
                                                  new BrandPaymentPlayer
                                                  {
-                                                     PlayerCode = _players[0].PlayerCode,
+                                                     PlayerCode = _players![0].PlayerCode,
                                                      ListType = PlayerListType.White,
                                                      BrandPaymentId = brandPaymentId
                                                  },
@@ -170,7 +170,7 @@ public partial class DataInitializer
                                                  new BrandPaymentVipLevel
                                                  {
                                                      BrandPaymentId = brandPaymentId,
-                                                     VipLevelId = _vipLevels[0].Id
+                                                     VipLevelId = _vipLevels![0].Id
                                                  },
                                                  new BrandPaymentVipLevel
                                                  {
@@ -225,7 +225,7 @@ public partial class DataInitializer
                                       {
                                           new BrandPaymentPlayer
                                           {
-                                              PlayerCode = _players[0].PlayerCode,
+                                              PlayerCode = _players![0].PlayerCode,
                                               ListType = PlayerListType.White,
                                               BrandPaymentId = brandPaymentId
                                           },
@@ -241,7 +241,7 @@ public partial class DataInitializer
                                           new BrandPaymentVipLevel
                                           {
                                               BrandPaymentId = brandPaymentId,
-                                              VipLevelId = _vipLevels[0].Id
+                                              VipLevelId = _vipLevels![0].Id
                                           },
                                           new BrandPaymentVipLevel
                                           {
@@ -299,7 +299,7 @@ public partial class DataInitializer
                                         {
                                             new BrandPaymentPlayer
                                             {
-                                                PlayerCode = _players[0].PlayerCode,
+                                                PlayerCode = _players![0].PlayerCode,
                                                 ListType = PlayerListType.White,
                                                 BrandPaymentId = brandPaymentId
                                             },
@@ -315,7 +315,7 @@ public partial class DataInitializer
                                             new BrandPaymentVipLevel
                                             {
                                                 BrandPaymentId = brandPaymentId,
-                                                VipLevelId = _vipLevels[0].Id
+                                                VipLevelId = _vipLevels![0].Id
                                             },
                                             new BrandPaymentVipLevel
                                             {
@@ -513,7 +513,7 @@ public partial class DataInitializer
                                       {
                                           new BrandPaymentPlayer
                                           {
-                                              PlayerCode = _players[0].PlayerCode,
+                                              PlayerCode = _players![0].PlayerCode,
                                               ListType = PlayerListType.White,
                                               BrandPaymentId = brandPaymentId
                                           },
@@ -529,7 +529,7 @@ public partial class DataInitializer
                                           new BrandPaymentVipLevel
                                           {
                                               BrandPaymentId = brandPaymentId,
-                                              VipLevelId = _vipLevels[0].Id
+                                              VipLevelId = _vipLevels![0].Id
                                           },
                                           new BrandPaymentVipLevel
                                           {
@@ -577,7 +577,7 @@ public partial class DataInitializer
                                       {
                                           new BrandPaymentPlayer
                                           {
-                                              PlayerCode = _players[0].PlayerCode,
+                                              PlayerCode = _players![0].PlayerCode,
                                               ListType = PlayerListType.White,
                                               BrandPaymentId = brandPaymentId
                                           },
@@ -593,7 +593,7 @@ public partial class DataInitializer
                                           new BrandPaymentVipLevel
                                           {
                                               BrandPaymentId = brandPaymentId,
-                                              VipLevelId = _vipLevels[0].Id
+                                              VipLevelId = _vipLevels![0].Id
                                           },
                                           new BrandPaymentVipLevel
                                           {
@@ -651,7 +651,7 @@ public partial class DataInitializer
                                         {
                                             new BrandPaymentPlayer
                                             {
-                                                PlayerCode = _players[0].PlayerCode,
+                                                PlayerCode = _players![0].PlayerCode,
                                                 ListType = PlayerListType.White,
                                                 BrandPaymentId = brandPaymentId
                                             },
@@ -667,7 +667,7 @@ public partial class DataInitializer
                                             new BrandPaymentVipLevel
                                             {
                                                 BrandPaymentId = brandPaymentId,
-                                                VipLevelId = _vipLevels[0].Id
+                                                VipLevelId = _vipLevels![0].Id
                                             },
                                             new BrandPaymentVipLevel
                                             {

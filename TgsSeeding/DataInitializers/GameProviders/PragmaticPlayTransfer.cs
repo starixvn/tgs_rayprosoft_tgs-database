@@ -13,12 +13,12 @@ public partial class DataInitializer
 {
     internal record PragmaticPlayTransferGameProvider : IGameProvider
     {
-        private readonly IGame[] _games;
+        private readonly IGame[]? _games;
 
         public PragmaticPlayTransferGameProvider()
         {
             _games = LoadGamesFromCsv(GameProviderConst.PragmaticPlayTransfer)
-                .Select(g => !string.IsNullOrEmpty(g.EndpointPath)
+                ?.Select(g => !string.IsNullOrEmpty(g.EndpointPath)
                     ? g
                     : (Game)g with { EndpointPath = string.Empty })
                 .ToArray();
@@ -64,7 +64,7 @@ public partial class DataInitializer
             new KRLanguage("ko")
         };
 
-        IGame[] IGameProvider.Games => _games;
+        IGame[]? IGameProvider.Games => _games;
 
         ushort IGameProvider.UniqueId => 27;
 

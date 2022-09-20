@@ -15,12 +15,12 @@ public partial class DataInitializer
 {
     internal record WMCasinoTransferGameProvider : IGameProvider
     {
-        private readonly IGame[] _games;
+        private readonly IGame[]? _games;
 
         public WMCasinoTransferGameProvider()
         {
             _games = LoadGamesFromCsv(GameProviderConst.WMCasinoTransfer)
-                .Select(g =>
+                ?.Select(g =>
                 {
                     return g.EndpointPath.IsNotNullOrEmpty() ? g : ((Game)g with { EndpointPath = string.Empty });
                 })
@@ -56,7 +56,7 @@ public partial class DataInitializer
             new TWLanguage("9")
         };
 
-        IGame[] IGameProvider.Games => _games;
+        IGame[]? IGameProvider.Games => _games;
 
         ushort IGameProvider.UniqueId => 42;
 

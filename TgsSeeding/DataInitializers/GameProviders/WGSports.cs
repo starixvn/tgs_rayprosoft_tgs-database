@@ -14,12 +14,12 @@ public partial class DataInitializer
 {
     internal record WGSportsGameProvider : IGameProvider
     {
-        private readonly IGame[] _games;
+        private readonly IGame[]? _games;
 
         public WGSportsGameProvider()
         {
             _games = LoadGamesFromCsv(GameProviderConst.WGSports)
-                .Select(g =>
+                ?.Select(g =>
                 {
                     return g.EndpointPath.IsNotNullOrEmpty() ? g : ((Game)g with { EndpointPath = string.Empty });
                 })
@@ -50,7 +50,7 @@ public partial class DataInitializer
             new CNLanguage("0"),new TWLanguage("1"),new USLanguage("2"),new JPLanguage("3"),new KRLanguage("4")
         };
 
-        IGame[] IGameProvider.Games => _games;
+        IGame[]? IGameProvider.Games => _games;
 
         ushort IGameProvider.UniqueId => 15;
 

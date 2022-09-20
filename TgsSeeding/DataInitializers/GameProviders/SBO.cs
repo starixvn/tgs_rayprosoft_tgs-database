@@ -15,12 +15,12 @@ public partial class DataInitializer
 {
     internal record SBOGameProvider : IGameProvider
     {
-        private readonly IGame[] _games;
+        private readonly IGame[]? _games;
 
         public SBOGameProvider()
         {
             _games = LoadGamesFromCsv(GameProviderConst.SBOBET)
-                .Select(g =>
+                ?.Select(g =>
                 {
                     return g.EndpointPath.IsNotNullOrEmpty() ? g : ((Game)g with { EndpointPath = string.Empty });
                 })
@@ -63,7 +63,7 @@ public partial class DataInitializer
             new TWLanguage("zh-tw")
         };
 
-        IGame[] IGameProvider.Games => _games;
+        IGame[]? IGameProvider.Games => _games;
 
         bool IGameProvider.AllowKickPlayer => true;
 

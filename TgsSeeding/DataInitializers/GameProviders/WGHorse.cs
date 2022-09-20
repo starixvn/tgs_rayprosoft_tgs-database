@@ -14,12 +14,12 @@ public partial class DataInitializer
 {
     internal record WGHorseGameProvider : IGameProvider
     {
-        private readonly IGame[] _games;
+        private readonly IGame[]? _games;
 
         public WGHorseGameProvider()
         {
             _games = LoadGamesFromCsv(GameProviderConst.WGHorse)
-                .Select(g => g.EndpointPath.IsNotNullOrEmpty() ? g : ((Game)g with { EndpointPath = string.Empty }))
+                ?.Select(g => g.EndpointPath.IsNotNullOrEmpty() ? g : ((Game)g with { EndpointPath = string.Empty }))
                 .ToArray();
         }
 
@@ -45,7 +45,7 @@ public partial class DataInitializer
             new CNLanguage("0"),new TWLanguage("1"),new USLanguage("2")
         };
 
-        IGame[] IGameProvider.Games => _games;
+        IGame[]? IGameProvider.Games => _games;
 
         ushort IGameProvider.UniqueId => 16;
 

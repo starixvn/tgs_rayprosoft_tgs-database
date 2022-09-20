@@ -17,12 +17,12 @@ public partial class DataInitializer
     {
         private const int UniqueId = 26;
 
-        private readonly IGame[] _games;
+        private readonly IGame[]? _games;
 
         public JokerGameProvider()
         {
             _games = LoadGamesFromCsv(GameProviderConst.Joker)
-                .Select(g
+                ?.Select(g
                     => !string.IsNullOrEmpty(g.EndpointPath)
                         ? g
                         : (Game)g with { EndpointPath = string.Empty })
@@ -53,7 +53,7 @@ public partial class DataInitializer
             new TWLanguage("zh")
         };
 
-        IGame[] IGameProvider.Games => _games;
+        IGame[]? IGameProvider.Games => _games;
 
         bool IGameProvider.AllowKickPlayer => false;
 

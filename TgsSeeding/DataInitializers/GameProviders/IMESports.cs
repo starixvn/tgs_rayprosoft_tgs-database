@@ -14,12 +14,12 @@ public partial class DataInitializer
 {
     internal record IMESportsGameProvider : IGameProvider
     {
-        private readonly IGame[] _games;
+        private readonly IGame[]? _games;
 
         public IMESportsGameProvider()
         {
             _games = LoadGamesFromCsv(GameProviderConst.IMESports)
-                .Select(g => g.EndpointPath.IsNotNullOrEmpty() ? g : ((Game)g with { EndpointPath = string.Empty }))
+                ?.Select(g => g.EndpointPath.IsNotNullOrEmpty() ? g : ((Game)g with { EndpointPath = string.Empty }))
                 .ToArray();
         }
 
@@ -57,7 +57,7 @@ public partial class DataInitializer
             new TWLanguage("ZH-HK")
         };
 
-        IGame[] IGameProvider.Games => _games;
+        IGame[]? IGameProvider.Games => _games;
 
         ushort IGameProvider.UniqueId => 9;
 

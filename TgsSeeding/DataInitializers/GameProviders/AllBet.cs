@@ -18,12 +18,12 @@ public partial class DataInitializer
     {
         private const int UniqueId = 13;
 
-        private readonly IGame[] _games;
+        private readonly IGame[]? _games;
 
         public AllBetGameProvider()
         {
             _games = LoadGamesFromCsv(GameProviderConst.AllBet)
-                .Select(g => g.EndpointPath.IsNotNullOrEmpty() ? g : ((Game)g with { EndpointPath = string.Empty }))
+                ?.Select(g => g.EndpointPath.IsNotNullOrEmpty() ? g : ((Game)g with { EndpointPath = string.Empty }))
                 .ToArray();
         }
 
@@ -63,7 +63,7 @@ public partial class DataInitializer
             new TWLanguage("zh_TW")
         };
 
-        IGame[] IGameProvider.Games => _games;
+        IGame[]? IGameProvider.Games => _games;
 
         bool IGameProvider.AllowKickPlayer => false;
 

@@ -15,12 +15,12 @@ public partial class DataInitializer
 {
     internal record VRGameProvider : IGameProvider
     {
-        private readonly IGame[] _games;
+        private readonly IGame[]? _games;
 
         public VRGameProvider()
         {
             _games = LoadGamesFromCsv(GameProviderConst.VR)
-                .Select(g =>
+                ?.Select(g =>
                 {
                     return g.EndpointPath.IsNotNullOrEmpty() ? g : ((Game)g with { EndpointPath = string.Empty });
                 })
@@ -49,7 +49,7 @@ public partial class DataInitializer
             new CNLanguage("zh")
         };
 
-        IGame[] IGameProvider.Games => _games;
+        IGame[]? IGameProvider.Games => _games;
 
         ushort IGameProvider.UniqueId => 11;
 

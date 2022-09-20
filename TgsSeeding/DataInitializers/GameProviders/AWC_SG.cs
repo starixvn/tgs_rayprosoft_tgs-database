@@ -16,12 +16,12 @@ public partial class DataInitializer
 {
     internal record AWC_SGGameProvider : IGameProvider
     {
-        private readonly IGame[] _games;
+        private readonly IGame[]? _games;
 
         public AWC_SGGameProvider()
         {
             _games = LoadGamesFromCsv(GameProviderConst.AWC_SG)
-                .Select(g => g.EndpointPath.IsNotNullOrEmpty() ? g : ((Game)g with { EndpointPath = string.Empty }))
+                ?.Select(g => g.EndpointPath.IsNotNullOrEmpty() ? g : ((Game)g with { EndpointPath = string.Empty }))
                 .ToArray();
         }
 
@@ -60,7 +60,7 @@ public partial class DataInitializer
             new VNLanguage("vn"),
         };
 
-        IGame[] IGameProvider.Games => _games;
+        IGame[]? IGameProvider.Games => _games;
 
         bool IGameProvider.AllowKickPlayer => true;
 

@@ -15,12 +15,12 @@ public partial class DataInitializer
 {
     internal record TCGGameProvider : IGameProvider
     {
-        private readonly IGame[] _games;
+        private readonly IGame[]? _games;
 
         public TCGGameProvider()
         {
             _games = LoadGamesFromCsv(GameProviderConst.TCG)
-                .Select(g =>
+                ?.Select(g =>
                 {
                     return g.EndpointPath.IsNotNullOrEmpty() ? g : ((Game)g with { EndpointPath = string.Empty });
                 })
@@ -65,7 +65,7 @@ public partial class DataInitializer
             new KRLanguage("KO")
         };
 
-        IGame[] IGameProvider.Games => _games;
+        IGame[]? IGameProvider.Games => _games;
 
         ushort IGameProvider.UniqueId => 18;
 

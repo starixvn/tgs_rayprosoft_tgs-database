@@ -18,7 +18,7 @@ public partial class DataInitializer
         { ProductDepartment, new("5CBEDCF4-9BE7-4C1F-8627-CF2A0746C7DA") }
     };
 
-    private static Department[] _Departments;
+    private static Department[]? _Departments;
 
     private async Task GenerateDepartmentsAsync()
     {

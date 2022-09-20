@@ -16,12 +16,12 @@ public partial class DataInitializer
     internal record HabaneroGameProvider : IGameProvider
     {
         private static readonly string _EndpointPath = "?brandId={BRANDID}&token={TOKEN}&locale={CULTURE}&mode=real";
-        private readonly IGame[] _games;
+        private readonly IGame[]? _games;
 
         public HabaneroGameProvider()
         {
             _games = LoadGamesFromCsv(GameProviderConst.Habanero)
-                .Select(g => g.EndpointPath.IsNotNullOrEmpty() ? g : ((Game)g with { EndpointPath = _EndpointPath }))
+                ?.Select(g => g.EndpointPath.IsNotNullOrEmpty() ? g : ((Game)g with { EndpointPath = _EndpointPath }))
                 .ToArray();
         }
 
@@ -63,7 +63,7 @@ public partial class DataInitializer
             new TWLanguage("zh-TW")
         };
 
-        IGame[] IGameProvider.Games => _games;
+        IGame[]? IGameProvider.Games => _games;
 
         ushort IGameProvider.UniqueId => 2;
 

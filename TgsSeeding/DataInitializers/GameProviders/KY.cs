@@ -16,12 +16,12 @@ public partial class DataInitializer
 {
     internal record KYGameProvider : IGameProvider
     {
-        private readonly IGame[] _games;
+        private readonly IGame[]? _games;
 
         public KYGameProvider()
         {
             _games = LoadGamesFromCsv(GameProviderConst.KY)
-                .Select(g =>
+                ?.Select(g =>
                 {
                     return g.EndpointPath.IsNotNullOrEmpty() ? g : ((Game)g with { EndpointPath = string.Empty });
                 })
@@ -59,7 +59,7 @@ public partial class DataInitializer
             new TWLanguage()
         };
 
-        IGame[] IGameProvider.Games => _games;
+        IGame[]? IGameProvider.Games => _games;
 
         bool IGameProvider.AllowKickPlayer => false;
 

@@ -10,7 +10,7 @@ public partial class DataInitializer
 
     internal record CNYCurrency : BaseCodeMapper, ICurrency
     {
-        public CNYCurrency(string externalCode = null)
+        public CNYCurrency(string? externalCode = null)
             : base("CNY", externalCode)
         {
         }
@@ -18,7 +18,7 @@ public partial class DataInitializer
 
     internal record EURCurrency : BaseCodeMapper, ICurrency
     {
-        public EURCurrency(string externalCode = null)
+        public EURCurrency(string? externalCode = null)
             : base("EUR", externalCode)
         {
         }
@@ -26,7 +26,7 @@ public partial class DataInitializer
 
     internal record GBPCurrency : BaseCodeMapper, ICurrency
     {
-        public GBPCurrency(string externalCode = null)
+        public GBPCurrency(string? externalCode = null)
             : base("GBP", externalCode)
         {
         }
@@ -34,7 +34,7 @@ public partial class DataInitializer
 
     internal record IDRCurrency : BaseCodeMapper, ICurrency
     {
-        public IDRCurrency(string externalCode = null)
+        public IDRCurrency(string? externalCode = null)
             : base("IDR", externalCode)
         {
         }
@@ -42,7 +42,7 @@ public partial class DataInitializer
 
     internal record IDR1000Currency : BaseCodeMapper, ICurrency
     {
-        public IDR1000Currency(string externalCode = null)
+        public IDR1000Currency(string? externalCode = null)
             : base("IDR_1000", externalCode)
         {
         }
@@ -50,7 +50,7 @@ public partial class DataInitializer
 
     internal record INRCurrency : BaseCodeMapper, ICurrency
     {
-        public INRCurrency(string externalCode = null)
+        public INRCurrency(string? externalCode = null)
             : base("INR", externalCode)
         {
         }
@@ -58,7 +58,7 @@ public partial class DataInitializer
 
     internal record JPYCurrency : BaseCodeMapper, ICurrency
     {
-        public JPYCurrency(string externalCode = null)
+        public JPYCurrency(string? externalCode = null)
             : base("JPY", externalCode)
         {
         }
@@ -66,7 +66,7 @@ public partial class DataInitializer
 
     internal record KRWCurrency : BaseCodeMapper, ICurrency
     {
-        public KRWCurrency(string externalCode = null)
+        public KRWCurrency(string? externalCode = null)
             : base("KRW", externalCode)
         {
         }
@@ -74,7 +74,7 @@ public partial class DataInitializer
 
     internal record MYRCurrency : BaseCodeMapper, ICurrency
     {
-        public MYRCurrency(string externalCode = null)
+        public MYRCurrency(string? externalCode = null)
             : base("MYR", externalCode)
         {
         }
@@ -82,7 +82,7 @@ public partial class DataInitializer
 
     internal record SGDCurrency : BaseCodeMapper, ICurrency
     {
-        public SGDCurrency(string externalCode = null)
+        public SGDCurrency(string? externalCode = null)
             : base("SGD", externalCode)
         {
         }
@@ -90,7 +90,7 @@ public partial class DataInitializer
 
     internal record THBCurrency : BaseCodeMapper, ICurrency
     {
-        public THBCurrency(string externalCode = null)
+        public THBCurrency(string? externalCode = null)
             : base("THB", externalCode)
         {
         }
@@ -98,7 +98,7 @@ public partial class DataInitializer
 
     internal record USDCurrency : BaseCodeMapper, ICurrency
     {
-        public USDCurrency(string externalCode = null)
+        public USDCurrency(string? externalCode = null)
             : base("USD", externalCode)
         {
         }
@@ -106,7 +106,7 @@ public partial class DataInitializer
 
     internal record VNDCurrency : BaseCodeMapper, ICurrency
     {
-        public VNDCurrency(string externalCode = null)
+        public VNDCurrency(string? externalCode = null)
             : base("VND", externalCode)
         {
         }
@@ -114,7 +114,7 @@ public partial class DataInitializer
 
     internal record VND1000Currency : BaseCodeMapper, ICurrency
     {
-        public VND1000Currency(string externalCode = null)
+        public VND1000Currency(string? externalCode = null)
             : base("VND_1000", externalCode)
         {
         }
@@ -122,7 +122,7 @@ public partial class DataInitializer
 
     internal record HKDCurrency : BaseCodeMapper, ICurrency
     {
-        public HKDCurrency(string externalCode = null)
+        public HKDCurrency(string? externalCode = null)
             : base("HKD", externalCode)
         {
         }
@@ -130,7 +130,7 @@ public partial class DataInitializer
 
     internal record PHPCurrency : BaseCodeMapper, ICurrency
     {
-        public PHPCurrency(string externalCode = null)
+        public PHPCurrency(string? externalCode = null)
             : base("PHP", externalCode)
         {
         }
