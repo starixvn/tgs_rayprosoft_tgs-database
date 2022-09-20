@@ -18,12 +18,12 @@ public partial class DataInitializer
         private const int UniqueId = 6;
 
         private static readonly string _EndpointPath = "?token={GPTOKEN}&tsId={TOKENID}";
-        private readonly IGame[] _games;
+        private readonly IGame[]? _games;
 
         public SabaGameProvider()
         {
             _games = LoadGamesFromCsv(GameProviderConst.Saba)
-                .Select(g => g.EndpointPath.IsNotNullOrEmpty() ? g : ((Game)g with { EndpointPath = _EndpointPath }))
+                ?.Select(g => g.EndpointPath.IsNotNullOrEmpty() ? g : ((Game)g with { EndpointPath = _EndpointPath }))
                 .ToArray();
         }
 
@@ -63,7 +63,7 @@ public partial class DataInitializer
             new TWLanguage("ch")
         };
 
-        IGame[] IGameProvider.Games => _games;
+        IGame[]? IGameProvider.Games => _games;
 
         bool IGameProvider.AllowKickPlayer => false;
 

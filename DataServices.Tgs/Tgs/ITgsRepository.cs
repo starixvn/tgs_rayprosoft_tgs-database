@@ -6,7 +6,7 @@ namespace TGS.Core.DataServices.Tgs;
 
 public interface ITgsRepository : IBaseRepository
 {
-    DbSet<AdjustPlayerRecord> AdjustPlayerRecord { get; set; }
+    DbSet<AdjustPlayerRecord> AdjustPlayerRecords { get; set; }
 
     DbSet<AdminLog> AdminLogs { get; set; }
 

@@ -16,12 +16,12 @@ public partial class DataInitializer
     {
         private const int UniqueId = 19;
 
-        private readonly IGame[] _games;
+        private readonly IGame[]? _games;
 
         public Card365GameProvider()
         {
             _games = LoadGamesFromCsv(GameProviderConst.Card365)
-                .Select(g => g.EndpointPath.IsNotNullOrEmpty() ? g : ((Game)g with { EndpointPath = string.Empty }))
+                ?.Select(g => g.EndpointPath.IsNotNullOrEmpty() ? g : ((Game)g with { EndpointPath = string.Empty }))
                 .ToArray();
         }
 
@@ -59,7 +59,7 @@ public partial class DataInitializer
             new THLanguage("TH")
         };
 
-        IGame[] IGameProvider.Games => _games;
+        IGame[]? IGameProvider.Games => _games;
 
         bool IGameProvider.AllowKickPlayer => false;
 

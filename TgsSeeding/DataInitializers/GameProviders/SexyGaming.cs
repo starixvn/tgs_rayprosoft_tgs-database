@@ -16,7 +16,7 @@ public partial class DataInitializer
 {
     internal record SexyGamingGameProvider : IGameProvider
     {
-        private readonly IGame[] _games;
+        private readonly IGame[]? _games;
 
         private readonly Dictionary<int, GameProviderBetLimit> _betLimitMapper =
             new()
@@ -63,7 +63,7 @@ public partial class DataInitializer
         public SexyGamingGameProvider()
         {
             _games = LoadGamesFromCsv(GameProviderConst.SexyGaming)
-                .Select(g =>
+                ?.Select(g =>
                 {
                     return g.EndpointPath.IsNotNullOrEmpty() ? g : ((Game)g with { EndpointPath = string.Empty });
                 })
@@ -106,7 +106,7 @@ public partial class DataInitializer
             new VNLanguage("vn")
         };
 
-        IGame[] IGameProvider.Games => _games;
+        IGame[]? IGameProvider.Games => _games;
 
         bool IGameProvider.AllowKickPlayer => false;
 

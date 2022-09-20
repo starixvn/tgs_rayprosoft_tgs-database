@@ -18,12 +18,12 @@ public partial class DataInitializer
         private const int UniqueId = 4;
 
         private static readonly string _EndpointPath = "/forwardGame.do?params={PARAS}&key={KEY}";
-        private readonly IGame[] _games;
+        private readonly IGame[]? _games;
 
         public AsiaGamingGameProvider()
         {
             _games = LoadGamesFromCsv(GameProviderConst.AsiaGaming)
-                .Select(g => g.EndpointPath.IsNotNullOrEmpty() ? g : ((Game)g with { EndpointPath = _EndpointPath }))
+                ?.Select(g => g.EndpointPath.IsNotNullOrEmpty() ? g : ((Game)g with { EndpointPath = _EndpointPath }))
                 .ToArray();
         }
 
@@ -62,7 +62,7 @@ public partial class DataInitializer
             new VNLanguage("8")
         };
 
-        IGame[] IGameProvider.Games => _games;
+        IGame[]? IGameProvider.Games => _games;
 
         bool IGameProvider.AllowKickPlayer => false;
 

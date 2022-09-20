@@ -10,12 +10,12 @@ public partial class DataInitializer
 {
     internal record BetConstructProvider : IGameProvider
     {
-        private readonly IGame[] _games;
+        private readonly IGame[]? _games;
 
         public BetConstructProvider()
         {
             _games = LoadGamesFromCsv(GameProviderConst.BetConstruct)
-                .Select(g => g.EndpointPath.IsNotNullOrEmpty() ? g : ((Game)g with { EndpointPath = string.Empty }))
+                ?.Select(g => g.EndpointPath.IsNotNullOrEmpty() ? g : ((Game)g with { EndpointPath = string.Empty }))
                 .ToArray();
         }
 
@@ -54,7 +54,7 @@ public partial class DataInitializer
             new TWLanguage("zh")
         };
 
-        IGame[] IGameProvider.Games => _games;
+        IGame[]? IGameProvider.Games => _games;
 
         bool IGameProvider.AllowKickPlayer => false;
 

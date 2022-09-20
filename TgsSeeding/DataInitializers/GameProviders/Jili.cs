@@ -18,12 +18,12 @@ public partial class DataInitializer
     {
         private const int UniqueId = 22;
 
-        private readonly IGame[] _games;
+        private readonly IGame[]? _games;
 
         public JiliGameProvider()
         {
             _games = LoadGamesFromCsv(GameProviderConst.Jili)
-                .Select(g =>
+                ?.Select(g =>
                 {
                     return g.EndpointPath.IsNotNullOrEmpty() ? g : ((Game)g with { EndpointPath = string.Empty });
                 })
@@ -68,7 +68,7 @@ public partial class DataInitializer
             new TWLanguage("zh-TW")
         };
 
-        IGame[] IGameProvider.Games => _games;
+        IGame[]? IGameProvider.Games => _games;
 
         bool IGameProvider.AllowKickPlayer => false;
 

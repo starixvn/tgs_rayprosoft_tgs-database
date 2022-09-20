@@ -1,11 +1,7 @@
 ﻿// ReSharper disable CheckNamespace
 // ReSharper disable IdentifierTypo
 
-using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.IO;
-using System.Linq;
 using CsvHelper;
 using CsvHelper.Configuration.Attributes;
 using TGS.Core.Infrastructures.Extensions;
@@ -18,7 +14,7 @@ public partial class DataInitializer
 {
     #region Private Method
 
-    private static IGame[] LoadGamesFromCsv(string gameProviderCode)
+    private static IGame[]? LoadGamesFromCsv(string gameProviderCode)
     {
         var type = typeof(DataInitializer);
         var @namespace = type.Namespace;
@@ -96,7 +92,7 @@ public partial class DataInitializer
 
         IGameProviderConfiguration[] GameProviderConfigurations { get; }
 
-        IGame[] Games { get; }
+        IGame[]? Games { get; }
 
         Guid Id { get; }
 
@@ -141,10 +137,10 @@ public partial class DataInitializer
         private readonly string _code;
         private readonly string _externalCode;
 
-        protected BaseCodeMapper(string code, string externalCode)
+        protected BaseCodeMapper(string code, string? externalCode)
         {
             _code = code;
-            _externalCode = externalCode.IsNullOrEmpty() ? code : externalCode;
+            _externalCode = string.IsNullOrEmpty(externalCode) ? code : externalCode;
         }
 
         string ICodeMapper.Code => _code;
@@ -153,22 +149,22 @@ public partial class DataInitializer
 
     internal record Game : IGame
     {
-        private readonly string _availableCurrencies;
-        private readonly string _code;
+        private string? _availableCurrencies;
+        private string? _code;
 
         [Name("SubGpCode")]
-        public string SubGameProviderCode { get; init; }
+        public string SubGameProviderCode { get; init; } = default!;
 
         [Name("PlatformType")]
         public GamePlatformType PlatformType { get; init; }
 
         [Name("Name")]
-        public string Name { get; init; }
+        public string Name { get; init; } = default!;
 
         [Name("Code")]
         public string Code
         {
-            get => _code;
+            get => _code!;
             init => _code = value.IsNotNullOrEmpty()
                 ? value
                 : Name.ReplaceApostropheByEmpty()
@@ -178,16 +174,16 @@ public partial class DataInitializer
         }
 
         [Name("ExternalId")]
-        public string ExternalId { get; init; }
+        public string ExternalId { get; init; } = default!;
 
         [Name("EndpointPath")]
-        public string EndpointPath { get; init; }
+        public string EndpointPath { get; init; } = default!;
 
         [Name("RuleUrl")]
-        public string GameRuleUrl { get; init; }
+        public string GameRuleUrl { get; init; } = default!;
 
         [Name("Description")]
-        public string Description { get; init; }
+        public string Description { get; init; } = default!;
 
         [Name("Type")]
         public GameType GameTypeCode { get; init; }
@@ -207,7 +203,7 @@ public partial class DataInitializer
         [Name("AvailableCurrencies")]
         public string AvailableCurrencies
         {
-            get => _availableCurrencies;
+            get => _availableCurrencies!;
             init => _availableCurrencies = value.Replace(";", ",");
         }
     }

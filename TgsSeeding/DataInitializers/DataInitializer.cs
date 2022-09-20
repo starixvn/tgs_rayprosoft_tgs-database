@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using Tgs.Core.Infrastructures.Security;
 using Tgs.Core.Infrastructures.Utility;
 using TGS.Core.DataServices.Base.DataInitializers;
@@ -72,9 +68,9 @@ public partial class DataInitializer : BaseDataInitializer
         _GpiBrandRole
     };
 
-    private BetLimit[] _betLimits;
-    private Player[] _players;
-    private VipLevel[] _vipLevels;
+    private BetLimit[]? _betLimits;
+    private Player[]? _players;
+    private VipLevel[]? _vipLevels;
 
     public DataInitializer(ITgsRepository repository)
     {
@@ -161,7 +157,7 @@ public partial class DataInitializer : BaseDataInitializer
         await LogSeedingTimeAsync(GeneratePlayerSportsBetLimitsAsync, logBuilder);
         await LogSeedingTimeAsync(GenerateBetDataAsync, logBuilder);
         await LogSeedingTimeAsync(GeneratePromotionsAsync, logBuilder);
-        await LogSeedingTimeAsync(GenerateApplePayInitialData, logBuilder);
+        await LogSeedingTimeAsync(GenerateApplePayInitialDataAsync, logBuilder);
         await LogSeedingTimeAsync(GeneratePlatformCreditsAsync, logBuilder);
 
         timer.Stop();
@@ -264,7 +260,7 @@ public partial class DataInitializer : BaseDataInitializer
             UpdatedByUsername = AdminUsername
         }).ToHashSet();
 
-        gp.Games = gameProvider.Games.Select((g, idx) => new Models.Game
+        gp.Games = gameProvider.Games!.Select((g, idx) => new Models.Game
         {
             Id = int.Parse($"{gp.UniqueId}{idx + 1:00000}"),
             Name = g.Name,
@@ -470,7 +466,7 @@ public partial class DataInitializer : BaseDataInitializer
             }).ToHashSet();
 
         var betLimits = _betLimits
-            .Where(bl => brandCurrencies.Contains(bl.CurrencyCode))
+            ?.Where(bl => brandCurrencies.Contains(bl.CurrencyCode))
             .Select(bl => new BrandBetLimit
             {
                 BrandId = brand.Id,
@@ -555,7 +551,7 @@ public partial class DataInitializer : BaseDataInitializer
                             BrandGameId = g.Id
                         })
                             .ToHashSet(),
-                    BrandGroupBetLimits = betLimits.Select(b =>
+                    BrandGroupBetLimits = betLimits?.Select(b =>
                     {
                         var brandGroupBetLimitId = Guid.NewGuid();
 
@@ -648,7 +644,7 @@ public partial class DataInitializer : BaseDataInitializer
                     }).ToHashSet(),
             Brands = licensee.Brands.Select(b => CreateBrand(reseller, licensee, b)).ToHashSet(),
             BetLimits = _betLimits
-                .Where(lbl => licenseeCurrencies.Contains(lbl.CurrencyCode))
+                ?.Where(lbl => licenseeCurrencies.Contains(lbl.CurrencyCode))
                 .Select(lbl => new LicenseeBetLimit
                 {
                     LicenseeId = licensee.Id,
@@ -766,7 +762,7 @@ public partial class DataInitializer : BaseDataInitializer
                         GameProviderId = gp.Id,
                         ResellerId = reseller.Id
                     }).ToHashSet(),
-            BetLimits = _betLimits.Select(bl => new ResellerBetLimit
+            BetLimits = _betLimits?.Select(bl => new ResellerBetLimit
             {
                 ResellerId = reseller.Id,
                 BetLimitId = bl.Id
@@ -1168,7 +1164,7 @@ public partial class DataInitializer : BaseDataInitializer
             var brandId = p.BrandId;
             var username = p.PlayerCode;
             var realName = Generator.RandomString(12);
-            var vipId = _vipLevels.First(x => x.BrandId == brandId).Id;
+            var vipId = _vipLevels!.First(x => x.BrandId == brandId).Id;
 
             return CreatePlayer(playerCode,
                 brandId,
@@ -1190,7 +1186,7 @@ public partial class DataInitializer : BaseDataInitializer
     {
         var relation = _repository.SportMarketTypes.ToArray();
 
-        var players = from p in _players.Where(p => p.Type == PlayerType.TestPlayer)
+        var players = from p in _players?.Where(p => p.Type == PlayerType.TestPlayer)
                       group p by p.DefaultWalletCurrencyCode
                       into g
                       select g.First();
@@ -1398,10 +1394,10 @@ public partial class DataInitializer : BaseDataInitializer
         users.AddRange(adminAccounts.Select(username =>
             CreateUser(username, UserStatus.Enabled, Roles._AdminRoleId, _AdminDepartments[ProductDepartment])));
 
-        var brandDepartment = _Departments.First(x => x.BrandId == _GpiBrandRole.BrandId);
+        var brandDepartment = _Departments?.First(x => x.BrandId == _GpiBrandRole.BrandId);
 
         users.AddRange(brandAccounts.Select(username =>
-            CreateUser(username, UserStatus.Enabled, _GpiBrandRole.Id, brandDepartment.Id)));
+            CreateUser(username, UserStatus.Enabled, _GpiBrandRole.Id, brandDepartment!.Id)));
 
         await _repository.Users.AddRangeAsync(users);
         _ = await _repository.SaveChangesAsync();

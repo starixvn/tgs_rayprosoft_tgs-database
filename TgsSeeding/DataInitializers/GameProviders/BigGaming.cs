@@ -15,12 +15,12 @@ public partial class DataInitializer
 {
     internal record BigGamingGameProvider : IGameProvider
     {
-        private readonly IGame[] _games;
+        private readonly IGame[]? _games;
 
         public BigGamingGameProvider()
         {
             _games = LoadGamesFromCsv(GameProviderConst.BigGaming)
-                .Select(g => g.EndpointPath.IsNotNullOrEmpty() ? g : ((Game)g with { EndpointPath = string.Empty }))
+                ?.Select(g => g.EndpointPath.IsNotNullOrEmpty() ? g : ((Game)g with { EndpointPath = string.Empty }))
                 .ToArray();
         }
 
@@ -59,7 +59,7 @@ public partial class DataInitializer
             new VNLanguage("vi_VN")
         };
 
-        IGame[] IGameProvider.Games => _games;
+        IGame[]? IGameProvider.Games => _games;
 
         ushort IGameProvider.UniqueId => 8;
 
