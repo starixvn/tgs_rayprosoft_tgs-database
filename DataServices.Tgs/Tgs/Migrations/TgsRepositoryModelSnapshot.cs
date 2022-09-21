@@ -18,7 +18,7 @@ namespace TGS.Core.DataServices.Tgs.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasDefaultSchema("dbo")
-                .HasAnnotation("ProductVersion", "6.0.8")
+                .HasAnnotation("ProductVersion", "6.0.9")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.HasPostgresExtension(modelBuilder, "ltree");
@@ -7904,6 +7904,57 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.ToTable("transaction_promotions", "dbo");
                 });
 
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.TransferBalanceForm", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<decimal>("Amount")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("amount");
+
+                    b.Property<Guid>("BrandId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("brand_id");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamptz")
+                        .HasColumnName("created_on")
+                        .HasDefaultValueSql("Now()");
+
+                    b.Property<string>("Drawee")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("drawee");
+
+                    b.Property<string>("DraweeType")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("drawee_type");
+
+                    b.Property<string>("Payee")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("payee");
+
+                    b.Property<string>("PayeeType")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("payee_type");
+
+                    b.HasKey("Id")
+                        .HasName("pk_transfer_balance_forms");
+
+                    b.HasIndex("BrandId")
+                        .HasDatabaseName("ix_transfer_balance_forms_brand_id");
+
+                    b.ToTable("transfer_balance_forms", "dbo");
+                });
+
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.User", b =>
                 {
                     b.Property<Guid>("Id")
@@ -9955,6 +10006,16 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasConstraintName("fk_transaction_promotion_promotion_id");
 
                     b.Navigation("Promotion");
+                });
+
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.TransferBalanceForm", b =>
+                {
+                    b.HasOne("TGS.Core.DataServices.Tgs.Models.Brand", null)
+                        .WithMany()
+                        .HasForeignKey("BrandId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired()
+                        .HasConstraintName("fk_transfer_balance_forms_brands_brand_id");
                 });
 
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.User", b =>

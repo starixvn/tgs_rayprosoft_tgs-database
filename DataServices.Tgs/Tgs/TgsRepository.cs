@@ -226,6 +226,8 @@ public class TgsRepository : DbContext, ITgsRepository
 
     public DbSet<Transaction> Transactions { get; set; }
 
+    public DbSet<TransferBalanceForm> TransferBalanceForms { get; set; }
+
     public DbSet<User> Users { get; set; }
 
     public DbSet<VipLevel> VipLevels { get; set; }

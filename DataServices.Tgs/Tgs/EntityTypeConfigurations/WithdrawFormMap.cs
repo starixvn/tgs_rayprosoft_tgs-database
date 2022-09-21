@@ -5,7 +5,7 @@ using TGS.Core.DataServices.Tgs.Models;
 
 namespace TGS.Core.DataServices.Tgs.EntityTypeConfigurations;
 
-public class WithdrawFormMap : IEntityTypeConfiguration<WithdrawForm>
+internal class WithdrawFormMap : IEntityTypeConfiguration<WithdrawForm>
 {
     public void Configure(EntityTypeBuilder<WithdrawForm> builder)
     {
