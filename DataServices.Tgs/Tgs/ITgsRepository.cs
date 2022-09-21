@@ -220,6 +220,8 @@ public interface ITgsRepository : IBaseRepository
 
     DbSet<Transaction> Transactions { get; set; }
 
+    DbSet<TransferBalanceForm> TransferBalanceForms { get; set; }
+
     DbSet<User> Users { get; set; }
 
     DbSet<VipLevel> VipLevels { get; set; }
