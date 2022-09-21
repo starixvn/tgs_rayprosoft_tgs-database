@@ -962,9 +962,29 @@ namespace TGS.Core.DataServices.Tgs.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
+                    b.Property<decimal>("ActualDividendPercentage")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("actual_dividend_percentage");
+
+                    b.Property<decimal?>("AgentCoveredBonus")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("agent_covered_bonus");
+
+                    b.Property<decimal?>("AgentCoveredBonusAdjust")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("agent_covered_bonus_adjust");
+
                     b.Property<int>("AgentDividendId")
                         .HasColumnType("integer")
                         .HasColumnName("agent_dividend_id");
+
+                    b.Property<decimal>("AgentDividendPercentage")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("agent_dividend_percentage");
 
                     b.Property<Guid>("AgentId")
                         .HasColumnType("uuid")
@@ -978,6 +998,10 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.Property<Guid>("DividendProviderAgentId")
                         .HasColumnType("uuid")
                         .HasColumnName("dividend_provider_agent_id");
+
+                    b.Property<int>("DividendProviderId")
+                        .HasColumnType("integer")
+                        .HasColumnName("dividend_provider_id");
 
                     b.Property<string>("Layer")
                         .IsRequired()
@@ -4892,6 +4916,15 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("numeric(18,6)")
                         .HasColumnName("agent_adjust_amount");
 
+                    b.Property<decimal?>("AgentDividendPercentage")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("agent_dividend_percentage");
+
+                    b.Property<string>("AgentDividendPercentageTreeData")
+                        .HasColumnType("jsonb")
+                        .HasColumnName("agent_dividend_percentage_tree_data");
+
                     b.Property<Guid?>("AgentId")
                         .HasColumnType("uuid")
                         .HasColumnName("agent_id");
@@ -4919,6 +4952,11 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.Property<Guid>("BrandId")
                         .HasColumnType("uuid")
                         .HasColumnName("brand_id");
+
+                    b.Property<decimal?>("ChiefAgentDividendPercentage")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("chief_agent_dividend_percentage");
 
                     b.Property<decimal>("CompanyAdjustAmount")
                         .HasPrecision(18, 6)
