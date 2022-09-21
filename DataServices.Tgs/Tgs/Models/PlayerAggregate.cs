@@ -65,4 +65,10 @@ public class PlayerAggregate
     public decimal WithdrawalAmount { get; set; }
 
     public decimal WithdrawHandlingFee { get; set; }
+
+    public decimal? AgentDividendPercentage { get; set; }
+
+    public decimal? ChiefAgentDividendPercentage { get; set; }
+
+    public string AgentDividendPercentageTreeData { get; set; }
 }

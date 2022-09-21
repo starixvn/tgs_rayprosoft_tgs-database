@@ -17,6 +17,22 @@ internal class AgentDividendMultipleLayerMap : IEntityTypeConfiguration<AgentDiv
         _ = builder.Property(b => b.Id)
             .ValueGeneratedOnAdd();
 
+        _ = builder.Property(b => b.AgentDividendPercentage)
+            .HasPrecision(18, 6)
+            .IsRequired();
+
+        _ = builder.Property(b => b.ActualDividendPercentage)
+            .HasPrecision(18, 6)
+            .IsRequired();
+
+        _ = builder.Property(b => b.AgentCoveredBonus)
+            .HasPrecision(18, 6)
+            .IsRequired(false);
+
+        _ = builder.Property(b => b.AgentCoveredBonusAdjust)
+            .HasPrecision(18, 6)
+            .IsRequired(false);
+
         _ = builder.Property(b => b.Dividend)
             .HasPrecision(18, 6)
             .IsRequired();
@@ -25,6 +41,9 @@ internal class AgentDividendMultipleLayerMap : IEntityTypeConfiguration<AgentDiv
             .IsRequired();
 
         _ = builder.Property(b => b.DividendProviderAgentId)
+            .IsRequired();
+
+        _ = builder.Property(b => b.DividendProviderId)
             .IsRequired();
 
         _ = builder.Property(b => b.Layer)
