@@ -12,7 +12,7 @@ RUN dotnet tool restore
 RUN dotnet build "MigrationEntry.csproj"
 
 FROM build AS publish
-RUN dotnet ef migrations bundle -o /app/efbundle
+RUN dotnet ef migrations bundle -o /app/efbundle --no-self-contained
 RUN cp tgs.appsettings.json /app
 
 FROM base AS final
