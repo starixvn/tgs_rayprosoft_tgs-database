@@ -7974,6 +7974,10 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("text")
                         .HasColumnName("drawee_type");
 
+                    b.Property<bool>("IncludeInNetProfit")
+                        .HasColumnType("boolean")
+                        .HasColumnName("include_in_net_profit");
+
                     b.Property<string>("Payee")
                         .IsRequired()
                         .HasColumnType("text")
