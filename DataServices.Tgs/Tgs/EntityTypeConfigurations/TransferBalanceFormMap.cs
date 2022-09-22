@@ -33,6 +33,8 @@ internal class TransferBalanceFormMap : IEntityTypeConfiguration<TransferBalance
             .IsRequired()
             .HasColumnType("timestamptz")
             .HasDefaultValueSql("Now()");
+        _ = builder.Property(form => form.CreatedUserId)
+            .IsRequired();
 
         _ = builder.HasOne<Brand>()
             .WithMany()
