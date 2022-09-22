@@ -7964,6 +7964,11 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnName("created_on")
                         .HasDefaultValueSql("Now()");
 
+                    b.Property<string>("CreatedUserId")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("created_user_id");
+
                     b.Property<string>("Drawee")
                         .IsRequired()
                         .HasColumnType("text")

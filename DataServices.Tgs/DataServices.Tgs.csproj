@@ -3,7 +3,7 @@
   <PropertyGroup>
     <RootNamespace>TGS.Core.DataServices</RootNamespace>
     <PackageId>Tgs.Core</PackageId>
-    <Version>1.0.9</Version>
+    <Version>1.0.10</Version>
     <Authors>Raypro</Authors>
     <Product>Tgs.Core</Product>
     <PackageProjectUrl>https://gitlab.com/rayprosoft/tgs-database</PackageProjectUrl>

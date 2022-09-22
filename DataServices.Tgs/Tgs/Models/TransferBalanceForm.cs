@@ -12,6 +12,8 @@ public class TransferBalanceForm
 
     public DateTime CreatedOn { get; set; }
 
+    public string CreatedUserId { get; set; } = default!;
+
     public string Drawee { get; set; } = default!;
 
     public string DraweeType { get; set; } = default!;
