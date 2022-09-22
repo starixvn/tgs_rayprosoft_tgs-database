@@ -13,7 +13,7 @@ RUN dotnet build "MigrationEntry.csproj"
 
 FROM build AS publish
 RUN dotnet ef migrations bundle -o /app/efbundle --no-self-contained
-RUN cp tgs.appsettings.json /app
+RUN cp appsettings.json /app
 
 FROM base AS final
 WORKDIR /app
