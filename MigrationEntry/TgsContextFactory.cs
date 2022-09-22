@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Hosting;
 using TGS.Core.DataServices.Tgs;
 using TGS.Core.Models;
 
@@ -12,36 +12,25 @@ public class TgsContextFactory : IDesignTimeDbContextFactory<TgsRepository>
 {
     public TgsRepository CreateDbContext(string[] args)
     {
-        var configBuilder = new ConfigurationBuilder()
-            .AddJsonFile("appsettings.json")
-            .AddEnvironmentVariables();
-
-        var config = configBuilder.Build();
-
-        var services = new ServiceCollection();
-
-        _ = services
-            .AddDbContext<TgsRepository>(
+        var host = Host.CreateDefaultBuilder(args)
+            .ConfigureHostConfiguration(builder => builder
+                .AddJsonFile("appsettings.json")
+                .AddEnvironmentVariables())
+            .ConfigureServices(services => services
+                .AddDbContext<TgsRepository>(
                 dbOptions => dbOptions
                     .EnableSensitiveDataLogging()
                     .UseSnakeCaseNamingConvention()
                     .UseNpgsql(
-                        config.GetConnectionString("Tgs"),
+                        "Name=Tgs",
                         serverOption => serverOption
                             .MigrationsHistoryTable(Consts.Db.MigrationsHistoryTable, Consts.Db.Schema)
                             .MigrationsAssembly("MigrationEntry")),
                 ServiceLifetime.Singleton,
-                ServiceLifetime.Singleton);
+                ServiceLifetime.Singleton))
+            .Build();
 
-        var loggerFactory = LoggerFactory.Create(builder => builder
-            .AddConfiguration(config.GetSection("Logging"))
-            .AddConsole());
-
-        _ = services.AddSingleton(loggerFactory);
-
-        var serviceProvider = services.BuildServiceProvider();
-
-        var dbContext = serviceProvider.GetRequiredService<TgsRepository>();
+        var dbContext = host.Services.GetRequiredService<TgsRepository>();
 
         return dbContext;
     }
