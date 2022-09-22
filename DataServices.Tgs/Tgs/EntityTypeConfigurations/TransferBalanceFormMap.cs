@@ -26,6 +26,8 @@ internal class TransferBalanceFormMap : IEntityTypeConfiguration<TransferBalance
         _ = builder.Property(form => form.Amount)
             .HasPrecision(18, 6)
             .IsRequired();
+        _ = builder.Property(form => form.IncludeInNetProfit)
+            .IsRequired();
 
         _ = builder.Property(form => form.CreatedOn)
             .IsRequired()

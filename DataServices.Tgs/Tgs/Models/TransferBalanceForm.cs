@@ -18,6 +18,8 @@ public class TransferBalanceForm
 
     public Guid Id { get; set; }
 
+    public bool IncludeInNetProfit { get; set; }
+
     public string Payee { get; set; } = default!;
 
     public string PayeeType { get; set; } = default!;
