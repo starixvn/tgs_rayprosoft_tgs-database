@@ -6,6 +6,7 @@
     <Nullable>enable</Nullable>
     <DockerfileBuildArguments>--build-arg "BuildConfiguration=$(Configuration)"</DockerfileBuildArguments>
     <DockerfileTag Condition="$(DockerfileTag) == ''">tgs/migration</DockerfileTag>
+    <RootNamespace>Tgs.Migrations</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -19,10 +20,8 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.0" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="6.0.1" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="6.0.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -31,9 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="TgsContextFactory.cs">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Compile>
+    <EmbeddedResource Remove="Tgs\SqlScripts\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -42,6 +39,10 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="SqlScripts\" />
   </ItemGroup>
 
 </Project>
