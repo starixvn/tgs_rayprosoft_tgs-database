@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using TGS.Core.DataServices.Base.Extensions;
 using TGS.Core.DataServices.Tgs;
 using TGS.Core.Models;
 
@@ -13,10 +12,10 @@ public class TgsContextFactory : IDesignTimeDbContextFactory<TgsRepository>
 {
     public TgsRepository CreateDbContext(string[] args)
     {
-        var configBuilder = new ConfigurationBuilder();
-        _ = configBuilder
+        var configBuilder = new ConfigurationBuilder()
             .AddJsonFile("appsettings.json")
             .AddEnvironmentVariables();
+
         var config = configBuilder.Build();
 
         var services = new ServiceCollection();
@@ -26,17 +25,18 @@ public class TgsContextFactory : IDesignTimeDbContextFactory<TgsRepository>
                 dbOptions => dbOptions
                     .EnableSensitiveDataLogging()
                     .UseSnakeCaseNamingConvention()
-                    .UseNpgsql(config.GetConnectionString("Tgs"), serverOption => serverOption
-                        .MigrationsHistoryTable(Consts.Db.MigrationsHistoryTable, Consts.Db.Schema)),
+                    .UseNpgsql(
+                        config.GetConnectionString("Tgs"),
+                        serverOption => serverOption
+                            .MigrationsHistoryTable(Consts.Db.MigrationsHistoryTable, Consts.Db.Schema)
+                            .MigrationsAssembly("MigrationEntry")),
                 ServiceLifetime.Singleton,
                 ServiceLifetime.Singleton);
 
-        var loggerFactory = LoggerFactory.Create(builder =>
-        {
-            _ = builder
-                .AddConfiguration(config.GetSection("Logging"))
-                .AddConsole();
-        });
+        var loggerFactory = LoggerFactory.Create(builder => builder
+            .AddConfiguration(config.GetSection("Logging"))
+            .AddConsole());
+
         _ = services.AddSingleton(loggerFactory);
 
         var serviceProvider = services.BuildServiceProvider();

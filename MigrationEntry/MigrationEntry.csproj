@@ -31,9 +31,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="TgsContextFactory.cs">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Compile>
+    <EmbeddedResource Remove="Tgs\SqlScripts\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Migrations\RefactorWithdrawForm.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\RefactorWithdrawForm.sql" />
   </ItemGroup>
 
   <ItemGroup>
