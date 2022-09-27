@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 using Microsoft.EntityFrameworkCore.Migrations;
 using TGS.Core.DataServices.Base.Extensions;
+using Tgs.Migrations;
 
 #nullable disable
 
@@ -17,8 +18,8 @@ public partial class AddGetPlayerDepositReportSP : Migration
         var assembly = Assembly.GetExecutingAssembly();
 
         migrationBuilder.SqlResource(assembly,
-            string.Format(Consts._FunctionSqlFormat, "report_get_player_first_deposit_details"));
+            string.Format(MigrationConsts._FunctionSqlFormat, "report_get_player_first_deposit_details"));
         migrationBuilder.SqlResource(assembly,
-            string.Format(Consts._FunctionSqlFormat, "report_get_player_no_second_deposit_details"));
+            string.Format(MigrationConsts._FunctionSqlFormat, "report_get_player_no_second_deposit_details"));
     }
 }

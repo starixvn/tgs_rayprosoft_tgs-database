@@ -98,8 +98,10 @@ public partial class DataInitializer
     private async Task GenerateApplePayInitialDataAsync()
     {
         var assembly = Assembly.GetExecutingAssembly();
-        using var stream =
-            assembly.GetManifestResourceStream(string.Format(Consts._PaymentInitialSqlFormat, "applePay"));
+
+        await using var stream =
+            assembly.GetManifestResourceStream("TgsSeeding.DataInitializers.PaymentInitial.applePay.sql");
+
         if (stream == null)
         {
             return;

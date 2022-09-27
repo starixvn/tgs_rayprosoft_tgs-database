@@ -51,6 +51,7 @@
     <None Remove="DataInitializers\Games\WGVIA.csv" />
     <None Remove="DataInitializers\Games\WM.csv" />
     <None Remove="DataInitializers\Games\WMTF.csv" />
+    <None Remove="DataInitializers\PaymentInitial\applePay.sql" />
   </ItemGroup>
 
   <ItemGroup>
@@ -96,6 +97,7 @@
     <EmbeddedResource Include="DataInitializers\Games\WGVIA.csv" />
     <EmbeddedResource Include="DataInitializers\Games\WM.csv" />
     <EmbeddedResource Include="DataInitializers\Games\WMTF.csv" />
+    <EmbeddedResource Include="DataInitializers\PaymentInitial\applePay.sql" />
   </ItemGroup>
 
   <ItemGroup>

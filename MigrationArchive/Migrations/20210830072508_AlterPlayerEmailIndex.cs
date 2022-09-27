@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 using Microsoft.EntityFrameworkCore.Migrations;
 using TGS.Core.DataServices.Base.Extensions;
+using Tgs.Migrations;
 
 namespace TGS.Core.DataServices.Tgs.Migrations;
 
@@ -22,6 +23,6 @@ public partial class AlterPlayerEmailIndex : Migration
             ");
 
         migrationBuilder.SqlResource(assembly,
-            string.Format(Consts._IndexSqlFormat, "players_brand_id_email"));
+            string.Format(MigrationConsts._IndexSqlFormat, "players_brand_id_email"));
     }
 }

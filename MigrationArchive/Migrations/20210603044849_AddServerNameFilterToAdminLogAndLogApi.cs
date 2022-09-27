@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using Microsoft.EntityFrameworkCore.Migrations;
+using Tgs.Migrations;
 using TGS.Core.DataServices.Base.Extensions;
 
 namespace TGS.Core.DataServices.Tgs.Migrations;
@@ -15,10 +16,10 @@ public partial class AddServerNameFilterToAdminLogAndLogApi : Migration
         var assembly = Assembly.GetExecutingAssembly();
 
         migrationBuilder.SqlResource(assembly,
-            string.Format(Consts._FunctionSqlFormat, "log_get_admin_logs"));
+            string.Format(MigrationConsts._FunctionSqlFormat, "log_get_admin_logs"));
         migrationBuilder.SqlResource(assembly,
-            string.Format(Consts._FunctionSqlFormat, "log_get_api_logs"));
+            string.Format(MigrationConsts._FunctionSqlFormat, "log_get_api_logs"));
         migrationBuilder.SqlResource(assembly,
-            string.Format(Consts._FunctionSqlFormat, "log_get_log_records"));
+            string.Format(MigrationConsts._FunctionSqlFormat, "log_get_log_records"));
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using Microsoft.EntityFrameworkCore.Migrations;
+using Tgs.Migrations;
 using TGS.Core.DataServices.Base.Extensions;
 
 namespace TGS.Core.DataServices.Tgs.Migrations;
@@ -20,8 +21,8 @@ public partial class FixPromotionFunctions : Migration
             ");
 
         migrationBuilder.SqlResource(assembly,
-            string.Format(Consts._FunctionSqlFormat, "promotion_revert_amount_used"));
+            string.Format(MigrationConsts._FunctionSqlFormat, "promotion_revert_amount_used"));
         migrationBuilder.SqlResource(assembly,
-            string.Format(Consts._FunctionSqlFormat, "promotion_update_amount_used"));
+            string.Format(MigrationConsts._FunctionSqlFormat, "promotion_update_amount_used"));
     }
 }
