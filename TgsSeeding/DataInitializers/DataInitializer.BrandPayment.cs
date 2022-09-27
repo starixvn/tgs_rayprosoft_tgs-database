@@ -100,7 +100,7 @@ public partial class DataInitializer
         var assembly = Assembly.GetExecutingAssembly();
 
         await using var stream =
-            assembly.GetManifestResourceStream("TgsSeeding.PaymentInitial.applePay.sql");
+            assembly.GetManifestResourceStream("TgsSeeding.DataInitializers.PaymentInitial.applePay.sql");
 
         if (stream == null)
         {
