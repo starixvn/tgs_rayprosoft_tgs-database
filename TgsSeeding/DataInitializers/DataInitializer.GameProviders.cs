@@ -17,14 +17,13 @@ public partial class DataInitializer
     private static IGame[]? LoadGamesFromCsv(string gameProviderCode)
     {
         var type = typeof(DataInitializer);
-        var @namespace = type.Namespace;
 
         if (gameProviderCode.IsNullOrEmpty())
         {
             return null;
         }
 
-        var csvName = $"{@namespace}.Games.{gameProviderCode}.csv";
+        var csvName = $"TgsSeeding.DataInitializers.Games.{gameProviderCode}.csv";
         using var stream = type.Assembly.GetManifestResourceStream(csvName);
         if (stream == null)
         {

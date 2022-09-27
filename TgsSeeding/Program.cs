@@ -1,6 +1,7 @@
 ﻿using System.CommandLine;
 using Microsoft.EntityFrameworkCore;
 using TGS.Core.DataServices.Tgs;
+using TGS.Core.DataServices.Tgs.DataInitializers;
 
 AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
@@ -23,21 +24,21 @@ connectionStringOption.SetDefaultValueFactory(() =>
 var rootCommand = new RootCommand("建立Tgs初始化資料");
 rootCommand.AddGlobalOption(connectionStringOption);
 
-//rootCommand.SetHandler<string>(
-//    async connectionString =>
-//    {
-//        var dbOptionsBuilder = new DbContextOptionsBuilder<TgsRepository>();
-//        _ = dbOptionsBuilder
-//            .UseNpgsql(connectionString, serverOption =>
-//            {
-//            })
-//            .UseSnakeCaseNamingConvention();
+rootCommand.SetHandler<string>(
+    async connectionString =>
+    {
+        var dbOptionsBuilder = new DbContextOptionsBuilder<TgsRepository>();
+        _ = dbOptionsBuilder
+            .UseNpgsql(connectionString, serverOption =>
+            {
+            })
+            .UseSnakeCaseNamingConvention();
 
-//        var dbContext = new TgsRepository(dbOptionsBuilder.Options);
+        var dbContext = new TgsRepository(dbOptionsBuilder.Options);
 
-//        var seeding = new DataInitializer(dbContext);
-//        await seeding.SetInitialDataAsync().ConfigureAwait(false);
-//    },
-//    connectionStringOption);
+        var seeding = new DataInitializer(dbContext);
+        await seeding.SetInitialDataAsync().ConfigureAwait(false);
+    },
+    connectionStringOption);
 
 await rootCommand.InvokeAsync(args).ConfigureAwait(false);
