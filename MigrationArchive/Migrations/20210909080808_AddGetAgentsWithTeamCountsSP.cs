@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 using Microsoft.EntityFrameworkCore.Migrations;
 using TGS.Core.DataServices.Base.Extensions;
+using Tgs.Migrations;
 
 namespace TGS.Core.DataServices.Tgs.Migrations;
 
@@ -15,6 +16,6 @@ public partial class AddGetAgentsWithTeamCountsSP : Migration
         var assembly = Assembly.GetExecutingAssembly();
 
         migrationBuilder.SqlResource(assembly,
-            string.Format(Consts._FunctionSqlFormat, "agent_get_agents_with_team_counts"));
+            string.Format(MigrationConsts._FunctionSqlFormat, "agent_get_agents_with_team_counts"));
     }
 }

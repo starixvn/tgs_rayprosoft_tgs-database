@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 using Microsoft.EntityFrameworkCore.Migrations;
 using TGS.Core.DataServices.Base.Extensions;
+using Tgs.Migrations;
 
 namespace TGS.Core.DataServices.Tgs.Migrations;
 
@@ -15,6 +16,6 @@ public partial class AddExternalClosedOnIndexForRounds : Migration
         var assembly = Assembly.GetExecutingAssembly();
 
         migrationBuilder.SqlResource(assembly,
-            string.Format(Consts._IndexSqlFormat, "rounds_external_closed_on"));
+            string.Format(MigrationConsts._IndexSqlFormat, "rounds_external_closed_on"));
     }
 }

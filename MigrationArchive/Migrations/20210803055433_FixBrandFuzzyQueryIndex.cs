@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 using Microsoft.EntityFrameworkCore.Migrations;
 using TGS.Core.DataServices.Base.Extensions;
+using Tgs.Migrations;
 
 namespace TGS.Core.DataServices.Tgs.Migrations;
 
@@ -15,6 +16,6 @@ public partial class FixBrandFuzzyQueryIndex : Migration
         var assembly = Assembly.GetExecutingAssembly();
 
         migrationBuilder.SqlResource(assembly,
-            string.Format(Consts._IndexSqlFormat, "brand_fuzzy_query_trgm"));
+            string.Format(MigrationConsts._IndexSqlFormat, "brand_fuzzy_query_trgm"));
     }
 }

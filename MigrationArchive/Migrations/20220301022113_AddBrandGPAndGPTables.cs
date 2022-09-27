@@ -3,6 +3,7 @@ using System.Reflection;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using TGS.Core.DataServices.Base.Extensions;
+using Tgs.Migrations;
 
 namespace TGS.Core.DataServices.Tgs.Migrations;
 
@@ -206,10 +207,10 @@ public partial class AddBrandGPAndGPTables : Migration
         var assembly = Assembly.GetExecutingAssembly();
 
         migrationBuilder.SqlResource(assembly,
-            string.Format(Consts._FunctionSqlFormat, "report_generate_brand_game_provider_aggregate_by_closed_on"));
+            string.Format(MigrationConsts._FunctionSqlFormat, "report_generate_brand_game_provider_aggregate_by_closed_on"));
 
         migrationBuilder.SqlResource(assembly,
-            string.Format(Consts._FunctionSqlFormat, "report_generate_game_provider_aggregate_by_closed_on"));
+            string.Format(MigrationConsts._FunctionSqlFormat, "report_generate_game_provider_aggregate_by_closed_on"));
 
         _ = migrationBuilder.Sql(
             "create index ix_rounds_closed_on_brand_id on bet.rounds (closed_on,brand_id);");

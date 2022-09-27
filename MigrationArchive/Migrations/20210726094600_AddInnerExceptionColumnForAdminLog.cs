@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 using Microsoft.EntityFrameworkCore.Migrations;
 using TGS.Core.DataServices.Base.Extensions;
+using Tgs.Migrations;
 
 namespace TGS.Core.DataServices.Tgs.Migrations;
 
@@ -23,6 +24,6 @@ public partial class AddInnerExceptionColumnForAdminLog : Migration
         var assembly = Assembly.GetExecutingAssembly();
 
         migrationBuilder.SqlResource(assembly,
-            string.Format(Consts._FunctionSqlFormat, "log_get_admin_logs"));
+            string.Format(MigrationConsts._FunctionSqlFormat, "log_get_admin_logs"));
     }
 }

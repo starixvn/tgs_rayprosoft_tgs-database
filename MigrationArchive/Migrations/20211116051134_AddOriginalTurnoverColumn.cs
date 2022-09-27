@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 using Microsoft.EntityFrameworkCore.Migrations;
 using TGS.Core.DataServices.Base.Extensions;
+using Tgs.Migrations;
 
 namespace TGS.Core.DataServices.Tgs.Migrations;
 
@@ -104,6 +105,6 @@ public partial class AddOriginalTurnoverColumn : Migration
         var assembly = Assembly.GetExecutingAssembly();
 
         migrationBuilder.SqlResource(assembly,
-            string.Format(Consts._FunctionSqlFormat, "report_generate_round_aggregates"));
+            string.Format(MigrationConsts._FunctionSqlFormat, "report_generate_round_aggregates"));
     }
 }

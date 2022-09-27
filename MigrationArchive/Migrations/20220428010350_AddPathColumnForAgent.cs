@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using Microsoft.EntityFrameworkCore.Migrations;
+using Tgs.Migrations;
 using TGS.Core.DataServices.Base.Extensions;
 
 #nullable disable
@@ -51,9 +52,9 @@ public partial class AddPathColumnForAgent : Migration
         var assembly = Assembly.GetExecutingAssembly();
 
         migrationBuilder.SqlResource(assembly,
-            string.Format(Consts._FunctionSqlFormat, "agent_update_path"));
+            string.Format(MigrationConsts._FunctionSqlFormat, "agent_update_path"));
 
         migrationBuilder.SqlResource(assembly,
-            string.Format(Consts._FunctionSqlFormat, "agent_get_all_sub_agents"));
+            string.Format(MigrationConsts._FunctionSqlFormat, "agent_get_all_sub_agents"));
     }
 }

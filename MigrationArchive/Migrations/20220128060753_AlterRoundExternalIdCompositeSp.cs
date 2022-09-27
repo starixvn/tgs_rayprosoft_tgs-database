@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 using Microsoft.EntityFrameworkCore.Migrations;
 using TGS.Core.DataServices.Base.Extensions;
+using Tgs.Migrations;
 
 namespace TGS.Core.DataServices.Tgs.Migrations;
 
@@ -26,6 +27,6 @@ public partial class AlterRoundExternalIdCompositeSp : Migration
         var assembly = Assembly.GetExecutingAssembly();
 
         migrationBuilder.SqlResource(assembly,
-            string.Format(Consts._IndexSqlFormat, "ix_rounds_external_round_id_composite"));
+            string.Format(MigrationConsts._IndexSqlFormat, "ix_rounds_external_round_id_composite"));
     }
 }

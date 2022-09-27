@@ -2,6 +2,7 @@
 using System.Reflection;
 using Microsoft.EntityFrameworkCore.Migrations;
 using TGS.Core.DataServices.Base.Extensions;
+using Tgs.Migrations;
 
 namespace TGS.Core.DataServices.Tgs.Migrations;
 
@@ -89,6 +90,6 @@ public partial class UpdatePlayerBucketHistory : Migration
         var assembly = Assembly.GetExecutingAssembly();
 
         migrationBuilder.SqlResource(assembly,
-            string.Format(Consts._FunctionSqlFormat, "report_get_round_and_set_game_setting_aggregates"));
+            string.Format(MigrationConsts._FunctionSqlFormat, "report_get_round_and_set_game_setting_aggregates"));
     }
 }

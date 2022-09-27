@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using Microsoft.EntityFrameworkCore.Migrations;
+using Tgs.Migrations;
 using TGS.Core.DataServices.Base.Extensions;
 
 namespace TGS.Core.DataServices.Tgs.Migrations;
@@ -43,6 +44,6 @@ public partial class AddLockedBalanceColumns : Migration
 
         migrationBuilder.SqlResource(
             Assembly.GetExecutingAssembly(),
-            string.Format(Consts._FunctionSqlFormat, "wallet_update_wallet_balance"));
+            string.Format(MigrationConsts._FunctionSqlFormat, "wallet_update_wallet_balance"));
     }
 }
