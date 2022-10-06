@@ -2762,6 +2762,23 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.ToTable("brand_payment_vip_levels", "dbo");
                 });
 
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.BrandPlayerBankInfoCheckFlag", b =>
+                {
+                    b.Property<Guid>("BrandId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("brand_id");
+
+                    b.Property<bool>("IsEnabled")
+                        .HasColumnType("boolean")
+                        .HasColumnName("is_enabled");
+
+                    b.HasKey("BrandId")
+                        .HasName("pk_brand_player_bankinfo_check_flags");
+
+                    b.ToTable("brand_player_bankinfo_check_flags", "dbo");
+                });
+
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.Currency", b =>
                 {
                     b.Property<string>("Code")
