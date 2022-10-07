@@ -28,5 +28,11 @@ internal class PlayerDailyPaymentStatisticsMap : BaseConfiguration, IEntityTypeC
         _ = builder.Property(p => p.FirstDepositOn)
             .HasColumnType("timestamptz");
         _ = builder.Property(p => p.FirstDepositAmount);
+
+        _ = builder.Property(a => a.FirstDepositHandlingFee);
+        _ = builder.Property(a => a.DailyDepositHandlingFee);
+        _ = builder.Property(a => a.DailyWithdrawHandlingFee);
+        _ = builder.Property(a => a.TotalDepositHandlingFee);
+        _ = builder.Property(a => a.TotalWithdrawHandlingFee);
     }
 }

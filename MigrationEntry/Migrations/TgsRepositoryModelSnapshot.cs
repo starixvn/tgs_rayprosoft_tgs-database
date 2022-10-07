@@ -691,6 +691,22 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("agent_id");
 
+                    b.Property<decimal?>("DailyDepositAmount")
+                        .HasColumnType("numeric")
+                        .HasColumnName("daily_deposit_amount");
+
+                    b.Property<decimal?>("DailyDepositHandlingFee")
+                        .HasColumnType("numeric")
+                        .HasColumnName("daily_deposit_handling_fee");
+
+                    b.Property<decimal?>("DailyWithdrawAmount")
+                        .HasColumnType("numeric")
+                        .HasColumnName("daily_withdraw_amount");
+
+                    b.Property<decimal?>("DailyWithdrawHandlingFee")
+                        .HasColumnType("numeric")
+                        .HasColumnName("daily_withdraw_handling_fee");
+
                     b.Property<int>("DepositPlayers")
                         .HasColumnType("integer")
                         .HasColumnName("deposit_players");
@@ -1985,6 +2001,22 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.Property<Guid>("BrandId")
                         .HasColumnType("uuid")
                         .HasColumnName("brand_id");
+
+                    b.Property<decimal?>("DailyDepositAmount")
+                        .HasColumnType("numeric")
+                        .HasColumnName("daily_deposit_amount");
+
+                    b.Property<decimal?>("DailyDepositHandlingFee")
+                        .HasColumnType("numeric")
+                        .HasColumnName("daily_deposit_handling_fee");
+
+                    b.Property<decimal?>("DailyWithdrawAmount")
+                        .HasColumnType("numeric")
+                        .HasColumnName("daily_withdraw_amount");
+
+                    b.Property<decimal?>("DailyWithdrawHandlingFee")
+                        .HasColumnType("numeric")
+                        .HasColumnName("daily_withdraw_handling_fee");
 
                     b.Property<int>("DepositPlayers")
                         .HasColumnType("integer")
@@ -5597,6 +5629,10 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("integer")
                         .HasColumnName("daily_deposit_count");
 
+                    b.Property<decimal?>("DailyDepositHandlingFee")
+                        .HasColumnType("numeric")
+                        .HasColumnName("daily_deposit_handling_fee");
+
                     b.Property<decimal?>("DailyWithdrawAmount")
                         .HasColumnType("numeric")
                         .HasColumnName("daily_withdraw_amount");
@@ -5605,9 +5641,17 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("integer")
                         .HasColumnName("daily_withdraw_count");
 
+                    b.Property<decimal?>("DailyWithdrawHandlingFee")
+                        .HasColumnType("numeric")
+                        .HasColumnName("daily_withdraw_handling_fee");
+
                     b.Property<decimal?>("FirstDepositAmount")
                         .HasColumnType("numeric")
                         .HasColumnName("first_deposit_amount");
+
+                    b.Property<decimal?>("FirstDepositHandlingFee")
+                        .HasColumnType("numeric")
+                        .HasColumnName("first_deposit_handling_fee");
 
                     b.Property<DateTime?>("FirstDepositOn")
                         .HasColumnType("timestamptz")
@@ -5621,6 +5665,10 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("integer")
                         .HasColumnName("total_deposit_count");
 
+                    b.Property<decimal?>("TotalDepositHandlingFee")
+                        .HasColumnType("numeric")
+                        .HasColumnName("total_deposit_handling_fee");
+
                     b.Property<decimal?>("TotalWithdrawAmount")
                         .HasColumnType("numeric")
                         .HasColumnName("total_withdraw_amount");
@@ -5628,6 +5676,10 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.Property<int?>("TotalWithdrawCount")
                         .HasColumnType("integer")
                         .HasColumnName("total_withdraw_count");
+
+                    b.Property<decimal?>("TotalWithdrawHandlingFee")
+                        .HasColumnType("numeric")
+                        .HasColumnName("total_withdraw_handling_fee");
 
                     b.HasKey("ReportDate", "PlayerCode")
                         .HasName("pk_player_daily_payment_statistics");

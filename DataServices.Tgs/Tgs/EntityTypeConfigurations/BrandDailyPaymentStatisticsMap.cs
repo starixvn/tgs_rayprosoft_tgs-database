@@ -22,5 +22,10 @@ internal class BrandDailyPaymentStatisticsMap : BaseConfiguration, IEntityTypeCo
             .IsRequired();
         _ = builder.Property(b => b.DepositPlayers)
             .IsRequired();
+
+        _ = builder.Property(a => a.DailyDepositAmount);
+        _ = builder.Property(a => a.DailyDepositHandlingFee);
+        _ = builder.Property(a => a.DailyWithdrawAmount);
+        _ = builder.Property(a => a.DailyWithdrawHandlingFee);
     }
 }
