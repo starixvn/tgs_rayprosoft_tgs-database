@@ -32,6 +32,8 @@ internal class PlayerBucketMap : IEntityTypeConfiguration<PlayerBucket>
         _ = builder.Property(c => c.CreatedOn)
             .IsRequired();
 
+        _ = builder.Property(c => c.SnapshotId);
+
         _ = builder.HasOne(c => c.Player)
             .WithMany(c => c.PlayerBuckets)
             .HasForeignKey(c => c.PlayerCode)

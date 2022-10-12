@@ -5522,6 +5522,10 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("character varying(16)")
                         .HasColumnName("player_code");
 
+                    b.Property<Guid?>("SnapshotId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("snapshot_id");
+
                     b.HasKey("Id")
                         .HasName("pk_player_buckets");
 
@@ -5529,6 +5533,47 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasDatabaseName("ix_player_buckets_player_code");
 
                     b.ToTable("player_buckets", "dbo");
+                });
+
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.PlayerBucketEventSource", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<Guid>("BucketId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("bucket_id");
+
+                    b.Property<decimal>("ChangeAmount")
+                        .HasColumnType("numeric")
+                        .HasColumnName("change_amount");
+
+                    b.Property<string>("ChangeSets")
+                        .IsRequired()
+                        .HasColumnType("jsonb")
+                        .HasColumnName("change_sets");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamptz")
+                        .HasColumnName("created_on")
+                        .HasDefaultValueSql("Now()");
+
+                    b.Property<string>("ExternalId")
+                        .HasColumnType("text")
+                        .HasColumnName("external_id");
+
+                    b.Property<string>("FillType")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("fill_type");
+
+                    b.HasKey("Id")
+                        .HasName("pk_player_bucket_event_source");
+
+                    b.ToTable("player_bucket_event_source", "dbo");
                 });
 
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.PlayerBucketHistory", b =>
