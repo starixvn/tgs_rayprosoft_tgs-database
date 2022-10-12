@@ -8,11 +8,11 @@ internal class BrandPlayerBankInfoCheckFlagMap : IEntityTypeConfiguration<BrandP
 {
     public void Configure(EntityTypeBuilder<BrandPlayerBankInfoCheckFlag> builder)
     {
-        builder.ToTable("brand_player_bankinfo_check_flags");
+        _ = builder.ToTable("brand_player_bankinfo_check_flags");
 
-        builder.HasKey(flag => flag.BrandId);
+        _ = builder.HasKey(flag => flag.BrandId);
 
-        builder.Property(flag => flag.IsEnabled)
+        _ = builder.Property(flag => flag.IsEnabled)
             .IsRequired();
     }
 }

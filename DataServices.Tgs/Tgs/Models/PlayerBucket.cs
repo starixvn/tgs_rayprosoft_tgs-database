@@ -1,6 +1,8 @@
 ﻿using System;
 using TGS.Core.Models.Enums;
 
+#nullable enable
+
 namespace TGS.Core.DataServices.Tgs.Models;
 
 public class PlayerBucket
@@ -17,7 +19,9 @@ public class PlayerBucket
 
     public bool IsFull { get; set; }
 
-    public virtual Player Player { get; set; }
+    public virtual Player Player { get; set; } = default!;
 
-    public string PlayerCode { get; set; }
+    public string PlayerCode { get; set; } = default!;
+
+    public Guid? SnapshotId { get; set; }
 }
