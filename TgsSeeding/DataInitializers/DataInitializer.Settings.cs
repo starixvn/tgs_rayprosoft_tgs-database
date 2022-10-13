@@ -195,6 +195,7 @@ public partial class DataInitializer
                             new MenuSetting("View"),
                             new MenuSetting("Update"),
                             new MenuSetting("SystemTransactionType"),
+                            new MenuSetting("BatchAddBalance")
                         }
                     },
                     new MenuSetting("OnlinePlayerList")
