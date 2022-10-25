@@ -30,7 +30,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="SqlScripts\**" />
+    <EmbeddedResource Remove="SqlScripts\**" />
     <EmbeddedResource Remove="Tgs\SqlScripts\**" />
+    <None Remove="SqlScripts\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -39,10 +42,6 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="SqlScripts\" />
   </ItemGroup>
 
 </Project>
