@@ -5628,6 +5628,18 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.ToTable("player_bucket_histories", "dbo");
                 });
 
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.PlayerBucketMigration", b =>
+                {
+                    b.Property<string>("PlayerCode")
+                        .HasColumnType("text")
+                        .HasColumnName("player_code");
+
+                    b.HasKey("PlayerCode")
+                        .HasName("pk_player_bucket_migrations");
+
+                    b.ToTable("player_bucket_migrations", "dbo");
+                });
+
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.PlayerDailyGamingStatistics", b =>
                 {
                     b.Property<DateOnly>("ReportDate")
