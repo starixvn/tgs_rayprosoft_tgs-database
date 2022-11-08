@@ -6884,6 +6884,39 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.ToTable("promotion_distributes", "dbo");
                 });
 
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.PromotionDistributeLog", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<string>("Action")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("action");
+
+                    b.Property<string>("ChangeSets")
+                        .IsRequired()
+                        .HasColumnType("jsonb")
+                        .HasColumnName("change_sets");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamptz")
+                        .HasColumnName("created_on")
+                        .HasDefaultValueSql("now()");
+
+                    b.Property<Guid>("DistributeId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("distribute_id");
+
+                    b.HasKey("Id")
+                        .HasName("pk_promotion_distribute_logs");
+
+                    b.ToTable("promotion_distribute_logs", "dbo");
+                });
+
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.PromotionDistributePlan", b =>
                 {
                     b.Property<Guid>("Id")

@@ -8,8 +8,8 @@ internal class PlayerBucketMigrationMap : IEntityTypeConfiguration<PlayerBucketM
 {
     public void Configure(EntityTypeBuilder<PlayerBucketMigration> builder)
     {
-        builder.ToTable("player_bucket_migrations");
+        _ = builder.ToTable("player_bucket_migrations");
 
-        builder.HasKey(pbm => pbm.PlayerCode);
+        _ = builder.HasKey(pbm => pbm.PlayerCode);
     }
 }
