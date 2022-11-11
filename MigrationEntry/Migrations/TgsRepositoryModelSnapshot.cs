@@ -6984,6 +6984,22 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.ToTable("promotion_game_providers", "dbo");
                 });
 
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.PromotionGroup", b =>
+                {
+                    b.Property<string>("Name")
+                        .HasColumnType("text")
+                        .HasColumnName("name");
+
+                    b.Property<string>("Translate")
+                        .HasColumnType("jsonb")
+                        .HasColumnName("translate");
+
+                    b.HasKey("Name")
+                        .HasName("pk_promotion_groups");
+
+                    b.ToTable("promotion_groups", "dbo");
+                });
+
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.PromotionParticipant", b =>
                 {
                     b.Property<int>("Id")
@@ -7095,6 +7111,26 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasName("pk_promotion_rebate_daily_statistics");
 
                     b.ToTable("promotion_rebate_daily_statistics", "dbo");
+                });
+
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.PromotionType", b =>
+                {
+                    b.Property<string>("Name")
+                        .HasColumnType("text")
+                        .HasColumnName("name");
+
+                    b.Property<string>("Extend")
+                        .HasColumnType("jsonb")
+                        .HasColumnName("extend");
+
+                    b.Property<string>("Translate")
+                        .HasColumnType("jsonb")
+                        .HasColumnName("translate");
+
+                    b.HasKey("Name")
+                        .HasName("pk_promotion_types");
+
+                    b.ToTable("promotion_types", "dbo");
                 });
 
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.PromotionVipLevel", b =>
