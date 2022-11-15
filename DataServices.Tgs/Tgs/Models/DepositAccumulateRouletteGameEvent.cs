@@ -8,6 +8,8 @@ public class DepositAccumulateRouletteGameEvent
 
     public Guid BrandId { get; set; }
 
+    public decimal Bucket { get; set; }
+
     public DateTime CreatedOn { get; set; }
 
     public DateOnly Date { get; set; }
@@ -19,4 +21,6 @@ public class DepositAccumulateRouletteGameEvent
     public string PlayerCode { get; set; }
 
     public Guid PromotionId { get; set; }
+
+    public int RouletteCount { get; set; }
 }

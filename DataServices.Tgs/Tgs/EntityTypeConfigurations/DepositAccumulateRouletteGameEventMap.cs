@@ -41,6 +41,12 @@ internal class DepositAccumulateRouletteGameEventMap : IEntityTypeConfiguration<
         _ = builder.Property(e => e.Date)
             .IsRequired();
 
+        _ = builder.Property(e => e.RouletteCount)
+            .IsRequired();
+
+        _ = builder.Property(e => e.Bucket)
+            .IsRequired();
+
         _ = builder.HasOne<Brand>()
             .WithMany()
             .HasForeignKey(e => e.BrandId)

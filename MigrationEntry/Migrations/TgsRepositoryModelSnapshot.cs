@@ -2987,6 +2987,10 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("brand_id");
 
+                    b.Property<decimal>("Bucket")
+                        .HasColumnType("numeric")
+                        .HasColumnName("bucket");
+
                     b.Property<DateTime>("CreatedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("timestamptz")
@@ -3009,6 +3013,10 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.Property<Guid>("PromotionId")
                         .HasColumnType("uuid")
                         .HasColumnName("promotion_id");
+
+                    b.Property<int>("RouletteCount")
+                        .HasColumnType("integer")
+                        .HasColumnName("roulette_count");
 
                     b.HasKey("Id")
                         .HasName("pk_deposit_accumulate_roulette_game_events");
