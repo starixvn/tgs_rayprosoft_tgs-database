@@ -22,6 +22,7 @@ internal class PromotionDistributeMap : IEntityTypeConfiguration<PromotionDistri
         _ = builder.Property(pd => pd.Distributor);
         _ = builder.Property(pd => pd.SentOn);
         _ = builder.Property(pd => pd.CreatedOn);
+        _ = builder.Property(pd => pd.ReferenceId);
 
         _ = builder.HasOne<Promotion>()
             .WithMany()

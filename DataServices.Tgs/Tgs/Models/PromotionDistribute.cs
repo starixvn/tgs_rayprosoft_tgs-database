@@ -24,5 +24,7 @@ public class PromotionDistribute
 
     public Guid PromotionId { get; set; }
 
+    public Guid? ReferenceId { get; set; }
+
     public DateTimeOffset? SentOn { get; set; }
 }
