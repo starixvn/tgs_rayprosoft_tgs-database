@@ -161,6 +161,13 @@ public partial class DataInitializer
                             new MenuSetting("View"),
                             new MenuSetting("Update")
                         }
+                    },
+                    new MenuSetting("WinningList")
+                    {
+                        SubMenus = new[]
+                        {
+                            new MenuSetting("View")
+                        }
                     }
                 }
             },
