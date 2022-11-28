@@ -19,9 +19,6 @@ internal class PlayerRegisterPlatformMap : IEntityTypeConfiguration<PlayerRegist
             .HasMaxLength(16)
             .IsRequired();
 
-        _ = builder.Property(c => c.BrandId)
-            .IsRequired();
-
         _ = builder.Property(c => c.Type)
             .HasColumnType(ColumnTypes.SmallInt)
             .HasDefaultValue(RegisterPlatformType.Player)

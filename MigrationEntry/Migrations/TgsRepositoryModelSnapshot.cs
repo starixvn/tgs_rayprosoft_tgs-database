@@ -6260,10 +6260,6 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("character varying(16)")
                         .HasColumnName("player_code");
 
-                    b.Property<Guid>("BrandId")
-                        .HasColumnType("uuid")
-                        .HasColumnName("brand_id");
-
                     b.Property<string>("CreatedByUsername")
                         .IsRequired()
                         .HasColumnType("text")

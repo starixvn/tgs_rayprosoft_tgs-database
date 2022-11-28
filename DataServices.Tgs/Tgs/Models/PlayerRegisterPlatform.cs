@@ -7,8 +7,6 @@ namespace TGS.Core.DataServices.Tgs.Models;
 
 public class PlayerRegisterPlatform
 {
-    public Guid BrandId { get; set; }
-
     public string PlayerCode { get; set; } = default!;
 
     public RegisterPlatformType Type { get; set; }

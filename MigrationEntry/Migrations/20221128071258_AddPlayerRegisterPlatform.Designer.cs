@@ -12,7 +12,7 @@ using TGS.Core.DataServices.Tgs;
 namespace TGS.Core.DataServices.Tgs.Migrations
 {
     [DbContext(typeof(TgsRepository))]
-    [Migration("20221128063700_AddPlayerRegisterPlatform")]
+    [Migration("20221128071258_AddPlayerRegisterPlatform")]
     partial class AddPlayerRegisterPlatform
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -6261,10 +6261,6 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasMaxLength(16)
                         .HasColumnType("character varying(16)")
                         .HasColumnName("player_code");
-
-                    b.Property<Guid>("BrandId")
-                        .HasColumnType("uuid")
-                        .HasColumnName("brand_id");
 
                     b.Property<string>("CreatedByUsername")
                         .IsRequired()

@@ -15,9 +15,8 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                 columns: table => new
                 {
                     player_code = table.Column<string>(type: "character varying(16)", maxLength: 16, nullable: false),
-                    brand_id = table.Column<Guid>(type: "uuid", nullable: false),
-                    created_on = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     type = table.Column<short>(type: "smallint", nullable: false, defaultValue: (short)0),
+                    created_on = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     created_by_username = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
