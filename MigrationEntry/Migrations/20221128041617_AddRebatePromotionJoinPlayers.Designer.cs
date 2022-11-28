@@ -12,7 +12,7 @@ using TGS.Core.DataServices.Tgs;
 namespace TGS.Core.DataServices.Tgs.Migrations
 {
     [DbContext(typeof(TgsRepository))]
-    [Migration("20221128034408_AddRebatePromotionJoinPlayers")]
+    [Migration("20221128041617_AddRebatePromotionJoinPlayers")]
     partial class AddRebatePromotionJoinPlayers
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
