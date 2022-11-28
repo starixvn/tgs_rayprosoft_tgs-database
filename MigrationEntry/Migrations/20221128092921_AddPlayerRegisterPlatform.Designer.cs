@@ -12,7 +12,7 @@ using TGS.Core.DataServices.Tgs;
 namespace TGS.Core.DataServices.Tgs.Migrations
 {
     [DbContext(typeof(TgsRepository))]
-    [Migration("20221128071258_AddPlayerRegisterPlatform")]
+    [Migration("20221128092921_AddPlayerRegisterPlatform")]
     partial class AddPlayerRegisterPlatform
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -6278,7 +6278,7 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnName("type");
 
                     b.HasKey("PlayerCode")
-                        .HasName("pk_player_code");
+                        .HasName("pk_register_platform_player_code");
 
                     b.ToTable("player_register_platforms", "dbo");
                 });

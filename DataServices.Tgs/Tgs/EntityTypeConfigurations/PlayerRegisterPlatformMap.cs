@@ -13,7 +13,7 @@ internal class PlayerRegisterPlatformMap : IEntityTypeConfiguration<PlayerRegist
         _ = builder.ToTable("player_register_platforms");
 
         _ = builder.HasKey(bc => bc.PlayerCode)
-            .HasName("pk_player_code");
+            .HasName("pk_register_platform_player_code");
 
         _ = builder.Property(c => c.PlayerCode)
             .HasMaxLength(16)

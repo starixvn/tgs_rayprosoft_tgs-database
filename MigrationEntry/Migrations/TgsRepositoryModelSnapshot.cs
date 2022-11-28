@@ -6276,7 +6276,7 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnName("type");
 
                     b.HasKey("PlayerCode")
-                        .HasName("pk_player_code");
+                        .HasName("pk_register_platform_player_code");
 
                     b.ToTable("player_register_platforms", "dbo");
                 });

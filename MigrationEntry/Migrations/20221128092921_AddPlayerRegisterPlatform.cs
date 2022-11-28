@@ -21,7 +21,7 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("pk_player_code", x => x.player_code);
+                    table.PrimaryKey("pk_register_platform_player_code", x => x.player_code);
                 });
         }
 
