@@ -6984,6 +6984,22 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.ToTable("promotion_game_providers", "dbo");
                 });
 
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.PromotionGroup", b =>
+                {
+                    b.Property<string>("Name")
+                        .HasColumnType("text")
+                        .HasColumnName("name");
+
+                    b.Property<string>("Translate")
+                        .HasColumnType("jsonb")
+                        .HasColumnName("translate");
+
+                    b.HasKey("Name")
+                        .HasName("pk_promotion_groups");
+
+                    b.ToTable("promotion_groups", "dbo");
+                });
+
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.PromotionParticipant", b =>
                 {
                     b.Property<int>("Id")
@@ -7097,6 +7113,26 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.ToTable("promotion_rebate_daily_statistics", "dbo");
                 });
 
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.PromotionType", b =>
+                {
+                    b.Property<string>("Name")
+                        .HasColumnType("text")
+                        .HasColumnName("name");
+
+                    b.Property<string>("Extend")
+                        .HasColumnType("jsonb")
+                        .HasColumnName("extend");
+
+                    b.Property<string>("Translate")
+                        .HasColumnType("jsonb")
+                        .HasColumnName("translate");
+
+                    b.HasKey("Name")
+                        .HasName("pk_promotion_types");
+
+                    b.ToTable("promotion_types", "dbo");
+                });
+
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.PromotionVipLevel", b =>
                 {
                     b.Property<Guid>("PromotionId")
@@ -7121,6 +7157,29 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasDatabaseName("ix_promotion_vip_levels_vip_level_id");
 
                     b.ToTable("promotion_vip_levels", "dbo");
+                });
+
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.RebatePromotionJoinPlayer", b =>
+                {
+                    b.Property<Guid>("PromotionId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("promotion_id");
+
+                    b.Property<string>("PlayerCode")
+                        .HasColumnType("character varying(16)")
+                        .HasColumnName("player_code");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("timestamptz")
+                        .HasColumnName("created_on");
+
+                    b.HasKey("PromotionId", "PlayerCode")
+                        .HasName("pk_rebate_promotion_join_players");
+
+                    b.HasIndex("PlayerCode")
+                        .HasDatabaseName("ix_rebate_promotion_join_players_player_code");
+
+                    b.ToTable("rebate_promotion_join_players", "dbo");
                 });
 
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.Reseller", b =>
@@ -9998,6 +10057,23 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.Navigation("Promotion");
 
                     b.Navigation("VipLevel");
+                });
+
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.RebatePromotionJoinPlayer", b =>
+                {
+                    b.HasOne("TGS.Core.DataServices.Tgs.Models.Player", null)
+                        .WithMany()
+                        .HasForeignKey("PlayerCode")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_players_rebate_promotion_join_players");
+
+                    b.HasOne("TGS.Core.DataServices.Tgs.Models.Promotion", null)
+                        .WithMany()
+                        .HasForeignKey("PromotionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_promotions_rebate_promotion_join_players");
                 });
 
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.ResellerBetLimit", b =>
