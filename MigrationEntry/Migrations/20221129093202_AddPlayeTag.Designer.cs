@@ -12,7 +12,7 @@ using TGS.Core.DataServices.Tgs;
 namespace TGS.Core.DataServices.Tgs.Migrations
 {
     [DbContext(typeof(TgsRepository))]
-    [Migration("20221129092728_AddPlayeTag")]
+    [Migration("20221129093202_AddPlayeTag")]
     partial class AddPlayeTag
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
