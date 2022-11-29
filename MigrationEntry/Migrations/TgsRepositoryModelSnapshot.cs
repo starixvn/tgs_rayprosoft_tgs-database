@@ -6284,7 +6284,7 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.ToTable("player_sports_bet_limits", "dbo");
                 });
 
-            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.PlayerTags", b =>
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.PlayerTag", b =>
                 {
                     b.Property<string>("PlayerCode")
                         .HasMaxLength(16)

@@ -12,7 +12,7 @@ using TGS.Core.DataServices.Tgs;
 namespace TGS.Core.DataServices.Tgs.Migrations
 {
     [DbContext(typeof(TgsRepository))]
-    [Migration("20221129093202_AddPlayeTag")]
+    [Migration("20221129093629_AddPlayeTag")]
     partial class AddPlayeTag
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -6286,7 +6286,7 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.ToTable("player_sports_bet_limits", "dbo");
                 });
 
-            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.PlayerTags", b =>
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.PlayerTag", b =>
                 {
                     b.Property<string>("PlayerCode")
                         .HasMaxLength(16)

@@ -2,7 +2,7 @@
 
 namespace TGS.Core.DataServices.Tgs.Models;
 
-public class PlayerTags
+public class PlayerTag
 {
     public string PlayerCode { get; set; } = default!;
 

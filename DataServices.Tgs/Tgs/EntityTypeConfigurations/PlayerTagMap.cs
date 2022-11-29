@@ -4,9 +4,9 @@ using TGS.Core.DataServices.Tgs.Models;
 
 namespace TGS.Core.DataServices.Tgs.EntityTypeConfigurations;
 
-internal class PlayerTagMap : IEntityTypeConfiguration<PlayerTags>
+internal class PlayerTagMap : IEntityTypeConfiguration<PlayerTag>
 {
-    void IEntityTypeConfiguration<PlayerTags>.Configure(EntityTypeBuilder<PlayerTags> builder)
+    void IEntityTypeConfiguration<PlayerTag>.Configure(EntityTypeBuilder<PlayerTag> builder)
     {
         _ = builder.ToTable("player_tags");
 
