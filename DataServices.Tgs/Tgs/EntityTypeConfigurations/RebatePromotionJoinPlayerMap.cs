@@ -12,7 +12,9 @@ internal class RebatePromotionJoinPlayerMap : IEntityTypeConfiguration<RebatePro
 
         _ = builder.HasKey(rp => new { rp.PromotionId, rp.PlayerCode });
 
-        _ = builder.Property(rp => rp.CreatedOn).IsRequired().HasColumnType("timestamptz");
+        _ = builder.Property(rp => rp.CreatedOn)
+            .IsRequired()
+            .HasColumnType("timestamptz");
 
         _ = builder.HasOne<Player>()
             .WithMany()

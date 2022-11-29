@@ -7130,10 +7130,22 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("text")
                         .HasColumnName("player_code");
 
-                    b.Property<decimal>("RebateAmount")
+                    b.Property<decimal>("Bonus")
                         .HasPrecision(18, 6)
                         .HasColumnType("numeric(18,6)")
-                        .HasColumnName("rebate_amount");
+                        .HasColumnName("bonus");
+
+                    b.Property<decimal>("BucketAmount")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("bucket_amount");
+
+                    b.Property<string>("Settings")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("jsonb")
+                        .HasColumnName("settings")
+                        .HasDefaultValueSql("'{}'");
 
                     b.HasKey("ReportDate", "BrandId", "PromotionId", "PlayerCode")
                         .HasName("pk_promotion_rebate_daily_statistics");
