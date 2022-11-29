@@ -8,21 +8,21 @@ internal class RebatePromotionJoinPlayerMap : IEntityTypeConfiguration<RebatePro
 {
     public void Configure(EntityTypeBuilder<RebatePromotionJoinPlayer> builder)
     {
-        builder.ToTable("rebate_promotion_join_players");
+        _ = builder.ToTable("rebate_promotion_join_players");
 
-        builder.HasKey(rp => new { rp.PromotionId, rp.PlayerCode });
+        _ = builder.HasKey(rp => new { rp.PromotionId, rp.PlayerCode });
 
-        builder.Property(rp => rp.CreatedOn)
+        _ = builder.Property(rp => rp.CreatedOn)
             .IsRequired()
             .HasColumnType("timestamptz");
 
-        builder.HasOne<Player>()
+        _ = builder.HasOne<Player>()
             .WithMany()
             .HasForeignKey(rp => rp.PlayerCode)
             .HasConstraintName("fk_players_rebate_promotion_join_players")
             .OnDelete(DeleteBehavior.Cascade);
 
-        builder.HasOne<Promotion>()
+        _ = builder.HasOne<Promotion>()
             .WithMany()
             .HasForeignKey(rp => rp.PromotionId)
             .HasConstraintName("fk_promotions_rebate_promotion_join_players")

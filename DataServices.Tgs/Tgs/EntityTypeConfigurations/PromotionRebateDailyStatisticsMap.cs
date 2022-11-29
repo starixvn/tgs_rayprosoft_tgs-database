@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using TGS.Core.DataServices.Base;
 using TGS.Core.DataServices.Tgs.Models;
 
 namespace TGS.Core.DataServices.Tgs.EntityTypeConfigurations;
@@ -18,8 +19,15 @@ internal class PromotionRebateDailyStatisticsMap : IEntityTypeConfiguration<Prom
             prds.PlayerCode
         });
 
-        _ = builder.Property(prds => prds.RebateAmount)
+        _ = builder.Property(prds => prds.Bonus)
             .HasPrecision(18, 6)
             .IsRequired();
+        _ = builder.Property(prds => prds.BucketAmount)
+            .HasPrecision(18, 6)
+            .IsRequired();
+        _ = builder.Property(prds => prds.Settings)
+            .HasColumnType("jsonb")
+            .IsRequired()
+            .HasDefaultValueSql("'{}'");
     }
 }
