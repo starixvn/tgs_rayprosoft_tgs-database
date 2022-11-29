@@ -10,8 +10,12 @@ internal class PlayerTagMap : IEntityTypeConfiguration<PlayerTags>
     {
         _ = builder.ToTable("player_tags");
 
-        _ = builder.HasKey(bc => bc.PlayerCode)
-            .HasName("pk_tag_player_code");
+        _ = builder.HasKey(bc => new
+            {
+                bc.PlayerCode,
+                bc.Tag
+            })
+            .HasName("pk_tag_player_code_tag");
 
         _ = builder.Property(c => c.PlayerCode)
             .HasMaxLength(16)
@@ -19,12 +23,5 @@ internal class PlayerTagMap : IEntityTypeConfiguration<PlayerTags>
 
         _ = builder.Property(c => c.Tag)
             .IsRequired();
-
-        builder.HasIndex(c => new
-            {
-                c.PlayerCode,
-                c.Tag
-            })
-            .IsUnique();
     }
 }

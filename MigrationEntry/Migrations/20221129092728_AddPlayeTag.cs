@@ -23,15 +23,8 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("pk_tag_player_code", x => x.player_code);
+                    table.PrimaryKey("pk_tag_player_code_tag", x => new { x.player_code, x.tag });
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "ix_player_tags_player_code_tag",
-                schema: "dbo",
-                table: "player_tags",
-                columns: new[] { "player_code", "tag" },
-                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

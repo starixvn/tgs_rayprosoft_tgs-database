@@ -6292,16 +6292,11 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnName("player_code");
 
                     b.Property<string>("Tag")
-                        .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("tag");
 
-                    b.HasKey("PlayerCode")
-                        .HasName("pk_tag_player_code");
-
-                    b.HasIndex("PlayerCode", "Tag")
-                        .IsUnique()
-                        .HasDatabaseName("ix_player_tags_player_code_tag");
+                    b.HasKey("PlayerCode", "Tag")
+                        .HasName("pk_tag_player_code_tag");
 
                     b.ToTable("player_tags", "dbo");
                 });
