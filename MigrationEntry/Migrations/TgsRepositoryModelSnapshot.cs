@@ -6253,34 +6253,6 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.ToTable("player_rebates", "dbo");
                 });
 
-            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.PlayerRegisterPlatform", b =>
-                {
-                    b.Property<string>("PlayerCode")
-                        .HasMaxLength(16)
-                        .HasColumnType("character varying(16)")
-                        .HasColumnName("player_code");
-
-                    b.Property<string>("CreatedByUsername")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("created_by_username");
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("created_on");
-
-                    b.Property<short>("Type")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("smallint")
-                        .HasDefaultValue((short)0)
-                        .HasColumnName("type");
-
-                    b.HasKey("PlayerCode")
-                        .HasName("pk_register_platform_player_code");
-
-                    b.ToTable("player_register_platforms", "dbo");
-                });
-
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.PlayerSportsBetLimit", b =>
                 {
                     b.Property<string>("PlayerCode")
@@ -6310,6 +6282,28 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasDatabaseName("ix_player_sports_bet_limits_sport_market_id");
 
                     b.ToTable("player_sports_bet_limits", "dbo");
+                });
+
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.PlayerTags", b =>
+                {
+                    b.Property<string>("PlayerCode")
+                        .HasMaxLength(16)
+                        .HasColumnType("character varying(16)")
+                        .HasColumnName("player_code");
+
+                    b.Property<string>("Tag")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("tag");
+
+                    b.HasKey("PlayerCode")
+                        .HasName("pk_tag_player_code");
+
+                    b.HasIndex("PlayerCode", "Tag")
+                        .IsUnique()
+                        .HasDatabaseName("ix_player_tags_player_code_tag");
+
+                    b.ToTable("player_tags", "dbo");
                 });
 
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.PlayerVipLevelAdjustRecord", b =>
