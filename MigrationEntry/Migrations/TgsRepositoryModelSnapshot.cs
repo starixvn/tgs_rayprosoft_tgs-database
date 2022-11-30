@@ -6286,16 +6286,16 @@ namespace TGS.Core.DataServices.Tgs.Migrations
 
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.PlayerTag", b =>
                 {
+                    b.Property<string>("Tag")
+                        .HasColumnType("text")
+                        .HasColumnName("tag");
+
                     b.Property<string>("PlayerCode")
                         .HasMaxLength(16)
                         .HasColumnType("character varying(16)")
                         .HasColumnName("player_code");
 
-                    b.Property<string>("Tag")
-                        .HasColumnType("text")
-                        .HasColumnName("tag");
-
-                    b.HasKey("PlayerCode", "Tag")
+                    b.HasKey("Tag", "PlayerCode")
                         .HasName("pk_tag_player_code_tag");
 
                     b.ToTable("player_tags", "dbo");

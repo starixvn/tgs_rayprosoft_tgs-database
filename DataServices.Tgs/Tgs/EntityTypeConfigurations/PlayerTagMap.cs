@@ -12,8 +12,8 @@ internal class PlayerTagMap : IEntityTypeConfiguration<PlayerTag>
 
         _ = builder.HasKey(bc => new
             {
-                bc.PlayerCode,
-                bc.Tag
+                bc.Tag,
+                bc.PlayerCode
             })
             .HasName("pk_tag_player_code_tag");
 

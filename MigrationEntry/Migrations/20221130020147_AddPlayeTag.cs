@@ -23,7 +23,7 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("pk_tag_player_code_tag", x => new { x.player_code, x.tag });
+                    table.PrimaryKey("pk_tag_player_code_tag", x => new { x.tag, x.player_code });
                 });
         }
 
