@@ -7136,6 +7136,11 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnName("settings")
                         .HasDefaultValueSql("'{}'");
 
+                    b.Property<decimal>("TotalTurnover")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("total_turnover");
+
                     b.HasKey("ReportDate", "BrandId", "PromotionId", "PlayerCode")
                         .HasName("pk_promotion_rebate_daily_statistics");
 

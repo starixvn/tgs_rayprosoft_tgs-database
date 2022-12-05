@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using TGS.Core.DataServices.Base;
 using TGS.Core.DataServices.Tgs.Models;
 
 namespace TGS.Core.DataServices.Tgs.EntityTypeConfigurations;
@@ -29,5 +28,8 @@ internal class PromotionRebateDailyStatisticsMap : IEntityTypeConfiguration<Prom
             .HasColumnType("jsonb")
             .IsRequired()
             .HasDefaultValueSql("'{}'");
+        _ = builder.Property(prds => prds.TotalTurnover)
+            .HasPrecision(18, 6)
+            .IsRequired();
     }
 }
