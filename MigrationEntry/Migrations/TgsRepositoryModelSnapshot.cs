@@ -7147,6 +7147,62 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.ToTable("promotion_rebate_daily_statistics", "dbo");
                 });
 
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.PromotionRebateDistribute", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<decimal>("Bonus")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("bonus");
+
+                    b.Property<Guid>("BrandId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("brand_id");
+
+                    b.Property<decimal>("BucketAmount")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("bucket_amount");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("timestamptz")
+                        .HasColumnName("created_on");
+
+                    b.Property<DateOnly>("DistributeDate")
+                        .HasColumnType("date")
+                        .HasColumnName("distribute_date");
+
+                    b.Property<string>("PlayerCode")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("player_code");
+
+                    b.Property<Guid>("PromotionId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("promotion_id");
+
+                    b.Property<string>("Settings")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("jsonb")
+                        .HasColumnName("settings")
+                        .HasDefaultValueSql("'{}'");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("status");
+
+                    b.HasKey("Id")
+                        .HasName("pk_promotion_rebate_distributes");
+
+                    b.ToTable("promotion_rebate_distributes", "dbo");
+                });
+
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.PromotionType", b =>
                 {
                     b.Property<string>("Name")
