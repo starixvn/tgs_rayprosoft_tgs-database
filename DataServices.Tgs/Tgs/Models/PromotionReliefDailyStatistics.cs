@@ -6,8 +6,6 @@ public class PromotionReliefDailyStatistics
 {
     public Guid BrandId { get; set; }
 
-    public decimal BucketAmount { get; set; }
-
     public string PlayerCode { get; set; } = default!;
 
     public Guid PromotionId { get; set; }

@@ -18,9 +18,6 @@ internal class PromotionReliefDailyStatisticsMap : IEntityTypeConfiguration<Prom
             prds.PlayerCode
         });
 
-        _ = builder.Property(prds => prds.BucketAmount)
-            .HasPrecision(18, 6)
-            .IsRequired();
         _ = builder.Property(prds => prds.Settings)
             .HasColumnType("jsonb")
             .IsRequired()
