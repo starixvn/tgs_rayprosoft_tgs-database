@@ -255,7 +255,9 @@ public partial class DataInitializer
                         SubMenus = new[]
                         {
                             new MenuSetting("View"),
-                            new MenuSetting("Update")
+                            new MenuSetting("Update"),
+                            new MenuSetting("ViewDetail"),
+                            new MenuSetting("UpdateDetail")
                         }
                     }
                 }
