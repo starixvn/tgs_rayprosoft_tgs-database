@@ -44,6 +44,8 @@ public class DepositForm
 
     public string ReviewedUserName { get; set; }
 
+    public Guid? SnapshotEventId { get; set; }
+
     public int Status { get; set; }
 
     public string ThirdPartyOrderNo { get; set; }

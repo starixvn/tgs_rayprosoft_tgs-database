@@ -69,6 +69,8 @@ public class DepositFormMap : IEntityTypeConfiguration<DepositForm>
 
         _ = builder.Property(df => df.PromotionPlayerId);
 
+        _ = builder.Property(df => df.SnapshotEventId);
+
         _ = builder
             .HasOne(c => c.Player)
             .WithMany()
