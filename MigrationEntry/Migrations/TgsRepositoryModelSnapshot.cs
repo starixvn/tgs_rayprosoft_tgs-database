@@ -3143,6 +3143,41 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.ToTable("deposit_forms", "dbo");
                 });
 
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.DepositFormEventSource", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<string>("Action")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("action");
+
+                    b.Property<string>("ChangeSets")
+                        .IsRequired()
+                        .HasColumnType("jsonb")
+                        .HasColumnName("change_sets");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("timestamptz")
+                        .HasColumnName("created_on");
+
+                    b.Property<Guid>("FormId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("form_id");
+
+                    b.Property<string>("ModifyUser")
+                        .HasColumnType("text")
+                        .HasColumnName("modify_user");
+
+                    b.HasKey("Id")
+                        .HasName("pk_deposit_form_event_source");
+
+                    b.ToTable("deposit_form_event_source", "dbo");
+                });
+
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.DistributeRegisterEvent", b =>
                 {
                     b.Property<Guid>("Id")
