@@ -12,7 +12,7 @@ using TGS.Core.DataServices.Tgs;
 namespace TGS.Core.DataServices.Tgs.Migrations
 {
     [DbContext(typeof(TgsRepository))]
-    [Migration("20221219071134_AddSnapshotEventIdToWithdrawFormTable")]
+    [Migration("20221219071800_AddSnapshotEventIdToWithdrawFormTable")]
     partial class AddSnapshotEventIdToWithdrawFormTable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -8929,6 +8929,10 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.Property<string>("ReviewedUserName")
                         .HasColumnType("text")
                         .HasColumnName("reviewed_user_name");
+
+                    b.Property<Guid?>("SnapshotEventId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("snapshot_event_id");
 
                     b.Property<int>("Status")
                         .ValueGeneratedOnAdd()

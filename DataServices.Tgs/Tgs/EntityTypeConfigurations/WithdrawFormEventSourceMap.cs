@@ -10,18 +10,18 @@ internal class WithdrawFormEventSourceMap : IEntityTypeConfiguration<WithdrawFor
     {
         _ = builder.ToTable("withdraw_form_event_source");
 
-        _ = builder.HasKey(df => df.Id);
+        _ = builder.HasKey(wf => wf.Id);
 
-        _ = builder.Property(df => df.FormId)
+        _ = builder.Property(wf => wf.FormId)
             .IsRequired();
-        _ = builder.Property(df => df.ChangeSets)
+        _ = builder.Property(wf => wf.ChangeSets)
             .HasColumnType("jsonb")
             .IsRequired();
-        _ = builder.Property(df => df.Action)
+        _ = builder.Property(wf => wf.Action)
             .IsRequired();
-        _ = builder.Property(df => df.CreatedOn)
+        _ = builder.Property(wf => wf.CreatedOn)
             .HasColumnType("timestamptz")
             .IsRequired();
-        _ = builder.Property(df => df.ModifyUser);
+        _ = builder.Property(wf => wf.ModifyUser);
     }
 }

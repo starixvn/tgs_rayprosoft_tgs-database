@@ -9,6 +9,13 @@ namespace TGS.Core.DataServices.Tgs.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.AddColumn<Guid>(
+                name: "snapshot_event_id",
+                schema: "dbo",
+                table: "withdraw_forms",
+                type: "uuid",
+                nullable: true);
+
             migrationBuilder.CreateTable(
                 name: "withdraw_form_event_source",
                 schema: "dbo",
@@ -32,6 +39,11 @@ namespace TGS.Core.DataServices.Tgs.Migrations
             migrationBuilder.DropTable(
                 name: "withdraw_form_event_source",
                 schema: "dbo");
+
+            migrationBuilder.DropColumn(
+                name: "snapshot_event_id",
+                schema: "dbo",
+                table: "withdraw_forms");
         }
     }
 }
