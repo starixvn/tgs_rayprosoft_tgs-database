@@ -78,6 +78,8 @@ internal class WithdrawFormMap : IEntityTypeConfiguration<WithdrawForm>
             .IsRequired()
             .HasDefaultValueSql("Now()");
 
+        _ = builder.Property(w => w.SnapshotEventId);
+
         _ = builder.Property(w => w.ThirdPartyOrderNo);
 
         _ = builder.Property(w => w.OrderNo)
