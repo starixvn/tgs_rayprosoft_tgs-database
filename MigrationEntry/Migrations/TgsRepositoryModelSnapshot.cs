@@ -6758,6 +6758,10 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("text")
                         .HasColumnName("settlement_interval_type");
 
+                    b.Property<Guid?>("SnapshotEventId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("snapshot_event_id");
+
                     b.Property<short>("Status")
                         .HasColumnType("smallint")
                         .HasColumnName("status");
@@ -9007,6 +9011,41 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasName("pk_withdraw_form_event_source");
 
                     b.ToTable("withdraw_form_event_source", "dbo");
+                });
+
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.PromotionEventSource", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<string>("Action")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("action");
+
+                    b.Property<string>("ChangeSets")
+                        .IsRequired()
+                        .HasColumnType("jsonb")
+                        .HasColumnName("change_sets");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("timestamptz")
+                        .HasColumnName("created_on");
+
+                    b.Property<string>("ModifyUser")
+                        .HasColumnType("text")
+                        .HasColumnName("modify_user");
+
+                    b.Property<Guid>("PromotionId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("promotion_id");
+
+                    b.HasKey("Id")
+                        .HasName("pk_promotion_event_source");
+
+                    b.ToTable("promotion_event_source", "dbo");
                 });
 
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.Agent", b =>
