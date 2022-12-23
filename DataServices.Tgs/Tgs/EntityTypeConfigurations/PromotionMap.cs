@@ -82,6 +82,8 @@ internal class PromotionMap : IEntityTypeConfiguration<Promotion>
         _ = builder.Property(p => p.DisplayOrder)
             .HasDefaultValue(1);
 
+        _ = builder.Property(p => p.SnapshotEventId);
+
         _ = builder.HasOne(p => p.Brand)
             .WithMany()
             .HasForeignKey(p => p.BrandId)

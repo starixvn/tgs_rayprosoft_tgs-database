@@ -71,4 +71,6 @@ public class Promotion
     public string UpdatedByUsername { get; set; }
 
     public DateTimeOffset UpdatedOn { get; set; }
+
+    public Guid? SnapshotEventId { get; set; }
 }
