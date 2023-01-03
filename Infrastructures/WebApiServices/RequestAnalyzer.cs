@@ -27,7 +27,7 @@ public sealed class RequestAnalyzer : IRequestAnalyzer
         }
 
         var remoteIp = context.Connection.RemoteIpAddress;
-        var userHostAddress = remoteIp.IsIPv4MappedToIPv6 ? remoteIp.MapToIPv4().ToString() : remoteIp.ToString();
+        var userHostAddress = remoteIp?.IsIPv4MappedToIPv6 == true ? remoteIp.MapToIPv4().ToString() : remoteIp?.ToString();
 
         var forwardIps = context.Request.Headers[HttpForwardFor];
 
