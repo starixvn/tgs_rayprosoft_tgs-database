@@ -31,7 +31,5 @@ public class PlayerAllAgentRebateRecord
 
     public DateTimeOffset CreatedOn { get; set; }
 
-    public DateTimeOffset From { get; set; }
-
-    public DateTimeOffset To { get; set; }
+    public DateTimeOffset ReportDate { get; set; }
 }

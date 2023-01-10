@@ -42,8 +42,7 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     card_game_win_loss_rebate = table.Column<decimal>(type: "numeric(18,6)", precision: 18, scale: 6, nullable: false),
                     slot_win_loss_rebate = table.Column<decimal>(type: "numeric(18,6)", precision: 18, scale: 6, nullable: false),
                     lottery_win_loss_rebate = table.Column<decimal>(type: "numeric(18,6)", precision: 18, scale: 6, nullable: false),
-                    from = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
-                    to = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
+                    report_date = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
                     created_on = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
                     sent_on = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: true)
                 },
@@ -70,8 +69,7 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     rebate_amount = table.Column<decimal>(type: "numeric(18,6)", precision: 18, scale: 6, nullable: false),
                     rebate_percentage = table.Column<decimal>(type: "numeric(9,6)", precision: 9, scale: 6, nullable: false),
                     created_on = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
-                    from = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
-                    to = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false)
+                    report_date = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -79,16 +77,16 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "ix_player_all_agent_rebate_contributors_from_to_player_code",
+                name: "ix_player_all_agent_rebate_contributors_report_date_player_code",
                 schema: "dbo",
                 table: "player_all_agent_rebate_contributors",
-                columns: new[] { "from", "to", "player_code", "child_player_code" });
+                columns: new[] { "report_date", "player_code", "child_player_code" });
 
             migrationBuilder.CreateIndex(
-                name: "ix_player_all_agent_rebate_records_brand_id_report_date_player_code",
+                name: "ix_player_all_agent_rebate_records_report_date_brand_id_player_code",
                 schema: "dbo",
                 table: "player_all_agent_rebate_records",
-                columns: new[] { "brand_id", "from", "to", "player_code" });
+                columns: new[] { "report_date", "brand_id", "player_code" });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

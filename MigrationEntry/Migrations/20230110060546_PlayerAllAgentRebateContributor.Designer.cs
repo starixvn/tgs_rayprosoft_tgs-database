@@ -12,7 +12,7 @@ using TGS.Core.DataServices.Tgs;
 namespace TGS.Core.DataServices.Tgs.Migrations
 {
     [DbContext(typeof(TgsRepository))]
-    [Migration("20230107094029_PlayerAllAgentRebateContributor")]
+    [Migration("20230110060546_PlayerAllAgentRebateContributor")]
     partial class PlayerAllAgentRebateContributor
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -5303,10 +5303,6 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("created_on");
 
-                    b.Property<DateTimeOffset>("From")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("from");
-
                     b.Property<decimal>("LiveDealerTurnover")
                         .HasPrecision(18, 6)
                         .HasColumnType("numeric(18,6)")
@@ -5353,6 +5349,10 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("character varying(16)")
                         .HasColumnName("player_code");
 
+                    b.Property<DateTimeOffset>("ReportDate")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("report_date");
+
                     b.Property<DateTimeOffset?>("SentOn")
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("sent_on");
@@ -5397,10 +5397,6 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("numeric(18,6)")
                         .HasColumnName("sports_win_loss_rebate");
 
-                    b.Property<DateTimeOffset>("To")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("to");
-
                     b.Property<decimal>("VirtualSportsTurnover")
                         .HasPrecision(18, 6)
                         .HasColumnType("numeric(18,6)")
@@ -5424,8 +5420,8 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.HasKey("Id")
                         .HasName("pk_player_all_agent_rebates_contributor_id");
 
-                    b.HasIndex("From", "To", "PlayerCode", "ChildPlayerCode")
-                        .HasDatabaseName("ix_player_all_agent_rebate_contributors_from_to_player_code");
+                    b.HasIndex("ReportDate", "PlayerCode", "ChildPlayerCode")
+                        .HasDatabaseName("ix_player_all_agent_rebate_contributors_report_date_player_code");
 
                     b.ToTable("player_all_agent_rebate_contributors", "dbo");
                 });
@@ -5471,10 +5467,6 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("created_on");
 
-                    b.Property<DateTimeOffset>("From")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("from");
-
                     b.Property<string>("PlayerCode")
                         .IsRequired()
                         .HasMaxLength(16)
@@ -5495,15 +5487,15 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("numeric(9,6)")
                         .HasColumnName("rebate_percentage");
 
-                    b.Property<DateTimeOffset>("To")
+                    b.Property<DateTimeOffset>("ReportDate")
                         .HasColumnType("timestamp with time zone")
-                        .HasColumnName("to");
+                        .HasColumnName("report_date");
 
                     b.HasKey("Id")
                         .HasName("pk_player_all_agent_rebate_records_id");
 
-                    b.HasIndex("BrandId", "From", "To", "PlayerCode")
-                        .HasDatabaseName("ix_player_all_agent_rebate_records_brand_id_report_date_player_code");
+                    b.HasIndex("ReportDate", "BrandId", "PlayerCode")
+                        .HasDatabaseName("ix_player_all_agent_rebate_records_report_date_brand_id_player_code");
 
                     b.ToTable("player_all_agent_rebate_records", "dbo");
                 });

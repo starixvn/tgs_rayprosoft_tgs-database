@@ -122,10 +122,7 @@ internal class PlayerAllAgentRebateContributorMap : IEntityTypeConfiguration<Pla
             .HasPrecision(18, 6)
             .IsRequired();
 
-        _ = builder.Property(b => b.From)
-            .IsRequired();
-
-        _ = builder.Property(b => b.To)
+        _ = builder.Property(b => b.ReportDate)
             .IsRequired();
 
         _ = builder.Property(b => b.CreatedOn)
@@ -133,11 +130,10 @@ internal class PlayerAllAgentRebateContributorMap : IEntityTypeConfiguration<Pla
 
         _ = builder.HasIndex(b => new
             {
-                b.From,
-                b.To,
+                b.ReportDate,
                 b.PlayerCode,
                 b.ChildPlayerCode
             })
-            .HasDatabaseName("ix_player_all_agent_rebate_contributors_from_to_player_code");
+            .HasDatabaseName("ix_player_all_agent_rebate_contributors_report_date_player_code");
     }
 }
