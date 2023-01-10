@@ -5260,6 +5260,244 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.ToTable("player_all_agent_rebates", "dbo");
                 });
 
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.PlayerAllAgentRebateContributor", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<Guid>("BrandId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("brand_id");
+
+                    b.Property<decimal>("CardGameTurnover")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("card_game_turnover");
+
+                    b.Property<decimal>("CardGameTurnoverRebate")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("card_game_turnover_rebate");
+
+                    b.Property<decimal>("CardGameWinLoss")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("card_game_win_loss");
+
+                    b.Property<decimal>("CardGameWinLossRebate")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("card_game_win_loss_rebate");
+
+                    b.Property<string>("ChildPlayerCode")
+                        .IsRequired()
+                        .HasMaxLength(16)
+                        .HasColumnType("character varying(16)")
+                        .HasColumnName("child_player_code");
+
+                    b.Property<DateTimeOffset>("CreatedOn")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_on");
+
+                    b.Property<decimal>("LiveDealerTurnover")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("live_dealer_turnover");
+
+                    b.Property<decimal>("LiveDealerTurnoverRebate")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("live_dealer_turnover_rebate");
+
+                    b.Property<decimal>("LiveDealerWinLoss")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("live_dealer_win_loss");
+
+                    b.Property<decimal>("LiveDealerWinLossRebate")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("live_dealer_win_loss_rebate");
+
+                    b.Property<decimal>("LotteryTurnover")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("lottery_turnover");
+
+                    b.Property<decimal>("LotteryTurnoverRebate")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("lottery_turnover_rebate");
+
+                    b.Property<decimal>("LotteryWinLoss")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("lottery_win_loss");
+
+                    b.Property<decimal>("LotteryWinLossRebate")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("lottery_win_loss_rebate");
+
+                    b.Property<string>("PlayerCode")
+                        .IsRequired()
+                        .HasMaxLength(16)
+                        .HasColumnType("character varying(16)")
+                        .HasColumnName("player_code");
+
+                    b.Property<DateTimeOffset>("ReportDate")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("report_date");
+
+                    b.Property<DateTimeOffset?>("SentOn")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("sent_on");
+
+                    b.Property<decimal>("SlotTurnover")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("slot_turnover");
+
+                    b.Property<decimal>("SlotTurnoverRebate")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("slot_turnover_rebate");
+
+                    b.Property<decimal>("SlotWinLoss")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("slot_win_loss");
+
+                    b.Property<decimal>("SlotWinLossRebate")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("slot_win_loss_rebate");
+
+                    b.Property<decimal>("SportsTurnover")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("sports_turnover");
+
+                    b.Property<decimal>("SportsTurnoverRebate")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("sports_turnover_rebate");
+
+                    b.Property<decimal>("SportsWinLoss")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("sports_win_loss");
+
+                    b.Property<decimal>("SportsWinLossRebate")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("sports_win_loss_rebate");
+
+                    b.Property<decimal>("VirtualSportsTurnover")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("virtual_sports_turnover");
+
+                    b.Property<decimal>("VirtualSportsTurnoverRebate")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("virtual_sports_turnover_rebate");
+
+                    b.Property<decimal>("VirtualSportsWinLoss")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("virtual_sports_win_loss");
+
+                    b.Property<decimal>("VirtualSportsWinLossRebate")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("virtual_sports_win_loss_rebate");
+
+                    b.HasKey("Id")
+                        .HasName("pk_player_all_agent_rebates_contributor_id");
+
+                    b.HasIndex("ReportDate", "PlayerCode", "ChildPlayerCode")
+                        .HasDatabaseName("ix_player_all_agent_rebate_contributors_report_date_player_code");
+
+                    b.ToTable("player_all_agent_rebate_contributors", "dbo");
+                });
+
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.PlayerAllAgentRebateRecord", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<int>("ActiveNumber")
+                        .HasColumnType("integer")
+                        .HasColumnName("active_number");
+
+                    b.Property<decimal>("ActualConditionAmount")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("actual_condition_amount");
+
+                    b.Property<int>("ActualPlayerNumber")
+                        .HasColumnType("integer")
+                        .HasColumnName("actual_player_number");
+
+                    b.Property<short>("AllAgentGameType")
+                        .HasColumnType("smallint")
+                        .HasColumnName("all_agent_game_type");
+
+                    b.Property<short>("AllAgentRebateType")
+                        .HasColumnType("smallint")
+                        .HasColumnName("all_agent_rebate_type");
+
+                    b.Property<Guid>("BrandId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("brand_id");
+
+                    b.Property<decimal>("ConditionAmount")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("condition_amount");
+
+                    b.Property<DateTimeOffset>("CreatedOn")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_on");
+
+                    b.Property<string>("PlayerCode")
+                        .IsRequired()
+                        .HasMaxLength(16)
+                        .HasColumnType("character varying(16)")
+                        .HasColumnName("player_code");
+
+                    b.Property<int>("Rank")
+                        .HasColumnType("integer")
+                        .HasColumnName("rank");
+
+                    b.Property<decimal>("RebateAmount")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("rebate_amount");
+
+                    b.Property<decimal>("RebatePercentage")
+                        .HasPrecision(9, 6)
+                        .HasColumnType("numeric(9,6)")
+                        .HasColumnName("rebate_percentage");
+
+                    b.Property<DateTimeOffset>("ReportDate")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("report_date");
+
+                    b.HasKey("Id")
+                        .HasName("pk_player_all_agent_rebate_records_id");
+
+                    b.HasIndex("ReportDate", "BrandId", "PlayerCode")
+                        .HasDatabaseName("ix_player_all_agent_rebate_records_report_date_brand_id_player_code");
+
+                    b.ToTable("player_all_agent_rebate_records", "dbo");
+                });
+
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.PlayerAuditLog", b =>
                 {
                     b.Property<Guid>("Id")
