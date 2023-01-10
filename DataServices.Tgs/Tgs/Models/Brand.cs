@@ -107,4 +107,7 @@ public class Brand : BaseEntity<Guid>
     public virtual ICollection<VipLevel> VipLevels { get; set; }
 
     public decimal WithdrawHandlingFeeRateTenPercentile { get; set; }
+
+    public int? TimeSpan { get; set; }
+
 }

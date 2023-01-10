@@ -24,6 +24,8 @@ public class PlayerBonusAggregate
 
     public DateTimeOffset ReportDate { get; set; }
 
+    public DateTimeOffset? ReportDateTime { get; set; }
+
     public decimal SeasonAmount { get; set; }
 
     public decimal UpgradeAmount { get; set; }

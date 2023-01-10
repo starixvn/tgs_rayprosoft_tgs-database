@@ -1760,6 +1760,12 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("smallint")
                         .HasColumnName("status");
 
+                    b.Property<int?>("TimeSpan")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasDefaultValue(480)
+                        .HasColumnName("time_span");
+
                     b.Property<string>("TimeZoneId")
                         .HasMaxLength(256)
                         .HasColumnType("character varying(256)")
@@ -5134,6 +5140,10 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("report_date");
 
+                    b.Property<DateTimeOffset?>("ReportDateTime")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("report_date_time");
+
                     b.Property<decimal>("SystemAdjustAmount")
                         .HasPrecision(18, 6)
                         .HasColumnType("numeric(18,6)")
@@ -5172,6 +5182,9 @@ namespace TGS.Core.DataServices.Tgs.Migrations
 
                     b.HasIndex("ReportDate", "BrandId", "AgentId", "PlayerCode")
                         .HasDatabaseName("ix_player_aggregates_multiple_keys");
+
+                    b.HasIndex("ReportDateTime", "BrandId", "AgentId", "PlayerCode")
+                        .HasDatabaseName("ix_player_aggregates_new_multiple_keys");
 
                     b.ToTable("player_aggregates", "report");
                 });
@@ -5776,6 +5789,10 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("numeric(18,6)")
                         .HasColumnName("rebate_amount");
 
+                    b.Property<DateTimeOffset?>("ReportDateTime")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("report_date_time");
+
                     b.Property<decimal>("SeasonAmount")
                         .HasPrecision(18, 6)
                         .HasColumnType("numeric(18,6)")
@@ -5793,6 +5810,11 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasDatabaseName("ix_player_bonus_aggregates_multiple_keys");
 
                     NpgsqlIndexBuilderExtensions.HasSortOrder(b.HasIndex("ReportDate", "BrandId", "AgentId", "PlayerCode"), new[] { SortOrder.Descending, SortOrder.Ascending, SortOrder.Ascending, SortOrder.Ascending });
+
+                    b.HasIndex("ReportDateTime", "BrandId", "AgentId", "PlayerCode")
+                        .HasDatabaseName("ix_player_bonus_aggregates_new_multiple_keys");
+
+                    NpgsqlIndexBuilderExtensions.HasSortOrder(b.HasIndex("ReportDateTime", "BrandId", "AgentId", "PlayerCode"), new[] { SortOrder.Descending, SortOrder.Ascending, SortOrder.Ascending, SortOrder.Ascending });
 
                     b.ToTable("player_bonus_aggregates", "report");
                 });
@@ -6175,6 +6197,10 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("report_date");
 
+                    b.Property<DateTimeOffset?>("ReportDateTime")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("report_date_time");
+
                     b.Property<decimal>("Turnover")
                         .HasPrecision(18, 6)
                         .HasColumnType("numeric(18,6)")
@@ -6234,6 +6260,11 @@ namespace TGS.Core.DataServices.Tgs.Migrations
 
                     b.HasIndex("ReportDate", "BrandId", "AgentId", "PlayerCode")
                         .HasDatabaseName("ix_player_game_rebate_aggregates_multiple_keys");
+
+                    b.HasIndex("ReportDateTime", "BrandId", "AgentId", "PlayerCode")
+                        .HasDatabaseName("ix_player_game_rebate_aggregates_new_multiple_keys");
+
+                    NpgsqlIndexBuilderExtensions.HasSortOrder(b.HasIndex("ReportDateTime", "BrandId", "AgentId", "PlayerCode"), new[] { SortOrder.Descending, SortOrder.Ascending, SortOrder.Ascending, SortOrder.Ascending });
 
                     b.ToTable("player_game_rebate_aggregates", "report");
                 });
