@@ -108,6 +108,6 @@ public class Brand : BaseEntity<Guid>
 
     public decimal WithdrawHandlingFeeRateTenPercentile { get; set; }
 
-    public int? TimeSpan { get; set; }
+    public int? TimeSpanMinutes { get; set; }
 
 }

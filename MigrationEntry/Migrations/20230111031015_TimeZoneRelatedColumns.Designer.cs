@@ -12,7 +12,7 @@ using TGS.Core.DataServices.Tgs;
 namespace TGS.Core.DataServices.Tgs.Migrations
 {
     [DbContext(typeof(TgsRepository))]
-    [Migration("20230110081320_TimeZoneRelatedColumns")]
+    [Migration("20230111031015_TimeZoneRelatedColumns")]
     partial class TimeZoneRelatedColumns
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -1762,11 +1762,11 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("smallint")
                         .HasColumnName("status");
 
-                    b.Property<int?>("TimeSpan")
+                    b.Property<int?>("TimeSpanMinutes")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasDefaultValue(480)
-                        .HasColumnName("time_span");
+                        .HasColumnName("time_span_minutes");
 
                     b.Property<string>("TimeZoneId")
                         .HasMaxLength(256)

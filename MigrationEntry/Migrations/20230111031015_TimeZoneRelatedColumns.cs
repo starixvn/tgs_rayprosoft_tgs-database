@@ -32,7 +32,7 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                 nullable: true);
 
             migrationBuilder.AddColumn<int>(
-                name: "time_span",
+                name: "time_span_minutes",
                 schema: "dbo",
                 table: "brands",
                 type: "integer",
@@ -93,7 +93,7 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                 table: "player_aggregates");
 
             migrationBuilder.DropColumn(
-                name: "time_span",
+                name: "time_span_minutes",
                 schema: "dbo",
                 table: "brands");
         }
