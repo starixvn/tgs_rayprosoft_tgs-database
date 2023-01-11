@@ -66,21 +66,5 @@ internal class PlayerBonusAggregateMap : IEntityTypeConfiguration<PlayerBonusAgg
                 SortOrder.Ascending,
                 SortOrder.Ascending
             });
-
-        _ = builder.HasIndex(b => new
-            {
-                b.ReportDateTime,
-                b.BrandId,
-                b.AgentId,
-                b.PlayerCode
-            })
-            .HasDatabaseName("ix_player_bonus_aggregates_new_multiple_keys")
-            .HasSortOrder(new[]
-            {
-                SortOrder.Descending,
-                SortOrder.Ascending,
-                SortOrder.Ascending,
-                SortOrder.Ascending
-            });
     }
 }

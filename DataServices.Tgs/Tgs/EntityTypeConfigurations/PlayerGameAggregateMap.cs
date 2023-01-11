@@ -93,21 +93,5 @@ internal class PlayerGameTypeAggregateMap : IEntityTypeConfiguration<PlayerGameA
                 b.PlayerCode
             })
             .HasDatabaseName("ix_player_game_rebate_aggregates_multiple_keys");
-
-        _ = builder.HasIndex(b => new
-            {
-                b.ReportDateTime,
-                b.BrandId,
-                b.AgentId,
-                b.PlayerCode
-            })
-            .HasDatabaseName("ix_player_game_rebate_aggregates_new_multiple_keys")
-            .HasSortOrder(new[]
-            {
-                SortOrder.Descending,
-                SortOrder.Ascending,
-                SortOrder.Ascending,
-                SortOrder.Ascending
-            });
     }
 }

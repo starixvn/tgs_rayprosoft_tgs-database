@@ -136,15 +136,6 @@ internal class PlayerAggregateMap : IEntityTypeConfiguration<PlayerAggregate>
             })
             .HasDatabaseName("ix_player_aggregates_multiple_keys");
 
-        _ = builder.HasIndex(b => new
-            {
-                b.ReportDateTime,
-                b.BrandId,
-                b.AgentId,
-                b.PlayerCode
-            })
-            .HasDatabaseName("ix_player_aggregates_new_multiple_keys");
-
         _ = builder.HasIndex(b => new { b.AgentId })
             .HasDatabaseName("ix_player_aggregates_agent_id");
     }

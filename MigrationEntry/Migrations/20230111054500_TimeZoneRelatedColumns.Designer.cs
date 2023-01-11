@@ -12,7 +12,7 @@ using TGS.Core.DataServices.Tgs;
 namespace TGS.Core.DataServices.Tgs.Migrations
 {
     [DbContext(typeof(TgsRepository))]
-    [Migration("20230111031015_TimeZoneRelatedColumns")]
+    [Migration("20230111054500_TimeZoneRelatedColumns")]
     partial class TimeZoneRelatedColumns
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -5185,9 +5185,6 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.HasIndex("ReportDate", "BrandId", "AgentId", "PlayerCode")
                         .HasDatabaseName("ix_player_aggregates_multiple_keys");
 
-                    b.HasIndex("ReportDateTime", "BrandId", "AgentId", "PlayerCode")
-                        .HasDatabaseName("ix_player_aggregates_new_multiple_keys");
-
                     b.ToTable("player_aggregates", "report");
                 });
 
@@ -5813,11 +5810,6 @@ namespace TGS.Core.DataServices.Tgs.Migrations
 
                     NpgsqlIndexBuilderExtensions.HasSortOrder(b.HasIndex("ReportDate", "BrandId", "AgentId", "PlayerCode"), new[] { SortOrder.Descending, SortOrder.Ascending, SortOrder.Ascending, SortOrder.Ascending });
 
-                    b.HasIndex("ReportDateTime", "BrandId", "AgentId", "PlayerCode")
-                        .HasDatabaseName("ix_player_bonus_aggregates_new_multiple_keys");
-
-                    NpgsqlIndexBuilderExtensions.HasSortOrder(b.HasIndex("ReportDateTime", "BrandId", "AgentId", "PlayerCode"), new[] { SortOrder.Descending, SortOrder.Ascending, SortOrder.Ascending, SortOrder.Ascending });
-
                     b.ToTable("player_bonus_aggregates", "report");
                 });
 
@@ -6262,11 +6254,6 @@ namespace TGS.Core.DataServices.Tgs.Migrations
 
                     b.HasIndex("ReportDate", "BrandId", "AgentId", "PlayerCode")
                         .HasDatabaseName("ix_player_game_rebate_aggregates_multiple_keys");
-
-                    b.HasIndex("ReportDateTime", "BrandId", "AgentId", "PlayerCode")
-                        .HasDatabaseName("ix_player_game_rebate_aggregates_new_multiple_keys");
-
-                    NpgsqlIndexBuilderExtensions.HasSortOrder(b.HasIndex("ReportDateTime", "BrandId", "AgentId", "PlayerCode"), new[] { SortOrder.Descending, SortOrder.Ascending, SortOrder.Ascending, SortOrder.Ascending });
 
                     b.ToTable("player_game_rebate_aggregates", "report");
                 });

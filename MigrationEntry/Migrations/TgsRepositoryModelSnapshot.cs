@@ -5183,9 +5183,6 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.HasIndex("ReportDate", "BrandId", "AgentId", "PlayerCode")
                         .HasDatabaseName("ix_player_aggregates_multiple_keys");
 
-                    b.HasIndex("ReportDateTime", "BrandId", "AgentId", "PlayerCode")
-                        .HasDatabaseName("ix_player_aggregates_new_multiple_keys");
-
                     b.ToTable("player_aggregates", "report");
                 });
 
@@ -5811,11 +5808,6 @@ namespace TGS.Core.DataServices.Tgs.Migrations
 
                     NpgsqlIndexBuilderExtensions.HasSortOrder(b.HasIndex("ReportDate", "BrandId", "AgentId", "PlayerCode"), new[] { SortOrder.Descending, SortOrder.Ascending, SortOrder.Ascending, SortOrder.Ascending });
 
-                    b.HasIndex("ReportDateTime", "BrandId", "AgentId", "PlayerCode")
-                        .HasDatabaseName("ix_player_bonus_aggregates_new_multiple_keys");
-
-                    NpgsqlIndexBuilderExtensions.HasSortOrder(b.HasIndex("ReportDateTime", "BrandId", "AgentId", "PlayerCode"), new[] { SortOrder.Descending, SortOrder.Ascending, SortOrder.Ascending, SortOrder.Ascending });
-
                     b.ToTable("player_bonus_aggregates", "report");
                 });
 
@@ -6260,11 +6252,6 @@ namespace TGS.Core.DataServices.Tgs.Migrations
 
                     b.HasIndex("ReportDate", "BrandId", "AgentId", "PlayerCode")
                         .HasDatabaseName("ix_player_game_rebate_aggregates_multiple_keys");
-
-                    b.HasIndex("ReportDateTime", "BrandId", "AgentId", "PlayerCode")
-                        .HasDatabaseName("ix_player_game_rebate_aggregates_new_multiple_keys");
-
-                    NpgsqlIndexBuilderExtensions.HasSortOrder(b.HasIndex("ReportDateTime", "BrandId", "AgentId", "PlayerCode"), new[] { SortOrder.Descending, SortOrder.Ascending, SortOrder.Ascending, SortOrder.Ascending });
 
                     b.ToTable("player_game_rebate_aggregates", "report");
                 });
