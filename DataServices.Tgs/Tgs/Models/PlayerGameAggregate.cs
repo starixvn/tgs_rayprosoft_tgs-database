@@ -31,6 +31,8 @@ public class PlayerGameAggregate
 
     public DateTimeOffset ReportDate { get; set; }
 
+    public DateTimeOffset? ReportDateTime { get; set; }
+
     public decimal Turnover { get; set; }
 
     public decimal ValidBetAmount { get; set; }

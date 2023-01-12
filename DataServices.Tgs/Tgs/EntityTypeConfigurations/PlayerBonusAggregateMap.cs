@@ -12,7 +12,13 @@ internal class PlayerBonusAggregateMap : IEntityTypeConfiguration<PlayerBonusAgg
     {
         _ = builder.ToTable("player_bonus_aggregates", Consts.ReportSchema);
 
-        _ = builder.HasKey(b => new { b.PlayerCode, b.Hour, b.Minute, b.ReportDate })
+        _ = builder.HasKey(b => new
+            {
+                b.PlayerCode,
+                b.Hour,
+                b.Minute,
+                b.ReportDate
+            })
             .HasName("pk_player_bonus_aggregates_id");
 
         _ = builder.Property(c => c.PlayerCode)
@@ -46,13 +52,19 @@ internal class PlayerBonusAggregateMap : IEntityTypeConfiguration<PlayerBonusAgg
             .IsRequired();
 
         _ = builder.HasIndex(b => new
-        {
-            b.ReportDate,
-            b.BrandId,
-            b.AgentId,
-            b.PlayerCode
-        })
+            {
+                b.ReportDate,
+                b.BrandId,
+                b.AgentId,
+                b.PlayerCode
+            })
             .HasDatabaseName("ix_player_bonus_aggregates_multiple_keys")
-            .HasSortOrder(new[] { SortOrder.Descending, SortOrder.Ascending, SortOrder.Ascending, SortOrder.Ascending });
+            .HasSortOrder(new[]
+            {
+                SortOrder.Descending,
+                SortOrder.Ascending,
+                SortOrder.Ascending,
+                SortOrder.Ascending
+            });
     }
 }

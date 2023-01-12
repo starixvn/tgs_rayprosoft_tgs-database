@@ -54,6 +54,8 @@ public class PlayerAggregate
 
     public DateTimeOffset ReportDate { get; set; }
 
+    public DateTimeOffset? ReportDateTime { get; set; }
+
     public decimal SystemAdjustAmount { get; set; }
 
     public decimal Turnover { get; set; }

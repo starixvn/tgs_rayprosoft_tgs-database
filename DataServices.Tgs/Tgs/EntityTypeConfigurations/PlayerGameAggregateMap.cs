@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using TGS.Core.DataServices.Base;
 using TGS.Core.DataServices.Tgs.Migrations;
 using TGS.Core.DataServices.Tgs.Models;
@@ -85,12 +86,12 @@ internal class PlayerGameTypeAggregateMap : IEntityTypeConfiguration<PlayerGameA
             .IsRequired();
 
         _ = builder.HasIndex(b => new
-        {
-            b.ReportDate,
-            b.BrandId,
-            b.AgentId,
-            b.PlayerCode
-        })
+            {
+                b.ReportDate,
+                b.BrandId,
+                b.AgentId,
+                b.PlayerCode
+            })
             .HasDatabaseName("ix_player_game_rebate_aggregates_multiple_keys");
     }
 }
