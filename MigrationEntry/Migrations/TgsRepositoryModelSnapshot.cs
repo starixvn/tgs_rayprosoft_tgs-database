@@ -6037,6 +6037,18 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("timestamptz")
                         .HasColumnName("first_deposit_on");
 
+                    b.Property<decimal?>("FirstWithdrawAmount")
+                        .HasColumnType("numeric")
+                        .HasColumnName("first_withdraw_amount");
+
+                    b.Property<decimal?>("FirstWithdrawHandlingFee")
+                        .HasColumnType("numeric")
+                        .HasColumnName("first_withdraw_handling_fee");
+
+                    b.Property<DateTime?>("FirstWithdrawOn")
+                        .HasColumnType("timestamptz")
+                        .HasColumnName("first_withdraw_on");
+
                     b.Property<decimal?>("TotalDepositAmount")
                         .HasColumnType("numeric")
                         .HasColumnName("total_deposit_amount");

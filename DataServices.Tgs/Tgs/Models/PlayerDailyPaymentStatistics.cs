@@ -24,6 +24,12 @@ public class PlayerDailyPaymentStatistics
 
     public DateTime? FirstDepositOn { get; set; }
 
+    public decimal? FirstWithdrawAmount { get; set; }
+
+    public decimal? FirstWithdrawHandlingFee { get; set; }
+
+    public DateTime? FirstWithdrawOn { get; set; }
+
     public string PlayerCode { get; set; } = default!;
 
     public DateOnly ReportDate { get; set; }

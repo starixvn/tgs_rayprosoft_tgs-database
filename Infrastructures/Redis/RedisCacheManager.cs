@@ -173,8 +173,12 @@ internal sealed class RedisCacheManager : IRedisCacheManager
         }
     }
 
-    public async Task SafeCacheHashSetAsync(object cacheType, object key, HashEntry[] hashFields,
-        TimeSpan? expiresIn, bool fireAndForget)
+    public async Task SafeCacheHashSetAsync(
+        object cacheType,
+        object key,
+        HashEntry[] hashFields,
+        TimeSpan? expiresIn,
+        bool fireAndForget)
     {
         try
         {
