@@ -102,12 +102,11 @@ public class Brand : BaseEntity<Guid>
 
     public BrandStatus Status { get; set; }
 
+    public int? TimeSpanMinutes { get; set; }
+
     public string TimeZoneId { get; set; }
 
     public virtual ICollection<VipLevel> VipLevels { get; set; }
 
     public decimal WithdrawHandlingFeeRateTenPercentile { get; set; }
-
-    public int? TimeSpanMinutes { get; set; }
-
 }
