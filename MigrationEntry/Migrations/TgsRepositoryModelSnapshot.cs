@@ -6404,6 +6404,58 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.ToTable("player_parents", "dbo");
                 });
 
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.PlayerPaymentOverview", b =>
+                {
+                    b.Property<string>("PlayerCode")
+                        .HasColumnType("text")
+                        .HasColumnName("player_code");
+
+                    b.Property<decimal?>("FirstDepositAmount")
+                        .HasColumnType("numeric")
+                        .HasColumnName("first_deposit_amount");
+
+                    b.Property<decimal?>("FirstDepositHandlingFee")
+                        .HasColumnType("numeric")
+                        .HasColumnName("first_deposit_handling_fee");
+
+                    b.Property<DateTime?>("FirstDepositOn")
+                        .HasColumnType("timestamptz")
+                        .HasColumnName("first_deposit_on");
+
+                    b.Property<decimal?>("FirstWithdrawAmount")
+                        .HasColumnType("numeric")
+                        .HasColumnName("first_withdraw_amount");
+
+                    b.Property<decimal?>("FirstWithdrawHandlingFee")
+                        .HasColumnType("numeric")
+                        .HasColumnName("first_withdraw_handling_fee");
+
+                    b.Property<DateTime?>("FirstWithdrawOn")
+                        .HasColumnType("timestamptz")
+                        .HasColumnName("first_withdraw_on");
+
+                    b.Property<decimal?>("FisrtDepositAmount")
+                        .HasColumnType("numeric")
+                        .HasColumnName("fisrt_deposit_amount");
+
+                    b.Property<DateOnly>("RecordedBy")
+                        .HasColumnType("date")
+                        .HasColumnName("recorded_by");
+
+                    b.Property<decimal>("TotalDepositAmount")
+                        .HasColumnType("numeric")
+                        .HasColumnName("total_deposit_amount");
+
+                    b.Property<decimal>("TotalWithdrawAmount")
+                        .HasColumnType("numeric")
+                        .HasColumnName("total_withdraw_amount");
+
+                    b.HasKey("PlayerCode")
+                        .HasName("pk_player_payment_overview");
+
+                    b.ToTable("player_payment_overview", "dbo");
+                });
+
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.PlayerProperty", b =>
                 {
                     b.Property<Guid>("BrandId")
