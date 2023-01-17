@@ -16,8 +16,6 @@ public class PlayerPaymentOverview
 
     public DateTime? FirstWithdrawOn { get; set; }
 
-    public decimal? FisrtDepositAmount { get; set; }
-
     public string PlayerCode { get; set; }
 
     public DateOnly RecordedBy { get; set; }
