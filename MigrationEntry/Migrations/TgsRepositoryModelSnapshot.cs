@@ -6434,10 +6434,6 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("timestamptz")
                         .HasColumnName("first_withdraw_on");
 
-                    b.Property<decimal?>("FisrtDepositAmount")
-                        .HasColumnType("numeric")
-                        .HasColumnName("fisrt_deposit_amount");
-
                     b.Property<DateOnly>("RecordedBy")
                         .HasColumnType("date")
                         .HasColumnName("recorded_by");
