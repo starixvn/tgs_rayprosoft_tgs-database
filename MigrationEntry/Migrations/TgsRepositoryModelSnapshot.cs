@@ -5893,6 +5893,10 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("text")
                         .HasColumnName("fill_type");
 
+                    b.Property<string>("Remark")
+                        .HasColumnType("text")
+                        .HasColumnName("remark");
+
                     b.HasKey("Id")
                         .HasName("pk_player_bucket_event_source");
 

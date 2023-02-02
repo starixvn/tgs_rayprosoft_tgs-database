@@ -28,5 +28,6 @@ public class PlayerBucketEventSourceMap : IEntityTypeConfiguration<PlayerBucketE
         _ = builder.Property(e => e.ChangeSets)
             .HasColumnType(ColumnTypes.Jsonb)
             .IsRequired();
+        _ = builder.Property(e => e.Remark);
     }
 }

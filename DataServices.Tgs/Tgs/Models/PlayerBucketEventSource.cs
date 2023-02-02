@@ -1,6 +1,6 @@
-﻿using System;
+﻿#nullable enable
 
-#nullable enable
+using System;
 
 namespace TGS.Core.DataServices.Tgs.Models;
 
@@ -19,4 +19,6 @@ public class PlayerBucketEventSource
     public string FillType { get; set; } = default!;
 
     public Guid Id { get; set; }
+
+    public string? Remark { get; set; }
 }
