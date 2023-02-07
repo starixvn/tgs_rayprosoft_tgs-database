@@ -5858,6 +5858,67 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.ToTable("player_buckets", "dbo");
                 });
 
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.PlayerBucketCleanForm", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<Guid>("BrandId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("brand_id");
+
+                    b.Property<Guid>("BucketAnchorId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("bucket_anchor_id");
+
+                    b.Property<decimal?>("CleaningBalance")
+                        .HasColumnType("numeric")
+                        .HasColumnName("cleaning_balance");
+
+                    b.Property<decimal?>("CleaningBucketAmount")
+                        .HasColumnType("numeric")
+                        .HasColumnName("cleaning_bucket_amount");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("timestamptz")
+                        .HasColumnName("created_on");
+
+                    b.Property<decimal>("CurrentBalance")
+                        .HasColumnType("numeric")
+                        .HasColumnName("current_balance");
+
+                    b.Property<decimal>("CurrentBucketAmount")
+                        .HasColumnType("numeric")
+                        .HasColumnName("current_bucket_amount");
+
+                    b.Property<Guid>("DepositFormId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("deposit_form_id");
+
+                    b.Property<string>("PlayerCode")
+                        .IsRequired()
+                        .HasColumnType("character varying(16)")
+                        .HasColumnName("player_code");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("status");
+
+                    b.HasKey("Id")
+                        .HasName("pk_player_bucket_clean_forms");
+
+                    b.HasIndex("BrandId")
+                        .HasDatabaseName("ix_player_bucket_clean_forms_brand_id");
+
+                    b.HasIndex("PlayerCode")
+                        .HasDatabaseName("ix_player_bucket_clean_forms_player_code");
+
+                    b.ToTable("player_bucket_clean_forms", "dbo");
+                });
+
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.PlayerBucketEventSource", b =>
                 {
                     b.Property<Guid>("Id")
@@ -10501,6 +10562,23 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasConstraintName("fk_player_buckets_players_player_code");
 
                     b.Navigation("Player");
+                });
+
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.PlayerBucketCleanForm", b =>
+                {
+                    b.HasOne("TGS.Core.DataServices.Tgs.Models.Brand", null)
+                        .WithMany()
+                        .HasForeignKey("BrandId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_player_bucket_clean_forms_brands");
+
+                    b.HasOne("TGS.Core.DataServices.Tgs.Models.Player", null)
+                        .WithMany()
+                        .HasForeignKey("PlayerCode")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_player_bucket_clean_forms_players");
                 });
 
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.PlayerFavoriteGame", b =>
