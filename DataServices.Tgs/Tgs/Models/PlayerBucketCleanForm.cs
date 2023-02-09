@@ -14,6 +14,8 @@ public class PlayerBucketCleanForm
 
     public decimal? CleaningBucketAmount { get; set; }
 
+    public decimal ClearWageringRequirementBalance { get; set; }
+
     public DateTime CreatedOn { get; set; }
 
     public decimal CurrentBalance { get; set; }
@@ -22,9 +24,13 @@ public class PlayerBucketCleanForm
 
     public Guid DepositFormId { get; set; }
 
+    public string? GameBalanceReturn { get; set; }
+
     public Guid Id { get; set; }
 
     public string PlayerCode { get; set; } = default!;
 
     public string Status { get; set; } = default!;
+
+    public Guid WalletId { get; set; }
 }
