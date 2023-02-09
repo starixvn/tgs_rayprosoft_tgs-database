@@ -5881,6 +5881,10 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("numeric")
                         .HasColumnName("cleaning_bucket_amount");
 
+                    b.Property<decimal>("ClearWageringRequirementBalance")
+                        .HasColumnType("numeric")
+                        .HasColumnName("clear_wagering_requirement_balance");
+
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("timestamptz")
                         .HasColumnName("created_on");
@@ -5897,6 +5901,10 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("deposit_form_id");
 
+                    b.Property<string>("GameBalanceReturn")
+                        .HasColumnType("jsonb")
+                        .HasColumnName("game_balance_return");
+
                     b.Property<string>("PlayerCode")
                         .IsRequired()
                         .HasColumnType("character varying(16)")
@@ -5906,6 +5914,10 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("status");
+
+                    b.Property<Guid>("WalletId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("wallet_id");
 
                     b.HasKey("Id")
                         .HasName("pk_player_bucket_clean_forms");
