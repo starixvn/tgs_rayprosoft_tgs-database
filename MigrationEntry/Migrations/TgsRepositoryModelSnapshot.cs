@@ -5858,6 +5858,32 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.ToTable("player_buckets", "dbo");
                 });
 
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.PlayerBucketCleanEventSource", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<string>("ChangeSets")
+                        .IsRequired()
+                        .HasColumnType("jsonb")
+                        .HasColumnName("change_sets");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("timestamptz")
+                        .HasColumnName("created_on");
+
+                    b.Property<Guid>("FormId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("form_id");
+
+                    b.HasKey("Id")
+                        .HasName("pk_player_bucket_clean_event_source");
+
+                    b.ToTable("player_bucket_clean_event_source", "dbo");
+                });
+
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.PlayerBucketCleanForm", b =>
                 {
                     b.Property<Guid>("Id")
@@ -5909,6 +5935,10 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .IsRequired()
                         .HasColumnType("character varying(16)")
                         .HasColumnName("player_code");
+
+                    b.Property<Guid>("SnapshotId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("snapshot_id");
 
                     b.Property<string>("Status")
                         .IsRequired()

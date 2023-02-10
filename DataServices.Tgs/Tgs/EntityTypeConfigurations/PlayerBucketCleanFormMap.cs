@@ -39,6 +39,8 @@ internal class PlayerBucketCleanFormMap : IEntityTypeConfiguration<PlayerBucketC
         _ = builder.Property(form => form.CreatedOn)
             .IsRequired()
             .HasColumnType("timestamptz");
+        _ = builder.Property(form => form.SnapshotId)
+            .IsRequired();
 
         _ = builder.HasOne<Brand>()
             .WithMany()
