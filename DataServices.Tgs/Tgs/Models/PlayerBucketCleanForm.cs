@@ -30,6 +30,8 @@ public class PlayerBucketCleanForm
 
     public string PlayerCode { get; set; } = default!;
 
+    public Guid SnapshotId { get; set; }
+
     public string Status { get; set; } = default!;
 
     public Guid WalletId { get; set; }
