@@ -4504,6 +4504,53 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.ToTable("market_types", "dbo");
                 });
 
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.OfflineDepositEvent", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<decimal>("BonusAmount")
+                        .HasColumnType("numeric")
+                        .HasColumnName("bonus_amount");
+
+                    b.Property<Guid>("BrandId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("brand_id");
+
+                    b.Property<decimal>("BucketAmount")
+                        .HasColumnType("numeric")
+                        .HasColumnName("bucket_amount");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("timestamptz")
+                        .HasColumnName("created_on");
+
+                    b.Property<Guid>("DepositFormId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("deposit_form_id");
+
+                    b.Property<string>("PlayerCode")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("player_code");
+
+                    b.Property<Guid>("PromotionId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("promotion_id");
+
+                    b.Property<string>("Settings")
+                        .IsRequired()
+                        .HasColumnType("jsonb")
+                        .HasColumnName("settings");
+
+                    b.HasKey("Id")
+                        .HasName("pk_offline_deposit_events");
+
+                    b.ToTable("offline_deposit_events", "dbo");
+                });
+
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.OfflineLoginRewardEvent", b =>
                 {
                     b.Property<Guid>("Id")
