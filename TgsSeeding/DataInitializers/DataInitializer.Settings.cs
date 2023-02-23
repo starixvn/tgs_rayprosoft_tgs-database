@@ -279,8 +279,14 @@ public partial class DataInitializer
                     {
                         SubMenus = new[]
                         {
-                            new MenuSetting("View"),
-                            new MenuSetting("ViewGameAction")
+                            new MenuSetting("View")
+                        }
+                    },
+                    new MenuSetting("OpenRound")
+                    {
+                        SubMenus = new[]
+                        {
+                            new MenuSetting("View")
                         }
                     },
                     new MenuSetting("AgentContributionReport")
