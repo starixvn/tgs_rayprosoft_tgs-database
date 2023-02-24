@@ -7768,13 +7768,9 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("timestamptz")
                         .HasColumnName("created_on");
 
-                    b.Property<DateTimeOffset>("DistributeFrom")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("distribute_from");
-
-                    b.Property<DateTimeOffset>("DistributeTo")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("distribute_to");
+                    b.Property<DateOnly>("DistributeDate")
+                        .HasColumnType("date")
+                        .HasColumnName("distribute_date");
 
                     b.Property<string>("PlayerCode")
                         .IsRequired()
