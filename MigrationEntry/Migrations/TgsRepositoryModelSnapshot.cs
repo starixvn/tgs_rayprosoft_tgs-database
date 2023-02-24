@@ -7721,6 +7721,10 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("numeric(18,6)")
                         .HasColumnName("bucket_amount");
 
+                    b.Property<DateTimeOffset>("ReportDateTime")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("report_date_time");
+
                     b.Property<string>("Settings")
                         .IsRequired()
                         .ValueGeneratedOnAdd()
@@ -7764,9 +7768,13 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("timestamptz")
                         .HasColumnName("created_on");
 
-                    b.Property<DateOnly>("DistributeDate")
-                        .HasColumnType("date")
-                        .HasColumnName("distribute_date");
+                    b.Property<DateTimeOffset>("DistributeFrom")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("distribute_from");
+
+                    b.Property<DateTimeOffset>("DistributeTo")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("distribute_to");
 
                     b.Property<string>("PlayerCode")
                         .IsRequired()
@@ -7812,6 +7820,20 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.Property<string>("PlayerCode")
                         .HasColumnType("text")
                         .HasColumnName("player_code");
+
+                    b.Property<decimal>("Bonus")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("bonus");
+
+                    b.Property<decimal>("BucketAmount")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("bucket_amount");
+
+                    b.Property<DateTimeOffset>("ReportDateTime")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("report_date_time");
 
                     b.Property<string>("Settings")
                         .IsRequired()

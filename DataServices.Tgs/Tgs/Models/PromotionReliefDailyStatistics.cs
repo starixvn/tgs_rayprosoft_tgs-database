@@ -15,4 +15,10 @@ public class PromotionReliefDailyStatistics
     public string Settings { get; set; } = default!;
 
     public decimal TotalWinLoss { get; set; }
+
+    public decimal Bonus { get; set; }
+
+    public decimal BucketAmount { get; set; }
+
+    public DateTimeOffset ReportDateTime { get; set; }
 }

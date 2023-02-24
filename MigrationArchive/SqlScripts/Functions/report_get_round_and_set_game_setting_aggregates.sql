@@ -20,6 +20,7 @@ AS $$
 		from bet.rounds r
 		left join dbo.brand_games bg on bg.brand_id = r.brand_id and bg.game_id = r.game_id
 		where r.closed_on >= _from and r.closed_on < _to and r.reopened_on is null
+		and r.effective_betting_percentage is null
 		),
 		update_rounds as (
 		  UPDATE bet.rounds r SET effective_betting_percentage = br.effective_betting_percentage

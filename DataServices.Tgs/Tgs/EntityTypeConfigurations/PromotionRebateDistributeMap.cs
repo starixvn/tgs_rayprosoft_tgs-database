@@ -12,7 +12,9 @@ internal class PromotionRebateDistributeMap : IEntityTypeConfiguration<Promotion
 
         _ = builder.HasKey(prd => prd.Id);
 
-        _ = builder.Property(prd => prd.DistributeDate)
+        _ = builder.Property(prd => prd.DistributeFrom)
+            .IsRequired();
+        _ = builder.Property(prd => prd.DistributeTo)
             .IsRequired();
         _ = builder.Property(prd => prd.BrandId)
             .IsRequired();

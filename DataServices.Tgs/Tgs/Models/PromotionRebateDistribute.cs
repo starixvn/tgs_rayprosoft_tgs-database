@@ -12,7 +12,9 @@ public class PromotionRebateDistribute
 
     public DateTime CreatedOn { get; set; }
 
-    public DateOnly DistributeDate { get; set; }
+    public DateTimeOffset DistributeFrom { get; set; }
+
+    public DateTimeOffset DistributeTo { get; set; }
 
     public Guid Id { get; set; }
 
