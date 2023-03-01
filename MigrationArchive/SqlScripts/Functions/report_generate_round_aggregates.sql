@@ -70,11 +70,6 @@ AS $$
 		INSERT INTO report.round_aggregates (brand_id,agent_id,player_code,game_provider_id,game_type,hour,minute,bet_amount,valid_bet_amount,original_turnover,turnover,win_loss,report_date,created_on,game_id)
 		SELECT brand_id,agent_id,player_code,game_provider_id,game_type,hour,minute,bet_amount,valid_bet_amount,original_turnover,turnover,win_loss,report_date,created_on,game_id
 		FROM rows
-		),
-		update_rounds AS(
-		UPDATE bet.rounds r SET effective_betting_percentage = CASE WHEN rounds.brand_game_effective_betting_percentage is not null THEN rounds.brand_game_effective_betting_percentage ELSE 100 END 
-		FROM rounds
-		WHERE r.id = rounds.id AND rounds.round_effective_betting_percentage is null
 		)
 
 		SELECT

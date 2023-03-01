@@ -21,4 +21,6 @@ public class PromotionRebateDailyStatistics
     public string Settings { get; set; } = default!;
 
     public decimal TotalTurnover { get; set; }
+
+    public DateTimeOffset ReportDateTime { get; set; }
 }
