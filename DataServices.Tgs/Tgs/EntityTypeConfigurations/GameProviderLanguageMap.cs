@@ -17,7 +17,7 @@ internal class GameProviderLanguageMap : IEntityTypeConfiguration<GameProviderLa
             .HasMaxLength(6);
 
         _ = builder.Property(e => e.GameProviderCultureCode)
-            .HasMaxLength(6)
+            .HasMaxLength(8)
             .IsRequired();
 
         _ = builder

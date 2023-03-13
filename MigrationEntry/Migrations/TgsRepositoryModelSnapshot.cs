@@ -4133,8 +4133,8 @@ namespace TGS.Core.DataServices.Tgs.Migrations
 
                     b.Property<string>("GameProviderCultureCode")
                         .IsRequired()
-                        .HasMaxLength(6)
-                        .HasColumnType("character varying(6)")
+                        .HasMaxLength(8)
+                        .HasColumnType("character varying(8)")
                         .HasColumnName("game_provider_culture_code");
 
                     b.HasKey("GameProviderId", "CultureCode")
