@@ -29,8 +29,8 @@
     <PackageReference Include="PhoenixToolkits.NuGet.BuildTools" Version="0.0.2">
       <PrivateAssets>All</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
     <PackageReference Include="StackExchange.Redis" Version="2.6.66" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.23.1" />
     <PackageReference Include="TGS.Core.Infrastructures.Json" Version="0.0.1" />
     <PackageReference Include="Tgs.Logging" Version="0.0.19" />
