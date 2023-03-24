@@ -36,7 +36,6 @@
     <Compile Remove="Redis\RedisCoreConnection.cs" />
     <Compile Remove="Redis\RedisPublisher.cs" />
     <Compile Remove="Redis\RedisSubscriber.cs" />
-    <PackageReference Include="ClosedXML" Version="0.95.4" />
     <PackageReference Include="Microsoft.IO.RecyclableMemoryStream" Version="2.2.1" />
     <PackageReference Include="StackExchange.Redis" Version="2.6.66" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.23.1" />

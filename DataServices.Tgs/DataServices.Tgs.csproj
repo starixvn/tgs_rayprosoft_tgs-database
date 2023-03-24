@@ -3,7 +3,7 @@
   <PropertyGroup>
     <RootNamespace>TGS.Core.DataServices</RootNamespace>
     <PackageId>Tgs.Core</PackageId>
-    <Version>1.0.17</Version>
+    <Version>1.0.18</Version>
     <Authors>Raypro</Authors>
     <Product>Tgs.Core</Product>
     <PackageProjectUrl>https://gitlab.com/rayprosoft/tgs-database</PackageProjectUrl>
@@ -20,7 +20,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="ClosedXML" Version="0.95.4" />
     <PackageReference Include="Dapper" Version="2.0.123" />
     <PackageReference Include="EFCore.NamingConventions" Version="6.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="6.0.9" />
@@ -30,10 +29,9 @@
     <PackageReference Include="PhoenixToolkits.NuGet.BuildTools" Version="0.0.2">
       <PrivateAssets>All</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
     <PackageReference Include="StackExchange.Redis" Version="2.6.66" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.23.1" />
-    <PackageReference Include="TGS.Core.Infrastructures.Json" Version="0.0.1" />
     <PackageReference Include="Tgs.Logging" Version="0.0.19" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.9">
