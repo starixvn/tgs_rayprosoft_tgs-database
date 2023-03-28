@@ -330,6 +330,13 @@ public partial class DataInitializer
                         {
                             new MenuSetting("View")
                         }
+                    },
+                    new MenuSetting("WinlossReport")
+                    {
+                        SubMenus = new[]
+                        {
+                            new MenuSetting("View")
+                        }
                     }
                 }
             },
