@@ -36,4 +36,6 @@ public class RoundAggregate
     public decimal ValidBetAmount { get; set; }
 
     public decimal WinLoss { get; set; }
+
+    public int RoundCount { get; set; }
 }

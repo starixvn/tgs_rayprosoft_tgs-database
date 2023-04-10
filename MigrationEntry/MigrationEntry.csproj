@@ -30,10 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Remove="SqlScripts\**" />
-    <EmbeddedResource Remove="SqlScripts\**" />
     <EmbeddedResource Remove="Tgs\SqlScripts\**" />
-    <None Remove="SqlScripts\**" />
   </ItemGroup>
 
   <ItemGroup>

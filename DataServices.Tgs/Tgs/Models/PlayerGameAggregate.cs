@@ -54,4 +54,6 @@ public class PlayerGameAggregate
     public decimal VipVirtualSportsRebatePercentage { get; set; }
 
     public decimal WinLoss { get; set; }
+
+    public int RoundCount { get; set; }
 }
