@@ -11,14 +11,6 @@ namespace TGS.Core.DataServices.Tgs.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            var assembly = Assembly.GetExecutingAssembly();
-
-            migrationBuilder.SqlResource(assembly,
-                string.Format(MigrationConsts._FunctionSqlFormat, "report_generate_round_aggregates"));
-
-            migrationBuilder.SqlResource(assembly,
-                string.Format(MigrationConsts._FunctionSqlFormat, "report_get_round_and_set_game_setting_aggregates"));
-
             migrationBuilder.AddColumn<int>(
                 name: "round_count",
                 schema: "report",
@@ -42,6 +34,14 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                 type: "integer",
                 nullable: false,
                 defaultValue: 0);
+
+            var assembly = Assembly.GetExecutingAssembly();
+
+            migrationBuilder.SqlResource(assembly,
+                string.Format(MigrationConsts._FunctionSqlFormat, "report_generate_round_aggregates"));
+
+            migrationBuilder.SqlResource(assembly,
+                string.Format(MigrationConsts._FunctionSqlFormat, "report_get_round_and_set_game_setting_aggregates"));
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
