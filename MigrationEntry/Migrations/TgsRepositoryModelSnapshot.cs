@@ -5246,6 +5246,10 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("report_date_time");
 
+                    b.Property<int>("RoundCount")
+                        .HasColumnType("integer")
+                        .HasColumnName("round_count");
+
                     b.Property<decimal>("SystemAdjustAmount")
                         .HasPrecision(18, 6)
                         .HasColumnType("numeric(18,6)")
@@ -6413,6 +6417,10 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.Property<DateTimeOffset?>("ReportDateTime")
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("report_date_time");
+
+                    b.Property<int>("RoundCount")
+                        .HasColumnType("integer")
+                        .HasColumnName("round_count");
 
                     b.Property<decimal>("Turnover")
                         .HasPrecision(18, 6)
@@ -8476,6 +8484,10 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.Property<DateTimeOffset>("ReportDate")
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("report_date");
+
+                    b.Property<int>("RoundCount")
+                        .HasColumnType("integer")
+                        .HasColumnName("round_count");
 
                     b.Property<decimal>("Turnover")
                         .HasPrecision(18, 6)

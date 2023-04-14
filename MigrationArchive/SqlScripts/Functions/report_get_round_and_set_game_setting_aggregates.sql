@@ -24,7 +24,7 @@ AS $$
 		),
 		update_rounds as (
 		  UPDATE bet.rounds r SET effective_betting_percentage = br.effective_betting_percentage
-		  FROM rounds br where r.id in (br.round_id)
+		  FROM rounds br where r.id = br.round_id
 		)
 
 		select
