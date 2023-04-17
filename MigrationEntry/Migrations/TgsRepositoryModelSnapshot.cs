@@ -5143,6 +5143,11 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("numeric(18,6)")
                         .HasColumnName("bet_amount");
 
+                    b.Property<decimal>("BirthdayAmount")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("birthday_amount");
+
                     b.Property<decimal>("BonusAdjustAmount")
                         .HasPrecision(18, 6)
                         .HasColumnType("numeric(18,6)")
@@ -5250,6 +5255,11 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("integer")
                         .HasColumnName("round_count");
 
+                    b.Property<decimal>("SeasonAmount")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("season_amount");
+
                     b.Property<decimal>("SystemAdjustAmount")
                         .HasPrecision(18, 6)
                         .HasColumnType("numeric(18,6)")
@@ -5259,6 +5269,11 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasPrecision(18, 6)
                         .HasColumnType("numeric(18,6)")
                         .HasColumnName("turnover");
+
+                    b.Property<decimal>("UpgradeAmount")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("upgrade_amount");
 
                     b.Property<decimal>("ValidBetAmount")
                         .HasPrecision(18, 6)
