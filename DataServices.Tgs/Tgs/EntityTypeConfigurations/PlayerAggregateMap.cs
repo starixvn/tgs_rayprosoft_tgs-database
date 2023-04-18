@@ -117,6 +117,18 @@ internal class PlayerAggregateMap : IEntityTypeConfiguration<PlayerAggregate>
         _ = builder.Property(b => b.ChiefAgentDividendPercentage)
             .HasPrecision(18, 6);
 
+        _ = builder.Property(b => b.SeasonAmount)
+            .HasPrecision(18, 6)
+            .IsRequired();
+
+        _ = builder.Property(b => b.UpgradeAmount)
+            .HasPrecision(18, 6)
+            .IsRequired();
+
+        _ = builder.Property(b => b.BirthdayAmount)
+            .HasPrecision(18, 6)
+            .IsRequired();
+
         _ = builder.Property(c => c.AgentDividendPercentageTreeData)
             .HasColumnType("jsonb")
             .IsRequired(false);
