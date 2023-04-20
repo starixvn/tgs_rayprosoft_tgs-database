@@ -24,11 +24,8 @@ public partial class DataInitializer
         }
 
         var csvName = $"TgsSeeding.DataInitializers.Games.{gameProviderCode}.csv";
-        using var stream = type.Assembly.GetManifestResourceStream(csvName);
-        if (stream == null)
-        {
-            throw new FileNotFoundException($"Cannot find game setting file of '{gameProviderCode}'");
-        }
+        using var stream = type.Assembly.GetManifestResourceStream(csvName)
+            ?? throw new FileNotFoundException($"Cannot find game setting file of '{gameProviderCode}'");
 
         using var reader = new StreamReader(stream);
         using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
