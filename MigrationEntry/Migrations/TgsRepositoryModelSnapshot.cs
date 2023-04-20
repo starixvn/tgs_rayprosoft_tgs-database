@@ -8823,6 +8823,67 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.ToTable("station_letters", "dbo");
                 });
 
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.StationLetter2", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<Guid?>("ComeFrom")
+                        .HasColumnType("uuid")
+                        .HasColumnName("come_from");
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("content");
+
+                    b.Property<bool>("HaveRead")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(false)
+                        .HasColumnName("have_read");
+
+                    b.Property<string>("Quotation")
+                        .HasColumnType("text")
+                        .HasColumnName("quotation");
+
+                    b.Property<DateTime>("ReceivedOn")
+                        .HasColumnType("timestamptz")
+                        .HasColumnName("received_on");
+
+                    b.Property<string>("Receiver")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("receiver");
+
+                    b.Property<bool>("Replied")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(false)
+                        .HasColumnName("replied");
+
+                    b.Property<string>("Sender")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("sender");
+
+                    b.Property<DateTime>("SentOn")
+                        .HasColumnType("timestamptz")
+                        .HasColumnName("sent_on");
+
+                    b.Property<string>("Subject")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("subject");
+
+                    b.HasKey("Id")
+                        .HasName("pk_station_letter2");
+
+                    b.ToTable("station_letter2", "dbo");
+                });
+
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.StationLetterPlayer", b =>
                 {
                     b.Property<Guid>("StationLetterId")
