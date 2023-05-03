@@ -8884,6 +8884,52 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.ToTable("station_letter2", "dbo");
                 });
 
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.StationLetterDelivery", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<Guid?>("ComeFrom")
+                        .HasColumnType("uuid")
+                        .HasColumnName("come_from");
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("content");
+
+                    b.Property<string>("Receiver")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("receiver");
+
+                    b.Property<string>("ReceiverType")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("receiver_type");
+
+                    b.Property<string>("Sender")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("sender");
+
+                    b.Property<DateTime>("SentOn")
+                        .HasColumnType("timestamptz")
+                        .HasColumnName("sent_on");
+
+                    b.Property<string>("Subject")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("subject");
+
+                    b.HasKey("Id")
+                        .HasName("pk_station_letter_delivery_box");
+
+                    b.ToTable("station_letter_delivery_box", "dbo");
+                });
+
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.StationLetterPlayer", b =>
                 {
                     b.Property<Guid>("StationLetterId")
