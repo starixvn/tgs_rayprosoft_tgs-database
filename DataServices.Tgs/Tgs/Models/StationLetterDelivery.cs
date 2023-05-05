@@ -1,4 +1,6 @@
-﻿using System;
+﻿#nullable enable
+
+using System;
 
 namespace TGS.Core.DataServices.Tgs.Models;
 
@@ -10,7 +12,7 @@ public class StationLetterDelivery
 
     public Guid Id { get; set; }
 
-    public string Receiver { get; set; } = default!;
+    public string? Receiver { get; set; }
 
     public string ReceiverType { get; set; } = default!;
 

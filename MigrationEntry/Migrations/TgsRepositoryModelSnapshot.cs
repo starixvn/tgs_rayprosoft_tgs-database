@@ -8901,7 +8901,6 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnName("content");
 
                     b.Property<string>("Receiver")
-                        .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("receiver");
 
