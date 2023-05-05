@@ -16,8 +16,7 @@ internal class StationLetterDeliveryMap : IEntityTypeConfiguration<StationLetter
             .IsRequired();
         _ = builder.Property(sd => sd.ReceiverType)
             .IsRequired();
-        _ = builder.Property(sd => sd.Receiver)
-            .IsRequired();
+        _ = builder.Property(sd => sd.Receiver);
         _ = builder.Property(sd => sd.Subject)
             .IsRequired();
         _ = builder.Property(sd => sd.Content)
