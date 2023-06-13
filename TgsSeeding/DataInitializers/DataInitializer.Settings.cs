@@ -371,6 +371,13 @@ public partial class DataInitializer
                         {
                             new MenuSetting("View")
                         }
+                    },
+                    new MenuSetting("BalanceAdjustReport")
+                    {
+                        SubMenus = new[]
+                        {
+                            new MenuSetting("View")
+                        }
                     }
                 }
             },
