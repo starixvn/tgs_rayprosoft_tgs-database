@@ -12,6 +12,8 @@ public class StationLetterDelivery
 
     public Guid Id { get; set; }
 
+    public string Operator { get; set; } = default!;
+
     public string? Receiver { get; set; }
 
     public string ReceiverType { get; set; } = default!;

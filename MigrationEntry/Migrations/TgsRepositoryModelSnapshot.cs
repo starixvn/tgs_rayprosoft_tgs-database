@@ -8900,6 +8900,11 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("text")
                         .HasColumnName("content");
 
+                    b.Property<string>("Operator")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("operator");
+
                     b.Property<string>("Receiver")
                         .HasColumnType("text")
                         .HasColumnName("receiver");

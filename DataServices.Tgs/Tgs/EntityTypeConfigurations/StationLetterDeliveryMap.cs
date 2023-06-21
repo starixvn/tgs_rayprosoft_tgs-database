@@ -22,6 +22,8 @@ internal class StationLetterDeliveryMap : IEntityTypeConfiguration<StationLetter
         _ = builder.Property(sd => sd.Content)
             .IsRequired();
         _ = builder.Property(sd => sd.ComeFrom);
+        _ = builder.Property(sd => sd.Operator)
+            .IsRequired();
         _ = builder.Property(sd => sd.SentOn)
             .IsRequired()
             .HasColumnType("timestamptz");
