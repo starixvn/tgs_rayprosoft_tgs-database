@@ -7716,6 +7716,52 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.ToTable("promotion_players", "dbo");
                 });
 
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.PromotionPromoteDepositChannel", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<decimal>("Bonus")
+                        .HasColumnType("numeric")
+                        .HasColumnName("bonus");
+
+                    b.Property<decimal>("BucketAmount")
+                        .HasColumnType("numeric")
+                        .HasColumnName("bucket_amount");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("timestamptz")
+                        .HasColumnName("created_on");
+
+                    b.Property<Guid>("DistributePlanId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("distribute_plan_id");
+
+                    b.Property<Guid>("FormId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("form_id");
+
+                    b.Property<string>("PlayerCode")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("player_code");
+
+                    b.Property<Guid>("PromotionId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("promotion_id");
+
+                    b.Property<int>("VipLevel")
+                        .HasColumnType("integer")
+                        .HasColumnName("vip_level");
+
+                    b.HasKey("Id")
+                        .HasName("pk_promotion_promote_deposit_channels");
+
+                    b.ToTable("promotion_promote_deposit_channels", "dbo");
+                });
+
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.PromotionRebateDailyStatistics", b =>
                 {
                     b.Property<DateOnly>("ReportDate")
