@@ -25,5 +25,7 @@ internal class AccountMap : IEntityTypeConfiguration<Account>
         _ = builder.Property(a => a.UpdatedOn)
             .IsRequired()
             .HasColumnType("timestamptz");
+        _ = builder.Property(a => a.SnapshotId)
+            .IsRequired();
     }
 }

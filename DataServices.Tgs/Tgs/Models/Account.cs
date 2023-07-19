@@ -16,6 +16,8 @@ public class Account
 
     public string PasswordHash { get; set; } = default!;
 
+    public Guid SnapshotId { get; set; }
+
     public string System { get; set; } = default!;
 
     public DateTime UpdatedOn { get; set; }
