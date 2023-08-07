@@ -3385,6 +3385,92 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.ToTable("failed_game_record_operations", "bet");
                 });
 
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.Function", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("timestamptz")
+                        .HasColumnName("created_on");
+
+                    b.Property<string>("Features")
+                        .IsRequired()
+                        .HasColumnType("jsonb")
+                        .HasColumnName("features");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("name");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("status");
+
+                    b.Property<string>("System")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("system");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("type");
+
+                    b.Property<DateTime>("UpdatedOn")
+                        .HasColumnType("timestamptz")
+                        .HasColumnName("updated_on");
+
+                    b.HasKey("Id")
+                        .HasName("pk_functions");
+
+                    b.HasIndex("System")
+                        .HasDatabaseName("ix_functions_system");
+
+                    b.ToTable("functions", "dbo");
+                });
+
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.FunctionEventSource", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<string>("ChangeSets")
+                        .IsRequired()
+                        .HasColumnType("jsonb")
+                        .HasColumnName("change_sets");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("timestamptz")
+                        .HasColumnName("created_on");
+
+                    b.Property<Guid>("FunctionId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("function_id");
+
+                    b.Property<string>("System")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("system");
+
+                    b.HasKey("Id")
+                        .HasName("pk_function_event_sources");
+
+                    b.HasIndex("FunctionId")
+                        .HasDatabaseName("ix_function_event_sources_function_id");
+
+                    b.HasIndex("System")
+                        .HasDatabaseName("ix_function_event_sources_system");
+
+                    b.ToTable("function_event_sources", "dbo");
+                });
+
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.Game", b =>
                 {
                     b.Property<int>("Id")
@@ -9140,6 +9226,18 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.ToTable("sub_game_providers", "dbo");
                 });
 
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.System", b =>
+                {
+                    b.Property<string>("Name")
+                        .HasColumnType("text")
+                        .HasColumnName("name");
+
+                    b.HasKey("Name")
+                        .HasName("pk_systems");
+
+                    b.ToTable("systems", "dbo");
+                });
+
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.SystemLocalization", b =>
                 {
                     b.Property<string>("SystemCode")
@@ -10551,6 +10649,33 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("fk_distribute_register_events_promotions_promotion_id");
+                });
+
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.Function", b =>
+                {
+                    b.HasOne("TGS.Core.DataServices.Tgs.Models.System", null)
+                        .WithMany()
+                        .HasForeignKey("System")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_systems");
+                });
+
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.FunctionEventSource", b =>
+                {
+                    b.HasOne("TGS.Core.DataServices.Tgs.Models.Function", null)
+                        .WithMany()
+                        .HasForeignKey("FunctionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_functions");
+
+                    b.HasOne("TGS.Core.DataServices.Tgs.Models.System", null)
+                        .WithMany()
+                        .HasForeignKey("System")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_systems");
                 });
 
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.Game", b =>
