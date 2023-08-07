@@ -3428,6 +3428,9 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.HasKey("Id")
                         .HasName("pk_functions");
 
+                    b.HasAlternateKey("Name", "System")
+                        .HasName("ak_functions_name_system");
+
                     b.HasIndex("System")
                         .HasDatabaseName("ix_functions_system");
 
@@ -4310,6 +4313,58 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.ToTable("game_provider_languages", "dbo");
                 });
 
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.Group", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("name");
+
+                    b.Property<string>("System")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("system");
+
+                    b.HasKey("Id")
+                        .HasName("pk_groups");
+
+                    b.HasAlternateKey("Name", "System")
+                        .HasName("ak_groups_name_system");
+
+                    b.HasIndex("System")
+                        .HasDatabaseName("ix_groups_system");
+
+                    b.ToTable("groups", "dbo");
+                });
+
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.GroupUser", b =>
+                {
+                    b.Property<Guid>("GroupId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("group_id");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("text")
+                        .HasColumnName("user_id");
+
+                    b.Property<string>("System")
+                        .HasColumnType("text")
+                        .HasColumnName("system");
+
+                    b.HasKey("GroupId", "UserId", "System")
+                        .HasName("pk_group_users");
+
+                    b.HasIndex("System")
+                        .HasDatabaseName("ix_group_users_system");
+
+                    b.ToTable("group_users", "dbo");
+                });
+
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.Language", b =>
                 {
                     b.Property<string>("CultureCode")
@@ -5000,6 +5055,61 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasDatabaseName("ix_payment_method_channels_payment_id");
 
                     b.ToTable("payment_method_channels", "dbo");
+                });
+
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.Permission", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<string>("Action")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("action");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("timestamptz")
+                        .HasColumnName("created_on");
+
+                    b.Property<Guid>("FunctionId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("function_id");
+
+                    b.Property<string>("Identity")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("identity");
+
+                    b.Property<string>("IdentityType")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("identity_type");
+
+                    b.Property<int>("Order")
+                        .HasColumnType("integer")
+                        .HasColumnName("order");
+
+                    b.Property<string>("System")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("system");
+
+                    b.Property<Guid>("fk_functions")
+                        .HasColumnType("uuid")
+                        .HasColumnName("fk_functions");
+
+                    b.HasKey("Id")
+                        .HasName("pk_permissions");
+
+                    b.HasIndex("System")
+                        .HasDatabaseName("ix_permissions_system");
+
+                    b.HasIndex("fk_functions")
+                        .HasDatabaseName("ix_permissions_fk_functions");
+
+                    b.ToTable("permissions", "dbo");
                 });
 
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.PlatformCredit", b =>
@@ -10818,6 +10928,33 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.Navigation("Language");
                 });
 
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.Group", b =>
+                {
+                    b.HasOne("TGS.Core.DataServices.Tgs.Models.System", null)
+                        .WithMany()
+                        .HasForeignKey("System")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_systems");
+                });
+
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.GroupUser", b =>
+                {
+                    b.HasOne("TGS.Core.DataServices.Tgs.Models.Group", null)
+                        .WithMany()
+                        .HasForeignKey("GroupId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_groups");
+
+                    b.HasOne("TGS.Core.DataServices.Tgs.Models.System", null)
+                        .WithMany()
+                        .HasForeignKey("System")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_systems");
+                });
+
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.Licensee", b =>
                 {
                     b.HasOne("TGS.Core.DataServices.Tgs.Models.Reseller", "Reseller")
@@ -11000,6 +11137,23 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.Navigation("Method");
 
                     b.Navigation("Payment");
+                });
+
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.Permission", b =>
+                {
+                    b.HasOne("TGS.Core.DataServices.Tgs.Models.System", null)
+                        .WithMany()
+                        .HasForeignKey("System")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_systems");
+
+                    b.HasOne("TGS.Core.DataServices.Tgs.Models.Function", null)
+                        .WithMany()
+                        .HasForeignKey("fk_functions")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_permissions_functions_function_id");
                 });
 
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.PlatformCredit", b =>
