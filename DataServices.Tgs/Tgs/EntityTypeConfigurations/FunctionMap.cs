@@ -13,6 +13,7 @@ internal class FunctionMap : IEntityTypeConfiguration<Function>
         _ = builder.ToTable("functions");
 
         _ = builder.HasKey(f => f.Id);
+        _ = builder.HasAlternateKey(f => new { f.Name, f.System });
 
         _ = builder.Property(f => f.Name)
             .IsRequired();
