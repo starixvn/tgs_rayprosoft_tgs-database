@@ -3406,6 +3406,10 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("text")
                         .HasColumnName("name");
 
+                    b.Property<Guid>("SnapshotId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("snapshot_id");
+
                     b.Property<string>("Status")
                         .IsRequired()
                         .HasColumnType("text")
