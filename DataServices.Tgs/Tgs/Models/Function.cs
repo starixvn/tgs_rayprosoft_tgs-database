@@ -14,6 +14,8 @@ public class Function
 
     public string Name { get; set; } = default!;
 
+    public Guid SnapshotId { get; set; }
+
     public string Status { get; set; } = default!;
 
     public string System { get; set; } = default!;

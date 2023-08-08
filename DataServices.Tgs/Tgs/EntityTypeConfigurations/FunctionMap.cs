@@ -32,6 +32,8 @@ internal class FunctionMap : IEntityTypeConfiguration<Function>
         _ = builder.Property(f => f.UpdatedOn)
             .IsRequired()
             .HasColumnType("timestamptz");
+        _ = builder.Property(f => f.SnapshotId)
+            .IsRequired();
 
         _ = builder.HasOne<Models.System>()
             .WithMany()
