@@ -2009,6 +2009,23 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.ToTable("brand_bet_limits", "dbo");
                 });
 
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.BrandBucketTypes", b =>
+                {
+                    b.Property<Guid>("BrandId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("brand_id");
+
+                    b.Property<string>("BucketTypes")
+                        .IsRequired()
+                        .HasColumnType("jsonb")
+                        .HasColumnName("bucket_types");
+
+                    b.HasKey("BrandId")
+                        .HasName("pk_brand_bucket_types");
+
+                    b.ToTable("brand_bucket_types", "dbo");
+                });
+
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.BrandCommunication", b =>
                 {
                     b.Property<Guid>("Id")
@@ -10334,6 +10351,16 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.Navigation("BetLimit");
 
                     b.Navigation("Brand");
+                });
+
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.BrandBucketTypes", b =>
+                {
+                    b.HasOne("TGS.Core.DataServices.Tgs.Models.Brand", null)
+                        .WithMany()
+                        .HasForeignKey("BrandId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_brands");
                 });
 
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.BrandCommunication", b =>
