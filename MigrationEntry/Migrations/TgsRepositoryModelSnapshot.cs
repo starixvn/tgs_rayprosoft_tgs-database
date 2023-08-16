@@ -4365,6 +4365,10 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("created_on");
 
+                    b.Property<int>("GameId")
+                        .HasColumnType("integer")
+                        .HasColumnName("game_id");
+
                     b.Property<Guid>("GameProviderId")
                         .HasColumnType("uuid")
                         .HasColumnName("game_provider_id");

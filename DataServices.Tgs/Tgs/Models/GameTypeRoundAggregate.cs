@@ -12,6 +12,7 @@ public class GameTypeRoundAggregate
     public DateTime From { get; set; }
     public DateTime To { get; set; }
     public Guid GameProviderId { get; set; }
+    public int GameId { get; set; }
     public GameType GameType { get; set; }
     public decimal BetAmount { get; set; }
     public decimal OriginalTurnover { get; set; }

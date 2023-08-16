@@ -12,7 +12,7 @@ using TGS.Core.DataServices.Tgs;
 namespace TGS.Core.DataServices.Tgs.Migrations
 {
     [DbContext(typeof(TgsRepository))]
-    [Migration("20230816065913_AddGameTypeRoundAggregate")]
+    [Migration("20230816101612_AddGameTypeRoundAggregate")]
     partial class AddGameTypeRoundAggregate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -4366,6 +4366,10 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("created_on");
+
+                    b.Property<int>("GameId")
+                        .HasColumnType("integer")
+                        .HasColumnName("game_id");
 
                     b.Property<Guid>("GameProviderId")
                         .HasColumnType("uuid")

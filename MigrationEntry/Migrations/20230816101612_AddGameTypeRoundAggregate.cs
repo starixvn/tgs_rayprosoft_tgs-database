@@ -21,6 +21,7 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     to = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     vip_level = table.Column<int>(type: "integer", nullable: false),
                     game_provider_id = table.Column<Guid>(type: "uuid", nullable: false),
+                    game_id = table.Column<int>(type: "integer", nullable: false),
                     game_type = table.Column<short>(type: "smallint", nullable: false),
                     bet_amount = table.Column<decimal>(type: "numeric(18,6)", precision: 18, scale: 6, nullable: false),
                     original_turnover = table.Column<decimal>(type: "numeric(18,6)", precision: 18, scale: 6, nullable: false),
