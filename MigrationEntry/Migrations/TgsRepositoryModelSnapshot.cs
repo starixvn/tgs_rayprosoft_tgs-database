@@ -4334,6 +4334,82 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.ToTable("game_provider_languages", "dbo");
                 });
 
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.GameTypeRoundAggregate", b =>
+                {
+                    b.Property<Guid>("BrandId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("brand_id");
+
+                    b.Property<Guid?>("AgentId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("agent_id");
+
+                    b.Property<string>("PlayerCode")
+                        .HasColumnType("text")
+                        .HasColumnName("player_code");
+
+                    b.Property<DateTime>("From")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("from");
+
+                    b.Property<DateTime>("To")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("to");
+
+                    b.Property<decimal>("BetAmount")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("bet_amount");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_on");
+
+                    b.Property<Guid>("GameProviderId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("game_provider_id");
+
+                    b.Property<short>("GameType")
+                        .HasColumnType("smallint")
+                        .HasColumnName("game_type");
+
+                    b.Property<decimal>("OriginalTurnover")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("original_turnover");
+
+                    b.Property<int>("RoundCount")
+                        .HasColumnType("integer")
+                        .HasColumnName("round_count");
+
+                    b.Property<decimal>("Turnover")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("turnover");
+
+                    b.Property<decimal>("ValidBetAmount")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("valid_bet_amount");
+
+                    b.Property<int>("VipLevel")
+                        .HasColumnType("integer")
+                        .HasColumnName("vip_level");
+
+                    b.Property<decimal>("WinLoss")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("win_loss");
+
+                    b.HasKey("BrandId", "AgentId", "PlayerCode", "From", "To")
+                        .HasName("pk_game_type_round_aggregate_id");
+
+                    b.HasIndex("From", "To", "BrandId", "AgentId", "PlayerCode")
+                        .HasDatabaseName("ix_game_type_round_aggregate_multiple_keys");
+
+                    b.ToTable("game_type_round_aggregates", "report");
+                });
+
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.Group", b =>
                 {
                     b.Property<Guid>("Id")
