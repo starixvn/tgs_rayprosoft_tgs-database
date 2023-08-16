@@ -43,15 +43,5 @@ internal class GameTypeRoundAggregateMap : IEntityTypeConfiguration<GameTypeRoun
 
         _ = builder.Property(c => c.WinLoss)
             .HasPrecision(18, 6);
-
-        _ = builder.HasIndex(c => new
-            {
-                c.From,
-                c.To,
-                c.BrandId,
-                c.AgentId,
-                c.PlayerCode
-            })
-            .HasDatabaseName("ix_game_type_round_aggregate_multiple_keys");
     }
 }

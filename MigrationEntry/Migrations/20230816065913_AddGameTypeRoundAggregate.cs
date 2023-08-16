@@ -34,12 +34,6 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                 {
                     table.PrimaryKey("pk_game_type_round_aggregate_id", x => new { x.brand_id, x.agent_id, x.player_code, x.from, x.to });
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "ix_game_type_round_aggregate_multiple_keys",
-                schema: "report",
-                table: "game_type_round_aggregates",
-                columns: new[] { "from", "to", "brand_id", "agent_id", "player_code" });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

@@ -12,7 +12,7 @@ using TGS.Core.DataServices.Tgs;
 namespace TGS.Core.DataServices.Tgs.Migrations
 {
     [DbContext(typeof(TgsRepository))]
-    [Migration("20230816065138_AddGameTypeRoundAggregate")]
+    [Migration("20230816065913_AddGameTypeRoundAggregate")]
     partial class AddGameTypeRoundAggregate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -4405,9 +4405,6 @@ namespace TGS.Core.DataServices.Tgs.Migrations
 
                     b.HasKey("BrandId", "AgentId", "PlayerCode", "From", "To")
                         .HasName("pk_game_type_round_aggregate_id");
-
-                    b.HasIndex("From", "To", "BrandId", "AgentId", "PlayerCode")
-                        .HasDatabaseName("ix_game_type_round_aggregate_multiple_keys");
 
                     b.ToTable("game_type_round_aggregates", "report");
                 });
