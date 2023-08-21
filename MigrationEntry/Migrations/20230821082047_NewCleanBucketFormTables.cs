@@ -48,14 +48,14 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                 {
                     table.PrimaryKey("pk_player_bucket_clean_forms2", x => x.id);
                     table.ForeignKey(
-                        name: "fk_player_bucket_clean_forms_brands",
+                        name: "fk_player_bucket_clean_forms_brands2",
                         column: x => x.brand_id,
                         principalSchema: "dbo",
                         principalTable: "brands",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "fk_player_bucket_clean_forms_players",
+                        name: "fk_player_bucket_clean_forms_players2",
                         column: x => x.player_code,
                         principalSchema: "dbo",
                         principalTable: "players",
@@ -78,16 +78,6 @@ namespace TGS.Core.DataServices.Tgs.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "fk_player_bucket_clean_forms_brands",
-                schema: "dbo",
-                table: "player_bucket_clean_forms");
-
-            migrationBuilder.DropForeignKey(
-                name: "fk_player_bucket_clean_forms_players",
-                schema: "dbo",
-                table: "player_bucket_clean_forms");
-
             migrationBuilder.DropTable(
                 name: "player_bucket_clean_event_source2",
                 schema: "dbo");

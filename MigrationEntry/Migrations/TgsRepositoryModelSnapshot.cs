@@ -11587,14 +11587,14 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasForeignKey("BrandId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
-                        .HasConstraintName("fk_player_bucket_clean_forms_brands");
+                        .HasConstraintName("fk_player_bucket_clean_forms_brands2");
 
                     b.HasOne("TGS.Core.DataServices.Tgs.Models.Player", null)
                         .WithMany()
                         .HasForeignKey("PlayerCode")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
-                        .HasConstraintName("fk_player_bucket_clean_forms_players");
+                        .HasConstraintName("fk_player_bucket_clean_forms_players2");
                 });
 
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.PlayerFavoriteGame", b =>
