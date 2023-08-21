@@ -2853,6 +2853,70 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.ToTable("brand_payment_audit_logs", "dbo");
                 });
 
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.BrandPaymentAutoWithdraw", b =>
+                {
+                    b.Property<Guid>("BrandId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("brand_id");
+
+                    b.Property<decimal>("AmountUpperLimit")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("amount_upper_limit");
+
+                    b.Property<string>("BrandPaymentCandidates")
+                        .IsRequired()
+                        .HasColumnType("jsonb")
+                        .HasColumnName("brand_payment_candidates");
+
+                    b.Property<bool>("EnableAutoWithdraw")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(false)
+                        .HasColumnName("enable_auto_withdraw");
+
+                    b.Property<Guid>("SnapshotEventId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("snapshot_event_id");
+
+                    b.HasKey("BrandId")
+                        .HasName("pk_brand_payment_auto_withdraw");
+
+                    b.ToTable("brand_payment_auto_withdraw", "dbo");
+                });
+
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.BrandPaymentAutoWithdrawEventSource", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<Guid>("BrandId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("brand_id");
+
+                    b.Property<string>("ChangeSets")
+                        .IsRequired()
+                        .HasColumnType("jsonb")
+                        .HasColumnName("change_sets");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("timestamptz")
+                        .HasColumnName("created_on");
+
+                    b.Property<string>("ModifyUser")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("modify_user");
+
+                    b.HasKey("Id")
+                        .HasName("pk_brand_payment_auto_withdraw_event_source");
+
+                    b.ToTable("brand_payment_auto_withdraw_event_source", "dbo");
+                });
+
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.BrandPaymentPlayer", b =>
                 {
                     b.Property<Guid>("BrandPaymentId")
