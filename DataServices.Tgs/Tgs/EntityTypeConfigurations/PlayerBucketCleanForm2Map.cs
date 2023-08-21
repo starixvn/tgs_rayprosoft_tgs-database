@@ -47,12 +47,12 @@ internal class PlayerBucketCleanForm2Map : IEntityTypeConfiguration<PlayerBucket
         _ = builder.HasOne<Brand>()
             .WithMany()
             .HasForeignKey(form => form.BrandId)
-            .HasConstraintName("fk_player_bucket_clean_forms_brands")
+            .HasConstraintName("fk_player_bucket_clean_forms_brands2")
             .OnDelete(DeleteBehavior.Cascade);
         _ = builder.HasOne<Player>()
             .WithMany()
             .HasForeignKey(form => form.PlayerCode)
-            .HasConstraintName("fk_player_bucket_clean_forms_players")
+            .HasConstraintName("fk_player_bucket_clean_forms_players2")
             .OnDelete(DeleteBehavior.Cascade);
     }
 }
