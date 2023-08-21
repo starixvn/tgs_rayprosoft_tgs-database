@@ -16,7 +16,7 @@ AS $$
 		r.id "round_id",
 		r.player_code,
 		r.turnover,
-		CASE WHEN bg.effective_betting_percentage is null THEN 100.0 ELSE bg.effective_betting_percentage END AS effective_betting_percentage
+		coalesce(bg.effective_betting_percentage, 100.0) AS effective_betting_percentage
 		from bet.rounds r
 		left join dbo.brand_games bg on bg.brand_id = r.brand_id and bg.game_id = r.game_id
 		where r.closed_on >= _from and r.closed_on < _to and r.reopened_on is null

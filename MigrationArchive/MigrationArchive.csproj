@@ -49,11 +49,9 @@
     <None Remove="SqlScripts\Functions\promotion_update_amount_used.sql" />
     <None Remove="SqlScripts\Functions\report_generate_brand_game_provider_aggregate_by_closed_on.sql" />
     <None Remove="SqlScripts\Functions\report_generate_game_provider_aggregate_by_closed_on.sql" />
-    <None Remove="SqlScripts\Functions\report_generate_round_aggregates.sql" />
     <None Remove="SqlScripts\Functions\report_get_player_account_change_records.sql" />
     <None Remove="SqlScripts\Functions\report_get_player_first_deposit_details.sql" />
     <None Remove="SqlScripts\Functions\report_get_player_no_second_deposit_details.sql" />
-    <None Remove="SqlScripts\Functions\report_get_round_and_set_game_setting_aggregates.sql" />
     <None Remove="SqlScripts\Functions\wallet_get_balance.sql" />
     <None Remove="SqlScripts\Functions\wallet_update_wallet_balance.sql" />
     <None Remove="SqlScripts\Indexes\admin_logs.sql" />
@@ -126,11 +124,9 @@
     <EmbeddedResource Include="SqlScripts\Functions\promotion_update_amount_used.sql" />
     <EmbeddedResource Include="SqlScripts\Functions\report_generate_brand_game_provider_aggregate_by_closed_on.sql" />
     <EmbeddedResource Include="SqlScripts\Functions\report_generate_game_provider_aggregate_by_closed_on.sql" />
-    <EmbeddedResource Include="SqlScripts\Functions\report_generate_round_aggregates.sql" />
     <EmbeddedResource Include="SqlScripts\Functions\report_get_player_account_change_records.sql" />
     <EmbeddedResource Include="SqlScripts\Functions\report_get_player_first_deposit_details.sql" />
     <EmbeddedResource Include="SqlScripts\Functions\report_get_player_no_second_deposit_details.sql" />
-    <EmbeddedResource Include="SqlScripts\Functions\report_get_round_and_set_game_setting_aggregates.sql" />
     <EmbeddedResource Include="SqlScripts\Functions\wallet_get_balance.sql" />
     <EmbeddedResource Include="SqlScripts\Functions\wallet_update_wallet_balance.sql" />
     <EmbeddedResource Include="SqlScripts\Indexes\admin_logs.sql" />
