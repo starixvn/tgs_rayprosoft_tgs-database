@@ -23,6 +23,7 @@ internal class BrandPaymentAutoWithdrawEventSourceMap : IEntityTypeConfiguration
             .HasColumnType("timestamptz")
             .IsRequired();
 
-        _ = builder.Property(b => b.ModifyUser);
+        _ = builder.Property(b => b.ModifyUser)
+            .IsRequired();
     }
 }

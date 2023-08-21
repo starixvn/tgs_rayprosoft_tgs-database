@@ -12,7 +12,7 @@ using TGS.Core.DataServices.Tgs;
 namespace TGS.Core.DataServices.Tgs.Migrations
 {
     [DbContext(typeof(TgsRepository))]
-    [Migration("20230821062624_AddBrandPaymentAutoWithdrawTable")]
+    [Migration("20230821063003_AddBrandPaymentAutoWithdrawTable")]
     partial class AddBrandPaymentAutoWithdrawTable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
