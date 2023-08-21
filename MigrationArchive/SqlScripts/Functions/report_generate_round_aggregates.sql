@@ -42,7 +42,7 @@ AS $$
 		left join dbo.brand_games bg on bg.brand_id = r.brand_id and bg.game_id = r.game_id
 		WHERE r.closed_on >= _from and r.closed_on < _to and r.reopened_on is null
 		)
-		,rows AS (select
+		,roundRows AS (select
 		p.brand_id,
 		p.agent_id,
 		g.game_provider_id,
@@ -61,15 +61,16 @@ AS $$
 		ELSE r.turnover END) "turnover",
 		sum(r.win_loss) "win_loss",
 		_report_date "report_date",
-		_created_on "created_on"
+		_created_on "created_on",
+		count(1) "round_count"
 		from rounds r
 		join dbo.games g on r.game_id = g.id
 		join dbo.players p on r.player_code = p.player_code
 		group by p.brand_id, g.game_provider_id, p.player_code, p.agent_id, p.username,g.id,g.type),
 		insert_rows AS(
-		INSERT INTO report.round_aggregates (brand_id,agent_id,player_code,game_provider_id,game_type,hour,minute,bet_amount,valid_bet_amount,original_turnover,turnover,win_loss,report_date,created_on,game_id)
-		SELECT brand_id,agent_id,player_code,game_provider_id,game_type,hour,minute,bet_amount,valid_bet_amount,original_turnover,turnover,win_loss,report_date,created_on,game_id
-		FROM rows
+		INSERT INTO report.round_aggregates (brand_id,agent_id,player_code,game_provider_id,game_type,hour,minute,bet_amount,valid_bet_amount,original_turnover,turnover,win_loss,report_date,created_on,game_id,round_count)
+		SELECT brand_id,agent_id,player_code,game_provider_id,game_type,hour,minute,bet_amount,valid_bet_amount,original_turnover,turnover,win_loss,report_date,created_on,game_id,round_count
+		FROM roundRows
 		)
 
 		SELECT
@@ -88,6 +89,6 @@ AS $$
 		turnover "Turnover",
 		win_loss "WinLoss",
 		report_date "ReportDate"
-		from rows;
+		from roundRows;
 	END;
 	$$
