@@ -6377,6 +6377,32 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.ToTable("player_bucket_clean_event_source", "dbo");
                 });
 
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.PlayerBucketCleanEventSource2", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<string>("ChangeSets")
+                        .IsRequired()
+                        .HasColumnType("jsonb")
+                        .HasColumnName("change_sets");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("timestamptz")
+                        .HasColumnName("created_on");
+
+                    b.Property<Guid>("FormId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("form_id");
+
+                    b.HasKey("Id")
+                        .HasName("pk_player_bucket_clean_event_source2");
+
+                    b.ToTable("player_bucket_clean_event_source2", "dbo");
+                });
+
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.PlayerBucketCleanForm", b =>
                 {
                     b.Property<Guid>("Id")
@@ -6452,6 +6478,80 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasDatabaseName("ix_player_bucket_clean_forms_player_code");
 
                     b.ToTable("player_bucket_clean_forms", "dbo");
+                });
+
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.PlayerBucketCleanForm2", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<Guid>("BrandId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("brand_id");
+
+                    b.Property<decimal?>("CleaningBalance")
+                        .HasColumnType("numeric")
+                        .HasColumnName("cleaning_balance");
+
+                    b.Property<string>("CleaningBucketAmounts")
+                        .HasColumnType("jsonb")
+                        .HasColumnName("cleaning_bucket_amounts");
+
+                    b.Property<decimal>("ClearWageringRequirementBalance")
+                        .HasColumnType("numeric")
+                        .HasColumnName("clear_wagering_requirement_balance");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("timestamptz")
+                        .HasColumnName("created_on");
+
+                    b.Property<decimal>("CurrentBalance")
+                        .HasColumnType("numeric")
+                        .HasColumnName("current_balance");
+
+                    b.Property<string>("CurrentBucketAmounts")
+                        .IsRequired()
+                        .HasColumnType("jsonb")
+                        .HasColumnName("current_bucket_amounts");
+
+                    b.Property<Guid>("DepositFormId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("deposit_form_id");
+
+                    b.Property<string>("GameBalanceReturn")
+                        .HasColumnType("jsonb")
+                        .HasColumnName("game_balance_return");
+
+                    b.Property<string>("PlayerCode")
+                        .IsRequired()
+                        .HasColumnType("character varying(16)")
+                        .HasColumnName("player_code");
+
+                    b.Property<Guid>("SnapshotId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("snapshot_id");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("status");
+
+                    b.Property<Guid>("WalletId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("wallet_id");
+
+                    b.HasKey("Id")
+                        .HasName("pk_player_bucket_clean_forms2");
+
+                    b.HasIndex("BrandId")
+                        .HasDatabaseName("ix_player_bucket_clean_forms2_brand_id");
+
+                    b.HasIndex("PlayerCode")
+                        .HasDatabaseName("ix_player_bucket_clean_forms2_player_code");
+
+                    b.ToTable("player_bucket_clean_forms2", "dbo");
                 });
 
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.PlayerBucketEventSource", b =>
@@ -11400,6 +11500,23 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                 });
 
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.PlayerBucketCleanForm", b =>
+                {
+                    b.HasOne("TGS.Core.DataServices.Tgs.Models.Brand", null)
+                        .WithMany()
+                        .HasForeignKey("BrandId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_player_bucket_clean_forms_brands");
+
+                    b.HasOne("TGS.Core.DataServices.Tgs.Models.Player", null)
+                        .WithMany()
+                        .HasForeignKey("PlayerCode")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_player_bucket_clean_forms_players");
+                });
+
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.PlayerBucketCleanForm2", b =>
                 {
                     b.HasOne("TGS.Core.DataServices.Tgs.Models.Brand", null)
                         .WithMany()
