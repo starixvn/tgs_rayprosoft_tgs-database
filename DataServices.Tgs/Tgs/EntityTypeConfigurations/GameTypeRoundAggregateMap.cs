@@ -12,11 +12,14 @@ internal class GameTypeRoundAggregateMap : IEntityTypeConfiguration<GameTypeRoun
     {
         _ = builder.ToTable("game_type_round_aggregates", Consts.ReportSchema);
 
-        _ = builder.HasKey(c => new { c.BrandId, c.AgentId, c.PlayerCode, c.From, c.To })
+        _ = builder.HasKey(c => new { c.BrandId, c.GameId, c.PlayerCode, c.From, c.To })
             .HasName("pk_game_type_round_aggregate_id");
 
         _ = builder.Property(c => c.BrandId)
             .IsRequired();
+
+        _ = builder.Property(c => c.AgentId)
+            .IsRequired(false);
 
         _ = builder.Property(c => c.PlayerCode)
             .IsRequired();

@@ -4404,9 +4404,9 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("brand_id");
 
-                    b.Property<Guid?>("AgentId")
-                        .HasColumnType("uuid")
-                        .HasColumnName("agent_id");
+                    b.Property<int>("GameId")
+                        .HasColumnType("integer")
+                        .HasColumnName("game_id");
 
                     b.Property<string>("PlayerCode")
                         .HasColumnType("text")
@@ -4420,6 +4420,10 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("to");
 
+                    b.Property<Guid?>("AgentId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("agent_id");
+
                     b.Property<decimal>("BetAmount")
                         .HasPrecision(18, 6)
                         .HasColumnType("numeric(18,6)")
@@ -4428,10 +4432,6 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("created_on");
-
-                    b.Property<int>("GameId")
-                        .HasColumnType("integer")
-                        .HasColumnName("game_id");
 
                     b.Property<Guid>("GameProviderId")
                         .HasColumnType("uuid")
@@ -4469,7 +4469,7 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("numeric(18,6)")
                         .HasColumnName("win_loss");
 
-                    b.HasKey("BrandId", "AgentId", "PlayerCode", "From", "To")
+                    b.HasKey("BrandId", "GameId", "PlayerCode", "From", "To")
                         .HasName("pk_game_type_round_aggregate_id");
 
                     b.ToTable("game_type_round_aggregates", "report");
