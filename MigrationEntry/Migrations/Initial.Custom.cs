@@ -5,9 +5,9 @@ using Tgs.Migrations;
 
 namespace TGS.Core.DataServices.Tgs.Migrations;
 
-public partial class Initial
+internal static class InitScripts
 {
-    private static void InitAfterRun(MigrationBuilder migrationBuilder)
+    public static void InitAfterRun(MigrationBuilder migrationBuilder)
     {
         var assembly = Assembly.GetExecutingAssembly();
 
