@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
@@ -8,6 +7,785 @@ namespace TGS.Core.DataServices.Tgs.Migrations
 {
     public partial class Merge20230821 : Migration
     {
+        protected override void Down(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.DropTable(
+                name: "account_event_sources",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "accounts",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "adjust_agent_records",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "adjust_player_records",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "adjust_transfer_records",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "admin_logs",
+                schema: "log");
+
+            migrationBuilder.DropTable(
+                name: "agent_audit_logs",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "agent_bank_infos",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "agent_banks",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "agent_daily_marketing_statistics",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "agent_daily_payment_statistics",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "agent_dividend_conditions",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "agent_dividend_multiple_layers",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "agent_domains",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "agent_login_records",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "agent_transactions",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "aggregate_execution_time",
+                schema: "report");
+
+            migrationBuilder.DropTable(
+                name: "announcements",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "api_logs",
+                schema: "log");
+
+            migrationBuilder.DropTable(
+                name: "background_payment_statistics_settings",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "banners",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "brand_agent_dividend_conditions",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "brand_all_agent_game_type_conditions",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "brand_all_agent_game_types",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "brand_all_agents",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "brand_bet_limits",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "brand_bucket_types",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "brand_communications",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "brand_currencies",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "brand_daily_payment_statistics",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "brand_domains",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "brand_game_provider_aggregate_audit_logs",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "brand_game_provider_aggregate_records",
+                schema: "report");
+
+            migrationBuilder.DropTable(
+                name: "brand_game_provider_aggregates",
+                schema: "report");
+
+            migrationBuilder.DropTable(
+                name: "brand_game_provider_schedules",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "brand_group_game_provider_bet_limits",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "brand_group_games",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "brand_languages",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "brand_live_chats",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "brand_maintenance",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "brand_payment_audit_logs",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "brand_payment_auto_withdraw",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "brand_payment_auto_withdraw_event_source",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "brand_payment_players",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "brand_payment_vip_levels",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "brand_player_bankinfo_check_flags",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "deposit_accumulate_roulette_events",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "deposit_accumulate_roulette_game_events",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "deposit_form_event_source",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "deposit_forms",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "distribute_register_events",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "failed_game_record_operations",
+                schema: "bet");
+
+            migrationBuilder.DropTable(
+                name: "function_event_sources",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "game_actions",
+                schema: "bet");
+
+            migrationBuilder.DropTable(
+                name: "game_player_transform_idnlive",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "game_provider_aggregate_audit_logs",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "game_provider_aggregate_records",
+                schema: "report");
+
+            migrationBuilder.DropTable(
+                name: "game_provider_aggregates",
+                schema: "report");
+
+            migrationBuilder.DropTable(
+                name: "game_provider_currencies",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "game_provider_fund_transfer_transactions",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "game_provider_languages",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "game_type_round_aggregates",
+                schema: "report");
+
+            migrationBuilder.DropTable(
+                name: "group_users",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "licensee_bet_limits",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "licensee_currencies",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "licensee_game_providers",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "licensee_languages",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "localized_strings",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "log_records",
+                schema: "log");
+
+            migrationBuilder.DropTable(
+                name: "marketing_report_daily_aggregates",
+                schema: "report");
+
+            migrationBuilder.DropTable(
+                name: "marketing_statistics_settings",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "offline_deposit_events",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "offline_login_reward_events",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "payment_handling_fees",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "permissions",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "platform_pay_records",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "player_aggregates",
+                schema: "report");
+
+            migrationBuilder.DropTable(
+                name: "player_all_agent_rebate_contributors",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "player_all_agent_rebate_records",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "player_all_agent_rebates",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "player_audit_logs",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "player_authentication_forms",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "player_bank_info_tags",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "player_bankinfo_attributions",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "player_bonus_aggregates",
+                schema: "report");
+
+            migrationBuilder.DropTable(
+                name: "player_bucket_clean_event_source",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "player_bucket_clean_event_source2",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "player_bucket_clean_forms",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "player_bucket_clean_forms2",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "player_bucket_event_source",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "player_bucket_histories",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "player_bucket_migrations",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "player_buckets",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "player_daily_gaming_statistics",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "player_daily_payment_statistics",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "player_daily_register_statistics",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "player_favorite_games",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "player_game_rebate_aggregates",
+                schema: "report");
+
+            migrationBuilder.DropTable(
+                name: "player_game_settings",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "player_identity",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "player_ip_records",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "player_login_records",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "player_parents",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "player_payment_overview",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "player_properties",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "player_rebates",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "player_sports_bet_limits",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "player_tags",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "player_vip_level_adjust_records",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "player_vip_level_aggregates",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "player_vip_level_birthday_promotions",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "player_vip_level_season_promotions",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "player_vip_level_snapshots",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "player_vip_level_upgrade_promotions",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "player_vip_level_upgrade_records",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "promotion_distribute_logs",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "promotion_distribute_plans",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "promotion_distributes",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "promotion_event_source",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "promotion_game_providers",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "promotion_groups",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "promotion_participants",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "promotion_players",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "promotion_promote_deposit_channels",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "promotion_rebate_daily_statistics",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "promotion_rebate_distributes",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "promotion_relief_daily_statistics",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "promotion_relief_distributes",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "promotion_types",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "promotion_vip_levels",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "rebate_promotion_join_players",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "relief_promotion_join_players",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "reseller_bet_limits",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "reseller_currencies",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "reseller_game_providers",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "reseller_languages",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "roulette_sign_in_events",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "round_aggregates",
+                schema: "report");
+
+            migrationBuilder.DropTable(
+                name: "round_details",
+                schema: "bet");
+
+            migrationBuilder.DropTable(
+                name: "round_operation_records",
+                schema: "bet");
+
+            migrationBuilder.DropTable(
+                name: "settings",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "sign_in_events",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "station_letter_delivery_box",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "station_letter_players",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "station_letter2",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "system_localizations",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "transaction_promotions",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "transactions",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "transfer_balance_forms",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "users",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "whitelists",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "withdraw_form_event_source",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "withdraw_forms",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "agent_dividends",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "agent_wallets",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "brand_game_providers",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "brand_group_bet_limits",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "game_provider_bet_limits",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "brand_games",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "game_action_batches",
+                schema: "bet");
+
+            migrationBuilder.DropTable(
+                name: "groups",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "functions",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "platform_credits",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "player_bank_infos",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "sport_market_types",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "promotion_bonuses",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "rounds",
+                schema: "bet");
+
+            migrationBuilder.DropTable(
+                name: "station_letters",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "wallets",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "departments",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "roles",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "brand_payments",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "game_provider_configurations",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "languages",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "brand_groups",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "games",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "systems",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "market_types",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "sport_types",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "promotions",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "players",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "payment_method_channels",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "sub_game_providers",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "agents",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "bet_limits",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "vip_levels",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "payment_channels",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "payment_methods",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "payments",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "game_providers",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "currencies",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "brands",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "licensees",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "resellers",
+                schema: "dbo");
+        }
+
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.EnsureSchema(
@@ -6566,785 +7344,8 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                 schema: "dbo",
                 table: "withdraw_forms",
                 column: "brand_payment_id");
-        }
 
-        protected override void Down(MigrationBuilder migrationBuilder)
-        {
-            migrationBuilder.DropTable(
-                name: "account_event_sources",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "accounts",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "adjust_agent_records",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "adjust_player_records",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "adjust_transfer_records",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "admin_logs",
-                schema: "log");
-
-            migrationBuilder.DropTable(
-                name: "agent_audit_logs",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "agent_bank_infos",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "agent_banks",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "agent_daily_marketing_statistics",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "agent_daily_payment_statistics",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "agent_dividend_conditions",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "agent_dividend_multiple_layers",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "agent_domains",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "agent_login_records",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "agent_transactions",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "aggregate_execution_time",
-                schema: "report");
-
-            migrationBuilder.DropTable(
-                name: "announcements",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "api_logs",
-                schema: "log");
-
-            migrationBuilder.DropTable(
-                name: "background_payment_statistics_settings",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "banners",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "brand_agent_dividend_conditions",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "brand_all_agent_game_type_conditions",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "brand_all_agent_game_types",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "brand_all_agents",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "brand_bet_limits",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "brand_bucket_types",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "brand_communications",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "brand_currencies",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "brand_daily_payment_statistics",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "brand_domains",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "brand_game_provider_aggregate_audit_logs",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "brand_game_provider_aggregate_records",
-                schema: "report");
-
-            migrationBuilder.DropTable(
-                name: "brand_game_provider_aggregates",
-                schema: "report");
-
-            migrationBuilder.DropTable(
-                name: "brand_game_provider_schedules",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "brand_group_game_provider_bet_limits",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "brand_group_games",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "brand_languages",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "brand_live_chats",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "brand_maintenance",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "brand_payment_audit_logs",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "brand_payment_auto_withdraw",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "brand_payment_auto_withdraw_event_source",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "brand_payment_players",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "brand_payment_vip_levels",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "brand_player_bankinfo_check_flags",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "deposit_accumulate_roulette_events",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "deposit_accumulate_roulette_game_events",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "deposit_form_event_source",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "deposit_forms",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "distribute_register_events",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "failed_game_record_operations",
-                schema: "bet");
-
-            migrationBuilder.DropTable(
-                name: "function_event_sources",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "game_actions",
-                schema: "bet");
-
-            migrationBuilder.DropTable(
-                name: "game_player_transform_idnlive",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "game_provider_aggregate_audit_logs",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "game_provider_aggregate_records",
-                schema: "report");
-
-            migrationBuilder.DropTable(
-                name: "game_provider_aggregates",
-                schema: "report");
-
-            migrationBuilder.DropTable(
-                name: "game_provider_currencies",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "game_provider_fund_transfer_transactions",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "game_provider_languages",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "game_type_round_aggregates",
-                schema: "report");
-
-            migrationBuilder.DropTable(
-                name: "group_users",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "licensee_bet_limits",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "licensee_currencies",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "licensee_game_providers",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "licensee_languages",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "localized_strings",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "log_records",
-                schema: "log");
-
-            migrationBuilder.DropTable(
-                name: "marketing_report_daily_aggregates",
-                schema: "report");
-
-            migrationBuilder.DropTable(
-                name: "marketing_statistics_settings",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "offline_deposit_events",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "offline_login_reward_events",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "payment_handling_fees",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "permissions",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "platform_pay_records",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "player_aggregates",
-                schema: "report");
-
-            migrationBuilder.DropTable(
-                name: "player_all_agent_rebate_contributors",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "player_all_agent_rebate_records",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "player_all_agent_rebates",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "player_audit_logs",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "player_authentication_forms",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "player_bank_info_tags",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "player_bankinfo_attributions",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "player_bonus_aggregates",
-                schema: "report");
-
-            migrationBuilder.DropTable(
-                name: "player_bucket_clean_event_source",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "player_bucket_clean_event_source2",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "player_bucket_clean_forms",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "player_bucket_clean_forms2",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "player_bucket_event_source",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "player_bucket_histories",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "player_bucket_migrations",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "player_buckets",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "player_daily_gaming_statistics",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "player_daily_payment_statistics",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "player_daily_register_statistics",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "player_favorite_games",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "player_game_rebate_aggregates",
-                schema: "report");
-
-            migrationBuilder.DropTable(
-                name: "player_game_settings",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "player_identity",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "player_ip_records",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "player_login_records",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "player_parents",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "player_payment_overview",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "player_properties",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "player_rebates",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "player_sports_bet_limits",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "player_tags",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "player_vip_level_adjust_records",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "player_vip_level_aggregates",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "player_vip_level_birthday_promotions",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "player_vip_level_season_promotions",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "player_vip_level_snapshots",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "player_vip_level_upgrade_promotions",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "player_vip_level_upgrade_records",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "promotion_distribute_logs",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "promotion_distribute_plans",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "promotion_distributes",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "promotion_event_source",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "promotion_game_providers",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "promotion_groups",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "promotion_participants",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "promotion_players",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "promotion_promote_deposit_channels",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "promotion_rebate_daily_statistics",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "promotion_rebate_distributes",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "promotion_relief_daily_statistics",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "promotion_relief_distributes",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "promotion_types",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "promotion_vip_levels",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "rebate_promotion_join_players",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "relief_promotion_join_players",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "reseller_bet_limits",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "reseller_currencies",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "reseller_game_providers",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "reseller_languages",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "roulette_sign_in_events",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "round_aggregates",
-                schema: "report");
-
-            migrationBuilder.DropTable(
-                name: "round_details",
-                schema: "bet");
-
-            migrationBuilder.DropTable(
-                name: "round_operation_records",
-                schema: "bet");
-
-            migrationBuilder.DropTable(
-                name: "settings",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "sign_in_events",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "station_letter_delivery_box",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "station_letter_players",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "station_letter2",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "system_localizations",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "transaction_promotions",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "transactions",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "transfer_balance_forms",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "users",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "whitelists",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "withdraw_form_event_source",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "withdraw_forms",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "agent_dividends",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "agent_wallets",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "brand_game_providers",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "brand_group_bet_limits",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "game_provider_bet_limits",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "brand_games",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "game_action_batches",
-                schema: "bet");
-
-            migrationBuilder.DropTable(
-                name: "groups",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "functions",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "platform_credits",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "player_bank_infos",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "sport_market_types",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "promotion_bonuses",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "rounds",
-                schema: "bet");
-
-            migrationBuilder.DropTable(
-                name: "station_letters",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "wallets",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "departments",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "roles",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "brand_payments",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "game_provider_configurations",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "languages",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "brand_groups",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "games",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "systems",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "market_types",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "sport_types",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "promotions",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "players",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "payment_method_channels",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "sub_game_providers",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "agents",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "bet_limits",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "vip_levels",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "payment_channels",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "payment_methods",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "payments",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "game_providers",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "currencies",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "brands",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "licensees",
-                schema: "dbo");
-
-            migrationBuilder.DropTable(
-                name: "resellers",
-                schema: "dbo");
+            InitScripts.InitAfterRun(migrationBuilder);
         }
     }
 }

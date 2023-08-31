@@ -45,8 +45,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructures.UnitTests",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MigrationEntry", "MigrationEntry\MigrationEntry.csproj", "{979444FB-C719-4FD8-83BA-290F14C44C40}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MigrationArchive", "MigrationArchive\MigrationArchive.csproj", "{A3661AA7-9DB4-416D-9B3C-845A38FC7E52}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -90,12 +88,6 @@ Global
 		{979444FB-C719-4FD8-83BA-290F14C44C40}.Migration|Any CPU.Build.0 = Debug|Any CPU
 		{979444FB-C719-4FD8-83BA-290F14C44C40}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{979444FB-C719-4FD8-83BA-290F14C44C40}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A3661AA7-9DB4-416D-9B3C-845A38FC7E52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A3661AA7-9DB4-416D-9B3C-845A38FC7E52}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A3661AA7-9DB4-416D-9B3C-845A38FC7E52}.Migration|Any CPU.ActiveCfg = Debug|Any CPU
-		{A3661AA7-9DB4-416D-9B3C-845A38FC7E52}.Migration|Any CPU.Build.0 = Debug|Any CPU
-		{A3661AA7-9DB4-416D-9B3C-845A38FC7E52}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A3661AA7-9DB4-416D-9B3C-845A38FC7E52}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -107,7 +99,7 @@ Global
 		{75FBF9C7-4204-4BA1-855D-AAFFAB98B631} = {A7922C1B-C1EF-44C3-B04B-B0DF6EA00ABB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		RESX_TaskErrorCategory = Message
 		SolutionGuid = {079E8E6E-803B-42FB-ACC6-2B253C8A689A}
+		RESX_TaskErrorCategory = Message
 	EndGlobalSection
 EndGlobal
