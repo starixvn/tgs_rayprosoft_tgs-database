@@ -9999,6 +9999,19 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("numeric(18,6)")
                         .HasColumnName("virtual_sports_rebate_percentage");
 
+                    b.Property<decimal>("WithdrawTotalAmountPerDay")
+                        .ValueGeneratedOnAdd()
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("withdraw_total_amount_per_day")
+                        .HasDefaultValueSql("-1");
+
+                    b.Property<int>("WithdrawTransactionsPerDay")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("withdraw_transactions_per_day")
+                        .HasDefaultValueSql("-1");
+
                     b.HasKey("Id")
                         .HasName("pk_vip_levels");
 

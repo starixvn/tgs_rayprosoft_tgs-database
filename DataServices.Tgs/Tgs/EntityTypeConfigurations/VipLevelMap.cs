@@ -65,6 +65,15 @@ internal class VipLevelMap : BaseConfiguration, IEntityTypeConfiguration<VipLeve
             .HasPrecision(18, 6)
             .IsRequired();
 
+        _ = builder.Property(c => c.WithdrawTransactionsPerDay)
+            .IsRequired()
+            .HasDefaultValueSql("-1");
+
+        _ = builder.Property(c => c.WithdrawTotalAmountPerDay)
+            .HasPrecision(18, 6)
+            .IsRequired()
+            .HasDefaultValueSql("-1");
+
         _ = builder.Property(c => c.CreatedByUsername)
             .HasMaxLength(32)
             .IsRequired();
