@@ -54,4 +54,8 @@ public class VipLevel
     public DateTimeOffset UpdatedOn { get; set; }
 
     public decimal VirtualSportsRebatePercentage { get; set; }
+
+    public decimal WithdrawTotalAmountPerDay { get; set; }
+
+    public int WithdrawTransactionsPerDay { get; set; }
 }
