@@ -9,7 +9,6 @@ namespace TGS.Core.DataServices.Tgs.Models;
 
 public class GameWager
 {
-    public Guid Id { get; set; }
     public long WagerId { get; set; }
     public Guid GameProviderId { get; set; }
     public Guid GameProviderConfigurationId { get; set; }
@@ -18,7 +17,7 @@ public class GameWager
     public Guid LicenseeId { get; set; }
     public Guid BrandId { get; set; }
     public string PlayerCode { get; set; }
-    public string CurrencyCode { get; set; } 
+    public string CurrencyCode { get; set; }
     public Guid WalletId { get; set; }
     public int WagerState { get; set; }
     public int WagerType { get; set; }
@@ -30,11 +29,12 @@ public class GameWager
     public int CashoutState { get; set; }
     public int ResettleState { get; set; }
     public string ExternalRoundId { get; set; }
-    public string ExternalWagerId { get; set; } 
+    public string ExternalWagerId { get; set; }
     public DateTimeOffset ExternalCreatedOn { get; set; }
     public DateTimeOffset ExternalClosedOn { get; set; }
     public DateTimeOffset ExternalPayoffOn { get; set; }
     public DateTimeOffset ExternalResettleOn { get; set; }
+    public decimal CurrencyRatio { get; set; }
     public decimal Bet { get; set; }
     public decimal ValidBet { get; set; }
     public decimal Settle { get; set; }

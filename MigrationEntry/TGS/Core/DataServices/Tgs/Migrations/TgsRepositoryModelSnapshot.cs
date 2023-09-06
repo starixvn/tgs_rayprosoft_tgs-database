@@ -4561,6 +4561,14 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnName("currency_code")
                         .HasComment("貨幣代碼");
 
+                    b.Property<decimal>("CurrencyRatio")
+                        .ValueGeneratedOnAdd()
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasDefaultValue(0m)
+                        .HasColumnName("currency_ratio")
+                        .HasComment("貨幣比例");
+
                     b.Property<DateTimeOffset>("ExternalClosedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("timestamp with time zone")
@@ -4614,11 +4622,6 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("game_provider_configuration_id")
                         .HasComment("遊戲供應商設定識別碼");
-
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uuid")
-                        .HasColumnName("id")
-                        .HasComment("識別碼");
 
                     b.Property<Guid>("LicenseeId")
                         .HasColumnType("uuid")
@@ -4730,9 +4733,6 @@ namespace TGS.Core.DataServices.Tgs.Migrations
 
                     b.HasIndex("ExternalWagerId")
                         .HasDatabaseName("ix_external_wager_id");
-
-                    b.HasIndex("Id")
-                        .HasDatabaseName("ix_id");
 
                     b.HasIndex("WagerId")
                         .HasDatabaseName("ix_wager_id");

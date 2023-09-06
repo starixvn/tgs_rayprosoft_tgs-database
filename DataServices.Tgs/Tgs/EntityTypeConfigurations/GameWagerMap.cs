@@ -18,9 +18,6 @@ internal class GameWagerMap : IEntityTypeConfiguration<GameWager>
             .HasIndex(c => new { c.GameProviderId, c.GameId, c.WalletId, c.ExternalWagerId })
             .HasDatabaseName("ix_game_wagers");
         _ = builder
-            .HasIndex(c => new { c.Id })
-            .HasDatabaseName("ix_id");
-        _ = builder
             .HasIndex(c => new { c.WagerId })
             .HasDatabaseName("ix_wager_id");
         _ = builder
@@ -54,9 +51,6 @@ internal class GameWagerMap : IEntityTypeConfiguration<GameWager>
             .HasIndex(c => new { c.CreatedOn, c.GameProviderId })
             .HasDatabaseName("ix_created_on_game_provider_id");
 
-        _ = builder.Property(c => c.Id)
-            .IsRequired()
-            .HasComment("識別碼");
         _ = builder.Property(c => c.WagerId)
             .IsRequired()
             .HasComment("投注識別碼");
@@ -148,6 +142,11 @@ internal class GameWagerMap : IEntityTypeConfiguration<GameWager>
             .IsRequired()
             .HasDefaultValueSql("'1970-01-01 00:00:00+00'::timestamp with time zone")
             .HasComment("三方重新結算時間");
+        _ = builder.Property(b => b.CurrencyRatio)
+            .HasPrecision(18, 6)
+            .IsRequired()
+            .HasDefaultValue(0.0)
+            .HasComment("貨幣比例");
         _ = builder.Property(b => b.Bet)
             .HasPrecision(18, 6)
             .IsRequired()
