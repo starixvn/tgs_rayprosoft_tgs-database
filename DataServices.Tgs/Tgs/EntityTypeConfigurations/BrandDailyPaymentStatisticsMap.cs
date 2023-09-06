@@ -27,5 +27,9 @@ internal class BrandDailyPaymentStatisticsMap : BaseConfiguration, IEntityTypeCo
         _ = builder.Property(a => a.DailyDepositHandlingFee);
         _ = builder.Property(a => a.DailyWithdrawAmount);
         _ = builder.Property(a => a.DailyWithdrawHandlingFee);
+
+        _ = builder.Property(d => d.DailyDepositTotalCount);
+        _ = builder.Property(d => d.DailyDepositApprovedCount);
+        _ = builder.Property(d => d.DailyDepositRejectCount);
     }
 }

@@ -21,4 +21,10 @@ public class BrandDailyPaymentStatistics
     public DateOnly ReportDate { get; set; }
 
     public int UndepositAgainPlayers { get; set; }
+
+    public int DailyDepositTotalCount { get; set; }
+
+    public int DailyDepositApprovedCount { get; set; }
+
+    public int DailyDepositRejectCount { get; set; }
 }
