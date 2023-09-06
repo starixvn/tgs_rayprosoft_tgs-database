@@ -13,24 +13,21 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                 schema: "dbo",
                 table: "brand_daily_payment_statistics",
                 type: "integer",
-                nullable: false,
-                defaultValue: 0);
+                nullable: true);
 
             migrationBuilder.AddColumn<int>(
                 name: "daily_deposit_reject_count",
                 schema: "dbo",
                 table: "brand_daily_payment_statistics",
                 type: "integer",
-                nullable: false,
-                defaultValue: 0);
+                nullable: true);
 
             migrationBuilder.AddColumn<int>(
                 name: "daily_deposit_total_count",
                 schema: "dbo",
                 table: "brand_daily_payment_statistics",
                 type: "integer",
-                nullable: false,
-                defaultValue: 0);
+                nullable: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

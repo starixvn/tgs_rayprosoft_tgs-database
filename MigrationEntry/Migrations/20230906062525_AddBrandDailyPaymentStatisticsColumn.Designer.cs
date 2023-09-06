@@ -12,7 +12,7 @@ using TGS.Core.DataServices.Tgs;
 namespace TGS.Core.DataServices.Tgs.Migrations
 {
     [DbContext(typeof(TgsRepository))]
-    [Migration("20230906061349_AddBrandDailyPaymentStatisticsColumn")]
+    [Migration("20230906062525_AddBrandDailyPaymentStatisticsColumn")]
     partial class AddBrandDailyPaymentStatisticsColumn
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -2109,7 +2109,7 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("numeric")
                         .HasColumnName("daily_deposit_amount");
 
-                    b.Property<int>("DailyDepositApprovedCount")
+                    b.Property<int?>("DailyDepositApprovedCount")
                         .HasColumnType("integer")
                         .HasColumnName("daily_deposit_approved_count");
 
@@ -2117,11 +2117,11 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("numeric")
                         .HasColumnName("daily_deposit_handling_fee");
 
-                    b.Property<int>("DailyDepositRejectCount")
+                    b.Property<int?>("DailyDepositRejectCount")
                         .HasColumnType("integer")
                         .HasColumnName("daily_deposit_reject_count");
 
-                    b.Property<int>("DailyDepositTotalCount")
+                    b.Property<int?>("DailyDepositTotalCount")
                         .HasColumnType("integer")
                         .HasColumnName("daily_deposit_total_count");
 
