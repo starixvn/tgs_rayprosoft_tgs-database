@@ -4779,6 +4779,44 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.ToTable("game_wagers", "dbo");
                 });
 
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.GameWagerDetail", b =>
+                {
+                    b.Property<DateTimeOffset>("CreatedOn")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_on")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP")
+                        .HasComment("創建時間");
+
+                    b.Property<long>("WagerId")
+                        .HasColumnType("bigint")
+                        .HasColumnName("wager_id")
+                        .HasComment("投注識別碼");
+
+                    b.Property<string>("AdditionalData")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("jsonb")
+                        .HasDefaultValue("{}")
+                        .HasColumnName("additional_data")
+                        .HasComment("附加數據");
+
+                    b.Property<DateTimeOffset>("UpdatedOn")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("updated_on")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP")
+                        .HasComment("修改時間");
+
+                    b.HasKey("CreatedOn", "WagerId")
+                        .HasName("pk_game_wager_details");
+
+                    b.HasIndex("WagerId")
+                        .HasDatabaseName("ix_game_wager_details_wager_id");
+
+                    b.ToTable("game_wager_details", "dbo");
+                });
+
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.Group", b =>
                 {
                     b.Property<Guid>("Id")
