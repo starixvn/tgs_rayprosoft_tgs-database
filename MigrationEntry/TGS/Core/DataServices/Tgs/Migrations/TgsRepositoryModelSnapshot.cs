@@ -2093,6 +2093,42 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.ToTable("brand_currencies", "dbo");
                 });
 
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.BrandDailyMarketingStatistics", b =>
+                {
+                    b.Property<DateOnly>("ReportDate")
+                        .HasColumnType("date")
+                        .HasColumnName("report_date");
+
+                    b.Property<Guid>("BrandId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("brand_id");
+
+                    b.Property<int?>("DirectlyPlayerGamingCount")
+                        .HasColumnType("integer")
+                        .HasColumnName("directly_player_gaming_count")
+                        .HasComment("無直屬代理的玩家遊戲人數");
+
+                    b.Property<int?>("DirectlyPlayerRegisterCount")
+                        .HasColumnType("integer")
+                        .HasColumnName("directly_player_register_count")
+                        .HasComment("無直屬代理的玩家註冊人數");
+
+                    b.Property<int?>("TotalPlayerGamingCount")
+                        .HasColumnType("integer")
+                        .HasColumnName("total_player_gaming_count")
+                        .HasComment("玩家總遊戲人數");
+
+                    b.Property<int?>("TotalPlayerRegisterCount")
+                        .HasColumnType("integer")
+                        .HasColumnName("total_player_register_count")
+                        .HasComment("玩家總註冊人數");
+
+                    b.HasKey("ReportDate", "BrandId")
+                        .HasName("pk_brand_daily_marketing_statistics");
+
+                    b.ToTable("brand_daily_marketing_statistics", "dbo");
+                });
+
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.BrandDailyPaymentStatistics", b =>
                 {
                     b.Property<DateOnly>("ReportDate")
