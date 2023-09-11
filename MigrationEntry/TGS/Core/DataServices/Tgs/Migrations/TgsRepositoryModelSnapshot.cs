@@ -727,6 +727,37 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.ToTable("agent_bank_infos", "dbo");
                 });
 
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.AgentClearCommissionRecord", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<int>("AgentDividendId")
+                        .HasColumnType("integer")
+                        .HasColumnName("agent_dividend_id");
+
+                    b.Property<Guid>("ClearByUserId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("clear_by_user_id");
+
+                    b.Property<decimal>("CommissionAmount")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("numeric")
+                        .HasDefaultValue(0m)
+                        .HasColumnName("commission_amount");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_on");
+
+                    b.HasKey("Id")
+                        .HasName("pk_agent_clear_commission_records_id");
+
+                    b.ToTable("agent_clear_commission_records", "dbo");
+                });
+
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.AgentDailyMarketingStatistics", b =>
                 {
                     b.Property<DateOnly>("ReportDate")
