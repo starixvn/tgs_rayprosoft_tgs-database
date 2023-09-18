@@ -22,6 +22,9 @@ public class SubGameProviderMap : IEntityTypeConfiguration<SubGameProvider>
             .HasMaxLength(255)
             .IsRequired();
 
+        _ = builder.Property(c => c.ShortName)
+            .HasMaxLength(5);
+
         _ = builder.Property(e => e.Description)
             .HasMaxLength(128);
 

@@ -23,6 +23,8 @@ public class SubGameProvider
 
     public string Name { get; set; }
 
+    public string ShortName { get; set; }
+
     public string UpdatedByUsername { get; set; }
 
     public DateTimeOffset UpdatedOn { get; set; }

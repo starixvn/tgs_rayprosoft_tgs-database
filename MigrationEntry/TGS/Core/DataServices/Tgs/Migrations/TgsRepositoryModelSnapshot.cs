@@ -10273,6 +10273,11 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("character varying(255)")
                         .HasColumnName("name");
 
+                    b.Property<string>("ShortName")
+                        .HasMaxLength(5)
+                        .HasColumnType("character varying(5)")
+                        .HasColumnName("short_name");
+
                     b.Property<string>("UpdatedByUsername")
                         .IsRequired()
                         .HasMaxLength(32)
