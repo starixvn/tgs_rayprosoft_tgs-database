@@ -3019,6 +3019,22 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.ToTable("brand_payment_players", "dbo");
                 });
 
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.BrandPaymentSettings", b =>
+                {
+                    b.Property<Guid>("BrandId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("brand_id");
+
+                    b.Property<int?>("PlayerBankInfoCountLimit")
+                        .HasColumnType("integer")
+                        .HasColumnName("player_bank_info_count_limit");
+
+                    b.HasKey("BrandId")
+                        .HasName("pk_brand_payment_settings");
+
+                    b.ToTable("brand_payment_settings", "dbo");
+                });
+
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.BrandPaymentVipLevel", b =>
                 {
                     b.Property<Guid>("BrandPaymentId")
@@ -11588,6 +11604,16 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.Navigation("BrandPayment");
 
                     b.Navigation("Player");
+                });
+
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.BrandPaymentSettings", b =>
+                {
+                    b.HasOne("TGS.Core.DataServices.Tgs.Models.Brand", null)
+                        .WithOne()
+                        .HasForeignKey("TGS.Core.DataServices.Tgs.Models.BrandPaymentSettings", "BrandId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_brands");
                 });
 
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.BrandPaymentVipLevel", b =>
