@@ -14,8 +14,7 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                 schema: "dbo",
                 table: "players",
                 type: "uuid",
-                nullable: false,
-                defaultValue: new Guid("00000000-0000-0000-0000-000000000000"));
+                nullable: true);
 
             migrationBuilder.CreateTable(
                 name: "player_event_source",
@@ -23,10 +22,11 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                 columns: table => new
                 {
                     id = table.Column<Guid>(type: "uuid", nullable: false),
+                    action = table.Column<string>(type: "text", nullable: false),
                     brand_id = table.Column<Guid>(type: "uuid", nullable: false),
                     change_sets = table.Column<string>(type: "jsonb", nullable: false),
                     created_on = table.Column<DateTime>(type: "timestamptz", nullable: false),
-                    modify_user = table.Column<string>(type: "text", nullable: false),
+                    modify_user = table.Column<string>(type: "text", nullable: true),
                     player_code = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>

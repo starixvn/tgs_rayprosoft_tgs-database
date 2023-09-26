@@ -76,7 +76,7 @@ public class Player
 
     public byte[] Salt { get; set; } = default!;
 
-    public Guid SnapshotEventId { get; set; }
+    public Guid? SnapshotEventId { get; set; }
 
     public virtual ICollection<PlayerSportsBetLimit> SportsBetLimits { get; set; } = default!;
 

@@ -10,22 +10,25 @@ internal class PlayerEventSourceMap : IEntityTypeConfiguration<PlayerEventSource
     {
         _ = builder.ToTable("player_event_source");
 
-        _ = builder.HasKey(b => b.Id);
+        _ = builder.HasKey(p => p.Id);
 
-        _ = builder.Property(b => b.BrandId)
+        _ = builder.Property(p => p.BrandId)
             .IsRequired();
 
-        _ = builder.Property(b => b.PlayerCode)
+        _ = builder.Property(p => p.PlayerCode)
             .IsRequired();
 
-        _ = builder.Property(b => b.ChangeSets)
+        _ = builder.Property(p => p.Action)
+            .IsRequired();
+
+        _ = builder.Property(p => p.ChangeSets)
             .HasColumnType("jsonb")
             .IsRequired();
 
-        _ = builder.Property(b => b.CreatedOn)
+        _ = builder.Property(p => p.CreatedOn)
             .HasColumnType("timestamptz")
             .IsRequired();
 
-        _ = builder.Property(b => b.ModifyUser);
+        _ = builder.Property(p => p.ModifyUser);
     }
 }

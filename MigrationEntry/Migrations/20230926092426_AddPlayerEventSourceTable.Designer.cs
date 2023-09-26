@@ -12,7 +12,7 @@ using TGS.Core.DataServices.Tgs;
 namespace TGS.Core.DataServices.Tgs.Migrations
 {
     [DbContext(typeof(TgsRepository))]
-    [Migration("20230926090856_AddPlayerEventSourceTable")]
+    [Migration("20230926092426_AddPlayerEventSourceTable")]
     partial class AddPlayerEventSourceTable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -6194,7 +6194,7 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("bytea")
                         .HasColumnName("salt");
 
-                    b.Property<Guid>("SnapshotEventId")
+                    b.Property<Guid?>("SnapshotEventId")
                         .HasColumnType("uuid")
                         .HasColumnName("snapshot_event_id");
 
@@ -7594,6 +7594,11 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("id");
 
+                    b.Property<string>("Action")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("action");
+
                     b.Property<Guid>("BrandId")
                         .HasColumnType("uuid")
                         .HasColumnName("brand_id");
@@ -7608,7 +7613,6 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnName("created_on");
 
                     b.Property<string>("ModifyUser")
-                        .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("modify_user");
 
