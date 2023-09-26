@@ -96,6 +96,8 @@ internal class PlayerMap : IEntityTypeConfiguration<Player>
 
         _ = builder.Property(p => p.FirstPromotionOn);
 
+        _ = builder.Property(p => p.SnapshotEventId);
+
         _ = builder.HasOne(p => p.Brand)
             .WithMany(p => p.Players)
             .HasForeignKey(p => p.BrandId)

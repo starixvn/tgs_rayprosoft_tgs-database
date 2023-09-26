@@ -6192,6 +6192,10 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("bytea")
                         .HasColumnName("salt");
 
+                    b.Property<Guid?>("SnapshotEventId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("snapshot_event_id");
+
                     b.Property<short>("Status")
                         .HasColumnType("smallint")
                         .HasColumnName("status");
@@ -7579,6 +7583,46 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasName("pk_player_daily_register_statistics");
 
                     b.ToTable("player_daily_register_statistics", "dbo");
+                });
+
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.PlayerEventSource", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<string>("Action")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("action");
+
+                    b.Property<Guid>("BrandId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("brand_id");
+
+                    b.Property<string>("ChangeSets")
+                        .IsRequired()
+                        .HasColumnType("jsonb")
+                        .HasColumnName("change_sets");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("timestamptz")
+                        .HasColumnName("created_on");
+
+                    b.Property<string>("ModifyUser")
+                        .HasColumnType("text")
+                        .HasColumnName("modify_user");
+
+                    b.Property<string>("PlayerCode")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("player_code");
+
+                    b.HasKey("Id")
+                        .HasName("pk_player_event_source");
+
+                    b.ToTable("player_event_source", "dbo");
                 });
 
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.PlayerFavoriteGame", b =>
