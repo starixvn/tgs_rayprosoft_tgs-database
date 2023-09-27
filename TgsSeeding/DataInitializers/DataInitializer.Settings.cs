@@ -77,6 +77,19 @@ public partial class DataInitializer
     {
         var menus = new[]
         {
+            new MenuSetting("Overview")
+            {
+                SubMenus = new[]
+                {
+                    new MenuSetting("Platform")
+                    {
+                        SubMenus = new[]
+                        {
+                            new MenuSetting("View")
+                        }
+                    }
+                }
+            },
             new MenuSetting("Platform")
             {
                 SubMenus = new[]
