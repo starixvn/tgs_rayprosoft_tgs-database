@@ -1525,6 +1525,50 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.ToTable("api_logs", "log");
                 });
 
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.ArticleForm", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<Guid>("BrandId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("brand_id");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("description");
+
+                    b.Property<string>("LocalizedArticles")
+                        .IsRequired()
+                        .HasColumnType("jsonb")
+                        .HasColumnName("localized_articles");
+
+                    b.Property<string>("Modifier")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("modifier");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("status");
+
+                    b.Property<DateTime>("UpdatedOn")
+                        .HasColumnType("timestamptz")
+                        .HasColumnName("updated_on");
+
+                    b.HasKey("Id")
+                        .HasName("pk_article_forms");
+
+                    b.HasIndex("BrandId")
+                        .HasDatabaseName("ix_article_forms_brand_id");
+
+                    b.ToTable("article_forms", "dbo");
+                });
+
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.BackgroundPaymentStatisticsSettings", b =>
                 {
                     b.Property<string>("RecordKey")
@@ -3488,6 +3532,58 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasDatabaseName("ix_distribute_register_events_promotion_id");
 
                     b.ToTable("distribute_register_events", "dbo");
+                });
+
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.DraftForm", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<Guid>("BrandId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("brand_id");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("timestamptz")
+                        .HasColumnName("created_on");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("description");
+
+                    b.Property<string>("LocalizedArticles")
+                        .IsRequired()
+                        .HasColumnType("jsonb")
+                        .HasColumnName("localized_articles");
+
+                    b.Property<string>("Modifier")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("modifier");
+
+                    b.Property<DateOnly?>("PublishDate")
+                        .HasColumnType("date")
+                        .HasColumnName("publish_date");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("status");
+
+                    b.Property<DateTime>("UpdatedOn")
+                        .HasColumnType("timestamptz")
+                        .HasColumnName("updated_on");
+
+                    b.HasKey("Id")
+                        .HasName("pk_draft_forms");
+
+                    b.HasIndex("BrandId")
+                        .HasDatabaseName("ix_draft_forms_brand_id");
+
+                    b.ToTable("draft_forms", "dbo");
                 });
 
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.FailedGameRecordOperation", b =>
@@ -11294,6 +11390,16 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.Navigation("Brand");
                 });
 
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.ArticleForm", b =>
+                {
+                    b.HasOne("TGS.Core.DataServices.Tgs.Models.Brand", null)
+                        .WithMany()
+                        .HasForeignKey("BrandId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_article_forms_brands");
+                });
+
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.Banner", b =>
                 {
                     b.HasOne("TGS.Core.DataServices.Tgs.Models.Brand", null)
@@ -11808,6 +11914,16 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("fk_distribute_register_events_promotions_promotion_id");
+                });
+
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.DraftForm", b =>
+                {
+                    b.HasOne("TGS.Core.DataServices.Tgs.Models.Brand", null)
+                        .WithMany()
+                        .HasForeignKey("BrandId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_draft_forms_brands");
                 });
 
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.Function", b =>
