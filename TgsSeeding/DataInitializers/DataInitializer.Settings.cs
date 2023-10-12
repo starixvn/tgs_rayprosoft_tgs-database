@@ -334,6 +334,13 @@ public partial class DataInitializer
                             new MenuSetting("View")
                         }
                     },
+                    new MenuSetting("AllAgentRebateReport")
+                    {
+                        SubMenus = new[]
+                        {
+                            new MenuSetting("View")
+                        }
+                    },
                     new MenuSetting("VipReport")
                     {
                         SubMenus = new[]
