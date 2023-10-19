@@ -19,8 +19,6 @@ public class PlayerBucket
 
     public bool IsFull { get; set; }
 
-    public virtual Player Player { get; set; } = default!;
-
     public string PlayerCode { get; set; } = default!;
 
     public Guid? SnapshotId { get; set; }

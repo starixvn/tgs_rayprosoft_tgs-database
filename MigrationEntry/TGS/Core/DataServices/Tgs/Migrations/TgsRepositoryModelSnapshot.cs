@@ -7209,8 +7209,12 @@ namespace TGS.Core.DataServices.Tgs.Migrations
 
                     b.Property<string>("PlayerCode")
                         .IsRequired()
-                        .HasColumnType("character varying(16)")
+                        .HasColumnType("text")
                         .HasColumnName("player_code");
+
+                    b.Property<string>("PlayerCode1")
+                        .HasColumnType("character varying(16)")
+                        .HasColumnName("player_code1");
 
                     b.Property<Guid?>("SnapshotId")
                         .HasColumnType("uuid")
@@ -7221,6 +7225,9 @@ namespace TGS.Core.DataServices.Tgs.Migrations
 
                     b.HasIndex("PlayerCode")
                         .HasDatabaseName("ix_player_buckets_player_code");
+
+                    b.HasIndex("PlayerCode1")
+                        .HasDatabaseName("ix_player_buckets_player_code1");
 
                     b.ToTable("player_buckets", "dbo");
                 });
@@ -12446,14 +12453,10 @@ namespace TGS.Core.DataServices.Tgs.Migrations
 
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.PlayerBucket", b =>
                 {
-                    b.HasOne("TGS.Core.DataServices.Tgs.Models.Player", "Player")
+                    b.HasOne("TGS.Core.DataServices.Tgs.Models.Player", null)
                         .WithMany("PlayerBuckets")
-                        .HasForeignKey("PlayerCode")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("fk_player_buckets_players_player_code");
-
-                    b.Navigation("Player");
+                        .HasForeignKey("PlayerCode1")
+                        .HasConstraintName("fk_player_buckets_players_player_temp_id5");
                 });
 
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.PlayerBucketCleanForm", b =>
