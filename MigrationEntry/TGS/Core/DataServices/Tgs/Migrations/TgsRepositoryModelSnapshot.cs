@@ -7212,10 +7212,6 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("text")
                         .HasColumnName("player_code");
 
-                    b.Property<string>("PlayerCode1")
-                        .HasColumnType("character varying(16)")
-                        .HasColumnName("player_code1");
-
                     b.Property<Guid?>("SnapshotId")
                         .HasColumnType("uuid")
                         .HasColumnName("snapshot_id");
@@ -7225,9 +7221,6 @@ namespace TGS.Core.DataServices.Tgs.Migrations
 
                     b.HasIndex("PlayerCode")
                         .HasDatabaseName("ix_player_buckets_player_code");
-
-                    b.HasIndex("PlayerCode1")
-                        .HasDatabaseName("ix_player_buckets_player_code1");
 
                     b.ToTable("player_buckets", "dbo");
                 });
@@ -12451,14 +12444,6 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasConstraintName("fk_player_bank_info_tags_players_player_code");
                 });
 
-            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.PlayerBucket", b =>
-                {
-                    b.HasOne("TGS.Core.DataServices.Tgs.Models.Player", null)
-                        .WithMany("PlayerBuckets")
-                        .HasForeignKey("PlayerCode1")
-                        .HasConstraintName("fk_player_buckets_players_player_temp_id5");
-                });
-
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.PlayerBucketCleanForm", b =>
                 {
                     b.HasOne("TGS.Core.DataServices.Tgs.Models.Brand", null)
@@ -13340,8 +13325,6 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.Navigation("GameSetting");
 
                     b.Navigation("Letters");
-
-                    b.Navigation("PlayerBuckets");
 
                     b.Navigation("PlayerLoginRecords");
 
