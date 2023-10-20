@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore.ValueGeneration;
 using TGS.Core.DataServices.Base;
@@ -50,6 +51,14 @@ internal class PlayerAllAgentRebateRecordMap : IEntityTypeConfiguration<PlayerAl
         _ = builder.Property(b => b.ReportDate)
             .IsRequired();
 
+        _ = builder.Property(b => b.From)
+            .HasComputedColumnSql("report_date", stored: true)
+            .IsRequired();
+
+        _ = builder.Property(b => b.To)
+            .HasComputedColumnSql("report_date", stored: true)
+            .IsRequired();
+
         _ = builder.Property(b => b.CreatedOn)
             .IsRequired();
 
@@ -60,5 +69,16 @@ internal class PlayerAllAgentRebateRecordMap : IEntityTypeConfiguration<PlayerAl
                 b.PlayerCode
             })
             .HasDatabaseName("ix_player_all_agent_rebate_records_report_date_brand_id_player_code");
+
+        _ = builder.HasIndex(b => new
+            {
+                b.From,
+                b.To,
+                b.BrandId,
+                b.PlayerCode,
+                b.AllAgentRebateType
+            })
+            .IsUnique()
+            .HasDatabaseName("ix_player_all_agent_rebate_records_from_to_brand_id_player_code");
     }
 }
