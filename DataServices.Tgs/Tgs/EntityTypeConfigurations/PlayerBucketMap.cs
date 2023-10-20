@@ -34,11 +34,6 @@ internal class PlayerBucketMap : IEntityTypeConfiguration<PlayerBucket>
 
         _ = builder.Property(c => c.SnapshotId);
 
-        _ = builder.HasOne(c => c.Player)
-            .WithMany(c => c.PlayerBuckets)
-            .HasForeignKey(c => c.PlayerCode)
-            .HasConstraintName("fk_player_buckets_players_player_code");
-
         _ = builder.HasIndex(c => c.PlayerCode)
             .HasDatabaseName("ix_player_buckets_player_code");
     }

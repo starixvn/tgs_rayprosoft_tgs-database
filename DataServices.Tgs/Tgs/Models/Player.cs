@@ -60,8 +60,6 @@ public class Player
 
     public bool PhoneAuthentication { get; set; }
 
-    public virtual ICollection<PlayerBucket> PlayerBuckets { get; set; } = default!;
-
     public string PlayerCode { get; set; } = default!;
 
     public virtual ICollection<PlayerLoginRecord> PlayerLoginRecords { get; set; } = default!;
