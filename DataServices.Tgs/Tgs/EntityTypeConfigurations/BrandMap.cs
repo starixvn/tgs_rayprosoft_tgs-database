@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using TGS.Core.DataServices.Base;
 using TGS.Core.DataServices.Tgs.Models;
+using TGS.Core.Models.Enums;
 
 namespace TGS.Core.DataServices.Tgs.EntityTypeConfigurations;
 
@@ -122,6 +123,11 @@ internal class BrandMap : BaseConfiguration, IEntityTypeConfiguration<Brand>
 
         _ = builder.Property(c => c.TimeSpanMinutes)
             .HasDefaultValue(480);
+
+        _ = builder.Property(c => c.PlayerAllAgentSettlementIntervalType)
+            .HasColumnType(ColumnTypes.SmallInt)
+            .HasDefaultValue(SettlementIntervalType.Monthly)
+            .IsRequired();
 
         _ = builder.HasOne(c => c.Licensee)
             .WithMany(c => c.Brands)
