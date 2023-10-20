@@ -1875,6 +1875,12 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("numeric(9,6)")
                         .HasColumnName("platform_charge");
 
+                    b.Property<short>("PlayerAllAgentSettlementIntervalType")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("smallint")
+                        .HasDefaultValue((short)3)
+                        .HasColumnName("player_all_agent_settlement_interval_type");
+
                     b.Property<string>("PlayerRegisterFlowSettings")
                         .HasColumnType("jsonb")
                         .HasColumnName("player_register_flow_settings");
@@ -6678,6 +6684,12 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("created_on");
 
+                    b.Property<DateTimeOffset>("From")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("from")
+                        .HasComputedColumnSql("report_date", true);
+
                     b.Property<decimal>("LiveDealerTurnover")
                         .HasPrecision(18, 6)
                         .HasColumnType("numeric(18,6)")
@@ -6772,6 +6784,12 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("numeric(18,6)")
                         .HasColumnName("sports_win_loss_rebate");
 
+                    b.Property<DateTimeOffset>("To")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("to")
+                        .HasComputedColumnSql("report_date", true);
+
                     b.Property<decimal>("VirtualSportsTurnover")
                         .HasPrecision(18, 6)
                         .HasColumnType("numeric(18,6)")
@@ -6797,6 +6815,10 @@ namespace TGS.Core.DataServices.Tgs.Migrations
 
                     b.HasIndex("ReportDate", "PlayerCode", "ChildPlayerCode")
                         .HasDatabaseName("ix_player_all_agent_rebate_contributors_report_date_player_code");
+
+                    b.HasIndex("From", "To", "PlayerCode", "ChildPlayerCode")
+                        .IsUnique()
+                        .HasDatabaseName("ix_player_all_agent_rebate_contributors_from_to_player_code");
 
                     b.ToTable("player_all_agent_rebate_contributors", "dbo");
                 });
@@ -6842,6 +6864,12 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("created_on");
 
+                    b.Property<DateTimeOffset>("From")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("from")
+                        .HasComputedColumnSql("report_date", true);
+
                     b.Property<string>("PlayerCode")
                         .IsRequired()
                         .HasMaxLength(16)
@@ -6866,11 +6894,21 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("report_date");
 
+                    b.Property<DateTimeOffset>("To")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("to")
+                        .HasComputedColumnSql("report_date", true);
+
                     b.HasKey("Id")
                         .HasName("pk_player_all_agent_rebate_records_id");
 
                     b.HasIndex("ReportDate", "BrandId", "PlayerCode")
                         .HasDatabaseName("ix_player_all_agent_rebate_records_report_date_brand_id_player_code");
+
+                    b.HasIndex("From", "To", "BrandId", "PlayerCode", "AllAgentRebateType")
+                        .IsUnique()
+                        .HasDatabaseName("ix_player_all_agent_rebate_records_from_to_brand_id_player_code");
 
                     b.ToTable("player_all_agent_rebate_records", "dbo");
                 });
