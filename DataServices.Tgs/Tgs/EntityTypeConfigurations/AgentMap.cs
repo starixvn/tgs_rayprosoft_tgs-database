@@ -96,6 +96,8 @@ internal class AgentMap : IEntityTypeConfiguration<Agent>
             .HasColumnType("ltree")
             .IsRequired();
 
+        _ = builder.Property(p => p.SnapshotEventId);
+
         _ = builder.HasOne(p => p.Brand)
             .WithMany()
             .HasForeignKey(p => p.BrandId)

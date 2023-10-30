@@ -89,4 +89,6 @@ public class Agent
     public byte[] WithdrawPassword { get; set; }
 
     public byte[] WithdrawSalt { get; set; }
+
+    public Guid? SnapshotEventId { get; set; }
 }
