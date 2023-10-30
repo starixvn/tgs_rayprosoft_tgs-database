@@ -1162,6 +1162,45 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.ToTable("agent_domains", "dbo");
                 });
 
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.AgentEventSource", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<string>("Action")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("action");
+
+                    b.Property<Guid>("AgentId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("agent_id");
+
+                    b.Property<Guid>("BrandId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("brand_id");
+
+                    b.Property<string>("ChangeSets")
+                        .IsRequired()
+                        .HasColumnType("jsonb")
+                        .HasColumnName("change_sets");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("timestamptz")
+                        .HasColumnName("created_on");
+
+                    b.Property<string>("ModifyUser")
+                        .HasColumnType("text")
+                        .HasColumnName("modify_user");
+
+                    b.HasKey("Id")
+                        .HasName("pk_agent_event_source");
+
+                    b.ToTable("agent_event_source", "dbo");
+                });
+
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.AgentLoginRecord", b =>
                 {
                     b.Property<Guid>("Id")
