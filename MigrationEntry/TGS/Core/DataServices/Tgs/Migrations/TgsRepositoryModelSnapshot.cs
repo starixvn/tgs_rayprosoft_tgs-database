@@ -1875,12 +1875,6 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("numeric(9,6)")
                         .HasColumnName("platform_charge");
 
-                    b.Property<short>("PlayerAllAgentSettlementIntervalType")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("smallint")
-                        .HasDefaultValue((short)3)
-                        .HasColumnName("player_all_agent_settlement_interval_type");
-
                     b.Property<string>("PlayerRegisterFlowSettings")
                         .HasColumnType("jsonb")
                         .HasColumnName("player_register_flow_settings");
@@ -2065,6 +2059,27 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasName("pk_brand_all_agent_game_type_conditions");
 
                     b.ToTable("brand_all_agent_game_type_conditions", "dbo");
+                });
+
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.BrandAllAgentSetting", b =>
+                {
+                    b.Property<Guid>("BrandId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("brand_id");
+
+                    b.Property<short?>("SettlementIntervalType")
+                        .HasColumnType("smallint")
+                        .HasColumnName("settlement_interval_type");
+
+                    b.Property<bool>("Switch")
+                        .HasColumnType("boolean")
+                        .HasColumnName("switch");
+
+                    b.HasKey("BrandId")
+                        .HasName("pk_brand_all_agent_settings");
+
+                    b.ToTable("brand_all_agent_settings", "dbo");
                 });
 
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.BrandBetLimit", b =>
