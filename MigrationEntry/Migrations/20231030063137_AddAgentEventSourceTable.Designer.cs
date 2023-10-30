@@ -12,7 +12,7 @@ using TGS.Core.DataServices.Tgs;
 namespace TGS.Core.DataServices.Tgs.Migrations
 {
     [DbContext(typeof(TgsRepository))]
-    [Migration("20231030053349_AddAgentEventSourceTable")]
+    [Migration("20231030063137_AddAgentEventSourceTable")]
     partial class AddAgentEventSourceTable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -505,6 +505,10 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasPrecision(18, 6)
                         .HasColumnType("numeric(18,6)")
                         .HasColumnName("slot_rebate_percentage");
+
+                    b.Property<Guid?>("SnapshotEventId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("snapshot_event_id");
 
                     b.Property<decimal>("SportsRebatePercentage")
                         .HasPrecision(18, 6)
