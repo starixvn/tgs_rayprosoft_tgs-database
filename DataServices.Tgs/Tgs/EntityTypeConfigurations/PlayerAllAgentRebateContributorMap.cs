@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using TGS.Core.DataServices.Base;
 using TGS.Core.DataServices.Tgs.Models;
@@ -122,15 +123,13 @@ internal class PlayerAllAgentRebateContributorMap : IEntityTypeConfiguration<Pla
             .HasPrecision(18, 6)
             .IsRequired();
 
-        _ = builder.Property(b => b.ReportDate)
+        _ = builder.Property(b => b.SettleDate)
             .IsRequired();
 
         _ = builder.Property(b => b.From)
-            .HasComputedColumnSql("report_date", stored: true)
             .IsRequired();
 
         _ = builder.Property(b => b.To)
-            .HasComputedColumnSql("report_date", stored: true)
             .IsRequired();
 
         _ = builder.Property(b => b.CreatedOn)
@@ -138,11 +137,11 @@ internal class PlayerAllAgentRebateContributorMap : IEntityTypeConfiguration<Pla
 
         _ = builder.HasIndex(b => new
             {
-                b.ReportDate,
+                b.SettleDate,
                 b.PlayerCode,
                 b.ChildPlayerCode
             })
-            .HasDatabaseName("ix_player_all_agent_rebate_contributors_report_date_player_code");
+            .HasDatabaseName("ix_player_all_agent_rebate_contributors_settle_date_player_code");
 
         _ = builder.HasIndex(b => new
             {

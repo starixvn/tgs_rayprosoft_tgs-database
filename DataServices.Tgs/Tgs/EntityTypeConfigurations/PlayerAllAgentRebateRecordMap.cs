@@ -48,15 +48,13 @@ internal class PlayerAllAgentRebateRecordMap : IEntityTypeConfiguration<PlayerAl
             .HasPrecision(18, 6)
             .IsRequired();
 
-        _ = builder.Property(b => b.ReportDate)
+        _ = builder.Property(b => b.SettleDate)
             .IsRequired();
 
         _ = builder.Property(b => b.From)
-            .HasComputedColumnSql("report_date", stored: true)
             .IsRequired();
 
         _ = builder.Property(b => b.To)
-            .HasComputedColumnSql("report_date", stored: true)
             .IsRequired();
 
         _ = builder.Property(b => b.CreatedOn)
@@ -64,11 +62,11 @@ internal class PlayerAllAgentRebateRecordMap : IEntityTypeConfiguration<PlayerAl
 
         _ = builder.HasIndex(b => new
             {
-                b.ReportDate,
+                b.SettleDate,
                 b.BrandId,
                 b.PlayerCode
             })
-            .HasDatabaseName("ix_player_all_agent_rebate_records_report_date_brand_id_player_code");
+            .HasDatabaseName("ix_player_all_agent_rebate_records_settle_date_brand_id_player_code");
 
         _ = builder.HasIndex(b => new
             {
