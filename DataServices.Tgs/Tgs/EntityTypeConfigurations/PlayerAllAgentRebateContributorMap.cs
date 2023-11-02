@@ -144,15 +144,5 @@ internal class PlayerAllAgentRebateContributorMap : IEntityTypeConfiguration<Pla
                 b.ChildPlayerCode
             })
             .HasDatabaseName("ix_player_all_agent_rebate_contributors_settle_date_player_code");
-
-        _ = builder.HasIndex(b => new
-            {
-                b.From,
-                b.To,
-                b.PlayerCode,
-                b.ChildPlayerCode
-            })
-            .IsUnique()
-            .HasDatabaseName("ix_player_all_agent_rebate_contributors_from_to_player_code");
     }
 }
