@@ -6833,10 +6833,6 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.HasIndex("ReportDate", "PlayerCode", "ChildPlayerCode")
                         .HasDatabaseName("ix_player_all_agent_rebate_contributors_report_date_player_code");
 
-                    b.HasIndex("From", "To", "PlayerCode", "ChildPlayerCode")
-                        .IsUnique()
-                        .HasDatabaseName("ix_player_all_agent_rebate_contributors_from_to_player_code");
-
                     b.ToTable("player_all_agent_rebate_contributors", "dbo");
                 });
 
@@ -6922,10 +6918,6 @@ namespace TGS.Core.DataServices.Tgs.Migrations
 
                     b.HasIndex("ReportDate", "BrandId", "PlayerCode")
                         .HasDatabaseName("ix_player_all_agent_rebate_records_report_date_brand_id_player_code");
-
-                    b.HasIndex("From", "To", "BrandId", "PlayerCode", "AllAgentRebateType")
-                        .IsUnique()
-                        .HasDatabaseName("ix_player_all_agent_rebate_records_from_to_brand_id_player_code");
 
                     b.ToTable("player_all_agent_rebate_records", "dbo");
                 });
