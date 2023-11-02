@@ -6700,8 +6700,10 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnName("created_on");
 
                     b.Property<DateTimeOffset>("From")
+                        .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("timestamp with time zone")
-                        .HasColumnName("from");
+                        .HasColumnName("from")
+                        .HasComputedColumnSql("report_date", true);
 
                     b.Property<decimal>("LiveDealerTurnover")
                         .HasPrecision(18, 6)
@@ -6749,13 +6751,13 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("character varying(16)")
                         .HasColumnName("player_code");
 
+                    b.Property<DateTimeOffset>("ReportDate")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("report_date");
+
                     b.Property<DateTimeOffset?>("SentOn")
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("sent_on");
-
-                    b.Property<DateTimeOffset>("SettleDate")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("settle_date");
 
                     b.Property<decimal>("SlotTurnover")
                         .HasPrecision(18, 6)
@@ -6798,8 +6800,10 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnName("sports_win_loss_rebate");
 
                     b.Property<DateTimeOffset>("To")
+                        .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("timestamp with time zone")
-                        .HasColumnName("to");
+                        .HasColumnName("to")
+                        .HasComputedColumnSql("report_date", true);
 
                     b.Property<decimal>("VirtualSportsTurnover")
                         .HasPrecision(18, 6)
@@ -6824,8 +6828,8 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.HasKey("Id")
                         .HasName("pk_player_all_agent_rebates_contributor_id");
 
-                    b.HasIndex("SettleDate", "PlayerCode", "ChildPlayerCode")
-                        .HasDatabaseName("ix_player_all_agent_rebate_contributors_settle_date_player_code");
+                    b.HasIndex("ReportDate", "PlayerCode", "ChildPlayerCode")
+                        .HasDatabaseName("ix_player_all_agent_rebate_contributors_report_date_player_code");
 
                     b.HasIndex("From", "To", "PlayerCode", "ChildPlayerCode")
                         .IsUnique()
@@ -6876,8 +6880,10 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnName("created_on");
 
                     b.Property<DateTimeOffset>("From")
+                        .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("timestamp with time zone")
-                        .HasColumnName("from");
+                        .HasColumnName("from")
+                        .HasComputedColumnSql("report_date", true);
 
                     b.Property<string>("PlayerCode")
                         .IsRequired()
@@ -6899,19 +6905,21 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("numeric(9,6)")
                         .HasColumnName("rebate_percentage");
 
-                    b.Property<DateTimeOffset>("SettleDate")
+                    b.Property<DateTimeOffset>("ReportDate")
                         .HasColumnType("timestamp with time zone")
-                        .HasColumnName("settle_date");
+                        .HasColumnName("report_date");
 
                     b.Property<DateTimeOffset>("To")
+                        .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("timestamp with time zone")
-                        .HasColumnName("to");
+                        .HasColumnName("to")
+                        .HasComputedColumnSql("report_date", true);
 
                     b.HasKey("Id")
                         .HasName("pk_player_all_agent_rebate_records_id");
 
-                    b.HasIndex("SettleDate", "BrandId", "PlayerCode")
-                        .HasDatabaseName("ix_player_all_agent_rebate_records_settle_date_brand_id_player_code");
+                    b.HasIndex("ReportDate", "BrandId", "PlayerCode")
+                        .HasDatabaseName("ix_player_all_agent_rebate_records_report_date_brand_id_player_code");
 
                     b.HasIndex("From", "To", "BrandId", "PlayerCode", "AllAgentRebateType")
                         .IsUnique()
