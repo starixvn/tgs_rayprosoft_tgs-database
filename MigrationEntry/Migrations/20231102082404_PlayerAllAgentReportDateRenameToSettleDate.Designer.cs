@@ -12,7 +12,7 @@ using TGS.Core.DataServices.Tgs;
 namespace TGS.Core.DataServices.Tgs.Migrations
 {
     [DbContext(typeof(TgsRepository))]
-    [Migration("20231102075232_PlayerAllAgentReportDateRenameToSettleDate")]
+    [Migration("20231102082404_PlayerAllAgentReportDateRenameToSettleDate")]
     partial class PlayerAllAgentReportDateRenameToSettleDate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -6965,10 +6965,6 @@ namespace TGS.Core.DataServices.Tgs.Migrations
 
                     b.HasIndex("SettleDate", "BrandId", "PlayerCode")
                         .HasDatabaseName("ix_player_all_agent_rebate_records_settle_date_brand_id_player_code");
-
-                    b.HasIndex("From", "To", "BrandId", "PlayerCode", "AllAgentRebateType")
-                        .IsUnique()
-                        .HasDatabaseName("ix_player_all_agent_rebate_records_from_to_brand_id_player_code");
 
                     b.ToTable("player_all_agent_rebate_records", "dbo");
                 });

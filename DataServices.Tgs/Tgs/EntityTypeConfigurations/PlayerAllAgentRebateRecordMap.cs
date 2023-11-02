@@ -69,16 +69,5 @@ internal class PlayerAllAgentRebateRecordMap : IEntityTypeConfiguration<PlayerAl
                 b.PlayerCode
             })
             .HasDatabaseName("ix_player_all_agent_rebate_records_settle_date_brand_id_player_code");
-
-        _ = builder.HasIndex(b => new
-            {
-                b.From,
-                b.To,
-                b.BrandId,
-                b.PlayerCode,
-                b.AllAgentRebateType
-            })
-            .IsUnique()
-            .HasDatabaseName("ix_player_all_agent_rebate_records_from_to_brand_id_player_code");
     }
 }

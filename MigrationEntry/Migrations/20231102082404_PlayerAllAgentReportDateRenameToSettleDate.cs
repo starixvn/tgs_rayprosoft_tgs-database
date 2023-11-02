@@ -9,6 +9,11 @@ namespace TGS.Core.DataServices.Tgs.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropIndex(
+                name: "ix_player_all_agent_rebate_records_from_to_brand_id_player_code",
+                schema: "dbo",
+                table: "player_all_agent_rebate_records");
+
             migrationBuilder.RenameColumn(
                 name: "report_date",
                 schema: "dbo",
@@ -151,6 +156,13 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                 oldClrType: typeof(DateTimeOffset),
                 oldType: "timestamp with time zone",
                 oldDefaultValueSql: "now()");
+
+            migrationBuilder.CreateIndex(
+                name: "ix_player_all_agent_rebate_records_from_to_brand_id_player_code",
+                schema: "dbo",
+                table: "player_all_agent_rebate_records",
+                columns: new[] { "from", "to", "brand_id", "player_code", "all_agent_rebate_type" },
+                unique: true);
         }
     }
 }
