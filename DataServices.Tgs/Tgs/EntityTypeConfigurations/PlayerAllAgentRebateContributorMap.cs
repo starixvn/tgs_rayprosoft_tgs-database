@@ -127,9 +127,11 @@ internal class PlayerAllAgentRebateContributorMap : IEntityTypeConfiguration<Pla
             .IsRequired();
 
         _ = builder.Property(b => b.From)
+            .HasDefaultValueSql("now()")
             .IsRequired();
 
         _ = builder.Property(b => b.To)
+            .HasDefaultValueSql("now()")
             .IsRequired();
 
         _ = builder.Property(b => b.CreatedOn)
