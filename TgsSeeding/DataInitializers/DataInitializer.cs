@@ -9,7 +9,6 @@ using TGS.Core.Infrastructures.Extensions;
 using TGS.Core.Infrastructures.Json;
 using TGS.Core.Models.Enums;
 using static TGS.Core.Models.Enums.GameActionType;
-using static TGS.Core.Models.Enums.GameType;
 
 namespace TGS.Core.DataServices.Tgs.DataInitializers;
 
@@ -69,7 +68,6 @@ public partial class DataInitializer : BaseDataInitializer
     };
 
     private BetLimit[]? _betLimits;
-    private Player[]? _players;
     private VipLevel[]? _vipLevels;
 
     public DataInitializer(ITgsRepository repository)
@@ -145,17 +143,12 @@ public partial class DataInitializer : BaseDataInitializer
         await LogSeedingTimeAsync(GenerateGameProvidersAsync, logBuilder);
         await LogSeedingTimeAsync(GenerateResellersWithDescendantsAsync, logBuilder);
         await LogSeedingTimeAsync(GenerateVipLevelsAsync, logBuilder);
-        await LogSeedingTimeAsync(GenerateAgentsAsync, logBuilder);
         await LogSeedingTimeAsync(GenerateSettingsAsync, logBuilder);
         await LogSeedingTimeAsync(GenerateLocalizedStringsAsync, logBuilder);
-        await LogSeedingTimeAsync(GeneratePlayersAsync, logBuilder);
         await LogSeedingTimeAsync(GeneratePaymentAsync, logBuilder);
         await LogSeedingTimeAsync(GenerateDepartmentsAsync, logBuilder);
         await LogSeedingTimeAsync(GenerateRolesAsync, logBuilder);
-        await LogSeedingTimeAsync(GenerateUsersAsync, logBuilder);
         await LogSeedingTimeAsync(GenerateSportTypesAndMarketTypesAsync, logBuilder);
-        await LogSeedingTimeAsync(GeneratePlayerSportsBetLimitsAsync, logBuilder);
-        await LogSeedingTimeAsync(GenerateBetDataAsync, logBuilder);
         await LogSeedingTimeAsync(GeneratePromotionsAsync, logBuilder);
         await LogSeedingTimeAsync(GenerateApplePayInitialDataAsync, logBuilder);
         await LogSeedingTimeAsync(GeneratePlatformCreditsAsync, logBuilder);
@@ -654,76 +647,6 @@ public partial class DataInitializer : BaseDataInitializer
         };
     }
 
-    private Player CreatePlayer(
-        string playerCode,
-        Guid brandId, Guid walletId, string username, string realName, byte[] salt,
-        byte[] password, Guid vipId, PlayerType playerType,
-        Guid? agentId)
-    {
-        var brand = _brandCreated.Values.First(b => b.Id == brandId);
-        var currencyCode = brand.Currencies.FirstOrDefault()?.CurrencyCode ?? "CNY";
-
-        var betLimitId = brand.BetLimits
-            .Where(bl => bl.IsDefault && bl.BetLimit.CurrencyCode == currencyCode)
-            .Select(bl => bl.BetLimitId).FirstOrDefault();
-
-        return new()
-        {
-            PlayerCode = playerCode,
-            Username = username,
-            RealName = realName,
-            Password = password,
-            Salt = salt,
-            WithdrawPassword = Array.Empty<byte>(),
-            WithdrawSalt = Array.Empty<byte>(),
-            DefaultWalletId = walletId,
-            DefaultWalletCurrencyCode = currencyCode,
-            Status = PlayerStatus.Enabled,
-            BetLimitId = betLimitId,
-            Type = playerType,
-            Email = $"{Generator.RandomString(5)}@gmail.com",
-            Phone = Generator.RandomIntString(10),
-            QQ = Generator.RandomString(20),
-            Wechat = Generator.RandomString(20),
-            VipId = vipId,
-            AgentId = agentId,
-            RegisteredOn = _Now,
-            LastActiveOn = _Now,
-            UpdatedOn = _Now,
-            UpdatedByUsername = username,
-            BrandId = brand.Id,
-            Wallets =
-                new[]
-                {
-                    new Wallet
-                    {
-                        Id = walletId,
-                        PlayerCode = playerCode,
-                        CurrencyCode = currencyCode,
-                        ExternalCurrencyCode = currencyCode,
-                        Balance = 1000,
-                        CreatedOn = _Now,
-                        UpdatedOn = _Now
-                    }
-                }
-                //Banks = new[]
-                //{
-                //    new PlayerBankInfo
-                //    {
-                //        Id = GuidExtensions.NewSequentialGuid(),
-                //        PlayerCode = playerCode,
-                //        RealName = Generator.RandomString(4),
-                //        BankName = Generator.RandomString(12),
-                //        BankAccount = Generator.RandomIntString(20),
-                //        CreatedByUsername = AdminUsername,
-                //        UpdatedByUsername = AdminUsername,
-                //        CreatedOn = Now,
-                //        UpdatedOn = Now
-                //    }
-                //}
-        };
-    }
-
     private Reseller CreateResellerWithLicensees(IReseller reseller)
     {
         var gameProviders = GetGameProviders(reseller.GameProviders);
@@ -790,139 +713,6 @@ public partial class DataInitializer : BaseDataInitializer
             MenuSetting = _jsonSerializationProvider.SerializeToString(GetMenuSettings()),
             RoleType = role.RoleType
         }).ToArray();
-
-    private async Task GenerateAgentsAsync()
-    {
-        var brands = _Resellers.SelectMany(x => x.Licensees.SelectMany(l => l.Brands))
-            .Distinct()
-            .Select(brand => brand)
-            .ToArray();
-
-        foreach (var brand in brands)
-        {
-            var chiefId = GuidExtensions.NewSequentialGuid();
-            var agent1 = GuidExtensions.NewSequentialGuid();
-            var agent2 = GuidExtensions.NewSequentialGuid();
-            var currencyCode = brand.Currencies.First().Code;
-
-            _agents.Add(CreateAgent($"{brand.Code}Chief",
-                AgentStatus.Enabled,
-                AgentConfigStatus.DoneForConfigurePercentage,
-                AgentLevelType.Chief,
-                AgentType.Cash,
-                brand.Id,
-                currencyCode,
-                new Microsoft.EntityFrameworkCore.LTree(chiefId.ToString("N")),
-                chiefId));
-
-            _agents.Add(CreateAgent($"{brand.Code}Agent1",
-                AgentStatus.Enabled,
-                AgentConfigStatus.DoneForConfigurePercentage,
-                AgentLevelType.Agent,
-                AgentType.Cash,
-                brand.Id,
-                currencyCode,
-                new Microsoft.EntityFrameworkCore.LTree($"{chiefId:N}.{agent1:N}"),
-                agent1,
-                chiefId));
-
-            _agents.Add(CreateAgent($"{brand.Code}Agent2",
-                AgentStatus.Enabled,
-                AgentConfigStatus.WaitForConfigurePercentage,
-                AgentLevelType.Agent,
-                AgentType.Cash,
-                brand.Id,
-                currencyCode,
-                new Microsoft.EntityFrameworkCore.LTree($"{chiefId:N}.{agent2:N}"),
-                agent2,
-                chiefId));
-        }
-
-        await _repository.Agents.AddRangeAsync(_agents);
-        _ = await _repository.SaveChangesAsync();
-    }
-
-    private async Task GenerateBetDataAsync()
-    {
-        var rand = new Random((int)(DateTime.UtcNow.Ticks % 1000000));
-        var timestamp = DateTimeOffset.UtcNow.AddDays(-2);
-
-        var players = (from p in _players
-                       group p by p.BrandId
-                       into g
-                       select g.Take(2)).SelectMany(p => p);
-
-        foreach (var p in players)
-            foreach (var gp in _gameProvidersCreated.Values.Take(3))
-            {
-                var games = (from gm in gp.Games
-                             where !gm.Type.ToString().Contains("Lobby")
-                             group gm by gm.Type
-                             into g
-                             select g.Take(1)).SelectMany(g => g);
-
-                foreach (var game in games)
-                {
-                    var createdOn = timestamp = timestamp.AddSeconds(1);
-
-                    var closedOn = game.Type is Sportsbook or VirtualSports
-                        ? timestamp.AddDays(1)
-                        : timestamp.AddSeconds(3);
-
-                    var gameProviderConfiguration = gp.GameProviderConfigurations.First();
-                    var round = CreateRound(p, gp, gameProviderConfiguration, game, createdOn, closedOn);
-
-                    var externalGameActionGroupId = round.ExternalRoundId;
-                    var betAmount = ((decimal)rand.Next(5, 20)).Negate();
-
-                    var placeBetAction = CreateGameAction(round.PlayerCode,
-                        betAmount,
-                        round.Id,
-                        PlaceBet,
-                        externalGameActionGroupId,
-                        createdOn,
-                        createdOn);
-
-                    _ = await _repository.GameActions.AddAsync(placeBetAction);
-
-                    var v = rand.NextDouble();
-                    var resultActionType = v > 0.5 ? LoseBet : v is > 0.2 and < 0.5 ? WinBet : CancelTransaction;
-
-                    var resultAmount = resultActionType switch
-                    {
-                        LoseBet => 0,
-                        CancelTransaction => betAmount.Negate(),
-                        _ => betAmount.Negate() * 2
-                    };
-
-                    decimal turnover = 0, winloss = 0;
-
-                    if (resultActionType != CancelTransaction)
-                    {
-                        turnover = betAmount.Negate();
-                        winloss = (betAmount + resultAmount).Negate();
-
-                        round.WinLoss = winloss;
-                    }
-
-                    var resultAction = CreateGameAction(round.PlayerCode,
-                        resultAmount,
-                        round.Id,
-                        resultActionType,
-                        externalGameActionGroupId,
-                        closedOn,
-                        closedOn,
-                        turnover,
-                        winloss,
-                        placeBetAction.Id);
-
-                    _ = await _repository.GameActions.AddAsync(resultAction);
-                    _ = await _repository.Rounds.AddAsync(round);
-                }
-            }
-
-        _ = await _repository.SaveChangesAsync();
-    }
 
     private async Task GenerateBetLimitsAsync()
     {
@@ -1110,102 +900,6 @@ public partial class DataInitializer : BaseDataInitializer
         _ = await _repository.SaveChangesAsync();
     }
 
-    private async Task GeneratePlayersAsync()
-    {
-        var playerDefined = new PlayerDefined[]
-        {
-            new("4ucmqplwxqlv",
-                new("2EA6CDEF-094F-EB11-8D88-70B5E82B6B8D"),
-                new("D71AC5ED-B7D9-49F2-A129-8709FA4CC02A"),
-                _agents[0].Id),
-            new("4ucmqplx11cs",
-                new("30A6CDEF-094F-EB11-8D88-70B5E82B6B8D"),
-                new("D71AC5ED-B7D9-49F2-A129-8709FA4CC02A"),
-                _agents[0].Id),
-            new("4ucmqplx4dti",
-                new("32A6CDEF-094F-EB11-8D88-70B5E82B6B8D"),
-                new("D71AC5ED-B7D9-49F2-A129-8709FA4CC02A"),
-                _agents[1].Id),
-            new("4ucmqplx7okb",
-                new("34A6CDEF-094F-EB11-8D88-70B5E82B6B8D"),
-                new("D71AC5ED-B7D9-49F2-A129-8709FA4CC02A"),
-                _agents[2].Id),
-            new("4ucmqplxb029",
-                new("36A6CDEF-094F-EB11-8D88-70B5E82B6B8D"),
-                new("4E86719F-243F-46F6-B010-5C758B7285AF"),
-                null),
-            new("4ucmqplxe65x",
-                new("38A6CDEF-094F-EB11-8D88-70B5E82B6B8D"),
-                new("4E86719F-243F-46F6-B010-5C758B7285AF"),
-                null),
-            new("4ucmqplxhfoe",
-                new("3AA6CDEF-094F-EB11-8D88-70B5E82B6B8D"),
-                new("4E86719F-243F-46F6-B010-5C758B7285AF"),
-                null),
-            new("4ucmqplxkuyd",
-                new("3CA6CDEF-094F-EB11-8D88-70B5E82B6B8D"),
-                new("4E86719F-243F-46F6-B010-5C758B7285AF"),
-                null),
-            new("4uf6k014jp5x",
-                new("CF99C783-ACDF-48CC-B1CC-08D99A806DE9"),
-                new("9F1ECF19-38CD-474F-B0D2-93638DC07D21"),
-                null),
-            new("4uf7f15i0qtv",
-                new("4D2B0FB3-C5AF-4490-8B0B-6FA417142ACB"),
-                new("9F1ECF19-38CD-474F-B0D2-93638DC07D21"),
-                null)
-        };
-
-        var (salt, password) = _passwordHandler.GenerateCredential("TgsP@ssw0rd");
-
-        _players = playerDefined.Select(p =>
-        {
-            var playerCode = p.PlayerCode;
-            var brandId = p.BrandId;
-            var username = p.PlayerCode;
-            var realName = Generator.RandomString(12);
-            var vipId = _vipLevels!.First(x => x.BrandId == brandId).Id;
-
-            return CreatePlayer(playerCode,
-                brandId,
-                p.WalletId,
-                username,
-                realName,
-                salt,
-                password,
-                vipId,
-                PlayerType.RealPlayer,
-                p.AgentId);
-        }).ToArray();
-
-        await _repository.Players.AddRangeAsync(_players);
-        _ = await _repository.SaveChangesAsync();
-    }
-
-    private async Task GeneratePlayerSportsBetLimitsAsync()
-    {
-        var relation = _repository.SportMarketTypes.ToArray();
-
-        var players = from p in _players?.Where(p => p.Type == PlayerType.TestPlayer)
-                      group p by p.DefaultWalletCurrencyCode
-                      into g
-                      select g.First();
-
-        var limits = (from p in players
-                      from r in relation
-                      select new PlayerSportsBetLimit
-                      {
-                          PlayerCode = p.PlayerCode,
-                          SportMarketTypeId = r.Id,
-                          MinBet = 1,
-                          MaxBet = 2000,
-                          MaxBetPerMatch = 5000
-                      }).ToArray();
-
-        await _repository.PlayerSportsBetLimits.AddRangeAsync(limits);
-        _ = await _repository.SaveChangesAsync();
-    }
-
     private async Task GeneratePromotionsAsync()
     {
         var now = new DateTimeOffset(DateTimeOffset.Now.Year,
@@ -1330,76 +1024,6 @@ public partial class DataInitializer : BaseDataInitializer
         await _repository.SportTypes.AddRangeAsync(sports);
         await _repository.MarketTypes.AddRangeAsync(markets);
         await _repository.SportMarketTypes.AddRangeAsync(relation);
-        _ = await _repository.SaveChangesAsync();
-    }
-
-    private async Task GenerateUsersAsync()
-    {
-        string[] adminAccounts =
-        {
-            "hank.wu",
-            "lester.wei",
-            "sam.chuang",
-            "houdini.sheng",
-            "rico.lin",
-            "Paul.hsu",
-            "Phoenix.chen",
-            "Gordon.hung",
-            "andy.chu",
-            "jj"
-        };
-
-        string[] brandAccounts =
-        {
-            "aaron.xiao",
-            "meg.chiu"
-        };
-
-        var users = new List<User>
-        {
-            CreateUser("admin.disabled",
-                UserStatus.Disabled,
-                Roles._AdminRoleId,
-                _AdminDepartments[MarketDepartment]),
-            CreateUser("admin.enabled",
-                UserStatus.Enabled,
-                Roles._AdminRoleId,
-                _AdminDepartments[MarketDepartment]),
-            CreateUser("reseller.enabled",
-                UserStatus.Enabled,
-                Roles._ResellerRoleId,
-                _AdminDepartments[MarketDepartment]),
-            CreateUser("reseller.disabled",
-                UserStatus.Disabled,
-                Roles._ResellerRoleId,
-                _AdminDepartments[MarketDepartment]),
-            CreateUser("licensee.enabled",
-                UserStatus.Enabled,
-                Roles._LicenseeRoleId,
-                _AdminDepartments[MarketDepartment]),
-            CreateUser("licensee.disabled",
-                UserStatus.Disabled,
-                Roles._LicenseeRoleId,
-                _AdminDepartments[MarketDepartment]),
-            CreateUser("brand.enabled",
-                UserStatus.Enabled,
-                Roles._TgsBrandRoleId,
-                _AdminDepartments[MarketDepartment]),
-            CreateUser("brand.disabled",
-                UserStatus.Disabled,
-                Roles._TgsBrandRoleId,
-                _AdminDepartments[MarketDepartment])
-        };
-
-        users.AddRange(adminAccounts.Select(username =>
-            CreateUser(username, UserStatus.Enabled, Roles._AdminRoleId, _AdminDepartments[ProductDepartment])));
-
-        var brandDepartment = _Departments?.First(x => x.BrandId == _GpiBrandRole.BrandId);
-
-        users.AddRange(brandAccounts.Select(username =>
-            CreateUser(username, UserStatus.Enabled, _GpiBrandRole.Id, brandDepartment!.Id)));
-
-        await _repository.Users.AddRangeAsync(users);
         _ = await _repository.SaveChangesAsync();
     }
 

@@ -92,8 +92,6 @@ public class Player
 
     public Guid? VipId { get; set; }
 
-    public virtual ICollection<Wallet> Wallets { get; set; } = default!;
-
     public string? Wechat { get; set; }
 
     public byte[] WithdrawPassword { get; set; } = default!;

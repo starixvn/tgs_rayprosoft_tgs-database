@@ -14,7 +14,6 @@ internal class WalletTypeMap : IEntityTypeConfiguration<Wallet>
             .HasName("pk_wallets");
 
         _ = builder.Property(e => e.PlayerCode)
-            .HasMaxLength(16)
             .IsRequired();
 
         _ = builder.Property(e => e.CurrencyCode)
@@ -22,8 +21,7 @@ internal class WalletTypeMap : IEntityTypeConfiguration<Wallet>
             .IsRequired();
 
         _ = builder.Property(e => e.ExternalCurrencyCode)
-            .HasMaxLength(16)
-            .IsRequired();
+            .HasMaxLength(16);
 
         _ = builder.Property(e => e.Balance)
             .HasPrecision(18, 6)
@@ -39,12 +37,6 @@ internal class WalletTypeMap : IEntityTypeConfiguration<Wallet>
 
         _ = builder.Property(e => e.UpdatedOn)
             .IsRequired();
-
-        _ = builder.HasOne(e => e.Player)
-            .WithMany(e => e.Wallets)
-            .HasForeignKey(e => e.PlayerCode)
-            .HasConstraintName("fk_wallets_players_player_code")
-            .OnDelete(DeleteBehavior.Restrict);
 
         _ = builder.HasOne(e => e.Currency)
             .WithMany(e => e.Wallets)
