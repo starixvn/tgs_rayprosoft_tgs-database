@@ -10982,7 +10982,6 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnName("currency_code");
 
                     b.Property<string>("ExternalCurrencyCode")
-                        .IsRequired()
                         .HasMaxLength(16)
                         .HasColumnType("character varying(16)")
                         .HasColumnName("external_currency_code");
@@ -10996,8 +10995,7 @@ namespace TGS.Core.DataServices.Tgs.Migrations
 
                     b.Property<string>("PlayerCode")
                         .IsRequired()
-                        .HasMaxLength(16)
-                        .HasColumnType("character varying(16)")
+                        .HasColumnType("text")
                         .HasColumnName("player_code");
 
                     b.Property<DateTimeOffset>("UpdatedOn")
@@ -11009,9 +11007,6 @@ namespace TGS.Core.DataServices.Tgs.Migrations
 
                     b.HasIndex("CurrencyCode")
                         .HasDatabaseName("ix_wallets_currency_code");
-
-                    b.HasIndex("PlayerCode")
-                        .HasDatabaseName("ix_wallets_player_code");
 
                     b.ToTable("wallets", "dbo");
                 });
@@ -13146,16 +13141,7 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .IsRequired()
                         .HasConstraintName("fk_wallets_currencies_currency_code");
 
-                    b.HasOne("TGS.Core.DataServices.Tgs.Models.Player", "Player")
-                        .WithMany("Wallets")
-                        .HasForeignKey("PlayerCode")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired()
-                        .HasConstraintName("fk_wallets_players_player_code");
-
                     b.Navigation("Currency");
-
-                    b.Navigation("Player");
                 });
 
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.Whitelist", b =>
@@ -13417,8 +13403,6 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.Navigation("PlayerLoginRecords");
 
                     b.Navigation("SportsBetLimits");
-
-                    b.Navigation("Wallets");
                 });
 
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.Promotion", b =>

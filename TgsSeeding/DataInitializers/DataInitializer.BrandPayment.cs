@@ -152,21 +152,6 @@ public partial class DataInitializer
                                              DepositedAmountMin = 0M,
                                              DepositedAmountMax = 0M,
                                              Reason = "Reason",
-                                             BrandPaymentPlayers = new[]
-                                             {
-                                                 new BrandPaymentPlayer
-                                                 {
-                                                     PlayerCode = _players![0].PlayerCode,
-                                                     ListType = PlayerListType.White,
-                                                     BrandPaymentId = brandPaymentId
-                                                 },
-                                                 new BrandPaymentPlayer
-                                                 {
-                                                     PlayerCode = _players[1].PlayerCode,
-                                                     ListType = PlayerListType.Black,
-                                                     BrandPaymentId = brandPaymentId
-                                                 }
-                                             },
                                              VipLevels = new[]
                                              {
                                                  new BrandPaymentVipLevel
@@ -223,21 +208,6 @@ public partial class DataInitializer
                                       DepositedAmountMin = 0M,
                                       DepositedAmountMax = 0M,
                                       Reason = "Reason",
-                                      BrandPaymentPlayers = new[]
-                                      {
-                                          new BrandPaymentPlayer
-                                          {
-                                              PlayerCode = _players![0].PlayerCode,
-                                              ListType = PlayerListType.White,
-                                              BrandPaymentId = brandPaymentId
-                                          },
-                                          new BrandPaymentPlayer
-                                          {
-                                              PlayerCode = _players[1].PlayerCode,
-                                              ListType = PlayerListType.Black,
-                                              BrandPaymentId = brandPaymentId
-                                          }
-                                      },
                                       VipLevels = new[]
                                       {
                                           new BrandPaymentVipLevel
@@ -297,21 +267,6 @@ public partial class DataInitializer
                                         DepositedAmountMin = 0M,
                                         DepositedAmountMax = 0M,
                                         Reason = "Reason",
-                                        BrandPaymentPlayers = new[]
-                                        {
-                                            new BrandPaymentPlayer
-                                            {
-                                                PlayerCode = _players![0].PlayerCode,
-                                                ListType = PlayerListType.White,
-                                                BrandPaymentId = brandPaymentId
-                                            },
-                                            new BrandPaymentPlayer
-                                            {
-                                                PlayerCode = _players[1].PlayerCode,
-                                                ListType = PlayerListType.Black,
-                                                BrandPaymentId = brandPaymentId
-                                            }
-                                        },
                                         VipLevels = new[]
                                         {
                                             new BrandPaymentVipLevel
@@ -511,21 +466,6 @@ public partial class DataInitializer
                                       DepositedAmountMin = 0M,
                                       DepositedAmountMax = 0M,
                                       Reason = "Reason",
-                                      BrandPaymentPlayers = new[]
-                                      {
-                                          new BrandPaymentPlayer
-                                          {
-                                              PlayerCode = _players![0].PlayerCode,
-                                              ListType = PlayerListType.White,
-                                              BrandPaymentId = brandPaymentId
-                                          },
-                                          new BrandPaymentPlayer
-                                          {
-                                              PlayerCode = _players[1].PlayerCode,
-                                              ListType = PlayerListType.Black,
-                                              BrandPaymentId = brandPaymentId
-                                          }
-                                      },
                                       VipLevels = new[]
                                       {
                                           new BrandPaymentVipLevel
@@ -575,21 +515,6 @@ public partial class DataInitializer
                                       DepositedAmountMin = 0M,
                                       DepositedAmountMax = 0M,
                                       Reason = "Reason",
-                                      BrandPaymentPlayers = new[]
-                                      {
-                                          new BrandPaymentPlayer
-                                          {
-                                              PlayerCode = _players![0].PlayerCode,
-                                              ListType = PlayerListType.White,
-                                              BrandPaymentId = brandPaymentId
-                                          },
-                                          new BrandPaymentPlayer
-                                          {
-                                              PlayerCode = _players[1].PlayerCode,
-                                              ListType = PlayerListType.Black,
-                                              BrandPaymentId = brandPaymentId
-                                          }
-                                      },
                                       VipLevels = new[]
                                       {
                                           new BrandPaymentVipLevel
@@ -649,21 +574,6 @@ public partial class DataInitializer
                                         DepositedAmountMin = 0M,
                                         DepositedAmountMax = 0M,
                                         Reason = "Reason",
-                                        BrandPaymentPlayers = new[]
-                                        {
-                                            new BrandPaymentPlayer
-                                            {
-                                                PlayerCode = _players![0].PlayerCode,
-                                                ListType = PlayerListType.White,
-                                                BrandPaymentId = brandPaymentId
-                                            },
-                                            new BrandPaymentPlayer
-                                            {
-                                                PlayerCode = _players[1].PlayerCode,
-                                                ListType = PlayerListType.Black,
-                                                BrandPaymentId = brandPaymentId
-                                            }
-                                        },
                                         VipLevels = new[]
                                         {
                                             new BrandPaymentVipLevel

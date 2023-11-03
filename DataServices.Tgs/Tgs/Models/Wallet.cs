@@ -18,8 +18,6 @@ public class Wallet
 
     public decimal LockedBalance { get; set; }
 
-    public virtual Player Player { get; set; }
-
     public string PlayerCode { get; set; }
 
     public DateTimeOffset UpdatedOn { get; set; }
