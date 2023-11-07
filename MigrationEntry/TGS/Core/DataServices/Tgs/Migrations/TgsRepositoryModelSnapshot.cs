@@ -540,6 +540,10 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("numeric(18,6)")
                         .HasColumnName("virtual_sports_rebate_percentage");
 
+                    b.Property<Guid?>("WalletId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("wallet_id");
+
                     b.Property<string>("Wechat")
                         .HasMaxLength(64)
                         .HasColumnType("character varying(64)")
