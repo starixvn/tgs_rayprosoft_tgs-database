@@ -1,4 +1,5 @@
-﻿using System;
+﻿#nullable enable
+using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using TGS.Core.Models.Enums;
@@ -21,7 +22,7 @@ public class Agent
 
     public decimal CommissionPercentage { get; set; }
 
-    public string CreatedByUsername { get; set; }
+    public string? CreatedByUsername { get; set; }
 
     public DateTimeOffset CreatedOn { get; set; }
 
@@ -30,7 +31,7 @@ public class Agent
     //佔成
     public decimal DividendPercentage { get; set; }
 
-    public string Email { get; set; }
+    public string? Email { get; set; }
 
     public Guid Id { get; set; }
 
@@ -42,7 +43,7 @@ public class Agent
 
     public decimal LotteryRebatePercentage { get; set; }
 
-    public virtual Agent ParentAgent { get; set; }
+    public virtual Agent? ParentAgent { get; set; }
 
     public Guid? ParentAgentId { get; set; }
 
@@ -50,17 +51,17 @@ public class Agent
 
     public LTree Path { get; set; }
 
-    public string Phone { get; set; }
+    public string? Phone { get; set; }
 
     public virtual ICollection<Player> Players { get; set; }
 
-    public string QQ { get; set; }
+    public string? QQ { get; set; }
 
-    public string RealName { get; set; }
+    public string? RealName { get; set; }
 
     public DateTimeOffset RegisteredOn { get; set; }
 
-    public string Remarks { get; set; }
+    public string? Remarks { get; set; }
 
     public byte[] Salt { get; set; }
 
@@ -74,7 +75,7 @@ public class Agent
 
     public AgentType Type { get; set; }
 
-    public string UpdatedByUsername { get; set; }
+    public string? UpdatedByUsername { get; set; }
 
     public DateTimeOffset UpdatedOn { get; set; }
 
@@ -84,7 +85,7 @@ public class Agent
 
     public virtual ICollection<AgentWallet> Wallets { get; set; }
 
-    public string Wechat { get; set; }
+    public string? Wechat { get; set; }
 
     public byte[] WithdrawPassword { get; set; }
 
