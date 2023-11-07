@@ -99,6 +99,8 @@ internal class AgentMap : IEntityTypeConfiguration<Agent>
         _ = builder.Property(c => c.DefaultWalletId)
             .IsRequired();
 
+        _ = builder.Property(c => c.WalletId);
+
         _ = builder.Property(p => p.SnapshotEventId);
 
         _ = builder.HasOne(p => p.Brand)
