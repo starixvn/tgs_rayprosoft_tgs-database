@@ -21,4 +21,8 @@ public class Wallet
     public string PlayerCode { get; set; }
 
     public DateTimeOffset UpdatedOn { get; set; }
+
+    public Guid? BrandId { get; set; }
+
+    public string CashType { get; set; }
 }
