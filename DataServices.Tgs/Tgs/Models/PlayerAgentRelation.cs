@@ -1,4 +1,5 @@
 ﻿using System;
+using TGS.Core.Models.Enums;
 
 #nullable enable
 
@@ -12,5 +13,5 @@ public class PlayerAgentRelation
     public Player Player { get; set; }
     public Guid AgentId { get; set; }
     public Agent Agent { get; set; }
-    public bool Active { get; set; }
+    public PlayerAgentStatus Status { get; set; }
 }
