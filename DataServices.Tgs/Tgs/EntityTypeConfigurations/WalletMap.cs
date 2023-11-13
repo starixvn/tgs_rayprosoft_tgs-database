@@ -38,6 +38,11 @@ internal class WalletTypeMap : IEntityTypeConfiguration<Wallet>
         _ = builder.Property(e => e.UpdatedOn)
             .IsRequired();
 
+        _ = builder.Property(e => e.BrandId);
+        _ = builder.Property(e => e.CashType)
+            .IsRequired()
+            .HasDefaultValue("Player");
+
         _ = builder.HasOne(e => e.Currency)
             .WithMany(e => e.Wallets)
             .HasForeignKey(e => e.CurrencyCode)
