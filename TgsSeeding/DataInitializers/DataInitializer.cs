@@ -24,8 +24,6 @@ public partial class DataInitializer : BaseDataInitializer
         new TgsReseller()
     };
 
-    private readonly List<Agent> _agents = new();
-
     private readonly IDictionary<string, Brand> _brandCreated =
         new Dictionary<string, Brand>();
 
