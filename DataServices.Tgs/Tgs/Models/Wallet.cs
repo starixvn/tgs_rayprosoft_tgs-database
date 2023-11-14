@@ -25,4 +25,6 @@ public class Wallet
     public Guid? BrandId { get; set; }
 
     public string CashType { get; set; }
+
+    public Guid? SnapshotId { get; set; }
 }

@@ -11013,6 +11013,10 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("text")
                         .HasColumnName("player_code");
 
+                    b.Property<Guid?>("SnapshotId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("snapshot_id");
+
                     b.Property<DateTimeOffset>("UpdatedOn")
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("updated_on");
