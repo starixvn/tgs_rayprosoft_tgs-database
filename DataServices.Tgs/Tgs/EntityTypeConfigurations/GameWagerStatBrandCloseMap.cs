@@ -23,9 +23,6 @@ internal class GameWagerStatBrandCloseMap : IEntityTypeConfiguration<GameWagerSt
             .HasIndex(c => new { c.StatOn, c.GameProviderId })
             .HasDatabaseName("ix_game_wager_stat_brand_closes_game_provider_id");
         _ = builder
-            .HasIndex(c => new { c.Id })
-            .HasDatabaseName("ix_game_wager_stat_brand_closes_id");
-        _ = builder
             .HasIndex(c => new { c.StatOn, c.LicenseeId })
             .HasDatabaseName("ix_game_wager_stat_brand_closes_licensee_id");
         _ = builder
@@ -50,9 +47,6 @@ internal class GameWagerStatBrandCloseMap : IEntityTypeConfiguration<GameWagerSt
         _ = builder.Property(c => c.GameProviderId)
             .IsRequired()
             .HasComment("遊戲供應商識別碼");
-        _ = builder.Property(c => c.Id)
-            .IsRequired()
-            .HasComment("識別碼");
         _ = builder.Property(b => b.Count)
             .HasPrecision(18, 6)
             .IsRequired()

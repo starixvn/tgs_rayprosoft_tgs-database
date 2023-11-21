@@ -4,8 +4,6 @@ namespace TGS.Core.DataServices.Tgs.Models;
 
 public class GameWagerStatBrandClose
 {
-    public long Id { get; set; }
-
     public Guid ResellerId { get; set; }
 
     public Guid LicenseeId { get; set; }
