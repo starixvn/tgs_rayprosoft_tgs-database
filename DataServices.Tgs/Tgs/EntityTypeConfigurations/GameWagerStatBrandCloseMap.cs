@@ -1,7 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using TGS.Core.DataServices.Base;
-using TGS.Core.DataServices.Tgs.Migrations;
 using TGS.Core.DataServices.Tgs.Models;
 
 namespace TGS.Core.DataServices.Tgs.EntityTypeConfigurations;
@@ -36,7 +34,7 @@ internal class GameWagerStatBrandCloseMap : IEntityTypeConfiguration<GameWagerSt
         _ = builder
             .HasIndex(c => new { c.StatOn })
             .HasDatabaseName("ix_game_wager_stat_brand_closes_stat_on");
-   
+
         _ = builder.Property(c => c.StatOn)
             .IsRequired()
             .HasComment("統計時間");
