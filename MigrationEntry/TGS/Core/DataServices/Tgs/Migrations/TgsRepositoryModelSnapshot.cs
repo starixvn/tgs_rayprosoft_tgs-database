@@ -5536,11 +5536,6 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnName("settle")
                         .HasComment("結算(包含本金)");
 
-                    b.Property<DateOnly>("StatDayOn")
-                        .HasColumnType("date")
-                        .HasColumnName("stat_day_on")
-                        .HasComment("統計日期時間");
-
                     b.Property<decimal>("Turnover")
                         .ValueGeneratedOnAdd()
                         .HasPrecision(18, 6)
@@ -5575,23 +5570,8 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.HasKey("StatOn", "ResellerId", "LicenseeId", "BrandId", "GameProviderId")
                         .HasName("pk_game_wager_stat_brand_hour_closes");
 
-                    b.HasIndex("StatDayOn")
-                        .HasDatabaseName("ix_game_wager_stat_brand_h_c_d_stat_day_on");
-
                     b.HasIndex("StatOn")
                         .HasDatabaseName("ix_game_wager_stat_brand_h_c_stat_on");
-
-                    b.HasIndex("StatDayOn", "BrandId")
-                        .HasDatabaseName("ix_game_wager_stat_brand_h_c_d_brand_id");
-
-                    b.HasIndex("StatDayOn", "GameProviderId")
-                        .HasDatabaseName("ix_game_wager_stat_brand_h_c_d_game_provider_id");
-
-                    b.HasIndex("StatDayOn", "LicenseeId")
-                        .HasDatabaseName("ix_game_wager_stat_brand_h_c_d_licensee_id");
-
-                    b.HasIndex("StatDayOn", "ResellerId")
-                        .HasDatabaseName("ix_game_wager_stat_brand_h_c_d_reseller_id");
 
                     b.HasIndex("StatOn", "BrandId")
                         .HasDatabaseName("ix_game_wager_stat_brand_h_c_brand_id");
@@ -5810,11 +5790,6 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnName("settle")
                         .HasComment("結算(包含本金)");
 
-                    b.Property<DateOnly>("StatDayOn")
-                        .HasColumnType("date")
-                        .HasColumnName("stat_day_on")
-                        .HasComment("統計日期時間");
-
                     b.Property<decimal>("Turnover")
                         .ValueGeneratedOnAdd()
                         .HasPrecision(18, 6)
@@ -5849,26 +5824,8 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.HasKey("StatOn", "ResellerId", "LicenseeId", "BrandId", "PlayerCode", "GameProviderId")
                         .HasName("pk_game_wager_stat_player_hour_closes");
 
-                    b.HasIndex("StatDayOn")
-                        .HasDatabaseName("ix_game_wager_stat_player_h_c_d_stat_day_on");
-
                     b.HasIndex("StatOn")
                         .HasDatabaseName("ix_game_wager_stat_player_h_c_stat_on");
-
-                    b.HasIndex("StatDayOn", "BrandId")
-                        .HasDatabaseName("ix_game_wager_stat_player_h_c_d_brand_id");
-
-                    b.HasIndex("StatDayOn", "GameProviderId")
-                        .HasDatabaseName("ix_game_wager_stat_player_h_c_d_game_provider_id");
-
-                    b.HasIndex("StatDayOn", "LicenseeId")
-                        .HasDatabaseName("ix_game_wager_stat_player_h_c_d_licensee_id");
-
-                    b.HasIndex("StatDayOn", "PlayerCode")
-                        .HasDatabaseName("ix_game_wager_stat_player_h_c_d_player_code");
-
-                    b.HasIndex("StatDayOn", "ResellerId")
-                        .HasDatabaseName("ix_game_wager_stat_player_h_c_d_reseller_id");
 
                     b.HasIndex("StatOn", "BrandId")
                         .HasDatabaseName("ix_game_wager_stat_player_h_c_brand_id");

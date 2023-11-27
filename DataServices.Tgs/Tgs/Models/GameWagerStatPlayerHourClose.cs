@@ -14,8 +14,6 @@ public class GameWagerStatPlayerHourClose
 
     public Guid GameProviderId { get; set; }
 
-    public DateOnly StatDayOn { get; set; }
-
     public DateTimeOffset StatOn { get; set; }
 
     public int Count { get; set; }
