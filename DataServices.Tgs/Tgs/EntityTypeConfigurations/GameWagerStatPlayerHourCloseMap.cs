@@ -20,9 +20,6 @@ internal class GameWagerStatPlayerHourCloseMap : IEntityTypeConfiguration<GameWa
             .HasIndex(c => new { c.StatOn, c.BrandId })
             .HasDatabaseName("ix_game_wager_stat_player_h_c_brand_id");
         _ = builder
-            .HasIndex(c => new { c.StatOn, c.PlayerCode, c.GameProviderId })
-            .HasDatabaseName("ix_game_wager_stat_player_h_c_player_code_game_provider_id");
-        _ = builder
             .HasIndex(c => new { c.StatOn, c.GameProviderId })
             .HasDatabaseName("ix_game_wager_stat_player_h_c_game_provider_id");
         _ = builder
@@ -40,9 +37,6 @@ internal class GameWagerStatPlayerHourCloseMap : IEntityTypeConfiguration<GameWa
         _ = builder
             .HasIndex(c => new { c.StatDayOn, c.BrandId })
             .HasDatabaseName("ix_game_wager_stat_player_h_c_d_brand_id");
-        _ = builder
-            .HasIndex(c => new { c.StatDayOn, c.PlayerCode, c.GameProviderId })
-            .HasDatabaseName("ix_game_wager_stat_player_h_c_d_player_code_game_provider_id");
         _ = builder
             .HasIndex(c => new { c.StatDayOn, c.GameProviderId })
             .HasDatabaseName("ix_game_wager_stat_player_h_c_d_game_provider_id");
