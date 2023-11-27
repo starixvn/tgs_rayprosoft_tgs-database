@@ -5605,12 +5605,6 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.HasIndex("StatOn", "ResellerId")
                         .HasDatabaseName("ix_game_wager_stat_brand_h_c_reseller_id");
 
-                    b.HasIndex("StatDayOn", "BrandId", "GameProviderId")
-                        .HasDatabaseName("ix_game_wager_stat_brand_h_c_d_brand_id_game_provider_id");
-
-                    b.HasIndex("StatOn", "BrandId", "GameProviderId")
-                        .HasDatabaseName("ix_game_wager_stat_brand_h_c_brand_id_game_provider_id");
-
                     b.ToTable("game_wager_stat_brand_hour_closes", "dbo");
                 });
 
@@ -5890,12 +5884,6 @@ namespace TGS.Core.DataServices.Tgs.Migrations
 
                     b.HasIndex("StatOn", "ResellerId")
                         .HasDatabaseName("ix_game_wager_stat_player_h_c_reseller_id");
-
-                    b.HasIndex("StatDayOn", "PlayerCode", "GameProviderId")
-                        .HasDatabaseName("ix_game_wager_stat_player_h_c_d_player_code_game_provider_id");
-
-                    b.HasIndex("StatOn", "PlayerCode", "GameProviderId")
-                        .HasDatabaseName("ix_game_wager_stat_player_h_c_player_code_game_provider_id");
 
                     b.ToTable("game_wager_stat_player_hour_closes", "dbo");
                 });
