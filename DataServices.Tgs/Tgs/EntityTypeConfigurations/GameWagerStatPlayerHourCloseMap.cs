@@ -31,24 +31,6 @@ internal class GameWagerStatPlayerHourCloseMap : IEntityTypeConfiguration<GameWa
         _ = builder
             .HasIndex(c => new { c.StatOn })
             .HasDatabaseName("ix_game_wager_stat_player_h_c_stat_on");
-        _ = builder
-            .HasIndex(c => new { c.StatDayOn, c.PlayerCode })
-            .HasDatabaseName("ix_game_wager_stat_player_h_c_d_player_code");
-        _ = builder
-            .HasIndex(c => new { c.StatDayOn, c.BrandId })
-            .HasDatabaseName("ix_game_wager_stat_player_h_c_d_brand_id");
-        _ = builder
-            .HasIndex(c => new { c.StatDayOn, c.GameProviderId })
-            .HasDatabaseName("ix_game_wager_stat_player_h_c_d_game_provider_id");
-        _ = builder
-            .HasIndex(c => new { c.StatDayOn, c.LicenseeId })
-            .HasDatabaseName("ix_game_wager_stat_player_h_c_d_licensee_id");
-        _ = builder
-            .HasIndex(c => new { c.StatDayOn, c.ResellerId })
-            .HasDatabaseName("ix_game_wager_stat_player_h_c_d_reseller_id");
-        _ = builder
-            .HasIndex(c => new { c.StatDayOn })
-            .HasDatabaseName("ix_game_wager_stat_player_h_c_d_stat_day_on");
 
         _ = builder.Property(c => c.ResellerId)
             .IsRequired()
@@ -69,9 +51,6 @@ internal class GameWagerStatPlayerHourCloseMap : IEntityTypeConfiguration<GameWa
         _ = builder.Property(c => c.StatOn)
             .IsRequired()
             .HasComment("統計時間");
-        _ = builder.Property(c => c.StatDayOn)
-            .IsRequired()
-            .HasComment("統計日期時間");
         _ = builder.Property(b => b.Count)
             .HasPrecision(18, 6)
             .IsRequired()
