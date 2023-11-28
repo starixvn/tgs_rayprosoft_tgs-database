@@ -45,7 +45,6 @@ internal class GameWagerStatBrandHourCloseMap : IEntityTypeConfiguration<GameWag
             .IsRequired()
             .HasComment("統計時間");
         _ = builder.Property(b => b.Count)
-            .HasPrecision(18, 6)
             .IsRequired()
             .HasDefaultValue(0)
             .HasComment("筆數");

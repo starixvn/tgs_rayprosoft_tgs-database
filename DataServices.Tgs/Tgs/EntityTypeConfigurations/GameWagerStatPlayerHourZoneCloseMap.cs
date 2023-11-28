@@ -96,7 +96,6 @@ internal class GameWagerStatPlayerHourZoneCloseMap : IEntityTypeConfiguration<Ga
             .IsRequired()
             .HasComment("統計小時時間");
         _ = builder.Property(b => b.Count)
-            .HasPrecision(18, 6)
             .IsRequired()
             .HasDefaultValue(0)
             .HasComment("筆數");
