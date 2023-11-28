@@ -5515,7 +5515,6 @@ namespace TGS.Core.DataServices.Tgs.Migrations
 
                     b.Property<int>("Count")
                         .ValueGeneratedOnAdd()
-                        .HasPrecision(18, 6)
                         .HasColumnType("integer")
                         .HasDefaultValue(0)
                         .HasColumnName("count")
@@ -5586,6 +5585,163 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasDatabaseName("ix_game_wager_stat_brand_h_c_reseller_id");
 
                     b.ToTable("game_wager_stat_brand_hour_closes", "dbo");
+                });
+
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.GameWagerStatBrandHourZoneClose", b =>
+                {
+                    b.Property<DateTimeOffset>("StatOn")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("stat_on")
+                        .HasComment("統計時間");
+
+                    b.Property<Guid>("ResellerId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("reseller_id")
+                        .HasComment("公司識別碼");
+
+                    b.Property<Guid>("LicenseeId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("licensee_id")
+                        .HasComment("分公司識別碼");
+
+                    b.Property<Guid>("BrandId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("brand_id")
+                        .HasComment("平台識別碼");
+
+                    b.Property<Guid>("GameProviderId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("game_provider_id")
+                        .HasComment("遊戲供應商識別碼");
+
+                    b.Property<decimal>("Bet")
+                        .ValueGeneratedOnAdd()
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasDefaultValue(0m)
+                        .HasColumnName("bet")
+                        .HasComment("下注");
+
+                    b.Property<decimal>("Commission")
+                        .ValueGeneratedOnAdd()
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasDefaultValue(0m)
+                        .HasColumnName("commission")
+                        .HasComment("傭金");
+
+                    b.Property<int>("Count")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasDefaultValue(0)
+                        .HasColumnName("count")
+                        .HasComment("筆數");
+
+                    b.Property<DateTimeOffset>("CreatedOn")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_on")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP")
+                        .HasComment("創建時間");
+
+                    b.Property<decimal>("Settle")
+                        .ValueGeneratedOnAdd()
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasDefaultValue(0m)
+                        .HasColumnName("settle")
+                        .HasComment("結算(包含本金)");
+
+                    b.Property<DateOnly>("StatDayOn")
+                        .HasColumnType("date")
+                        .HasColumnName("stat_day_on")
+                        .HasComment("統計日時間");
+
+                    b.Property<TimeOnly>("StatHourOn")
+                        .HasColumnType("time without time zone")
+                        .HasColumnName("stat_hour_on")
+                        .HasComment("統計小時時間");
+
+                    b.Property<decimal>("Turnover")
+                        .ValueGeneratedOnAdd()
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasDefaultValue(0m)
+                        .HasColumnName("turnover")
+                        .HasComment("有效投注");
+
+                    b.Property<DateTimeOffset>("UpdatedOn")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("updated_on")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP")
+                        .HasComment("修改時間");
+
+                    b.Property<decimal>("ValidBet")
+                        .ValueGeneratedOnAdd()
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasDefaultValue(0m)
+                        .HasColumnName("valid_bet")
+                        .HasComment("實際/有效下注");
+
+                    b.Property<decimal>("WinLoss")
+                        .ValueGeneratedOnAdd()
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasDefaultValue(0m)
+                        .HasColumnName("win_loss")
+                        .HasComment("玩家損益/淨利");
+
+                    b.HasKey("StatOn", "ResellerId", "LicenseeId", "BrandId", "GameProviderId")
+                        .HasName("pk_game_wager_stat_brand_hour_zone_closes");
+
+                    b.HasIndex("StatOn")
+                        .HasDatabaseName("ix_game_wager_stat_brand_h_z_c_stat_on");
+
+                    b.HasIndex("StatOn", "BrandId")
+                        .HasDatabaseName("ix_game_wager_stat_brand_h_z_c_brand_id");
+
+                    b.HasIndex("StatOn", "GameProviderId")
+                        .HasDatabaseName("ix_game_wager_stat_brand_h_z_c_game_provider_id");
+
+                    b.HasIndex("StatOn", "LicenseeId")
+                        .HasDatabaseName("ix_game_wager_stat_brand_h_z_c_licensee_id");
+
+                    b.HasIndex("StatOn", "ResellerId")
+                        .HasDatabaseName("ix_game_wager_stat_brand_h_z_c_reseller_id");
+
+                    b.HasIndex("StatOn", "StatDayOn")
+                        .HasDatabaseName("ix_game_wager_stat_brand_h_z_c_d_stat_day_on");
+
+                    b.HasIndex("StatOn", "StatDayOn", "BrandId")
+                        .HasDatabaseName("ix_game_wager_stat_brand_h_z_c_d_brand_id");
+
+                    b.HasIndex("StatOn", "StatDayOn", "GameProviderId")
+                        .HasDatabaseName("ix_game_wager_stat_brand_h_z_c_d_game_provider_id");
+
+                    b.HasIndex("StatOn", "StatDayOn", "LicenseeId")
+                        .HasDatabaseName("ix_game_wager_stat_brand_h_z_c_d_licensee_id");
+
+                    b.HasIndex("StatOn", "StatDayOn", "ResellerId")
+                        .HasDatabaseName("ix_game_wager_stat_brand_h_z_c_d_reseller_id");
+
+                    b.HasIndex("StatOn", "StatDayOn", "StatHourOn")
+                        .HasDatabaseName("ix_game_wager_stat_brand_h_z_c_d_h_stat_hour_on");
+
+                    b.HasIndex("StatOn", "StatDayOn", "StatHourOn", "BrandId")
+                        .HasDatabaseName("ix_game_wager_stat_brand_h_z_c_d_h_brand_id");
+
+                    b.HasIndex("StatOn", "StatDayOn", "StatHourOn", "GameProviderId")
+                        .HasDatabaseName("ix_game_wager_stat_brand_h_z_c_d_h_game_provider_id");
+
+                    b.HasIndex("StatOn", "StatDayOn", "StatHourOn", "LicenseeId")
+                        .HasDatabaseName("ix_game_wager_stat_brand_h_z_c_d_h_licensee_id");
+
+                    b.HasIndex("StatOn", "StatDayOn", "StatHourOn", "ResellerId")
+                        .HasDatabaseName("ix_game_wager_stat_brand_h_z_c_d_h_reseller_id");
+
+                    b.ToTable("game_wager_stat_brand_hour_zone_closes", "dbo");
                 });
 
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.GameWagerStatPlayerClose", b =>
@@ -5769,7 +5925,6 @@ namespace TGS.Core.DataServices.Tgs.Migrations
 
                     b.Property<int>("Count")
                         .ValueGeneratedOnAdd()
-                        .HasPrecision(18, 6)
                         .HasColumnType("integer")
                         .HasDefaultValue(0)
                         .HasColumnName("count")
@@ -5896,7 +6051,6 @@ namespace TGS.Core.DataServices.Tgs.Migrations
 
                     b.Property<int>("Count")
                         .ValueGeneratedOnAdd()
-                        .HasPrecision(18, 6)
                         .HasColumnType("integer")
                         .HasDefaultValue(0)
                         .HasColumnName("count")
