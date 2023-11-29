@@ -10,8 +10,8 @@ internal class PlayerAgentRelationMap : IEntityTypeConfiguration<PlayerAgentRela
     {
         _ = builder.ToTable("player_agent_relations");
 
-        _ = builder.HasKey(bc => new { bc.BrandId, bc.PlayerCode, bc.AgentId })
-            .HasName("pk_brand_id_player_code_agent_id");
+        _ = builder.HasKey(bc => bc.PlayerCode)
+            .HasName("pk_player_agent_relations_player_code");
 
         _ = builder.Property(c => c.BrandId)
             .IsRequired();

@@ -7259,10 +7259,6 @@ namespace TGS.Core.DataServices.Tgs.Migrations
 
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.PlayerAgentRelation", b =>
                 {
-                    b.Property<Guid>("BrandId")
-                        .HasColumnType("uuid")
-                        .HasColumnName("brand_id");
-
                     b.Property<string>("PlayerCode")
                         .HasMaxLength(16)
                         .HasColumnType("character varying(16)")
@@ -7272,12 +7268,16 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("agent_id");
 
+                    b.Property<Guid>("BrandId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("brand_id");
+
                     b.Property<int>("Status")
                         .HasColumnType("integer")
                         .HasColumnName("status");
 
-                    b.HasKey("BrandId", "PlayerCode", "AgentId")
-                        .HasName("pk_brand_id_player_code_agent_id");
+                    b.HasKey("PlayerCode")
+                        .HasName("pk_player_agent_relations_player_code");
 
                     b.HasIndex("AgentId")
                         .IsUnique()
@@ -7286,10 +7286,6 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.HasIndex("BrandId")
                         .IsUnique()
                         .HasDatabaseName("ix_player_agent_relations_brand_id");
-
-                    b.HasIndex("PlayerCode")
-                        .IsUnique()
-                        .HasDatabaseName("ix_player_agent_relations_player_code");
 
                     b.ToTable("player_agent_relations", "dbo");
                 });
