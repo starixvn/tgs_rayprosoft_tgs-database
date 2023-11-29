@@ -98,7 +98,7 @@ internal class GameWagerStatPlayerHourZoneCloseMap : IEntityTypeConfiguration<Ga
         _ = builder.Property(c => c.StatTimeSpan)
             .IsRequired()
             .HasDefaultValueSql("'+00:00:00':: interval")
-            .HasComment("時區");
+            .HasComment("統計時間跨度");
         _ = builder.Property(b => b.Count)
             .IsRequired()
             .HasDefaultValue(0)
