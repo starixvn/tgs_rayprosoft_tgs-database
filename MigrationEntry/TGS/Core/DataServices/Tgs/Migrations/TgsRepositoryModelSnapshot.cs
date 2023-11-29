@@ -5662,6 +5662,13 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnName("stat_hour_on")
                         .HasComment("統計小時時間");
 
+                    b.Property<TimeSpan>("StatTimeSpan")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("interval")
+                        .HasColumnName("stat_time_span")
+                        .HasDefaultValueSql("'+00:00:00':: interval")
+                        .HasComment("統計時間跨度");
+
                     b.Property<decimal>("Turnover")
                         .ValueGeneratedOnAdd()
                         .HasPrecision(18, 6)
@@ -6086,7 +6093,7 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("interval")
                         .HasColumnName("stat_time_span")
                         .HasDefaultValueSql("'+00:00:00':: interval")
-                        .HasComment("時區");
+                        .HasComment("統計時間跨度");
 
                     b.Property<decimal>("Turnover")
                         .ValueGeneratedOnAdd()
