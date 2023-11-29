@@ -18,6 +18,8 @@ public class GameWagerStatPlayerHourZoneClose
 
     public TimeOnly StatHourOn { get; set; }
 
+    public TimeSpan StatTimeSpan { get; set; }
+
     public DateTimeOffset StatOn { get; set; }
 
     public int Count { get; set; }
