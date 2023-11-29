@@ -5536,20 +5536,24 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasComment("結算(包含本金)");
 
                     b.Property<DateOnly>("StatDayOn")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("date")
                         .HasColumnName("stat_day_on")
+                        .HasDefaultValueSql("'1990-01-01':: date")
                         .HasComment("統計日時間");
 
                     b.Property<TimeOnly>("StatHourOn")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("time without time zone")
                         .HasColumnName("stat_hour_on")
+                        .HasDefaultValueSql("'00:00:00':: time")
                         .HasComment("統計小時時間");
 
                     b.Property<TimeSpan>("StatTimeSpan")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("interval")
                         .HasColumnName("stat_time_span")
-                        .HasDefaultValueSql("'+00:00:00':: interval")
+                        .HasDefaultValueSql("'+08:00:00':: interval")
                         .HasComment("統計時間跨度");
 
                     b.Property<decimal>("Turnover")
@@ -6000,20 +6004,24 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasComment("結算(包含本金)");
 
                     b.Property<DateOnly>("StatDayOn")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("date")
                         .HasColumnName("stat_day_on")
+                        .HasDefaultValueSql("'1990-01-01':: date")
                         .HasComment("統計日時間");
 
                     b.Property<TimeOnly>("StatHourOn")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("time without time zone")
                         .HasColumnName("stat_hour_on")
+                        .HasDefaultValueSql("'00:00:00':: time")
                         .HasComment("統計小時時間");
 
                     b.Property<TimeSpan>("StatTimeSpan")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("interval")
                         .HasColumnName("stat_time_span")
-                        .HasDefaultValueSql("'+00:00:00':: interval")
+                        .HasDefaultValueSql("'+08:00:00':: interval")
                         .HasComment("統計時間跨度");
 
                     b.Property<decimal>("Turnover")

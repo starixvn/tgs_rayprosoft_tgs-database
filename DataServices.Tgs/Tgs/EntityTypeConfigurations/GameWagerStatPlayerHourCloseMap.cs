@@ -91,13 +91,15 @@ internal class GameWagerStatPlayerHourCloseMap : IEntityTypeConfiguration<GameWa
             .HasComment("統計時間");
         _ = builder.Property(c => c.StatDayOn)
             .IsRequired()
+            .HasDefaultValueSql("'1990-01-01':: date")
             .HasComment("統計日時間");
         _ = builder.Property(c => c.StatHourOn)
             .IsRequired()
+            .HasDefaultValueSql("'00:00:00':: time")
             .HasComment("統計小時時間");
         _ = builder.Property(c => c.StatTimeSpan)
             .IsRequired()
-            .HasDefaultValueSql("'+00:00:00':: interval")
+            .HasDefaultValueSql("'+08:00:00':: interval")
             .HasComment("統計時間跨度");
         _ = builder.Property(b => b.Count)
             .IsRequired()
