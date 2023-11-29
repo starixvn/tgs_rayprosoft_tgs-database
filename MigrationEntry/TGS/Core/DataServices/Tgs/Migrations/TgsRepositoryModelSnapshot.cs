@@ -5535,6 +5535,27 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnName("settle")
                         .HasComment("結算(包含本金)");
 
+                    b.Property<DateOnly>("StatDayOn")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("date")
+                        .HasColumnName("stat_day_on")
+                        .HasDefaultValueSql("'1990-01-01':: date")
+                        .HasComment("統計日時間");
+
+                    b.Property<TimeOnly>("StatHourOn")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("time without time zone")
+                        .HasColumnName("stat_hour_on")
+                        .HasDefaultValueSql("'00:00:00':: time")
+                        .HasComment("統計小時時間");
+
+                    b.Property<TimeSpan>("StatTimeSpan")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("interval")
+                        .HasColumnName("stat_time_span")
+                        .HasDefaultValueSql("'+08:00:00':: interval")
+                        .HasComment("統計時間跨度");
+
                     b.Property<decimal>("Turnover")
                         .ValueGeneratedOnAdd()
                         .HasPrecision(18, 6)
@@ -5583,6 +5604,36 @@ namespace TGS.Core.DataServices.Tgs.Migrations
 
                     b.HasIndex("StatOn", "ResellerId")
                         .HasDatabaseName("ix_game_wager_stat_brand_h_c_reseller_id");
+
+                    b.HasIndex("StatOn", "StatDayOn")
+                        .HasDatabaseName("ix_game_wager_stat_brand_h_c_d_stat_day_on");
+
+                    b.HasIndex("StatOn", "StatDayOn", "BrandId")
+                        .HasDatabaseName("ix_game_wager_stat_brand_h_c_d_brand_id");
+
+                    b.HasIndex("StatOn", "StatDayOn", "GameProviderId")
+                        .HasDatabaseName("ix_game_wager_stat_brand_h_c_d_game_provider_id");
+
+                    b.HasIndex("StatOn", "StatDayOn", "LicenseeId")
+                        .HasDatabaseName("ix_game_wager_stat_brand_h_c_d_licensee_id");
+
+                    b.HasIndex("StatOn", "StatDayOn", "ResellerId")
+                        .HasDatabaseName("ix_game_wager_stat_brand_h_c_d_reseller_id");
+
+                    b.HasIndex("StatOn", "StatDayOn", "StatHourOn")
+                        .HasDatabaseName("ix_game_wager_stat_brand_h_c_d_h_stat_hour_on");
+
+                    b.HasIndex("StatOn", "StatDayOn", "StatHourOn", "BrandId")
+                        .HasDatabaseName("ix_game_wager_stat_brand_h_c_d_h_brand_id");
+
+                    b.HasIndex("StatOn", "StatDayOn", "StatHourOn", "GameProviderId")
+                        .HasDatabaseName("ix_game_wager_stat_brand_h_c_d_h_game_provider_id");
+
+                    b.HasIndex("StatOn", "StatDayOn", "StatHourOn", "LicenseeId")
+                        .HasDatabaseName("ix_game_wager_stat_brand_h_c_d_h_licensee_id");
+
+                    b.HasIndex("StatOn", "StatDayOn", "StatHourOn", "ResellerId")
+                        .HasDatabaseName("ix_game_wager_stat_brand_h_c_d_h_reseller_id");
 
                     b.ToTable("game_wager_stat_brand_hour_closes", "dbo");
                 });
@@ -5952,6 +6003,27 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnName("settle")
                         .HasComment("結算(包含本金)");
 
+                    b.Property<DateOnly>("StatDayOn")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("date")
+                        .HasColumnName("stat_day_on")
+                        .HasDefaultValueSql("'1990-01-01':: date")
+                        .HasComment("統計日時間");
+
+                    b.Property<TimeOnly>("StatHourOn")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("time without time zone")
+                        .HasColumnName("stat_hour_on")
+                        .HasDefaultValueSql("'00:00:00':: time")
+                        .HasComment("統計小時時間");
+
+                    b.Property<TimeSpan>("StatTimeSpan")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("interval")
+                        .HasColumnName("stat_time_span")
+                        .HasDefaultValueSql("'+08:00:00':: interval")
+                        .HasComment("統計時間跨度");
+
                     b.Property<decimal>("Turnover")
                         .ValueGeneratedOnAdd()
                         .HasPrecision(18, 6)
@@ -6003,6 +6075,42 @@ namespace TGS.Core.DataServices.Tgs.Migrations
 
                     b.HasIndex("StatOn", "ResellerId")
                         .HasDatabaseName("ix_game_wager_stat_player_h_c_reseller_id");
+
+                    b.HasIndex("StatOn", "StatDayOn")
+                        .HasDatabaseName("ix_game_wager_stat_player_h_c_d_stat_day_on");
+
+                    b.HasIndex("StatOn", "StatDayOn", "BrandId")
+                        .HasDatabaseName("ix_game_wager_stat_player_h_c_d_brand_id");
+
+                    b.HasIndex("StatOn", "StatDayOn", "GameProviderId")
+                        .HasDatabaseName("ix_game_wager_stat_player_h_c_d_game_provider_id");
+
+                    b.HasIndex("StatOn", "StatDayOn", "LicenseeId")
+                        .HasDatabaseName("ix_game_wager_stat_player_h_c_d_licensee_id");
+
+                    b.HasIndex("StatOn", "StatDayOn", "PlayerCode")
+                        .HasDatabaseName("ix_game_wager_stat_player_h_c_d_player_code");
+
+                    b.HasIndex("StatOn", "StatDayOn", "ResellerId")
+                        .HasDatabaseName("ix_game_wager_stat_player_h_c_d_reseller_id");
+
+                    b.HasIndex("StatOn", "StatDayOn", "StatHourOn")
+                        .HasDatabaseName("ix_game_wager_stat_player_h_c_d_h_stat_hour_on");
+
+                    b.HasIndex("StatOn", "StatDayOn", "StatHourOn", "BrandId")
+                        .HasDatabaseName("ix_game_wager_stat_player_h_c_d_h_brand_id");
+
+                    b.HasIndex("StatOn", "StatDayOn", "StatHourOn", "GameProviderId")
+                        .HasDatabaseName("ix_game_wager_stat_player_h_c_d_h_game_provider_id");
+
+                    b.HasIndex("StatOn", "StatDayOn", "StatHourOn", "LicenseeId")
+                        .HasDatabaseName("ix_game_wager_stat_player_h_c_d_h_licensee_id");
+
+                    b.HasIndex("StatOn", "StatDayOn", "StatHourOn", "PlayerCode")
+                        .HasDatabaseName("ix_game_wager_stat_player_h_c_d_h_player_code");
+
+                    b.HasIndex("StatOn", "StatDayOn", "StatHourOn", "ResellerId")
+                        .HasDatabaseName("ix_game_wager_stat_player_h_c_d_h_reseller_id");
 
                     b.ToTable("game_wager_stat_player_hour_closes", "dbo");
                 });

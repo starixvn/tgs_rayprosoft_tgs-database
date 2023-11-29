@@ -32,6 +32,44 @@ internal class GameWagerStatPlayerHourCloseMap : IEntityTypeConfiguration<GameWa
             .HasIndex(c => new { c.StatOn })
             .HasDatabaseName("ix_game_wager_stat_player_h_c_stat_on");
 
+        _ = builder
+            .HasIndex(c => new { c.StatOn, c.StatDayOn, c.PlayerCode })
+            .HasDatabaseName("ix_game_wager_stat_player_h_c_d_player_code");
+        _ = builder
+            .HasIndex(c => new { c.StatOn, c.StatDayOn, c.BrandId })
+            .HasDatabaseName("ix_game_wager_stat_player_h_c_d_brand_id");
+        _ = builder
+            .HasIndex(c => new { c.StatOn, c.StatDayOn, c.GameProviderId })
+            .HasDatabaseName("ix_game_wager_stat_player_h_c_d_game_provider_id");
+        _ = builder
+            .HasIndex(c => new { c.StatOn, c.StatDayOn, c.LicenseeId })
+            .HasDatabaseName("ix_game_wager_stat_player_h_c_d_licensee_id");
+        _ = builder
+            .HasIndex(c => new { c.StatOn, c.StatDayOn, c.ResellerId })
+            .HasDatabaseName("ix_game_wager_stat_player_h_c_d_reseller_id");
+        _ = builder
+            .HasIndex(c => new { c.StatOn, c.StatDayOn })
+            .HasDatabaseName("ix_game_wager_stat_player_h_c_d_stat_day_on");
+
+        _ = builder
+            .HasIndex(c => new { c.StatOn, c.StatDayOn, c.StatHourOn, c.PlayerCode })
+            .HasDatabaseName("ix_game_wager_stat_player_h_c_d_h_player_code");
+        _ = builder
+            .HasIndex(c => new { c.StatOn, c.StatDayOn, c.StatHourOn, c.BrandId })
+            .HasDatabaseName("ix_game_wager_stat_player_h_c_d_h_brand_id");
+        _ = builder
+            .HasIndex(c => new { c.StatOn, c.StatDayOn, c.StatHourOn, c.GameProviderId })
+            .HasDatabaseName("ix_game_wager_stat_player_h_c_d_h_game_provider_id");
+        _ = builder
+            .HasIndex(c => new { c.StatOn, c.StatDayOn, c.StatHourOn, c.LicenseeId })
+            .HasDatabaseName("ix_game_wager_stat_player_h_c_d_h_licensee_id");
+        _ = builder
+            .HasIndex(c => new { c.StatOn, c.StatDayOn, c.StatHourOn, c.ResellerId })
+            .HasDatabaseName("ix_game_wager_stat_player_h_c_d_h_reseller_id");
+        _ = builder
+            .HasIndex(c => new { c.StatOn, c.StatDayOn, c.StatHourOn })
+            .HasDatabaseName("ix_game_wager_stat_player_h_c_d_h_stat_hour_on");
+
         _ = builder.Property(c => c.ResellerId)
             .IsRequired()
             .HasComment("公司識別碼");
@@ -51,6 +89,18 @@ internal class GameWagerStatPlayerHourCloseMap : IEntityTypeConfiguration<GameWa
         _ = builder.Property(c => c.StatOn)
             .IsRequired()
             .HasComment("統計時間");
+        _ = builder.Property(c => c.StatDayOn)
+            .IsRequired()
+            .HasDefaultValueSql("'1990-01-01':: date")
+            .HasComment("統計日時間");
+        _ = builder.Property(c => c.StatHourOn)
+            .IsRequired()
+            .HasDefaultValueSql("'00:00:00':: time")
+            .HasComment("統計小時時間");
+        _ = builder.Property(c => c.StatTimeSpan)
+            .IsRequired()
+            .HasDefaultValueSql("'+08:00:00':: interval")
+            .HasComment("統計時間跨度");
         _ = builder.Property(b => b.Count)
             .IsRequired()
             .HasDefaultValue(0)

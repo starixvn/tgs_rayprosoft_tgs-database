@@ -12,6 +12,12 @@ public class GameWagerStatBrandHourClose
 
     public Guid GameProviderId { get; set; }
 
+    public DateOnly StatDayOn { get; set; }
+
+    public TimeOnly StatHourOn { get; set; }
+
+    public TimeSpan StatTimeSpan { get; set; }
+
     public DateTimeOffset StatOn { get; set; }
 
     public int Count { get; set; }
