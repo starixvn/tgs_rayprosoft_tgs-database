@@ -13,21 +13,25 @@ internal class GameWagerStatCloseMap : IEntityTypeConfiguration<GameWagerStatClo
         _ = builder
             .HasKey(c => new { c.StatOn, c.ResellerId, c.LicenseeId, c.BrandId, c.PlayerCode, c.GameProviderId, c.GameId })
             .HasName("pk_game_wager_stat_closes");
+
         _ = builder
-            .HasIndex(c => new { c.StatOn, c.PlayerCode })
-            .HasDatabaseName("ix_game_wager_stat_closes_player_code");
-        _ = builder
-            .HasIndex(c => new { c.StatOn, c.BrandId })
-            .HasDatabaseName("ix_game_wager_stat_closes_brand_id");
-        _ = builder
-            .HasIndex(c => new { c.StatOn, c.GameProviderId })
-            .HasDatabaseName("ix_game_wager_stat_closes_game_provider_id");
+            .HasIndex(c => new { c.StatOn, c.ResellerId })
+            .HasDatabaseName("ix_game_wager_stat_closes_reseller_id");
         _ = builder
             .HasIndex(c => new { c.StatOn, c.LicenseeId })
             .HasDatabaseName("ix_game_wager_stat_closes_licensee_id");
         _ = builder
-            .HasIndex(c => new { c.StatOn, c.ResellerId })
-            .HasDatabaseName("ix_game_wager_stat_closes_reseller_id");
+            .HasIndex(c => new { c.StatOn, c.BrandId })
+            .HasDatabaseName("ix_game_wager_stat_closes_brand_id");
+        _ = builder
+            .HasIndex(c => new { c.StatOn, c.PlayerCode })
+            .HasDatabaseName("ix_game_wager_stat_closes_player_code");
+        _ = builder
+            .HasIndex(c => new { c.StatOn, c.GameProviderId })
+            .HasDatabaseName("ix_game_wager_stat_closes_game_provider_id");
+        _ = builder
+            .HasIndex(c => new { c.StatOn, c.GameId })
+            .HasDatabaseName("ix_game_wager_stat_closes_game_id");
         _ = builder
             .HasIndex(c => new { c.StatOn })
             .HasDatabaseName("ix_game_wager_stat_closes_stat_on");
