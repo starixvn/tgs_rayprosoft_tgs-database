@@ -11,3 +11,10 @@ dotnet ef database update
 dotnet ef database update
 ```
 **3. run TgsSeeding**
+
+## Migrations
+
+** add/alter/delete/drop
+```sh
+dotnet ef migrations add {name}
+```
