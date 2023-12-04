@@ -4,81 +4,59 @@ using TGS.Core.DataServices.Tgs.Models;
 
 namespace TGS.Core.DataServices.Tgs.EntityTypeConfigurations;
 
-internal class GameWagerStatHourZoneCloseMap : IEntityTypeConfiguration<GameWagerStatHourZoneClose>
+internal class GameWagerStatDailyCloseMap : IEntityTypeConfiguration<GameWagerStatDailyClose>
 {
-    void IEntityTypeConfiguration<GameWagerStatHourZoneClose>.Configure(EntityTypeBuilder<GameWagerStatHourZoneClose> builder)
+    void IEntityTypeConfiguration<GameWagerStatDailyClose>.Configure(EntityTypeBuilder<GameWagerStatDailyClose> builder)
     {
-        _ = builder.ToTable("game_wager_stat_hour_zone_closes");
+        _ = builder.ToTable("game_wager_stat_daily_closes");
 
         _ = builder
-            .HasKey(c => new { c.StatOn, c.ResellerId, c.LicenseeId, c.BrandId, c.PlayerCode, c.GameProviderId,c.GameId })
-            .HasName("pk_game_wager_stat_hour_zone_closes");
+            .HasKey(c => new { c.StatOn, c.ResellerId, c.LicenseeId, c.BrandId, c.PlayerCode, c.GameProviderId, c.GameId })
+            .HasName("pk_game_wager_stat_daily_closes");
 
         _ = builder
             .HasIndex(c => new { c.StatOn, c.ResellerId })
-            .HasDatabaseName("ix_game_wager_stat_h_z_c_reseller_id");
+            .HasDatabaseName("ix_game_wager_stat_d_c_reseller_id");
         _ = builder
             .HasIndex(c => new { c.StatOn, c.LicenseeId })
-            .HasDatabaseName("ix_game_wager_stat_h_z_c_licensee_id");
+            .HasDatabaseName("ix_game_wager_stat_d_c_licensee_id");
         _ = builder
             .HasIndex(c => new { c.StatOn, c.BrandId })
-            .HasDatabaseName("ix_game_wager_stat_h_z_c_brand_id");
+            .HasDatabaseName("ix_game_wager_stat_d_c_brand_id");
         _ = builder
             .HasIndex(c => new { c.StatOn, c.PlayerCode })
-            .HasDatabaseName("ix_game_wager_stat_h_z_c_player_code");
+            .HasDatabaseName("ix_game_wager_stat_d_c_player_code");
         _ = builder
             .HasIndex(c => new { c.StatOn, c.GameProviderId })
-            .HasDatabaseName("ix_game_wager_stat_h_z_c_game_provider_id");
+            .HasDatabaseName("ix_game_wager_stat_d_c_game_provider_id");
         _ = builder
             .HasIndex(c => new { c.StatOn, c.GameId })
-            .HasDatabaseName("ix_game_wager_stat_h_z_c_game_id");
+            .HasDatabaseName("ix_game_wager_stat_d_c_game_id");
         _ = builder
             .HasIndex(c => new { c.StatOn })
-            .HasDatabaseName("ix_game_wager_stat_h_z_c_stat_on");
+            .HasDatabaseName("ix_game_wager_stat_d_c_stat_on");
 
         _ = builder
             .HasIndex(c => new { c.StatOn, c.StatDayOn, c.ResellerId })
-            .HasDatabaseName("ix_game_wager_stat_h_z_c_d_reseller_id");
+            .HasDatabaseName("ix_game_wager_stat_d_c_d_reseller_id");
         _ = builder
             .HasIndex(c => new { c.StatOn, c.StatDayOn, c.LicenseeId })
-            .HasDatabaseName("ix_game_wager_stat_h_z_c_d_licensee_id");
+            .HasDatabaseName("ix_game_wager_stat_d_c_d_licensee_id");
         _ = builder
             .HasIndex(c => new { c.StatOn, c.StatDayOn, c.BrandId })
-            .HasDatabaseName("ix_game_wager_stat_h_z_c_d_brand_id");
+            .HasDatabaseName("ix_game_wager_stat_d_c_d_brand_id");
         _ = builder
             .HasIndex(c => new { c.StatOn, c.StatDayOn, c.PlayerCode })
-            .HasDatabaseName("ix_game_wager_stat_h_z_c_d_player_code");
+            .HasDatabaseName("ix_game_wager_stat_d_c_d_player_code");
         _ = builder
             .HasIndex(c => new { c.StatOn, c.StatDayOn, c.GameProviderId })
-            .HasDatabaseName("ix_game_wager_stat_h_z_c_d_game_provider_id");
+            .HasDatabaseName("ix_game_wager_stat_d_c_d_game_provider_id");
         _ = builder
             .HasIndex(c => new { c.StatOn, c.StatDayOn, c.GameId })
-            .HasDatabaseName("ix_game_wager_stat_h_z_c_d_game_id");
+            .HasDatabaseName("ix_game_wager_stat_d_c_d_game_id");
         _ = builder
             .HasIndex(c => new { c.StatOn, c.StatDayOn })
-            .HasDatabaseName("ix_game_wager_stat_h_z_c_d_stat_day_on");
-
-        _ = builder
-            .HasIndex(c => new { c.StatOn, c.StatDayOn, c.StatHourOn, c.ResellerId })
-            .HasDatabaseName("ix_game_wager_stat_h_z_c_d_h_reseller_id");
-        _ = builder
-            .HasIndex(c => new { c.StatOn, c.StatDayOn, c.StatHourOn, c.LicenseeId })
-            .HasDatabaseName("ix_game_wager_stat_h_z_c_d_h_licensee_id");
-        _ = builder
-            .HasIndex(c => new { c.StatOn, c.StatDayOn, c.StatHourOn, c.BrandId })
-            .HasDatabaseName("ix_game_wager_stat_h_z_c_d_h_brand_id");
-        _ = builder
-            .HasIndex(c => new { c.StatOn, c.StatDayOn, c.StatHourOn, c.PlayerCode })
-            .HasDatabaseName("ix_game_wager_stat_h_z_c_d_h_player_code");
-        _ = builder
-            .HasIndex(c => new { c.StatOn, c.StatDayOn, c.StatHourOn, c.GameProviderId })
-            .HasDatabaseName("ix_game_wager_stat_h_z_c_d_h_game_provider_id");
-        _ = builder
-            .HasIndex(c => new { c.StatOn, c.StatDayOn, c.StatHourOn, c.GameId })
-            .HasDatabaseName("ix_game_wager_stat_h_z_c_d_h_game_id");
-        _ = builder
-            .HasIndex(c => new { c.StatOn, c.StatDayOn, c.StatHourOn })
-            .HasDatabaseName("ix_game_wager_stat_h_z_c_d_h_stat_hour_on");
+            .HasDatabaseName("ix_game_wager_stat_d_c_d_stat_day_on");
 
         _ = builder.Property(c => c.ResellerId)
             .IsRequired()
@@ -106,10 +84,6 @@ internal class GameWagerStatHourZoneCloseMap : IEntityTypeConfiguration<GameWage
             .IsRequired()
             .HasDefaultValueSql("'1990-01-01':: date")
             .HasComment("統計日時間");
-        _ = builder.Property(c => c.StatHourOn)
-            .IsRequired()
-            .HasDefaultValueSql("'00:00:00':: time")
-            .HasComment("統計小時時間");
         _ = builder.Property(c => c.StatTimeSpan)
             .IsRequired()
             .HasDefaultValueSql("'+00:00:00':: interval")

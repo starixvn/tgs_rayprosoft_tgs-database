@@ -2,7 +2,7 @@
 
 namespace TGS.Core.DataServices.Tgs.Models;
 
-public class GameWagerStatBrandHourClose
+public class GameWagerStatDailyZoneClose
 {
     public Guid ResellerId { get; set; }
 
@@ -10,11 +10,13 @@ public class GameWagerStatBrandHourClose
 
     public Guid BrandId { get; set; }
 
+    public string PlayerCode { get; set; }
+
     public Guid GameProviderId { get; set; }
 
-    public DateOnly StatDayOn { get; set; }
+    public int GameId { get; set; }
 
-    public TimeOnly StatHourOn { get; set; }
+    public DateOnly StatDayOn { get; set; }
 
     public TimeSpan StatTimeSpan { get; set; }
 

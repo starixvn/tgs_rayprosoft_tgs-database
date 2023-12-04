@@ -2,7 +2,7 @@
 
 namespace TGS.Core.DataServices.Tgs.Models;
 
-public class GameWagerStatHourClose
+public class GameWagerStatDailyClose
 {
     public Guid ResellerId { get; set; }
 
@@ -17,8 +17,6 @@ public class GameWagerStatHourClose
     public int GameId { get; set; }
 
     public DateOnly StatDayOn { get; set; }
-
-    public TimeOnly StatHourOn { get; set; }
 
     public TimeSpan StatTimeSpan { get; set; }
 
