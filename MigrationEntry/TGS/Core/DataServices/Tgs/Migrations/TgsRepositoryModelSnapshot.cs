@@ -2402,6 +2402,94 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.ToTable("brand_games", "dbo");
                 });
 
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.BrandGameCredit", b =>
+                {
+                    b.Property<DateOnly>("Month")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("date")
+                        .HasColumnName("month")
+                        .HasDefaultValueSql("'1990-01-01':: date")
+                        .HasComment("月份");
+
+                    b.Property<Guid>("ResellerId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("reseller_id")
+                        .HasComment("公司識別碼");
+
+                    b.Property<Guid>("LicenseeId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("licensee_id")
+                        .HasComment("分公司識別碼");
+
+                    b.Property<Guid>("BrandId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("brand_id")
+                        .HasComment("平台識別碼");
+
+                    b.Property<DateTimeOffset>("CreatedOn")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_on")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP")
+                        .HasComment("創建時間");
+
+                    b.Property<decimal>("CreditAmount")
+                        .ValueGeneratedOnAdd()
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasDefaultValue(0m)
+                        .HasColumnName("credit_amount")
+                        .HasComment("上分額度");
+
+                    b.Property<decimal>("DebitAmount")
+                        .ValueGeneratedOnAdd()
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasDefaultValue(0m)
+                        .HasColumnName("debit_amount")
+                        .HasComment("下分額度");
+
+                    b.Property<decimal>("InitialAmount")
+                        .ValueGeneratedOnAdd()
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasDefaultValue(0m)
+                        .HasColumnName("initial_amount")
+                        .HasComment("初始額度");
+
+                    b.Property<decimal>("ProfitAmount")
+                        .ValueGeneratedOnAdd()
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasDefaultValue(0m)
+                        .HasColumnName("profit_amount")
+                        .HasComment("利潤額度");
+
+                    b.Property<DateTimeOffset>("UpdatedOn")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("updated_on")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP")
+                        .HasComment("修改時間");
+
+                    b.HasKey("Month", "ResellerId", "LicenseeId", "BrandId")
+                        .HasName("pk_brand_game_credits");
+
+                    b.HasIndex("Month")
+                        .HasDatabaseName("ix_brand_game_credits_month");
+
+                    b.HasIndex("Month", "BrandId")
+                        .HasDatabaseName("ix_brand_game_credits_brand_id");
+
+                    b.HasIndex("Month", "LicenseeId")
+                        .HasDatabaseName("ix_brand_game_credits_licensee_id");
+
+                    b.HasIndex("Month", "ResellerId")
+                        .HasDatabaseName("ix_brand_game_credits_reseller_id");
+
+                    b.ToTable("brand_game_credits", "dbo");
+                });
+
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.BrandGameProvider", b =>
                 {
                     b.Property<Guid>("Id")
