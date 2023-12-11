@@ -2491,6 +2491,106 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.ToTable("brand_game_credits", "dbo");
                 });
 
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.BrandGameCreditSuspSetting", b =>
+                {
+                    b.Property<Guid>("BrandId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("brand_id")
+                        .HasComment("平台識別碼");
+
+                    b.Property<DateTimeOffset>("CreatedOn")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_on")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP")
+                        .HasComment("創建時間");
+
+                    b.Property<decimal>("Credit")
+                        .ValueGeneratedOnAdd()
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasDefaultValue(0m)
+                        .HasColumnName("credit")
+                        .HasComment("信用額度");
+
+                    b.Property<JsonDocument>("CreditNotification")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("jsonb")
+                        .HasDefaultValue(System.Text.Json.JsonDocument.Parse("{\"Subject\":\"[Licensee][Brand] 加值通知 Warning: Balance low\",\"Content\":\"敬愛的夥伴您好，您的平台目前剩餘額度不足，為避免影響會員遊戲體驗，請盡速聯繫貴司對應商務進行加值，謝謝您。<br/>Dear Partner,<br/>We wanted to inform you that your site currently has reached a high balance usage. To maintain the stability and quality of your gaming experience, we kindly recommend reaching out to your designated business contact for a top-up. Thank you.\"}", new System.Text.Json.JsonDocumentOptions()))
+                        .HasColumnName("credit_notification")
+                        .HasComment("信用額度通知");
+
+                    b.Property<JsonDocument>("HighNotification")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("jsonb")
+                        .HasDefaultValue(System.Text.Json.JsonDocument.Parse("{\"Subject\":\"[Licensee][Brand] 平台已停用，請立即加值 Notice of Suspension\",\"Content\":\"貴司您好，由於您的平台剩餘額度已低於限制，平台及所有遊戲暫時不可進入；請立即聯繫貴司對應商務進行加值，並由專人協助您恢復平台運行，謝謝您。<br/>Dear Partner,<br/>We wanted to inform you that your site has been temporarily suspended due to a balance usage that has exceeded the limit. To recover the full access of platform and all games, we kindly recommend reaching out to your designated business contact for a top-up immediately. Thank you.\"}", new System.Text.Json.JsonDocumentOptions()))
+                        .HasColumnName("high_notification")
+                        .HasComment("高度風險通知");
+
+                    b.Property<decimal>("HighRisk")
+                        .ValueGeneratedOnAdd()
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasDefaultValue(95m)
+                        .HasColumnName("high_risk")
+                        .HasComment("高度風險");
+
+                    b.Property<JsonDocument>("LowNotification")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("jsonb")
+                        .HasDefaultValue(System.Text.Json.JsonDocument.Parse("{\"Subject\":\"[Licensee][Brand] 加值通知 Warning: Balance low\",\"Content\":\"敬愛的夥伴您好，您的平台目前剩餘額度不足，為避免影響會員遊戲體驗，請盡速聯繫貴司對應商務進行加值，謝謝您。<br/>Dear Partner,<br/>We wanted to inform you that your site currently has reached a high balance usage. To maintain the stability and quality of your gaming experience, we kindly recommend reaching out to your designated business contact for a top-up. Thank you.\"}", new System.Text.Json.JsonDocumentOptions()))
+                        .HasColumnName("low_notification")
+                        .HasComment("低度風險通知");
+
+                    b.Property<decimal>("LowRisk")
+                        .ValueGeneratedOnAdd()
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasDefaultValue(60m)
+                        .HasColumnName("low_risk")
+                        .HasComment("低度風險");
+
+                    b.Property<JsonDocument>("ManualNotification")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("jsonb")
+                        .HasDefaultValue(System.Text.Json.JsonDocument.Parse("{\"Subject\":\"[Licensee][Brand] 加值通知 Warning: Balance low\",\"Content\":\"敬愛的夥伴您好，您的平台目前剩餘額度不足，為避免影響會員遊戲體驗，請盡速聯繫貴司對應商務進行加值，謝謝您。<br/>Dear Partner,<br/>We wanted to inform you that your site currently has reached a high balance usage. To maintain the stability and quality of your gaming experience, we kindly recommend reaching out to your designated business contact for a top-up. Thank you.\"}", new System.Text.Json.JsonDocumentOptions()))
+                        .HasColumnName("manual_notification")
+                        .HasComment("手動通知");
+
+                    b.Property<JsonDocument>("ModerateNotification")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("jsonb")
+                        .HasDefaultValue(System.Text.Json.JsonDocument.Parse("{\"Subject\":\"[Licensee][Brand] 緊急加值通知 Warning: Balance too low\",\"Content\":\"敬愛的夥伴您好，您的平台目前剩餘額度嚴重不足，所有遊戲暫時不可進入；為避免影響平台正常運營，請立即聯繫貴司對應商務進行加值，謝謝您。<br/>Dear Partner,<br/>We wanted to inform you that your site currently has reached a higher balance usage, and the access to all games will be temporarily suspended. To maintain the stability of your site, we kindly recommend reaching out to your designated business contact for a top-up immediately. Thank you.\"}", new System.Text.Json.JsonDocumentOptions()))
+                        .HasColumnName("moderate_notification")
+                        .HasComment("中度風險通知");
+
+                    b.Property<decimal>("ModerateRisk")
+                        .ValueGeneratedOnAdd()
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasDefaultValue(80m)
+                        .HasColumnName("moderate_risk")
+                        .HasComment("中度風險");
+
+                    b.Property<DateTimeOffset>("UpdatedOn")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("updated_on")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP")
+                        .HasComment("修改時間");
+
+                    b.HasKey("BrandId")
+                        .HasName("pk_brand_game_credit_susp_settings");
+
+                    b.ToTable("brand_game_credit_susp_settings", "dbo");
+                });
+
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.BrandGameCreditTxn", b =>
                 {
                     b.Property<Guid>("Id")
