@@ -11,7 +11,7 @@ public class BrandGameCreditTxn
     public decimal Money { get; set; }
     public decimal Amount { get; set; }
     public string Remark { get; set; }
-    public JsonDocument Expansions { get; set; }
+    public string Expansions { get; set; }
     public Guid CreatedUserId { get; set; }
     public string CreatedUsername { get; set; }
     public DateTimeOffset CreatedOn { get; set; }

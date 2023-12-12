@@ -53,7 +53,7 @@ internal class BrandGameCreditTxnMap : IEntityTypeConfiguration<BrandGameCreditT
         _ = builder.Property(b => b.Expansions)
             .IsRequired()
             .HasColumnType("jsonb")
-            .HasDefaultValue(JsonDocument.Parse("{}"))
+            .HasDefaultValueSql("'{}'::jsonb")
             .HasComment("擴充");
         _ = builder.Property(b => b.CreatedUserId)
             .IsRequired()
