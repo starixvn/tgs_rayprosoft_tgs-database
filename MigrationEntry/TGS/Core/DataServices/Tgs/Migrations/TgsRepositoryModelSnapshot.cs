@@ -2518,7 +2518,7 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .IsRequired()
                         .ValueGeneratedOnAdd()
                         .HasColumnType("jsonb")
-                        .HasDefaultValue(System.Text.Json.JsonDocument.Parse("{\"Subject\":\"[Licensee][Brand] 加值通知 Warning: Balance low\",\"Content\":\"敬愛的夥伴您好，\\r\\n您的平台目前剩餘額度不足，為避免影響會員遊戲體驗，請盡速聯繫貴司對應商務進行加值，謝謝您。\\r\\nDear Partner,\\r\\nWe wanted to inform you that your site currently has reached a high balance usage. To maintain the stability and quality of your gaming experience, we kindly recommend reaching out to your designated business contact for a top-up. Thank you.\"}", new System.Text.Json.JsonDocumentOptions()))
+                        .HasDefaultValue(System.Text.Json.JsonDocument.Parse("{\"EmailSubject\":\"[Licensee][Brand] 加值通知 Warning: Balance low\",\"EmailContent\":\"敬愛的夥伴您好，\\r\\n您的平台目前剩餘額度不足，為避免影響會員遊戲體驗，請盡速聯繫貴司對應商務進行加值，謝謝您。\\r\\nDear Partner,\\r\\nWe wanted to inform you that your site currently has reached a high balance usage. To maintain the stability and quality of your gaming experience, we kindly recommend reaching out to your designated business contact for a top-up. Thank you.\"}", new System.Text.Json.JsonDocumentOptions()))
                         .HasColumnName("credit_notification")
                         .HasComment("信用額度通知");
 
@@ -2526,7 +2526,7 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .IsRequired()
                         .ValueGeneratedOnAdd()
                         .HasColumnType("jsonb")
-                        .HasDefaultValue(System.Text.Json.JsonDocument.Parse("{\"Subject\":\"[Licensee][Brand] 平台已停用，請立即加值 Notice of Suspension\",\"Content\":\"貴司您好，\\r\\n由於您的平台剩餘額度已低於限制，平台及所有遊戲暫時不可進入；請立即聯繫貴司對應商務進行加值，並由專人協助您恢復平台運行，謝謝您。\\r\\nDear Partner,\\r\\nWe wanted to inform you that your site has been temporarily suspended due to a balance usage that has exceeded the limit. To recover the full access of platform and all games, we kindly recommend reaching out to your designated business contact for a top-up immediately. Thank you.\"}", new System.Text.Json.JsonDocumentOptions()))
+                        .HasDefaultValue(System.Text.Json.JsonDocument.Parse("{\"EmailSubject\":\"[Licensee][Brand] 平台已停用，請立即加值 Notice of Suspension\",\"EmailContent\":\"貴司您好，\\r\\n由於您的平台剩餘額度已低於限制，平台及所有遊戲暫時不可進入；請立即聯繫貴司對應商務進行加值，並由專人協助您恢復平台運行，謝謝您。\\r\\nDear Partner,\\r\\nWe wanted to inform you that your site has been temporarily suspended due to a balance usage that has exceeded the limit. To recover the full access of platform and all games, we kindly recommend reaching out to your designated business contact for a top-up immediately. Thank you.\"}", new System.Text.Json.JsonDocumentOptions()))
                         .HasColumnName("high_notification")
                         .HasComment("高度風險通知");
 
@@ -2542,7 +2542,7 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .IsRequired()
                         .ValueGeneratedOnAdd()
                         .HasColumnType("jsonb")
-                        .HasDefaultValue(System.Text.Json.JsonDocument.Parse("{\"Subject\":\"[Licensee][Brand] 加值通知 Warning: Balance low\",\"Content\":\"敬愛的夥伴您好，\\r\\n您的平台目前剩餘額度不足，為避免影響會員遊戲體驗，請盡速聯繫貴司對應商務進行加值，謝謝您。\\r\\nDear Partner,\\r\\nWe wanted to inform you that your site currently has reached a high balance usage. To maintain the stability and quality of your gaming experience, we kindly recommend reaching out to your designated business contact for a top-up. Thank you.\"}", new System.Text.Json.JsonDocumentOptions()))
+                        .HasDefaultValue(System.Text.Json.JsonDocument.Parse("{\"EmailSubject\":\"[Licensee][Brand] 加值通知 Warning: Balance low\",\"EmailContent\":\"敬愛的夥伴您好，\\r\\n您的平台目前剩餘額度不足，為避免影響會員遊戲體驗，請盡速聯繫貴司對應商務進行加值，謝謝您。\\r\\nDear Partner,\\r\\nWe wanted to inform you that your site currently has reached a high balance usage. To maintain the stability and quality of your gaming experience, we kindly recommend reaching out to your designated business contact for a top-up. Thank you.\"}", new System.Text.Json.JsonDocumentOptions()))
                         .HasColumnName("low_notification")
                         .HasComment("低度風險通知");
 
@@ -2558,7 +2558,7 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .IsRequired()
                         .ValueGeneratedOnAdd()
                         .HasColumnType("jsonb")
-                        .HasDefaultValue(System.Text.Json.JsonDocument.Parse("{\"Subject\":\"[Licensee][Brand] 加值通知 Warning: Balance low\",\"Content\":\"敬愛的夥伴您好，\\r\\n您的平台目前剩餘額度不足，為避免影響會員遊戲體驗，請盡速聯繫貴司對應商務進行加值，謝謝您。\\r\\nDear Partner,\\r\\nWe wanted to inform you that your site currently has reached a high balance usage. To maintain the stability and quality of your gaming experience, we kindly recommend reaching out to your designated business contact for a top-up. Thank you.\"}", new System.Text.Json.JsonDocumentOptions()))
+                        .HasDefaultValue(System.Text.Json.JsonDocument.Parse("{\"EmailSubject\":\"[Licensee][Brand] 加值通知 Warning: Balance low\",\"EmailContent\":\"敬愛的夥伴您好，\\r\\n您的平台目前剩餘額度不足，為避免影響會員遊戲體驗，請盡速聯繫貴司對應商務進行加值，謝謝您。\\r\\nDear Partner,\\r\\nWe wanted to inform you that your site currently has reached a high balance usage. To maintain the stability and quality of your gaming experience, we kindly recommend reaching out to your designated business contact for a top-up. Thank you.\"}", new System.Text.Json.JsonDocumentOptions()))
                         .HasColumnName("manual_notification")
                         .HasComment("手動通知");
 
@@ -2566,7 +2566,7 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .IsRequired()
                         .ValueGeneratedOnAdd()
                         .HasColumnType("jsonb")
-                        .HasDefaultValue(System.Text.Json.JsonDocument.Parse("{\"Subject\":\"[Licensee][Brand] 緊急加值通知 Warning: Balance too low\",\"Content\":\"敬愛的夥伴您好，\\r\\n您的平台目前剩餘額度嚴重不足，所有遊戲暫時不可進入；為避免影響平台正常運營，請立即聯繫貴司對應商務進行加值，謝謝您。\\r\\nDear Partner,\\r\\nWe wanted to inform you that your site currently has reached a higher balance usage, and the access to all games will be temporarily suspended. To maintain the stability of your site, we kindly recommend reaching out to your designated business contact for a top-up immediately. Thank you.\"}", new System.Text.Json.JsonDocumentOptions()))
+                        .HasDefaultValue(System.Text.Json.JsonDocument.Parse("{\"EmailSubject\":\"[Licensee][Brand] 緊急加值通知 Warning: Balance too low\",\"EmailContent\":\"敬愛的夥伴您好，\\r\\n您的平台目前剩餘額度嚴重不足，所有遊戲暫時不可進入；為避免影響平台正常運營，請立即聯繫貴司對應商務進行加值，謝謝您。\\r\\nDear Partner,\\r\\nWe wanted to inform you that your site currently has reached a higher balance usage, and the access to all games will be temporarily suspended. To maintain the stability of your site, we kindly recommend reaching out to your designated business contact for a top-up immediately. Thank you.\"}", new System.Text.Json.JsonDocumentOptions()))
                         .HasColumnName("moderate_notification")
                         .HasComment("中度風險通知");
 
