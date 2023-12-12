@@ -33,7 +33,7 @@ internal class BrandGameCreditSuspSettingMap : IEntityTypeConfiguration<BrandGam
         _ = builder.Property(b => b.LowNotification)
             .IsRequired()
             .HasColumnType("jsonb")
-            .HasDefaultValue(JsonDocument.Parse("{}"))
+            .HasDefaultValueSql("'{}'::jsonb")
             .HasComment("低度風險通知");
         _ = builder.Property(b => b.ModerateRisk)
             .IsRequired()
@@ -43,7 +43,7 @@ internal class BrandGameCreditSuspSettingMap : IEntityTypeConfiguration<BrandGam
         _ = builder.Property(b => b.ModerateNotification)
             .IsRequired()
             .HasColumnType("jsonb")
-            .HasDefaultValue(JsonDocument.Parse("{}"))
+            .HasDefaultValueSql("'{}'::jsonb")
             .HasComment("中度風險通知");
         _ = builder.Property(b => b.HighRisk)
             .IsRequired()
@@ -53,7 +53,7 @@ internal class BrandGameCreditSuspSettingMap : IEntityTypeConfiguration<BrandGam
         _ = builder.Property(b => b.HighNotification)
             .IsRequired()
             .HasColumnType("jsonb")
-            .HasDefaultValue(JsonDocument.Parse("{}"))
+            .HasDefaultValueSql("'{}'::jsonb")
             .HasComment("高度風險通知");
         _ = builder.Property(b => b.Credit)
             .IsRequired()
@@ -63,12 +63,12 @@ internal class BrandGameCreditSuspSettingMap : IEntityTypeConfiguration<BrandGam
         _ = builder.Property(b => b.CreditNotification)
             .IsRequired()
             .HasColumnType("jsonb")
-            .HasDefaultValue(JsonDocument.Parse("{}"))
+            .HasDefaultValueSql("'{}'::jsonb")
             .HasComment("信用額度通知");
         _ = builder.Property(b => b.ManualNotification)
             .IsRequired()
             .HasColumnType("jsonb")
-            .HasDefaultValue(JsonDocument.Parse("{}"))
+            .HasDefaultValueSql("'{}'::jsonb")
             .HasComment("手動通知");
         _ = builder.Property(b => b.CreatedOn)
             .IsRequired()
