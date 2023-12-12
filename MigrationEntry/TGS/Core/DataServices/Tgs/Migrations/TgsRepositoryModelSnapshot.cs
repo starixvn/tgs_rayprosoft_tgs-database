@@ -6903,6 +6903,76 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.ToTable("market_types", "dbo");
                 });
 
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.NotificationContact", b =>
+                {
+                    b.Property<Guid>("ResellerId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasDefaultValue(new Guid("00000000-0000-0000-0000-000000000000"))
+                        .HasColumnName("reseller_id")
+                        .HasComment("總公司識別碼");
+
+                    b.Property<Guid>("LicenseeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasDefaultValue(new Guid("00000000-0000-0000-0000-000000000000"))
+                        .HasColumnName("licensee_id")
+                        .HasComment("公司識別碼");
+
+                    b.Property<Guid>("BrandId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasDefaultValue(new Guid("00000000-0000-0000-0000-000000000000"))
+                        .HasColumnName("brand_id")
+                        .HasComment("平台識別碼");
+
+                    b.Property<int>("Type")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasDefaultValue(1)
+                        .HasColumnName("type")
+                        .HasComment("通知類型(信箱、Skype、Telegram)");
+
+                    b.Property<string>("Contacts")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("jsonb")
+                        .HasColumnName("contacts")
+                        .HasDefaultValueSql("'{}'::jsonb")
+                        .HasComment("聯絡方式");
+
+                    b.Property<DateTimeOffset>("CreatedOn")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_on")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP")
+                        .HasComment("創建時間");
+
+                    b.Property<DateTimeOffset>("UpdatedOn")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("updated_on")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP")
+                        .HasComment("修改時間");
+
+                    b.HasKey("ResellerId", "LicenseeId", "BrandId", "Type")
+                        .HasName("pk_notification_contacts");
+
+                    b.HasIndex("Type")
+                        .HasDatabaseName("ix_notification_contacts_typ");
+
+                    b.HasIndex("BrandId", "Type")
+                        .HasDatabaseName("ix_notification_contacts_brand_id");
+
+                    b.HasIndex("LicenseeId", "Type")
+                        .HasDatabaseName("ix_notification_contacts_licensee_id");
+
+                    b.HasIndex("ResellerId", "Type")
+                        .HasDatabaseName("ix_notification_contacts_reseller_id");
+
+                    b.ToTable("notification_contacts", "dbo");
+                });
+
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.OfflineDepositEvent", b =>
                 {
                     b.Property<Guid>("Id")
