@@ -23,7 +23,7 @@ build-code:
 unit-test:
   stage: test
   script:
-    - dotnet test -c $BuildConfiguration -l:"junit;LogFilePath=../TestReports/{assembly}-TestReport.xml" --no-restore --no-build
+    - dotnet test -c $BuildConfiguration -l:"junit;LogFilePath=../TestReports/{assembly}-TestReport.xml" --no-restore
   needs:
     - job: build-code
   only:
@@ -72,7 +72,9 @@ build-migrations-image:
     policy: pull
   script:
     - export Tag="$(date -d $CI_PIPELINE_CREATED_AT +%Y%m%d%H%M).$CI_PIPELINE_IID"
-    - dotnet build "MigrationEntry/MigrationEntry.csproj" -c $BuildConfiguration -t:ContainerBuild -p:DockerfileTag="$MigrationImageName:$Tag"
+    #- dotnet build "MigrationEntry/MigrationEntry.csproj" -c $BuildConfiguration -t:ContainerBuild -p:DockerfileTag="$MigrationImageName:$Tag"
+    - docker build -t "$MigrationImageName:$Tag" --build-arg [BuildConfiguration]=$BuildConfiguration -f "MigrationEntry/Dockerfile" . --no-cache
+    #- dotnet publish "MigrationEntry/MigrationEntry.csproj" --os linux  --arch x64 -c $BuildConfiguration /t:PublishContainer /p:ContainerImageName="$MigrationImageName" /p:ContainerImageTag="$Tag"
     - docker push $MigrationImageName:$Tag
   when: manual
   only:
