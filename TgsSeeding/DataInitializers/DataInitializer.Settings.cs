@@ -204,7 +204,8 @@ public partial class DataInitializer
                             new MenuSetting("PhoneFilter"),
                             new MenuSetting("Contact"),
                             new MenuSetting("DepositForm"),
-                            new MenuSetting("WithdrawalForm")
+                            new MenuSetting("WithdrawalForm"),
+                            new MenuSetting("BalanceChangeUnsaved")
                         }
                     },
                     new MenuSetting("PlayerIdentity")
@@ -433,6 +434,14 @@ public partial class DataInitializer
                         }
                     },
                     new MenuSetting("PlatformCredit")
+                    {
+                        SubMenus = new[]
+                        {
+                            new MenuSetting("View"),
+                            new MenuSetting("Update")
+                        }
+                    },
+                    new MenuSetting("PlatformAccountFund")
                     {
                         SubMenus = new[]
                         {
