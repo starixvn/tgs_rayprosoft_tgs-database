@@ -18,7 +18,7 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                 defaultValue: new Guid("00000000-0000-0000-0000-000000000000"));
 
             migrationBuilder.AddColumn<Guid>(
-                name: "agent_dividend_contract_id",
+                name: "contract_id",
                 schema: "dbo",
                 table: "agent_dividend_conditions",
                 type: "uuid",
@@ -117,7 +117,7 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                 table: "agent_dividend_multiple_layers");
 
             migrationBuilder.DropColumn(
-                name: "agent_dividend_contract_id",
+                name: "contract_id",
                 schema: "dbo",
                 table: "agent_dividend_conditions");
 

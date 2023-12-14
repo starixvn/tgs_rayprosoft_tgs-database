@@ -12,7 +12,7 @@ using TGS.Core.DataServices.Tgs;
 namespace TGS.Core.DataServices.Tgs.Migrations
 {
     [DbContext(typeof(TgsRepository))]
-    [Migration("20231214064646_AddAgentDividendContractTables")]
+    [Migration("20231214102814_AddAgentDividendContractTables")]
     partial class AddAgentDividendContractTables
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -1069,9 +1069,11 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("integer")
                         .HasColumnName("active_number");
 
-                    b.Property<Guid>("AgentDividendContractId")
+                    b.Property<Guid>("ContractId")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
-                        .HasColumnName("agent_dividend_contract_id");
+                        .HasDefaultValue(new Guid("00000000-0000-0000-0000-000000000000"))
+                        .HasColumnName("contract_id");
 
                     b.Property<decimal>("DividendPercentage")
                         .HasPrecision(9, 6)
