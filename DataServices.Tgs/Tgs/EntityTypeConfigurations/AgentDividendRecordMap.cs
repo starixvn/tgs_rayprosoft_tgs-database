@@ -16,6 +16,12 @@ internal class AgentDividendRecordMap : IEntityTypeConfiguration<AgentDividendRe
         _ = builder.Property(b => b.Id)
             .ValueGeneratedOnAdd();
 
+        _ = builder.Property(b => b.BrandId)
+            .IsRequired();
+
+        _ = builder.Property(b => b.AgentId)
+            .IsRequired();
+
         _ = builder.Property(b => b.NegativeDividendIds)
             .HasColumnType("text[]")
             .IsRequired();
@@ -29,5 +35,9 @@ internal class AgentDividendRecordMap : IEntityTypeConfiguration<AgentDividendRe
 
         _ = builder.Property(e => e.SentOn)
             .IsRequired(false);
+
+        _ = builder.HasIndex(b => b.AgentDividendId)
+            .IsUnique()
+            .HasDatabaseName("ux_agent_dividend_records");
     }
 }

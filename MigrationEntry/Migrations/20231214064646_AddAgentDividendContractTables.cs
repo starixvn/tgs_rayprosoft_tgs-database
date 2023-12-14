@@ -73,6 +73,8 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                 columns: table => new
                 {
                     id = table.Column<Guid>(type: "uuid", nullable: false),
+                    brand_id = table.Column<Guid>(type: "uuid", nullable: false),
+                    agent_id = table.Column<Guid>(type: "uuid", nullable: false),
                     agent_dividend_id = table.Column<int>(type: "integer", nullable: false),
                     negative_dividend_ids = table.Column<string[]>(type: "text[]", nullable: false),
                     agent_dividend_amount = table.Column<decimal>(type: "numeric(18,6)", precision: 18, scale: 6, nullable: false),
@@ -89,6 +91,13 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                 schema: "dbo",
                 table: "agent_dividend_contracts",
                 column: "agent_id",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "ux_agent_dividend_records",
+                schema: "dbo",
+                table: "agent_dividend_records",
+                column: "agent_dividend_id",
                 unique: true);
         }
 
