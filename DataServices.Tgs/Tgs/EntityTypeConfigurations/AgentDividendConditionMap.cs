@@ -22,6 +22,10 @@ internal class AgentDividendConditionMap : IEntityTypeConfiguration<AgentDividen
             .HasPrecision(18, 6)
             .IsRequired();
 
+        _ = builder.Property(c => c.WinLossAmount)
+            .HasPrecision(18, 6)
+            .IsRequired();
+
         _ = builder.Property(b => b.DividendPercentage)
             .HasPrecision(9, 6)
             .IsRequired();

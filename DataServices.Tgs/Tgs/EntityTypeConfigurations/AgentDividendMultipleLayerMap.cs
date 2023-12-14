@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using TGS.Core.DataServices.Tgs.Models;
 
@@ -47,6 +48,10 @@ internal class AgentDividendMultipleLayerMap : IEntityTypeConfiguration<AgentDiv
             .IsRequired();
 
         _ = builder.Property(b => b.Layer)
+            .IsRequired();
+
+        _ = builder.Property(b => b.ContractId)
+            .HasDefaultValue(Guid.Empty)
             .IsRequired();
 
         _ = builder.HasIndex(b => new
