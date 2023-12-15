@@ -1067,6 +1067,12 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("integer")
                         .HasColumnName("active_number");
 
+                    b.Property<Guid>("ContractId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasDefaultValue(new Guid("00000000-0000-0000-0000-000000000000"))
+                        .HasColumnName("contract_id");
+
                     b.Property<decimal>("DividendPercentage")
                         .HasPrecision(9, 6)
                         .HasColumnType("numeric(9,6)")
@@ -1077,6 +1083,11 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("numeric(18,6)")
                         .HasColumnName("net_profit");
 
+                    b.Property<decimal>("WinLossAmount")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("win_loss_amount");
+
                     b.HasKey("Rank", "AgentId")
                         .HasName("pk_agent_dividend_conditions_rank_agent_id");
 
@@ -1084,6 +1095,81 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasDatabaseName("ix_agent_dividend_conditions_agent_id");
 
                     b.ToTable("agent_dividend_conditions", "dbo");
+                });
+
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.AgentDividendContract", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<Guid>("AgentId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("agent_id");
+
+                    b.Property<int>("BetDays")
+                        .HasColumnType("integer")
+                        .HasColumnName("bet_days");
+
+                    b.Property<Guid>("BrandId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("brand_id");
+
+                    b.Property<short>("ContractDividendType")
+                        .HasColumnType("smallint")
+                        .HasColumnName("contract_dividend_type");
+
+                    b.Property<short>("ContractStatus")
+                        .HasColumnType("smallint")
+                        .HasColumnName("contract_status");
+
+                    b.Property<string>("CreatedByUsername")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("created_by_username");
+
+                    b.Property<DateTimeOffset>("CreatedOn")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_on");
+
+                    b.Property<decimal>("DepositAmount")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("deposit_amount");
+
+                    b.Property<decimal>("GradeIntervalLimit")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("grade_interval_limit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("name");
+
+                    b.Property<string>("UpdatedByUsername")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("updated_by_username");
+
+                    b.Property<DateTimeOffset>("UpdatedOn")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("updated_on");
+
+                    b.Property<decimal>("ValidBetAmount")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("valid_bet_amount");
+
+                    b.HasKey("Id")
+                        .HasName("pk_agent_dividend_contracts_id");
+
+                    b.HasIndex("AgentId")
+                        .IsUnique()
+                        .HasDatabaseName("ix_agent_dividend_contracts_agent_id");
+
+                    b.ToTable("agent_dividend_contracts", "dbo");
                 });
 
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.AgentDividendMultipleLayer", b =>
@@ -1123,6 +1209,12 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("agent_id");
 
+                    b.Property<Guid>("ContractId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasDefaultValue(new Guid("00000000-0000-0000-0000-000000000000"))
+                        .HasColumnName("contract_id");
+
                     b.Property<decimal>("Dividend")
                         .HasPrecision(18, 6)
                         .HasColumnType("numeric(18,6)")
@@ -1151,6 +1243,53 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasDatabaseName("ix_agent_dividend_multiple_layers_agent_id_dividend_provider_agent_id");
 
                     b.ToTable("agent_dividend_multiple_layers", "dbo");
+                });
+
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.AgentDividendRecord", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<decimal>("AgentDividendAmount")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("agent_dividend_amount");
+
+                    b.Property<int>("AgentDividendId")
+                        .HasColumnType("integer")
+                        .HasColumnName("agent_dividend_id");
+
+                    b.Property<Guid>("AgentId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("agent_id");
+
+                    b.Property<Guid>("BrandId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("brand_id");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_on");
+
+                    b.Property<string[]>("NegativeDividendIds")
+                        .IsRequired()
+                        .HasColumnType("text[]")
+                        .HasColumnName("negative_dividend_ids");
+
+                    b.Property<DateTime?>("SentOn")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("sent_on");
+
+                    b.HasKey("Id")
+                        .HasName("pk_agent_dividend_records_id");
+
+                    b.HasIndex("AgentDividendId")
+                        .IsUnique()
+                        .HasDatabaseName("ux_agent_dividend_records");
+
+                    b.ToTable("agent_dividend_records", "dbo");
                 });
 
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.AgentDomain", b =>
@@ -12638,6 +12777,18 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("fk_agents_dividend_conditions_agent_id");
+
+                    b.Navigation("Agent");
+                });
+
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.AgentDividendContract", b =>
+                {
+                    b.HasOne("TGS.Core.DataServices.Tgs.Models.Agent", "Agent")
+                        .WithOne()
+                        .HasForeignKey("TGS.Core.DataServices.Tgs.Models.AgentDividendContract", "AgentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_agent_dividend_contracts_agents_agent_id");
 
                     b.Navigation("Agent");
                 });

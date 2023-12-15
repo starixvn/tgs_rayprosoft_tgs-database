@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using TGS.Core.DataServices.Tgs.Models;
 
@@ -22,8 +23,16 @@ internal class AgentDividendConditionMap : IEntityTypeConfiguration<AgentDividen
             .HasPrecision(18, 6)
             .IsRequired();
 
+        _ = builder.Property(c => c.WinLossAmount)
+            .HasPrecision(18, 6)
+            .IsRequired();
+
         _ = builder.Property(b => b.DividendPercentage)
             .HasPrecision(9, 6)
+            .IsRequired();
+
+        _ = builder.Property(b => b.ContractId)
+            .HasDefaultValue(Guid.Empty)
             .IsRequired();
     }
 }
