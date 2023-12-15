@@ -2629,6 +2629,86 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.ToTable("brand_game_credits", "dbo");
                 });
 
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.BrandGameCreditProfit", b =>
+                {
+                    b.Property<Guid>("BrandId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("brand_id")
+                        .HasComment("平台識別碼");
+
+                    b.Property<DateOnly>("Month")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("date")
+                        .HasColumnName("month")
+                        .HasDefaultValueSql("'1990-01-01':: date")
+                        .HasComment("月份");
+
+                    b.Property<decimal>("Bet")
+                        .ValueGeneratedOnAdd()
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasDefaultValue(0m)
+                        .HasColumnName("bet")
+                        .HasComment("下注");
+
+                    b.Property<decimal>("Commission")
+                        .ValueGeneratedOnAdd()
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasDefaultValue(0m)
+                        .HasColumnName("commission")
+                        .HasComment("傭金");
+
+                    b.Property<int>("Count")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasDefaultValue(0)
+                        .HasColumnName("count")
+                        .HasComment("筆數");
+
+                    b.Property<Guid>("GameProviderId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("game_provider_id")
+                        .HasComment("遊戲供應商識別碼");
+
+                    b.Property<decimal>("Settle")
+                        .ValueGeneratedOnAdd()
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasDefaultValue(0m)
+                        .HasColumnName("settle")
+                        .HasComment("結算(包含本金)");
+
+                    b.Property<decimal>("Turnover")
+                        .ValueGeneratedOnAdd()
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasDefaultValue(0m)
+                        .HasColumnName("turnover")
+                        .HasComment("有效投注");
+
+                    b.Property<decimal>("ValidBet")
+                        .ValueGeneratedOnAdd()
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasDefaultValue(0m)
+                        .HasColumnName("valid_bet")
+                        .HasComment("實際/有效下注");
+
+                    b.Property<decimal>("WinLoss")
+                        .ValueGeneratedOnAdd()
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasDefaultValue(0m)
+                        .HasColumnName("win_loss")
+                        .HasComment("玩家損益/淨利");
+
+                    b.HasKey("BrandId", "Month")
+                        .HasName("ix_brand_game_credit_brand_id");
+
+                    b.ToTable("brand_game_credit_profits", "dbo");
+                });
+
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.BrandGameCreditSuspSetting", b =>
                 {
                     b.Property<Guid>("BrandId")
