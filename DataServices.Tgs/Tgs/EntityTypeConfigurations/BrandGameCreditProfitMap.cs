@@ -11,12 +11,12 @@ internal class BrandGameCreditProfitMap : IEntityTypeConfiguration<BrandGameCred
         _ = builder.ToTable("brand_game_credit_profits");
 
         _ = builder
-            .HasKey(c => new { c.BrandId, c.Month,c.GameProviderId })
+            .HasKey(c => new { c.BrandId, c.Month, c.GameProviderId })
             .HasName("pk_brand_game_credit_profits");
 
         _ = builder
-            .HasKey(c => new { c.BrandId, c.Month })
-            .HasName("ix_brand_game_credit_brand_id");
+            .HasIndex(c => new { c.BrandId, c.Month })
+            .HasDatabaseName("ix_brand_game_credit_profits_brand_id");
 
         _ = builder.Property(c => c.BrandId)
             .IsRequired()
