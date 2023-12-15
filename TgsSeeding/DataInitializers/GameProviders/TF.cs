@@ -79,7 +79,7 @@ public partial class DataInitializer
 
         SubGameProvider[] IGameProvider.SubGameProviders => new SubGameProvider[]
         {
-            new SubGameProvider(GameProviderConst.TFGaming,"TF")
+            new(GameProviderConst.TFGaming,"TF")
         };
 
         PluggableConfigurationBase IGameProvider.GetConfiguration() => new TFConfiguration

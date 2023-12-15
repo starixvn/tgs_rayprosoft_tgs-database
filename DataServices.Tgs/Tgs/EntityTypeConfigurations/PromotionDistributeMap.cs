@@ -24,12 +24,6 @@ internal class PromotionDistributeMap : IEntityTypeConfiguration<PromotionDistri
         _ = builder.Property(pd => pd.CreatedOn);
         _ = builder.Property(pd => pd.ReferenceId);
 
-        _ = builder.HasOne<Promotion>()
-            .WithMany()
-            .HasForeignKey(pd => pd.PromotionId)
-            .HasConstraintName("fk_promotion_distributes_promotions")
-            .OnDelete(DeleteBehavior.Restrict);
-
         _ = builder.HasIndex(pd => new { pd.PlayerCode, pd.PlanId })
             .HasFilter("plan_id IS NOT NULL")
             .IsUnique()

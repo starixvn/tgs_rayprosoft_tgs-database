@@ -10381,9 +10381,6 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.HasKey("Id")
                         .HasName("pk_promotion_distributes");
 
-                    b.HasIndex("PromotionId")
-                        .HasDatabaseName("ix_promotion_distributes_promotion_id");
-
                     b.HasIndex("PlayerCode", "PlanId")
                         .IsUnique()
                         .HasDatabaseName("ux_promotion_distributes")
@@ -10450,9 +10447,6 @@ namespace TGS.Core.DataServices.Tgs.Migrations
 
                     b.HasKey("Id")
                         .HasName("pk_promotion_distribute_plans");
-
-                    b.HasIndex("PromotionId")
-                        .HasDatabaseName("ix_promotion_distribute_plans_promotion_id");
 
                     b.HasIndex("BrandId", "PromotionId", "ConditionHash")
                         .IsUnique()
@@ -14143,26 +14137,6 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasConstraintName("fk_promotion_bonus_promotion_id");
 
                     b.Navigation("Promotion");
-                });
-
-            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.PromotionDistribute", b =>
-                {
-                    b.HasOne("TGS.Core.DataServices.Tgs.Models.Promotion", null)
-                        .WithMany()
-                        .HasForeignKey("PromotionId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired()
-                        .HasConstraintName("fk_promotion_distributes_promotions");
-                });
-
-            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.PromotionDistributePlan", b =>
-                {
-                    b.HasOne("TGS.Core.DataServices.Tgs.Models.Promotion", null)
-                        .WithMany()
-                        .HasForeignKey("PromotionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("fk_promotion_distribute_plans_promotions");
                 });
 
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.PromotionGameProvider", b =>

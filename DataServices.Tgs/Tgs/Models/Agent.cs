@@ -1,4 +1,5 @@
 ﻿#nullable enable
+
 using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
@@ -8,13 +9,13 @@ namespace TGS.Core.DataServices.Tgs.Models;
 
 public class Agent
 {
-    public virtual ICollection<AgentDividendCondition> AgentDividendConditions { get; set; }
+    public virtual ICollection<AgentDividendCondition> AgentDividendConditions { get; set; } = default!;
 
     public AgentConfigStatus AgentStatus { get; set; }
 
-    public virtual ICollection<AgentBank> Banks { get; set; }
+    public virtual ICollection<AgentBank> Banks { get; set; } = default!;
 
-    public virtual Brand Brand { get; set; }
+    public virtual Brand Brand { get; set; } = default!;
 
     public Guid BrandId { get; set; }
 
@@ -35,7 +36,7 @@ public class Agent
 
     public Guid Id { get; set; }
 
-    public string InvitationCode { get; set; }
+    public string InvitationCode { get; set; } = default!;
 
     public AgentLevelType LevelType { get; set; }
 
@@ -47,13 +48,13 @@ public class Agent
 
     public Guid? ParentAgentId { get; set; }
 
-    public byte[] Password { get; set; }
+    public byte[] Password { get; set; } = default!;
 
     public LTree Path { get; set; }
 
     public string? Phone { get; set; }
 
-    public virtual ICollection<Player> Players { get; set; }
+    public virtual ICollection<Player> Players { get; set; } = default!;
 
     public string? QQ { get; set; }
 
@@ -63,7 +64,7 @@ public class Agent
 
     public string? Remarks { get; set; }
 
-    public byte[] Salt { get; set; }
+    public byte[] Salt { get; set; } = default!;
 
     public decimal SlotRebatePercentage { get; set; }
 
@@ -71,7 +72,7 @@ public class Agent
 
     public AgentStatus Status { get; set; }
 
-    public virtual ICollection<Agent> SubAgents { get; set; }
+    public virtual ICollection<Agent> SubAgents { get; set; } = default!;
 
     public AgentType Type { get; set; }
 
@@ -79,17 +80,17 @@ public class Agent
 
     public DateTimeOffset UpdatedOn { get; set; }
 
-    public string Username { get; set; }
+    public string Username { get; set; } = default!;
 
     public decimal VirtualSportsRebatePercentage { get; set; }
 
-    public virtual ICollection<AgentWallet> Wallets { get; set; }
+    public virtual ICollection<AgentWallet> Wallets { get; set; } = default!;
 
     public string? Wechat { get; set; }
 
-    public byte[] WithdrawPassword { get; set; }
+    public byte[] WithdrawPassword { get; set; } = default!;
 
-    public byte[] WithdrawSalt { get; set; }
+    public byte[] WithdrawSalt { get; set; } = default!;
 
     public Guid? SnapshotEventId { get; set; }
 

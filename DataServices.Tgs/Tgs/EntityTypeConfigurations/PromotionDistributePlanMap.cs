@@ -20,12 +20,6 @@ internal class PromotionDistributePlanMap : IEntityTypeConfiguration<PromotionDi
         _ = builder.Property(pdp => pdp.Detail)
             .HasColumnType(ColumnTypes.Jsonb);
 
-        _ = builder.HasOne<Promotion>()
-            .WithMany()
-            .HasForeignKey(pdp => pdp.PromotionId)
-            .HasConstraintName("fk_promotion_distribute_plans_promotions")
-            .OnDelete(DeleteBehavior.Cascade);
-
         _ = builder.HasIndex(pdp => new { pdp.BrandId, pdp.PromotionId, pdp.ConditionHash })
             .IsUnique()
             .HasDatabaseName("ux_promotion_distrubute_plans");

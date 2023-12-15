@@ -291,32 +291,6 @@ public partial class DataInitializer : BaseDataInitializer
         return gp;
     }
 
-    private static Round CreateRound(
-        Player player, GameProvider gameProvider,
-        GameProviderConfiguration configuration, Models.Game game, DateTimeOffset createdOn,
-        DateTimeOffset closedOn)
-    {
-        var roundId = Guid.NewGuid();
-
-        return new()
-        {
-            Id = roundId,
-            ExternalRoundId = "EXT_" + roundId,
-            PlayerCode = player.PlayerCode,
-            GameProviderId = gameProvider.Id,
-            GameId = game.Id,
-            GameProviderConfigurationId = configuration.Id,
-            WalletId = player.DefaultWalletId,
-            CurrencyCode = player.DefaultWalletCurrencyCode,
-            Status = RoundStatus.Closed,
-            BrandId = player.BrandId,
-            CreatedOn = createdOn,
-            ClosedOn = closedOn,
-            ExternalCreatedOn = createdOn,
-            ExternalClosedOn = closedOn
-        };
-    }
-
     private static IEnumerable<LocalizedString> GetGameLocalizedStrings(Models.Game g, string cultureCode) =>
         new LocalizedString[]
         {

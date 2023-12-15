@@ -83,8 +83,7 @@ public partial class DataInitializer
                 ServiceEndpointUrl = new Uri("http://localhost:62330"),
                 ApiUrl = new("http://www.connect6play.com/doBusiness.do"),
                 Merchants = new TCGMerchant[] {
-                    new TCGMerchant
-                    {
+                    new() {
                         GameUrl=new("https://tcg-cny.srvttt.com"),
                         CurrencyCode="CNY",
                         MerchantCode="pegacnys",
@@ -92,8 +91,7 @@ public partial class DataInitializer
                         SHA256Key="h2f69FzdSmMZzrdE",
                         PlayerPassword="TgsPassw0rd"
                     },
-                    new TCGMerchant
-                    {
+                    new() {
                         GameUrl=new("https://tcg-hkd.srvttt.com"),
                         CurrencyCode="HKD",
                         MerchantCode="pegahkds",
@@ -101,8 +99,7 @@ public partial class DataInitializer
                         SHA256Key="uC7wC9j2GhQBUQu0",
                         PlayerPassword="TgsPassw0rd"
                     },
-                    new TCGMerchant
-                    {
+                    new() {
                         GameUrl=new("https://tcg-idrk.srvttt.com"),
                         CurrencyCode="IDR_1000",
                         MerchantCode="pegaidrks",
@@ -110,8 +107,7 @@ public partial class DataInitializer
                         SHA256Key="I2PkSJCT5sI4ZHYX",
                         PlayerPassword="TgsPassw0rd"
                     },
-                    new TCGMerchant
-                    {
+                    new() {
                         GameUrl=new("https://tcg-idr.srvttt.com"),
                         CurrencyCode="IDR",
                         MerchantCode="pegaidrs",
@@ -119,8 +115,7 @@ public partial class DataInitializer
                         SHA256Key="9MLfRXnHWeuwVDo4",
                         PlayerPassword="TgsPassw0rd"
                     },
-                    new TCGMerchant
-                    {
+                    new() {
                         GameUrl=new("https://tcg-inr.srvttt.com"),
                         CurrencyCode="INR",
                         MerchantCode="pegainrs",
@@ -128,8 +123,7 @@ public partial class DataInitializer
                         SHA256Key="x3F9G1CxP0YRXIE",
                         PlayerPassword="TgsPassw0rd"
                     },
-                    new TCGMerchant
-                    {
+                    new() {
                         GameUrl=new("https://tcg-myr.srvttt.com"),
                         CurrencyCode="MYR",
                         MerchantCode="pegamyrs",
@@ -137,8 +131,7 @@ public partial class DataInitializer
                         SHA256Key="NNffZsPcfZDNut9r",
                         PlayerPassword="TgsPassw0rd"
                     },
-                    new TCGMerchant
-                    {
+                    new() {
                         GameUrl=new("https://tcg-thb.srvttt.com"),
                         CurrencyCode="THB",
                         MerchantCode="pegathbs",
@@ -146,8 +139,7 @@ public partial class DataInitializer
                         SHA256Key="4vzJ3p1sRQTcLswn",
                         PlayerPassword="TgsPassw0rd"
                     },
-                    new TCGMerchant
-                    {
+                    new() {
                         GameUrl=new("https://tcg-usd.srvttt.com"),
                         CurrencyCode="USD",
                         MerchantCode="pegausds",
@@ -155,8 +147,7 @@ public partial class DataInitializer
                         SHA256Key="Vz2tGy1Q7TK0AdAQ",
                         PlayerPassword="TgsPassw0rd"
                     },
-                    new TCGMerchant
-                    {
+                    new() {
                         GameUrl=new("https://tcg-vndk.srvttt.com"),
                         CurrencyCode="VND_1000",
                         MerchantCode="pegavndks",
@@ -164,8 +155,7 @@ public partial class DataInitializer
                         SHA256Key="g3kstTENOj5yJWCS",
                         PlayerPassword="TgsPassw0rd"
                     },
-                    new TCGMerchant
-                    {
+                    new() {
                         GameUrl=new("https://tcg-vnd.srvttt.com"),
                         CurrencyCode="VND",
                         MerchantCode="pegavnds",

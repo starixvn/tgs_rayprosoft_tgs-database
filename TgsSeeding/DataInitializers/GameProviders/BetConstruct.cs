@@ -66,7 +66,7 @@ public partial class DataInitializer
 
         SubGameProvider[] IGameProvider.SubGameProviders => new SubGameProvider[]
         {
-            new SubGameProvider(GameProviderConst.BetConstruct,"BetConstruct")
+            new(GameProviderConst.BetConstruct,"BetConstruct")
         };
 
         PluggableConfigurationBase IGameProvider.GetConfiguration() =>
