@@ -2643,6 +2643,11 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasDefaultValueSql("'1990-01-01':: date")
                         .HasComment("月份");
 
+                    b.Property<Guid>("GameProviderId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("game_provider_id")
+                        .HasComment("遊戲供應商識別碼");
+
                     b.Property<decimal>("Bet")
                         .ValueGeneratedOnAdd()
                         .HasPrecision(18, 6)
@@ -2665,11 +2670,6 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasDefaultValue(0)
                         .HasColumnName("count")
                         .HasComment("筆數");
-
-                    b.Property<Guid>("GameProviderId")
-                        .HasColumnType("uuid")
-                        .HasColumnName("game_provider_id")
-                        .HasComment("遊戲供應商識別碼");
 
                     b.Property<decimal>("Settle")
                         .ValueGeneratedOnAdd()
@@ -2703,8 +2703,11 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnName("win_loss")
                         .HasComment("玩家損益/淨利");
 
-                    b.HasKey("BrandId", "Month")
-                        .HasName("ix_brand_game_credit_brand_id");
+                    b.HasKey("BrandId", "Month", "GameProviderId")
+                        .HasName("pk_brand_game_credit_profits");
+
+                    b.HasIndex("BrandId", "Month")
+                        .HasDatabaseName("ix_brand_game_credit_profits_brand_id");
 
                     b.ToTable("brand_game_credit_profits", "dbo");
                 });
