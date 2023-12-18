@@ -2671,6 +2671,14 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnName("count")
                         .HasComment("筆數");
 
+                    b.Property<decimal>("ProfitAmount")
+                        .ValueGeneratedOnAdd()
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasDefaultValue(0m)
+                        .HasColumnName("profit_amount")
+                        .HasComment("利潤額度");
+
                     b.Property<decimal>("Settle")
                         .ValueGeneratedOnAdd()
                         .HasPrecision(18, 6)

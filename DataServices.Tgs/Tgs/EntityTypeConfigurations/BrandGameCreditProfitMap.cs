@@ -62,6 +62,11 @@ internal class BrandGameCreditProfitMap : IEntityTypeConfiguration<BrandGameCred
             .IsRequired()
             .HasDefaultValue(0.0)
             .HasComment("玩家損益/淨利");
+        _ = builder.Property(b => b.ProfitAmount)
+            .HasPrecision(18, 6)
+            .IsRequired()
+            .HasDefaultValue(0.0)
+            .HasComment("利潤額度");
     }
 }
 
