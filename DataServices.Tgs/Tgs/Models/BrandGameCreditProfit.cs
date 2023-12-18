@@ -23,4 +23,6 @@ public class BrandGameCreditProfit
     public decimal Turnover { get; set; }
 
     public decimal WinLoss { get; set; }
+
+    public decimal ProfitAmount { get; set; }
 }
