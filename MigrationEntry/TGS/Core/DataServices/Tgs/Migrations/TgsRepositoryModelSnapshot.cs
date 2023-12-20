@@ -3691,6 +3691,56 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.ToTable("brand_player_bankinfo_check_flags", "dbo");
                 });
 
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.Calculate", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<decimal>("Balance")
+                        .HasColumnType("numeric")
+                        .HasColumnName("balance");
+
+                    b.Property<Guid>("SnapshotId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("snapshot_id");
+
+                    b.HasKey("Id")
+                        .HasName("pk_calculate");
+
+                    b.ToTable("calculate", "dbo");
+                });
+
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.CalculateChangeLog", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<decimal>("Balance")
+                        .HasColumnType("numeric")
+                        .HasColumnName("balance");
+
+                    b.Property<Guid>("CalculateId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("calculate_id");
+
+                    b.Property<decimal>("Change")
+                        .HasColumnType("numeric")
+                        .HasColumnName("change");
+
+                    b.Property<DateTime>("RecordedOn")
+                        .HasColumnType("timestamptz")
+                        .HasColumnName("recorded_on");
+
+                    b.HasKey("Id")
+                        .HasName("pk_calculate_change_log");
+
+                    b.ToTable("calculate_change_log", "dbo");
+                });
+
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.Currency", b =>
                 {
                     b.Property<string>("Code")
