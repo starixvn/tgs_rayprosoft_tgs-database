@@ -9,4 +9,6 @@ public class Calculate
     public decimal Balance { get; set; }
 
     public Guid SnapshotId { get; set; }
+
+    public bool Deleted { get; set; }
 }

@@ -3702,6 +3702,10 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("numeric")
                         .HasColumnName("balance");
 
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("boolean")
+                        .HasColumnName("deleted");
+
                     b.Property<Guid>("SnapshotId")
                         .HasColumnType("uuid")
                         .HasColumnName("snapshot_id");
@@ -3730,6 +3734,12 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.Property<decimal>("Change")
                         .HasColumnType("numeric")
                         .HasColumnName("change");
+
+                    b.Property<bool>("Deleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(false)
+                        .HasColumnName("deleted");
 
                     b.Property<DateTime>("RecordedOn")
                         .HasColumnType("timestamptz")

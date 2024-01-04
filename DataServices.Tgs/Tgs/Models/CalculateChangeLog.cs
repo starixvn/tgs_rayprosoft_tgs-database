@@ -13,4 +13,6 @@ public class CalculateChangeLog
     public decimal Balance { get; set; }
 
     public DateTime RecordedOn { get; set; }
+
+    public bool Deleted { get; set; }
 }
