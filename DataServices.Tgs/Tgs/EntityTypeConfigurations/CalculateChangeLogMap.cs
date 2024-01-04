@@ -21,5 +21,8 @@ internal class CalculateChangeLogMap : IEntityTypeConfiguration<CalculateChangeL
             .HasColumnType("timestamptz");
         _ = builder.Property(c => c.CalculateId)
             .IsRequired();
+        _ = builder.Property(c => c.Deleted)
+            .IsRequired()
+            .HasDefaultValue(false);
     }
 }

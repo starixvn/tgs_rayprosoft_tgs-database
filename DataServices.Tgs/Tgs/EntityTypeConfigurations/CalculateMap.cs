@@ -17,5 +17,7 @@ internal class CalculateMap : IEntityTypeConfiguration<Calculate>
             .IsRequired();
         _ = builder.Property(c => c.SnapshotId)
             .IsRequired();
+        _ = builder.Property(c => c.Deleted)
+            .IsRequired();
     }
 }
