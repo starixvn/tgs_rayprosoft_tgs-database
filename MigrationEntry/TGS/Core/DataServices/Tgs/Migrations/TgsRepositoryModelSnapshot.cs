@@ -4122,6 +4122,23 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.ToTable("deposit_form_event_source", "dbo");
                 });
 
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.DepositPromotionCalculatePair", b =>
+                {
+                    b.Property<Guid>("PromotionId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("promotion_id");
+
+                    b.Property<Guid>("CalculateId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("calculate_id");
+
+                    b.HasKey("PromotionId")
+                        .HasName("pk_deposit_promotion_calculate_pairs");
+
+                    b.ToTable("deposit_promotion_calculate_pairs", "dbo");
+                });
+
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.DistributeRegisterEvent", b =>
                 {
                     b.Property<Guid>("Id")
