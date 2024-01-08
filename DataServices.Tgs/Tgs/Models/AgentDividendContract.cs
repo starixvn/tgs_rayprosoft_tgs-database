@@ -18,9 +18,9 @@ public class AgentDividendContract
     public decimal ValidBetAmount { get; set; }
     public decimal DepositAmount { get; set; }
     public int BetDays { get; set; }
+    public int[] GameTypes { get; set; } = default!;
     public string CreatedByUsername { get; set; } = default!;
     public string UpdatedByUsername { get; set; } = default!;
     public DateTimeOffset CreatedOn { get; set; }
     public DateTimeOffset UpdatedOn { get; set; }
-    public virtual Agent Agent { get; set; } = null!;
 }

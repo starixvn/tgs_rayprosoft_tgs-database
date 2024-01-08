@@ -15,6 +15,14 @@ internal class AgentDividendContractMap : IEntityTypeConfiguration<AgentDividend
         _ = builder.HasKey(b => b.Id)
             .HasName("pk_agent_dividend_contracts_id");
 
+        _ = builder.Property(b => b.Name)
+            .HasMaxLength(64)
+            .IsRequired();
+
+        _ = builder.Property(c => c.GameTypes)
+            .HasColumnType("text[]")
+            .IsRequired();
+
         _ = builder.Property(b => b.ContractDividendType)
             .HasColumnType(ColumnTypes.SmallInt)
             .IsRequired();
@@ -35,9 +43,18 @@ internal class AgentDividendContractMap : IEntityTypeConfiguration<AgentDividend
             .HasPrecision(18, 6)
             .IsRequired();
 
-        _ = builder.HasOne(b => b.Agent)
-            .WithOne()
-            .HasForeignKey<AgentDividendContract>(e => e.AgentId)
+        _ = builder.Property(c => c.CreatedByUsername)
+            .HasMaxLength(64)
+            .IsRequired();
+
+        _ = builder.Property(c => c.UpdatedByUsername)
+            .HasMaxLength(64)
+            .IsRequired();
+
+        _ = builder.Property(c => c.CreatedOn)
+            .IsRequired();
+
+        _ = builder.Property(c => c.UpdatedOn)
             .IsRequired();
     }
 }
