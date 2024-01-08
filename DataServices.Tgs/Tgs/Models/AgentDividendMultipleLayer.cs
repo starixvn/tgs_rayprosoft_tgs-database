@@ -16,5 +16,5 @@ public class AgentDividendMultipleLayer
     public int DividendProviderId { get; set; }
     public int Id { get; set; }
     public string Layer { get; set; }
-    public Guid ContractId { get; set; }
+    public Guid AgentDividendSnapshotId { get; set; }
 }

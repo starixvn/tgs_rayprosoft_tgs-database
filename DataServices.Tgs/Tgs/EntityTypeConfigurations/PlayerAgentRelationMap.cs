@@ -24,8 +24,8 @@ internal class PlayerAgentRelationMap : IEntityTypeConfiguration<PlayerAgentRela
             .IsRequired();
 
         _ = builder.HasOne(p => p.Brand)
-            .WithOne()
-            .HasForeignKey<PlayerAgentRelation>(p => p.BrandId)
+            .WithMany()
+            .HasForeignKey(p => p.BrandId)
             .HasConstraintName("fk_player_agents_brands_brand_id");
 
         _ = builder.HasOne(p => p.Player)

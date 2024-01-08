@@ -50,7 +50,7 @@ internal class AgentDividendMultipleLayerMap : IEntityTypeConfiguration<AgentDiv
         _ = builder.Property(b => b.Layer)
             .IsRequired();
 
-        _ = builder.Property(b => b.ContractId)
+        _ = builder.Property(b => b.AgentDividendSnapshotId)
             .HasDefaultValue(Guid.Empty)
             .IsRequired();
 

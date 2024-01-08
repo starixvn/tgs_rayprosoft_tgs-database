@@ -1126,7 +1126,8 @@ namespace TGS.Core.DataServices.Tgs.Migrations
 
                     b.Property<string>("CreatedByUsername")
                         .IsRequired()
-                        .HasColumnType("text")
+                        .HasMaxLength(64)
+                        .HasColumnType("character varying(64)")
                         .HasColumnName("created_by_username");
 
                     b.Property<DateTimeOffset>("CreatedOn")
@@ -1138,6 +1139,11 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("numeric(18,6)")
                         .HasColumnName("deposit_amount");
 
+                    b.Property<string[]>("GameTypes")
+                        .IsRequired()
+                        .HasColumnType("text[]")
+                        .HasColumnName("game_types");
+
                     b.Property<decimal>("GradeIntervalLimit")
                         .HasPrecision(18, 6)
                         .HasColumnType("numeric(18,6)")
@@ -1145,12 +1151,14 @@ namespace TGS.Core.DataServices.Tgs.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("text")
+                        .HasMaxLength(64)
+                        .HasColumnType("character varying(64)")
                         .HasColumnName("name");
 
                     b.Property<string>("UpdatedByUsername")
                         .IsRequired()
-                        .HasColumnType("text")
+                        .HasMaxLength(64)
+                        .HasColumnType("character varying(64)")
                         .HasColumnName("updated_by_username");
 
                     b.Property<DateTimeOffset>("UpdatedOn")
@@ -1164,10 +1172,6 @@ namespace TGS.Core.DataServices.Tgs.Migrations
 
                     b.HasKey("Id")
                         .HasName("pk_agent_dividend_contracts_id");
-
-                    b.HasIndex("AgentId")
-                        .IsUnique()
-                        .HasDatabaseName("ix_agent_dividend_contracts_agent_id");
 
                     b.ToTable("agent_dividend_contracts", "dbo");
                 });
@@ -1205,15 +1209,15 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("numeric(18,6)")
                         .HasColumnName("agent_dividend_percentage");
 
-                    b.Property<Guid>("AgentId")
-                        .HasColumnType("uuid")
-                        .HasColumnName("agent_id");
-
-                    b.Property<Guid>("ContractId")
+                    b.Property<Guid>("AgentDividendSnapshotId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
                         .HasDefaultValue(new Guid("00000000-0000-0000-0000-000000000000"))
-                        .HasColumnName("contract_id");
+                        .HasColumnName("agent_dividend_snapshot_id");
+
+                    b.Property<Guid>("AgentId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("agent_id");
 
                     b.Property<decimal>("Dividend")
                         .HasPrecision(18, 6)
@@ -1290,6 +1294,28 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasDatabaseName("ux_agent_dividend_records");
 
                     b.ToTable("agent_dividend_records", "dbo");
+                });
+
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.AgentDividendSnapshot", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_on");
+
+                    b.Property<string>("Data")
+                        .IsRequired()
+                        .HasColumnType("jsonb")
+                        .HasColumnName("data");
+
+                    b.HasKey("Id")
+                        .HasName("pk_agent_dividend_snapshots_id");
+
+                    b.ToTable("agent_dividend_snapshots", "dbo");
                 });
 
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.AgentDomain", b =>
@@ -2347,6 +2373,119 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasDatabaseName("ix_brand_communications_brand_id");
 
                     b.ToTable("brand_communications", "dbo");
+                });
+
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.BrandContract", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<int>("BetDays")
+                        .HasColumnType("integer")
+                        .HasColumnName("bet_days");
+
+                    b.Property<Guid>("BrandId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("brand_id");
+
+                    b.Property<short>("ContractDividendType")
+                        .HasColumnType("smallint")
+                        .HasColumnName("contract_dividend_type");
+
+                    b.Property<short>("ContractStatus")
+                        .HasColumnType("smallint")
+                        .HasColumnName("contract_status");
+
+                    b.Property<string>("CreatedByUsername")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("character varying(64)")
+                        .HasColumnName("created_by_username");
+
+                    b.Property<DateTimeOffset>("CreatedOn")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_on");
+
+                    b.Property<decimal>("DepositAmount")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("deposit_amount");
+
+                    b.Property<string[]>("GameTypes")
+                        .IsRequired()
+                        .HasColumnType("text[]")
+                        .HasColumnName("game_types");
+
+                    b.Property<decimal>("GradeIntervalLimit")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("grade_interval_limit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("character varying(64)")
+                        .HasColumnName("name");
+
+                    b.Property<string>("UpdatedByUsername")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("character varying(64)")
+                        .HasColumnName("updated_by_username");
+
+                    b.Property<DateTimeOffset>("UpdatedOn")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("updated_on");
+
+                    b.Property<decimal>("ValidBetAmount")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("valid_bet_amount");
+
+                    b.HasKey("Id")
+                        .HasName("pk_brand_contracts_id");
+
+                    b.ToTable("brand_contracts", "dbo");
+                });
+
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.BrandContractCondition", b =>
+                {
+                    b.Property<int>("Rank")
+                        .HasColumnType("integer")
+                        .HasColumnName("rank");
+
+                    b.Property<Guid>("BrandContractId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("brand_contract_id");
+
+                    b.Property<int>("ActiveNumber")
+                        .HasColumnType("integer")
+                        .HasColumnName("active_number");
+
+                    b.Property<decimal>("DividendPercentage")
+                        .HasPrecision(9, 6)
+                        .HasColumnType("numeric(9,6)")
+                        .HasColumnName("dividend_percentage");
+
+                    b.Property<decimal>("NetProfit")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("net_profit");
+
+                    b.Property<decimal>("WinLossAmount")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("win_loss_amount");
+
+                    b.HasKey("Rank", "BrandContractId")
+                        .HasName("pk_brand_contract_conditions_rank_brand_contract_id");
+
+                    b.HasIndex("BrandContractId")
+                        .HasDatabaseName("ix_brand_contract_conditions_brand_contract_id");
+
+                    b.ToTable("brand_contract_conditions", "dbo");
                 });
 
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.BrandCurrency", b =>
@@ -7968,7 +8107,6 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasDatabaseName("ix_player_agent_relations_agent_id");
 
                     b.HasIndex("BrandId")
-                        .IsUnique()
                         .HasDatabaseName("ix_player_agent_relations_brand_id");
 
                     b.ToTable("player_agent_relations", "dbo");
@@ -12943,18 +13081,6 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.Navigation("Agent");
                 });
 
-            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.AgentDividendContract", b =>
-                {
-                    b.HasOne("TGS.Core.DataServices.Tgs.Models.Agent", "Agent")
-                        .WithOne()
-                        .HasForeignKey("TGS.Core.DataServices.Tgs.Models.AgentDividendContract", "AgentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("fk_agent_dividend_contracts_agents_agent_id");
-
-                    b.Navigation("Agent");
-                });
-
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.AgentDividendMultipleLayer", b =>
                 {
                     b.HasOne("TGS.Core.DataServices.Tgs.Models.AgentDividend", "AgentDividend")
@@ -13149,6 +13275,18 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasConstraintName("fk_brand_communications_brands_brand_id");
 
                     b.Navigation("Brand");
+                });
+
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.BrandContractCondition", b =>
+                {
+                    b.HasOne("TGS.Core.DataServices.Tgs.Models.BrandContract", "BrandContract")
+                        .WithMany("BrandContractConditions")
+                        .HasForeignKey("BrandContractId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_brand_contract_conditions_brand_contract_brand_contract_id");
+
+                    b.Navigation("BrandContract");
                 });
 
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.BrandCurrency", b =>
@@ -14052,8 +14190,8 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasConstraintName("fk_player_agents_agents_agent_id");
 
                     b.HasOne("TGS.Core.DataServices.Tgs.Models.Brand", "Brand")
-                        .WithOne()
-                        .HasForeignKey("TGS.Core.DataServices.Tgs.Models.PlayerAgentRelation", "BrandId")
+                        .WithMany()
+                        .HasForeignKey("BrandId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("fk_player_agents_brands_brand_id");
@@ -14836,6 +14974,11 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.Navigation("StationLetters");
 
                     b.Navigation("VipLevels");
+                });
+
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.BrandContract", b =>
+                {
+                    b.Navigation("BrandContractConditions");
                 });
 
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.BrandGame", b =>
