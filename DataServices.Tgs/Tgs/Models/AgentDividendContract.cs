@@ -1,7 +1,6 @@
 ﻿#nullable enable
 
 using System;
-using System.Collections.Generic;
 using TGS.Core.Models.Enums;
 
 namespace TGS.Core.DataServices.Tgs.Models;
@@ -11,6 +10,7 @@ public class AgentDividendContract
     public Guid Id { get; set; }
     public Guid BrandId { get; set; }
     public Guid AgentId { get; set; }
+    public Guid DefaultBrandContractId { get; set; }
     public string Name { get; set; } = default!;
     public decimal GradeIntervalLimit { get; set; }
     public ContractDividendType ContractDividendType { get; set; }
