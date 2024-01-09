@@ -86,4 +86,5 @@ public class AgentDividend
     public decimal WithdrawalAmount { get; set; }
 
     public decimal WithdrawHandlingFee { get; set; }
+    public decimal PlatformChargePercentage { get; set; }
 }

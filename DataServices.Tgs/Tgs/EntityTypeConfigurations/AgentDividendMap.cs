@@ -139,6 +139,10 @@ internal class AgentDividendMap : IEntityTypeConfiguration<AgentDividend>
             .HasPrecision(18, 6)
             .IsRequired();
 
+        _ = builder.Property(b => b.PlatformChargePercentage)
+            .HasPrecision(18, 6)
+            .IsRequired();
+
         _ = builder.Property(b => b.From)
             .IsRequired();
 

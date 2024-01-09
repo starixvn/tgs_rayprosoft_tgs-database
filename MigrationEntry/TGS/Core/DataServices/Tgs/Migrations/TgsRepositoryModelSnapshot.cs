@@ -971,6 +971,11 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("numeric(18,6)")
                         .HasColumnName("original_turnover");
 
+                    b.Property<decimal>("PlatformChargePercentage")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("platform_charge_percentage");
+
                     b.Property<decimal>("PromotionAmount")
                         .HasPrecision(18, 6)
                         .HasColumnType("numeric(18,6)")
@@ -1133,6 +1138,10 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.Property<DateTimeOffset>("CreatedOn")
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("created_on");
+
+                    b.Property<Guid>("DefaultBrandContractId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("default_brand_contract_id");
 
                     b.Property<decimal>("DepositAmount")
                         .HasPrecision(18, 6)
