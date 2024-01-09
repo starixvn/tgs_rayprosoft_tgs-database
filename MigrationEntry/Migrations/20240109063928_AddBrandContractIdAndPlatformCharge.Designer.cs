@@ -12,7 +12,7 @@ using TGS.Core.DataServices.Tgs;
 namespace TGS.Core.DataServices.Tgs.Migrations
 {
     [DbContext(typeof(TgsRepository))]
-    [Migration("20240109051750_AddBrandContractIdAndPlatformCharge")]
+    [Migration("20240109063928_AddBrandContractIdAndPlatformCharge")]
     partial class AddBrandContractIdAndPlatformCharge
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -852,6 +852,10 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnName("id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("ActiveNumber")
+                        .HasColumnType("integer")
+                        .HasColumnName("active_number");
 
                     b.Property<decimal>("AgentAdjustAmount")
                         .HasPrecision(18, 6)

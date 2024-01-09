@@ -9,6 +9,14 @@ namespace TGS.Core.DataServices.Tgs.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.AddColumn<int>(
+                name: "active_number",
+                schema: "dbo",
+                table: "agent_dividends",
+                type: "integer",
+                nullable: false,
+                defaultValue: 0);
+
             migrationBuilder.AddColumn<decimal>(
                 name: "platform_charge_percentage",
                 schema: "dbo",
@@ -30,6 +38,11 @@ namespace TGS.Core.DataServices.Tgs.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropColumn(
+                name: "active_number",
+                schema: "dbo",
+                table: "agent_dividends");
+
             migrationBuilder.DropColumn(
                 name: "platform_charge_percentage",
                 schema: "dbo",
