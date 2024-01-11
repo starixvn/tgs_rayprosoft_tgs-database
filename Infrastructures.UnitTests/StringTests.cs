@@ -14,6 +14,6 @@ public class StringTests
     {
         var imageName = url.GetMatchStrings(Consts.UploadFile.ImagePattern);
 
-        Assert.AreEqual(imageName[0], "pic_trulli.jpg");
+        Assert.That(imageName[0], Is.EqualTo("pic_trulli.jpg"));
     }
 }
