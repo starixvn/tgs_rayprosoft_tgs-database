@@ -26,6 +26,6 @@ public class ClientPathTests
 
         var actual = ClientPath.AppendWithProperties(string.Empty, parameter);
 
-        Assert.AreEqual(expected, actual);
+        Assert.That(actual, Is.EqualTo(expected));
     }
 }
