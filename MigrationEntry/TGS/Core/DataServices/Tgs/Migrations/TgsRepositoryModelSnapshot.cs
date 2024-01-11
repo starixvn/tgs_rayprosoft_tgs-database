@@ -10095,6 +10095,41 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.ToTable("player_tags", "dbo");
                 });
 
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.PlayerVipLevel", b =>
+                {
+                    b.Property<string>("PlayerCode")
+                        .HasMaxLength(16)
+                        .HasColumnType("character varying(16)")
+                        .HasColumnName("player_code")
+                        .HasComment("玩家代碼");
+
+                    b.Property<int>("AutoState")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasDefaultValue(0)
+                        .HasColumnName("auto_state")
+                        .HasComment("自動狀態(0:啟用 1:停用)");
+
+                    b.Property<int>("VipLevel")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasDefaultValue(1)
+                        .HasColumnName("vip_level")
+                        .HasComment("VipLevel等級");
+
+                    b.Property<Guid>("VipLevelId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasDefaultValue(new Guid("00000000-0000-0000-0000-000000000000"))
+                        .HasColumnName("vip_level_id")
+                        .HasComment("VipLevel識別碼");
+
+                    b.HasKey("PlayerCode")
+                        .HasName("pk_player_vip_levels");
+
+                    b.ToTable("player_vip_levels", "dbo");
+                });
+
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.PlayerVipLevelAdjustRecord", b =>
                 {
                     b.Property<Guid>("Id")
