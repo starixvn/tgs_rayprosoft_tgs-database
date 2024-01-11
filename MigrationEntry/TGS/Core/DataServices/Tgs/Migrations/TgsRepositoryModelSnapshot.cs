@@ -10281,6 +10281,78 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.ToTable("player_vip_level_birthday_promotions", "dbo");
                 });
 
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.PlayerVipLevelLog", b =>
+                {
+                    b.Property<DateTimeOffset>("CreatedOn")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_on")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP")
+                        .HasComment("創建時間");
+
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uuid")
+                        .HasColumnName("id")
+                        .HasComment("識別碼");
+
+                    b.Property<string>("After")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("jsonb")
+                        .HasColumnName("after")
+                        .HasDefaultValueSql("'{}'::jsonb")
+                        .HasComment("之後");
+
+                    b.Property<string>("Before")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("jsonb")
+                        .HasColumnName("before")
+                        .HasDefaultValueSql("'{}'::jsonb")
+                        .HasComment("之前");
+
+                    b.Property<Guid>("CreatedUserId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasDefaultValue(new Guid("00000000-0000-0000-0000-000000000000"))
+                        .HasColumnName("created_user_id")
+                        .HasComment("創建使用者識別碼");
+
+                    b.Property<string>("CreatedUsername")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)")
+                        .HasDefaultValue("")
+                        .HasColumnName("created_username")
+                        .HasComment("創建使用者名稱");
+
+                    b.Property<string>("PlayerCode")
+                        .IsRequired()
+                        .HasMaxLength(16)
+                        .HasColumnType("character varying(16)")
+                        .HasColumnName("player_code")
+                        .HasComment("玩家代碼");
+
+                    b.Property<int>("Type")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasDefaultValue(1)
+                        .HasColumnName("type")
+                        .HasComment("日誌類型");
+
+                    b.HasKey("CreatedOn", "Id")
+                        .HasName("pk_player_vip_level_logs");
+
+                    b.HasIndex("CreatedOn")
+                        .HasDatabaseName("ix_player_vip_level_logs_created_on");
+
+                    b.HasIndex("CreatedOn", "PlayerCode")
+                        .HasDatabaseName("ix_player_vip_level_logs_created_on_player_code");
+
+                    b.ToTable("player_vip_level_logs", "dbo");
+                });
+
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.PlayerVipLevelSeasonPromotion", b =>
                 {
                     b.Property<Guid>("Id")
