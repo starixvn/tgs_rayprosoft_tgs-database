@@ -12,4 +12,5 @@ public class PlayerVipLevelLog
     public Guid CreatedUserId { get; set; }
     public string CreatedUsername { get; set; }
     public DateTimeOffset CreatedOn { get; set; }
+    public string Remark { get; set; } = default!;
 }
