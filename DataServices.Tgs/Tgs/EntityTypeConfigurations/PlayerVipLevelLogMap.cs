@@ -57,5 +57,9 @@ internal class PlayerVipLevelLogMap : IEntityTypeConfiguration<PlayerVipLevelLog
             .IsRequired()
             .HasDefaultValueSql("CURRENT_TIMESTAMP")
             .HasComment("創建時間");
+        _ = builder.Property(b => b.Remark)
+            .IsRequired()
+            .HasDefaultValue("")
+            .HasComment("備註");
     }
 }

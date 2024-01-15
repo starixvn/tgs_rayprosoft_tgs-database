@@ -10334,6 +10334,14 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnName("player_code")
                         .HasComment("玩家代碼");
 
+                    b.Property<string>("Remark")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("text")
+                        .HasDefaultValue("")
+                        .HasColumnName("remark")
+                        .HasComment("備註");
+
                     b.Property<int>("Type")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
