@@ -18,7 +18,7 @@ internal class AnnouncementMap : IEntityTypeConfiguration<Announcement>
             .HasMaxLength(256);
 
         _ = builder.Property(c => c.Content)
-            .HasMaxLength(4000);
+            .HasMaxLength(8000);
 
         _ = builder.Property(c => c.Localization)
             .HasColumnType(ColumnTypes.Jsonb)
