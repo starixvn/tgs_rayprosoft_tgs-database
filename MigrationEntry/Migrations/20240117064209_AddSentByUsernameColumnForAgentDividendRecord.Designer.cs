@@ -12,7 +12,7 @@ using TGS.Core.DataServices.Tgs;
 namespace TGS.Core.DataServices.Tgs.Migrations
 {
     [DbContext(typeof(TgsRepository))]
-    [Migration("20240117061833_AddSentByUsernameColumnForAgentDividendRecord")]
+    [Migration("20240117064209_AddSentByUsernameColumnForAgentDividendRecord")]
     partial class AddSentByUsernameColumnForAgentDividendRecord
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -1293,7 +1293,6 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnName("created_on");
 
                     b.Property<string>("SentByUsername")
-                        .IsRequired()
                         .HasMaxLength(64)
                         .HasColumnType("character varying(64)")
                         .HasColumnName("sent_by_username");

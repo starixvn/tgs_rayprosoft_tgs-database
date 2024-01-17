@@ -20,8 +20,7 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                 table: "agent_dividend_records",
                 type: "character varying(64)",
                 maxLength: 64,
-                nullable: false,
-                defaultValue: "");
+                nullable: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

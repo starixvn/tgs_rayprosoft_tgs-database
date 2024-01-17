@@ -28,7 +28,7 @@ internal class AgentDividendRecordMap : IEntityTypeConfiguration<AgentDividendRe
 
         _ = builder.Property(b => b.SentByUsername)
             .HasMaxLength(64)
-            .IsRequired();
+            .IsRequired(false);
 
         _ = builder.Property(b => b.CreatedOn)
             .IsRequired();
