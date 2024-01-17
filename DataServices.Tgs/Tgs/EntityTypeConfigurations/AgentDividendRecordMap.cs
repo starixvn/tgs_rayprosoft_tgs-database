@@ -22,12 +22,12 @@ internal class AgentDividendRecordMap : IEntityTypeConfiguration<AgentDividendRe
         _ = builder.Property(b => b.AgentId)
             .IsRequired();
 
-        _ = builder.Property(b => b.NegativeDividendIds)
-            .HasColumnType("text[]")
-            .IsRequired();
-
         _ = builder.Property(b => b.AgentDividendAmount)
             .HasPrecision(18, 6)
+            .IsRequired();
+
+        _ = builder.Property(b => b.SentByUsername)
+            .HasMaxLength(64)
             .IsRequired();
 
         _ = builder.Property(b => b.CreatedOn)

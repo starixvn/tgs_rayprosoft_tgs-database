@@ -1290,10 +1290,11 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("created_on");
 
-                    b.Property<string[]>("NegativeDividendIds")
+                    b.Property<string>("SentByUsername")
                         .IsRequired()
-                        .HasColumnType("text[]")
-                        .HasColumnName("negative_dividend_ids");
+                        .HasMaxLength(64)
+                        .HasColumnType("character varying(64)")
+                        .HasColumnName("sent_by_username");
 
                     b.Property<DateTime?>("SentOn")
                         .HasColumnType("timestamp with time zone")
