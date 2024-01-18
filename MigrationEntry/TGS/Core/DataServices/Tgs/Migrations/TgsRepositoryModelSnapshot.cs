@@ -4462,6 +4462,78 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.ToTable("failed_game_record_operations", "bet");
                 });
 
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.FiveMinutesPaymentStatistics", b =>
+                {
+                    b.Property<DateTime>("TimePoint")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("time_point");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("text")
+                        .HasColumnName("user_id");
+
+                    b.Property<int>("UserType")
+                        .HasColumnType("integer")
+                        .HasColumnName("user_type");
+
+                    b.Property<Guid>("BrandId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("brand_id");
+
+                    b.Property<decimal?>("DepositAmount")
+                        .HasColumnType("numeric")
+                        .HasColumnName("deposit_amount");
+
+                    b.Property<int?>("DepositCount")
+                        .HasColumnType("integer")
+                        .HasColumnName("deposit_count");
+
+                    b.Property<decimal?>("DepositHandlingFee")
+                        .HasColumnType("numeric")
+                        .HasColumnName("deposit_handling_fee");
+
+                    b.Property<decimal?>("FirstDepositAmount")
+                        .HasColumnType("numeric")
+                        .HasColumnName("first_deposit_amount");
+
+                    b.Property<decimal?>("FirstDepositHandlingFee")
+                        .HasColumnType("numeric")
+                        .HasColumnName("first_deposit_handling_fee");
+
+                    b.Property<DateTime?>("FirstDepositOn")
+                        .HasColumnType("timestamptz")
+                        .HasColumnName("first_deposit_on");
+
+                    b.Property<decimal?>("FirstWithdrawAmount")
+                        .HasColumnType("numeric")
+                        .HasColumnName("first_withdraw_amount");
+
+                    b.Property<decimal?>("FirstWithdrawHandlingFee")
+                        .HasColumnType("numeric")
+                        .HasColumnName("first_withdraw_handling_fee");
+
+                    b.Property<DateTime?>("FirstWithdrawOn")
+                        .HasColumnType("timestamptz")
+                        .HasColumnName("first_withdraw_on");
+
+                    b.Property<decimal?>("WithdrawAmount")
+                        .HasColumnType("numeric")
+                        .HasColumnName("withdraw_amount");
+
+                    b.Property<int?>("WithdrawCount")
+                        .HasColumnType("integer")
+                        .HasColumnName("withdraw_count");
+
+                    b.Property<decimal?>("WithdrawHandlingFee")
+                        .HasColumnType("numeric")
+                        .HasColumnName("withdraw_handling_fee");
+
+                    b.HasKey("TimePoint", "UserId", "UserType")
+                        .HasName("pk_five_minutes_payment_statistics");
+
+                    b.ToTable("five_minutes_payment_statistics", "dbo");
+                });
+
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.Function", b =>
                 {
                     b.Property<Guid>("Id")
@@ -7002,6 +7074,78 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasDatabaseName("ix_group_users_system");
 
                     b.ToTable("group_users", "dbo");
+                });
+
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.HourPaymentStatistics", b =>
+                {
+                    b.Property<DateTime>("TimePoint")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("time_point");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("text")
+                        .HasColumnName("user_id");
+
+                    b.Property<int>("UserType")
+                        .HasColumnType("integer")
+                        .HasColumnName("user_type");
+
+                    b.Property<Guid>("BrandId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("brand_id");
+
+                    b.Property<decimal?>("DepositAmount")
+                        .HasColumnType("numeric")
+                        .HasColumnName("deposit_amount");
+
+                    b.Property<int?>("DepositCount")
+                        .HasColumnType("integer")
+                        .HasColumnName("deposit_count");
+
+                    b.Property<decimal?>("DepositHandlingFee")
+                        .HasColumnType("numeric")
+                        .HasColumnName("deposit_handling_fee");
+
+                    b.Property<decimal?>("FirstDepositAmount")
+                        .HasColumnType("numeric")
+                        .HasColumnName("first_deposit_amount");
+
+                    b.Property<decimal?>("FirstDepositHandlingFee")
+                        .HasColumnType("numeric")
+                        .HasColumnName("first_deposit_handling_fee");
+
+                    b.Property<DateTime?>("FirstDepositOn")
+                        .HasColumnType("timestamptz")
+                        .HasColumnName("first_deposit_on");
+
+                    b.Property<decimal?>("FirstWithdrawAmount")
+                        .HasColumnType("numeric")
+                        .HasColumnName("first_withdraw_amount");
+
+                    b.Property<decimal?>("FirstWithdrawHandlingFee")
+                        .HasColumnType("numeric")
+                        .HasColumnName("first_withdraw_handling_fee");
+
+                    b.Property<DateTime?>("FirstWithdrawOn")
+                        .HasColumnType("timestamptz")
+                        .HasColumnName("first_withdraw_on");
+
+                    b.Property<decimal?>("WithdrawAmount")
+                        .HasColumnType("numeric")
+                        .HasColumnName("withdraw_amount");
+
+                    b.Property<int?>("WithdrawCount")
+                        .HasColumnType("integer")
+                        .HasColumnName("withdraw_count");
+
+                    b.Property<decimal?>("WithdrawHandlingFee")
+                        .HasColumnType("numeric")
+                        .HasColumnName("withdraw_handling_fee");
+
+                    b.HasKey("TimePoint", "UserId", "UserType")
+                        .HasName("pk_hour_payment_statistics");
+
+                    b.ToTable("hour_payment_statistics", "dbo");
                 });
 
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.Language", b =>
