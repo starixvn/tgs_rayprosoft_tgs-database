@@ -11,7 +11,7 @@ internal class GameWagerStatHourlyZoneCloseMap : IEntityTypeConfiguration<GameWa
         _ = builder.ToTable("game_wager_stat_hourly_zone_closes");
 
         _ = builder
-            .HasKey(c => new { c.StatOn, c.ResellerId, c.LicenseeId, c.BrandId, c.PlayerCode, c.GameProviderId,c.GameId })
+            .HasKey(c => new { c.StatOn, c.ResellerId, c.LicenseeId, c.BrandId, c.PlayerCode, c.GameProviderId, c.GameId })
             .HasName("pk_game_wager_stat_hourly_zone_closes");
 
         _ = builder

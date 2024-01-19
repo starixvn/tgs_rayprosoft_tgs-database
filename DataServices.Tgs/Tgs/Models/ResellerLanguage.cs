@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 namespace TGS.Core.DataServices.Tgs.Models;
 

@@ -11,10 +11,10 @@ internal class PlayerTagMap : IEntityTypeConfiguration<PlayerTag>
         _ = builder.ToTable("player_tags");
 
         _ = builder.HasKey(bc => new
-            {
-                bc.Tag,
-                bc.PlayerCode
-            })
+        {
+            bc.Tag,
+            bc.PlayerCode
+        })
             .HasName("pk_tag_player_code_tag");
 
         _ = builder.Property(c => c.PlayerCode)

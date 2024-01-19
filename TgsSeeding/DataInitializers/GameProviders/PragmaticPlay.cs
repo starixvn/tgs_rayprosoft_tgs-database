@@ -2,8 +2,6 @@
 // ReSharper disable IdentifierTypo
 // ReSharper disable InconsistentNaming
 
-using System;
-using System.Linq;
 using TGS.Core.Infrastructures.Extensions;
 using TGS.Core.Models.GameProviders.Settings;
 using GameProviderConst = TGS.Core.Models.Consts.GameProvider;
@@ -25,9 +23,9 @@ public partial class DataInitializer
                     return g.EndpointPath.IsNotNullOrEmpty()
                         ? g
                         : ((Game)g with
-                    {
-                        EndpointPath = _EndpointPath
-                    });
+                        {
+                            EndpointPath = _EndpointPath
+                        });
                 })
                 .ToArray();
         }

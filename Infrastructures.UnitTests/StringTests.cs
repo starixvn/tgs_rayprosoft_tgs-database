@@ -1,4 +1,4 @@
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using TGS.Core.Infrastructures.Extensions;
 using TGS.Core.Models;
 

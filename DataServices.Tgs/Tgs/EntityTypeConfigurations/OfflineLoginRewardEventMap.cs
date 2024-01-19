@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using TGS.Core.DataServices.Tgs.Models;
 
@@ -42,7 +37,7 @@ internal class OfflineLoginRewardEventMap : IEntityTypeConfiguration<OfflineLogi
         _ = builder.Property(e => e.Bonus)
             .HasPrecision(18, 6)
             .IsRequired();
-        
+
         _ = builder.Property(e => e.Bucket)
             .HasPrecision(18, 6)
             .IsRequired();

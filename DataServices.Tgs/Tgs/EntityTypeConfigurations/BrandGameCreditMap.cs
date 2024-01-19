@@ -26,7 +26,7 @@ internal class BrandGameCreditMap : IEntityTypeConfiguration<BrandGameCredit>
         _ = builder
             .HasIndex(c => new { c.Month })
             .HasDatabaseName("ix_brand_game_credits_month");
-       
+
         _ = builder.Property(c => c.ResellerId)
             .IsRequired()
             .HasComment("公司識別碼");

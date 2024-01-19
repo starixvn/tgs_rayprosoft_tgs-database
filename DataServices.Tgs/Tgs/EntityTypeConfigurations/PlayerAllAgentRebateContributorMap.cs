@@ -1,7 +1,5 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using TGS.Core.DataServices.Base;
 using TGS.Core.DataServices.Tgs.Models;
 
 namespace TGS.Core.DataServices.Tgs.EntityTypeConfigurations;
@@ -138,11 +136,11 @@ internal class PlayerAllAgentRebateContributorMap : IEntityTypeConfiguration<Pla
             .IsRequired();
 
         _ = builder.HasIndex(b => new
-            {
-                b.SettleDate,
-                b.PlayerCode,
-                b.ChildPlayerCode
-            })
+        {
+            b.SettleDate,
+            b.PlayerCode,
+            b.ChildPlayerCode
+        })
             .HasDatabaseName("ix_player_all_agent_rebate_contributors_settle_date_player_code");
     }
 }

@@ -11,7 +11,7 @@ public class OfflineLoginRewardEvent
     public decimal Bucket { get; set; }
 
     public DateTime CreatedOn { get; set; }
-    
+
     public Guid Id { get; set; }
 
     public string PlayerCode { get; set; }
