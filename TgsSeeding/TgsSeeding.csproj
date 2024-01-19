@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <LangVersion>10.0</LangVersion>
@@ -101,14 +101,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="CsvHelper" Version="28.0.1" />
-    <PackageReference Include="Microsoft.VisualStudio.Threading.Analyzers" Version="17.3.44">
+    <PackageReference Include="CsvHelper" Version="30.0.1" />
+    <PackageReference Include="Microsoft.VisualStudio.Threading.Analyzers" Version="17.8.14">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="System.CommandLine.Hosting" Version="0.4.0-alpha.21617.1" />
-    <PackageReference Include="Tgs.Core.Infrastructures.Security" Version="0.0.1" />
-    <PackageReference Include="Tgs.Core.Infrastructures.Utility" Version="0.0.3" />
+    <PackageReference Include="Tgs.Core.Infrastructures.Security" Version="0.0.2" />
+    <PackageReference Include="Tgs.Core.Infrastructures.Utility" Version="0.0.4" />
   </ItemGroup>
 
   <ItemGroup>

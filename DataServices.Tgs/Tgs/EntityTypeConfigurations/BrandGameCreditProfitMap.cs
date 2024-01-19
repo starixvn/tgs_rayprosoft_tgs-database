@@ -1,5 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using TGS.Core.DataServices.Tgs.Models;
 
 namespace TGS.Core.DataServices.Tgs.EntityTypeConfigurations;
@@ -69,4 +70,3 @@ internal class BrandGameCreditProfitMap : IEntityTypeConfiguration<BrandGameCred
             .HasComment("利潤額度");
     }
 }
-

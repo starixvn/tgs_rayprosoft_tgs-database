@@ -30,6 +30,6 @@ internal class ArticleFormMap : IEntityTypeConfiguration<ArticleForm>
             .WithMany()
             .HasForeignKey(a => a.BrandId)
             .OnDelete(DeleteBehavior.Cascade)
-            .HasConstraintName("fk_article_forms_brands"); 
+            .HasConstraintName("fk_article_forms_brands");
     }
 }

@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace TGS.Core.DataServices.Tgs.EntityTypeConfigurations;
@@ -18,14 +17,14 @@ internal class PromotionEventSourceMap : IEntityTypeConfiguration<PromotionEvent
         _ = builder.Property(pes => pes.ChangeSets)
             .HasColumnType("jsonb")
             .IsRequired();
-        
+
         _ = builder.Property(pes => pes.Action)
             .IsRequired();
-        
+
         _ = builder.Property(pes => pes.CreatedOn)
             .HasColumnType("timestamptz")
             .IsRequired();
-        
+
         _ = builder.Property(pes => pes.ModifyUser);
     }
 }

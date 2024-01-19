@@ -1,6 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿using System;
 using Microsoft.EntityFrameworkCore;
-using System;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using TGS.Core.DataServices.Tgs.Models;
 
 namespace TGS.Core.DataServices.Tgs.EntityTypeConfigurations;
@@ -20,7 +20,7 @@ internal class PlayerVipLevelLogMap : IEntityTypeConfiguration<PlayerVipLevelLog
             .HasDatabaseName("ix_player_vip_level_logs_created_on");
 
         _ = builder
-            .HasIndex(c => new { c.CreatedOn,c.PlayerCode })
+            .HasIndex(c => new { c.CreatedOn, c.PlayerCode })
             .HasDatabaseName("ix_player_vip_level_logs_created_on_player_code");
 
         _ = builder.Property(c => c.Id)

@@ -1,7 +1,8 @@
 ﻿using System.Reflection;
 using Microsoft.EntityFrameworkCore.Migrations;
-using TGS.Core.DataServices.Base.Extensions;
 using Tgs.Migrations;
+
+using TGS.Core.DataServices.Base.Extensions;
 
 namespace TGS.Core.DataServices.Tgs.Migrations;
 

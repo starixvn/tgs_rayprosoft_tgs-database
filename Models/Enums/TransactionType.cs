@@ -57,6 +57,7 @@ public enum TransactionType
     /// The dividend all agent rebate
     /// </summary>
     DividendAllAgentRebate = 4100,
+
     AgentDividend = 4200,
 
     /// <summary>
@@ -76,6 +77,7 @@ public enum TransactionType
 
     // 轉帳 6000~6999
     Transfer = 6100,
+
     TransferCommit = 6200,
     TransferRollback = 6300,
     Receive = 6400,

@@ -1,14 +1,19 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
     <RootNamespace>TGS.Core.DataServices</RootNamespace>
-    <PackageId>Tgs.Core</PackageId>
-    <Version>1.0.20</Version>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Version>1.0.21</Version>
     <Authors>Raypro</Authors>
-    <Product>Tgs.Core</Product>
     <PackageProjectUrl>https://gitlab.com/rayprosoft/tgs-database</PackageProjectUrl>
     <RepositoryUrl>https://gitlab.com/rayprosoft/tgs-database.git</RepositoryUrl>
-    <TargetFramework>net6.0</TargetFramework>
+    <RepositoryType>git</RepositoryType>
+    <Product>Tgs.Core</Product>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -20,21 +25,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Dapper" Version="2.0.123" />
-    <PackageReference Include="EFCore.NamingConventions" Version="6.0.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="6.0.9" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="6.0.9" />
-    <PackageReference Include="Microsoft.IO.RecyclableMemoryStream" Version="2.2.1" />
-    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.6" />
-    <PackageReference Include="PhoenixToolkits.NuGet.BuildTools" Version="0.0.2">
+    <PackageReference Include="Dapper" Version="2.1.28" />
+    <PackageReference Include="EFCore.NamingConventions" Version="8.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="8.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="8.0.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.0" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.0" />
+    <PackageReference Include="PhoenixToolkits.NuGet.BuildTools" Version="0.0.3">
       <PrivateAssets>All</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="StackExchange.Redis" Version="2.6.66" />
-    <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
-    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.23.1" />
     <PackageReference Include="Tgs.Logging" Version="0.0.19" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.9">
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.1">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>

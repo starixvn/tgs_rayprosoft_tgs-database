@@ -123,13 +123,13 @@ internal sealed class RedisSortedSet<T> : IRedisSortedSet<T>
         return db.SortedSetRemoveRangeByRankAsync(key, targetLength, -1);
     }
 
-    private T DeserializeItem(RedisValue item)
-    {
-        return JsonSerializer.Deserialize<T>(item);
-    }
-
     private static int ToInt(long value)
     {
         return (int)value;
+    }
+
+    private T DeserializeItem(RedisValue item)
+    {
+        return JsonSerializer.Deserialize<T>(item);
     }
 }

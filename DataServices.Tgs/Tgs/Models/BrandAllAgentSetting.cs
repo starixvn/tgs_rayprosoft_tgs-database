@@ -6,6 +6,8 @@ namespace TGS.Core.DataServices.Tgs.Models;
 public class BrandAllAgentSetting
 {
     public Guid BrandId { get; set; }
+
     public bool Switch { get; set; }
+
     public SettlementIntervalType? SettlementIntervalType { get; set; }
 }
