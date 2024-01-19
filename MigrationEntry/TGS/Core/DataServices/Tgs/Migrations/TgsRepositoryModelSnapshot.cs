@@ -10425,6 +10425,36 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.ToTable("player_vip_level_birthday_promotions", "dbo");
                 });
 
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.PlayerVipLevelExp", b =>
+                {
+                    b.Property<string>("PlayerCode")
+                        .HasMaxLength(16)
+                        .HasColumnType("character varying(16)")
+                        .HasColumnName("player_code")
+                        .HasComment("玩家代碼");
+
+                    b.Property<decimal>("AccumDeposit")
+                        .ValueGeneratedOnAdd()
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasDefaultValue(0m)
+                        .HasColumnName("accum_deposit")
+                        .HasComment("累積存款");
+
+                    b.Property<decimal>("AccumTurnover")
+                        .ValueGeneratedOnAdd()
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasDefaultValue(0m)
+                        .HasColumnName("accum_turnover")
+                        .HasComment("累積有效投注");
+
+                    b.HasKey("PlayerCode")
+                        .HasName("pk_player_vip_level_exps");
+
+                    b.ToTable("player_vip_level_exps", "dbo");
+                });
+
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.PlayerVipLevelLog", b =>
                 {
                     b.Property<DateTimeOffset>("CreatedOn")
