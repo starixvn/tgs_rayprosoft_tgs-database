@@ -12,8 +12,8 @@ namespace TGS.Core.Infrastructures.ErrorMappers;
 
 public sealed class TgsErrorMapper : IErrorMapper
 {
-    private static readonly IReadOnlyDictionary<TgsApiError, int> _HttpCodeByException =
-        new Dictionary<TgsApiError, int>
+    private static readonly Dictionary<TgsApiError, int> _HttpCodeByException =
+        new()
         {
             {InvalidCredentials, Status401Unauthorized},
             {InvalidOrExpiredPlayerToken, Status401Unauthorized},
@@ -38,9 +38,9 @@ public sealed class TgsErrorMapper : IErrorMapper
             {ProviderApiError, Status500InternalServerError}
         };
 
-    private static readonly IReadOnlyDictionary<Type, TgsApiError> _TgsApiErrorByException =
-        new Dictionary<Type, TgsApiError>
-    {
+    private static readonly Dictionary<Type, TgsApiError> _TgsApiErrorByException =
+        new()
+        {
             {typeof(InvalidCredentialsException), InvalidCredentials},
             {typeof(MissingTokenException), InvalidOrExpiredPlayerToken},
             {typeof(PlayerLoginExpiredException), InvalidOrExpiredPlayerToken},
@@ -64,18 +64,17 @@ public sealed class TgsErrorMapper : IErrorMapper
             {typeof(InvalidOperationException), SystemError},
             {typeof(OperationNotAllowedException), OperationNotAllowed},
             {typeof(GameProviderApiErrorException), ProviderApiError}
-    };
+        };
 
-    private static readonly IReadOnlyDictionary<InvalidGameActionErrorCode, TgsApiError>
-        _TgsApiErrorByInvalidGameActionErrorCode =
-            new Dictionary<InvalidGameActionErrorCode, TgsApiError>
-            {
-                {Duplicate, DuplicateTransaction},
-                {TransactionNotFound, TransactionIdNotFound},
-                {TransactionBeingCancelledNotFound, TransactionIdNotFound},
-                {TransactionBeingReferencedNotFound, TransactionIdNotFound},
-                {RoundNotFound, RoundIdNotFound}
-            };
+    private static readonly Dictionary<InvalidGameActionErrorCode, TgsApiError> _TgsApiErrorByInvalidGameActionErrorCode =
+        new()
+        {
+            {Duplicate, DuplicateTransaction},
+            {TransactionNotFound, TransactionIdNotFound},
+            {TransactionBeingCancelledNotFound, TransactionIdNotFound},
+            {TransactionBeingReferencedNotFound, TransactionIdNotFound},
+            {RoundNotFound, RoundIdNotFound}
+        };
 
     int IErrorMapper.GetApiErrorByException(Exception exception)
     {

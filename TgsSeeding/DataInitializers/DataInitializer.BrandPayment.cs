@@ -53,6 +53,12 @@ public partial class DataInitializer
         ["Crypto"] = (new Guid("798D21C6-9CF5-4FC0-BD09-8D67D2C9E7E1"), "Crypto")
     };
 
+    private static readonly JsonSerializerOptions _SerializerOptions = new()
+    {
+        PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+        WriteIndented = false
+    };
+
     private static readonly Dictionary<string, (Guid Id, string ExtendedData)> _Payments = new()
     {
         ["Manual"] = (
@@ -63,11 +69,7 @@ public partial class DataInitializer
                     BankAccount = "9876543210",
                     Name = "測試者"
                 },
-                new JsonSerializerOptions
-                {
-                    PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-                    WriteIndented = false
-                })),
+                _SerializerOptions)),
         ["LeePay"] = (
             new Guid("EC6EBD49-E002-4DB9-B7DE-1750FADC0C8E"),
             JsonSerializer.Serialize(
@@ -78,11 +80,7 @@ public partial class DataInitializer
                     ChannelCurrency = "CNY",
                     Channel = "TRON"
                 },
-                new JsonSerializerOptions
-                {
-                    PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-                    WriteIndented = false
-                })),
+                _SerializerOptions)),
         ["PrimePay"] = (
             new Guid("E7D2533B-7319-4113-B1A1-7072CB6BB8D3"),
             JsonSerializer.Serialize(
@@ -129,7 +127,7 @@ public partial class DataInitializer
                                          from pmc in allPaymentMethodChannels
                                          where pmc.PaymentId == _Payments["Manual"].Id
                                                && pmc.ChannelId != _CustomChannelId
-                                         let brandPaymentId = GuidExtensions.NewSequentialGuid()
+                                         let brandPaymentId = Guid.NewGuid()
                                          select new BrandPayment
                                          {
                                              Id = brandPaymentId,
@@ -171,11 +169,7 @@ public partial class DataInitializer
                                                      BankAccount = "9876543210",
                                                      Name = "測試者"
                                                  },
-                                                 new JsonSerializerOptions
-                                                 {
-                                                     PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-                                                     WriteIndented = false
-                                                 }),
+                                                 _SerializerOptions),
                                              CreatedByUsername = AdminUsername,
                                              CreatedOn = DateTimeOffset.Now,
                                              UpdatedByUsername = AdminUsername,
@@ -185,7 +179,7 @@ public partial class DataInitializer
         var leepayBrandPayments = from brand in allBrands
                                   from pmc in allPaymentMethodChannels
                                   where pmc.PaymentId == _Payments["LeePay"].Id
-                                  let brandPaymentId = GuidExtensions.NewSequentialGuid()
+                                  let brandPaymentId = Guid.NewGuid()
                                   select new BrandPayment
                                   {
                                       Id = brandPaymentId,
@@ -229,11 +223,7 @@ public partial class DataInitializer
                                               ChannelCurrency = "CNY",
                                               Channel = "TRON"
                                           },
-                                          new JsonSerializerOptions
-                                          {
-                                              PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-                                              WriteIndented = false
-                                          }),
+                                          _SerializerOptions),
                                       CreatedByUsername = AdminUsername,
                                       CreatedOn = DateTimeOffset.Now,
                                       UpdatedByUsername = AdminUsername,
@@ -244,7 +234,7 @@ public partial class DataInitializer
                                     from pmc in allPaymentMethodChannels
                                     where pmc.PaymentId == _Payments["PrimePay"].Id
                                           && pmc.ChannelId == _CustomChannelId
-                                    let brandPaymentId = GuidExtensions.NewSequentialGuid()
+                                    let brandPaymentId = Guid.NewGuid()
                                     select new BrandPayment
                                     {
                                         Id = brandPaymentId,
@@ -288,11 +278,7 @@ public partial class DataInitializer
                                                 IV = "2c956cdbfabc792a",
                                                 Currency = "RMB"
                                             },
-                                            new JsonSerializerOptions
-                                            {
-                                                PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-                                                WriteIndented = false
-                                            }),
+                                            _SerializerOptions),
                                         CreatedByUsername = AdminUsername,
                                         CreatedOn = DateTimeOffset.Now,
                                         UpdatedByUsername = AdminUsername,
@@ -336,15 +322,16 @@ public partial class DataInitializer
 
     private async Task GeneratePaymentMethodChannelsAsync()
     {
+        var cryptChannels = new[] {
+            "ETHEREUM",
+            "TRON"
+        };
+
         var manualList = from channel in _PaymentChannels
-                         where !new[]
-                         {
-                             "ETHEREUM",
-                             "TRON"
-                         }.Contains(channel.Key)
+                         where !cryptChannels.Contains(channel.Key)
                          select new PaymentMethodChannel
                          {
-                             Id = GuidExtensions.NewSequentialGuid(),
+                             Id = Guid.NewGuid(),
                              PaymentId = _Payments["Manual"].Id,
                              MethodId = _PaymentMethods["BankTransfer"].Id,
                              ChannelId = channel.Value
@@ -354,14 +341,14 @@ public partial class DataInitializer
         {
             new PaymentMethodChannel
             {
-                Id = GuidExtensions.NewSequentialGuid(),
+                Id = Guid.NewGuid(),
                 PaymentId = _Payments["LeePay"].Id,
                 MethodId = _PaymentMethods["Crypto"].Id,
                 ChannelId = _PaymentChannels["ETHEREUM"],
             },
             new PaymentMethodChannel
             {
-                Id = GuidExtensions.NewSequentialGuid(),
+                Id = Guid.NewGuid(),
                 PaymentId = _Payments["LeePay"].Id,
                 MethodId = _PaymentMethods["Crypto"].Id,
                 ChannelId = _PaymentChannels["TRON"]
@@ -369,14 +356,10 @@ public partial class DataInitializer
         };
 
         var primepayList = from channel in _PaymentChannels
-                           where !new[]
-                           {
-                               "ETHEREUM",
-                               "TRON"
-                           }.Contains(channel.Key)
+                           where !cryptChannels.Contains(channel.Key)
                            select new PaymentMethodChannel
                            {
-                               Id = GuidExtensions.NewSequentialGuid(),
+                               Id = Guid.NewGuid(),
                                PaymentId = _Payments["PrimePay"].Id,
                                MethodId = _PaymentMethods["BankTransfer"].Id,
                                ChannelId = channel.Value
@@ -385,14 +368,14 @@ public partial class DataInitializer
         await _repository.PaymentMethodChannels.AddRangeAsync(manualList.Concat(leepayList).Concat(primepayList));
         _ = await _repository.PaymentMethodChannels.AddAsync(new PaymentMethodChannel
         {
-            Id = GuidExtensions.NewSequentialGuid(),
+            Id = Guid.NewGuid(),
             PaymentId = _Payments["Manual"].Id,
             MethodId = _PaymentMethods["BankTransfer"].Id,
             ChannelId = _CustomChannelId
         });
         _ = await _repository.PaymentMethodChannels.AddAsync(new PaymentMethodChannel
         {
-            Id = GuidExtensions.NewSequentialGuid(),
+            Id = Guid.NewGuid(),
             PaymentId = _Payments["PrimePay"].Id,
             MethodId = _PaymentMethods["BankTransfer"].Id,
             ChannelId = _CustomChannelId
@@ -443,7 +426,7 @@ public partial class DataInitializer
                                   from pmc in allPaymentMethodChannels
                                   where pmc.PaymentId == _Payments["Manual"].Id
                                         && pmc.ChannelId == _CustomChannelId
-                                  let brandPaymentId = GuidExtensions.NewSequentialGuid()
+                                  let brandPaymentId = Guid.NewGuid()
                                   select new BrandPayment
                                   {
                                       Id = brandPaymentId,
@@ -489,7 +472,7 @@ public partial class DataInitializer
         var leepayBrandPayments = from brand in allBrands
                                   from pmc in allPaymentMethodChannels
                                   where pmc.PaymentId == _Payments["LeePay"].Id
-                                  let brandPaymentId = GuidExtensions.NewSequentialGuid()
+                                  let brandPaymentId = Guid.NewGuid()
                                   let channelType = pmc.ChannelId == _PaymentChannels["ETHEREUM"]
                                       ? "ETHEREUM"
                                       : "TRON"
@@ -536,11 +519,7 @@ public partial class DataInitializer
                                               ChannelCurrency = "CNY",
                                               Channel = channelType
                                           },
-                                          new JsonSerializerOptions
-                                          {
-                                              PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-                                              WriteIndented = false
-                                          }),
+                                          _SerializerOptions),
                                       CreatedByUsername = AdminUsername,
                                       CreatedOn = DateTimeOffset.Now,
                                       UpdatedByUsername = AdminUsername,
@@ -551,7 +530,7 @@ public partial class DataInitializer
                                     from pmc in allPaymentMethodChannels
                                     where pmc.PaymentId == _Payments["PrimePay"].Id
                                           && pmc.ChannelId == _CustomChannelId
-                                    let brandPaymentId = GuidExtensions.NewSequentialGuid()
+                                    let brandPaymentId = Guid.NewGuid()
                                     select new BrandPayment
                                     {
                                         Id = brandPaymentId,
@@ -595,11 +574,7 @@ public partial class DataInitializer
                                                 IV = "2c956cdbfabc792a",
                                                 Currency = "RMB"
                                             },
-                                            new JsonSerializerOptions
-                                            {
-                                                PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-                                                WriteIndented = false
-                                            }),
+                                            _SerializerOptions),
                                         CreatedByUsername = AdminUsername,
                                         CreatedOn = DateTimeOffset.Now,
                                         UpdatedByUsername = AdminUsername,

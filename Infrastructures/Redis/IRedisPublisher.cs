@@ -1,9 +1,8 @@
 ﻿using System.Threading.Tasks;
 
-namespace TGS.Core.Infrastructures.Redis
+namespace TGS.Core.Infrastructures.Redis;
+
+public interface IRedisPublisher
 {
-    public interface IRedisPublisher
-    {
-        Task<long> PublishAsync<T>(T message);
-    }
+    Task<long> PublishAsync<T>(T message);
 }

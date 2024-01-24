@@ -24,8 +24,7 @@ public partial class DataInitializer : BaseDataInitializer
         new TgsReseller()
     };
 
-    private readonly IDictionary<string, Brand> _brandCreated =
-        new Dictionary<string, Brand>();
+    private readonly Dictionary<string, Brand> _brandCreated = new();
 
     private readonly CurrencyDefined[] _currencies =
     {
@@ -49,11 +48,9 @@ public partial class DataInitializer : BaseDataInitializer
 
     private readonly IList<IGameProvider> _gameProviders;
 
-    private readonly IDictionary<string, GameProvider> _gameProvidersCreated =
-        new Dictionary<string, GameProvider>();
+    private readonly Dictionary<string, GameProvider> _gameProvidersCreated = new();
 
     private readonly IJsonSerializationProvider _jsonSerializationProvider;
-    private readonly IPasswordHandler _passwordHandler;
     private readonly ITgsRepository _repository;
 
     private readonly IRole[] _roles =
@@ -72,8 +69,6 @@ public partial class DataInitializer : BaseDataInitializer
     {
         _repository = repository;
 
-        var hashProvider = (IHashProvider)new HashProvider();
-        _passwordHandler = new PasswordHandler(hashProvider);
         _jsonSerializationProvider = new JsonSerializationProvider();
 
         _gameProviders = new IGameProvider[]
@@ -155,36 +150,6 @@ public partial class DataInitializer : BaseDataInitializer
 
         _ = logBuilder.AppendLine($"Total Time was {timer.ElapsedMilliseconds} ms");
         Console.WriteLine(logBuilder.ToString());
-    }
-
-    private static GameAction CreateGameAction(
-        string playerCode, decimal amount, Guid roundId,
-        GameActionType gameActionType, string externalGameActionGroupId, DateTimeOffset recordedOn,
-        DateTimeOffset sentOn, decimal turnover = 0, decimal winloss = 0, Guid? refTransactionId = null,
-        Guid? batchId = null)
-    {
-        var transactionId = Guid.NewGuid();
-        var unsettledBets = gameActionType == PlaceBet ? amount : 0;
-
-        return new()
-        {
-            Id = transactionId,
-            ExternalTransactionId = $"EXT_{transactionId}",
-            Type = gameActionType,
-            RoundId = roundId,
-            Turnover = turnover,
-            WinLoss = winloss,
-            UnsettledBets = unsettledBets,
-            GameActionBatchId = batchId,
-            RecordedOn = recordedOn,
-            SentOn = sentOn,
-            PlayerIp = "127.0.0.1",
-            ExternalGameActionGroupId = externalGameActionGroupId,
-            ExternalBetId = $"BET_{transactionId}",
-            ReferencedGameActionId = refTransactionId,
-            Amount = amount,
-            PlayerCode = playerCode
-        };
     }
 
     private static GameProvider CreateGameProvider(IGameProvider gameProvider)
@@ -420,7 +385,7 @@ public partial class DataInitializer : BaseDataInitializer
                      select game)
             .Select((g, idx) => new BrandGame
             {
-                Id = GuidExtensions.NewSequentialGuid(),
+                Id = Guid.NewGuid(),
                 BrandId = brand.Id,
                 GameId = g.Id,
                 Status = GameStatus.Active,
@@ -1005,7 +970,7 @@ public partial class DataInitializer : BaseDataInitializer
             .Distinct()
             .Select(brand => new VipLevel
             {
-                Id = GuidExtensions.NewSequentialGuid(),
+                Id = Guid.NewGuid(),
                 BrandId = brand.Id,
                 Level = 1,
                 LiveDealerRebatePercentage = 1,

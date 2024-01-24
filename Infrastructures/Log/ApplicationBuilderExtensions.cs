@@ -6,6 +6,7 @@ namespace TGS.Core.Infrastructures.Log;
 
 public static class ApplicationBuilderExtensions
 {
+    [Obsolete("過時")]
     public static IApplicationBuilder UseApiLogger(this IApplicationBuilder app, string logPrefix = "",
         string[] bypassRouting = null)
     {
@@ -17,6 +18,7 @@ public static class ApplicationBuilderExtensions
         return app;
     }
 
+    [Obsolete("過時")]
     public static IApplicationBuilder UseGameApiLogger(this IApplicationBuilder app, string logPrefix = "",
         string[] bypassRouting = null)
     {

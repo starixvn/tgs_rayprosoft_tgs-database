@@ -26,7 +26,7 @@ public partial class DataInitializer
         {
             var resellerDepartments = new Department
             {
-                Id = GuidExtensions.NewSequentialGuid(),
+                Id = Guid.NewGuid(),
                 Name = $"{x.Name}-{MarketDepartment}",
                 Description = MarketDepartment,
                 ResellerId = x.Id,
@@ -37,7 +37,7 @@ public partial class DataInitializer
             };
             var licenseeDepartments = x.Licensees.Select(l => new Department
             {
-                Id = GuidExtensions.NewSequentialGuid(),
+                Id = Guid.NewGuid(),
                 Name = $"{l.Name}-{MarketDepartment}",
                 Description = MarketDepartment,
                 ResellerId = x.Id,
@@ -52,7 +52,7 @@ public partial class DataInitializer
             {
                 return l.Brands.Select(b => new Department
                 {
-                    Id = GuidExtensions.NewSequentialGuid(),
+                    Id = Guid.NewGuid(),
                     Name = $"{b.Name}-{MarketDepartment}",
                     Description = MarketDepartment,
                     ResellerId = x.Id,

@@ -12,6 +12,7 @@ using TGS.Core.Models.Interfaces;
 
 namespace TGS.Core.Infrastructures.Filters;
 
+[Obsolete("過時")]
 public abstract class BaseHandleErrorFilter : IAsyncActionFilter
 {
     private IDictionary<string, object> _actionArguments;
@@ -27,7 +28,7 @@ public abstract class BaseHandleErrorFilter : IAsyncActionFilter
         Log = log.SetLogger(LoggerName);
     }
 
-    async Task IAsyncActionFilter.OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
+    public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
     {
         _actionArguments = context.ActionArguments;
 
@@ -61,6 +62,7 @@ public abstract class BaseHandleErrorFilter : IAsyncActionFilter
             .ToString();
     }
 
+    [Obsolete("過時")]
     private string GetErrorMessage(ActionExecutedContext context, string type, string errorMessage, int statusCode)
     {
         var reqParams = new List<object>();

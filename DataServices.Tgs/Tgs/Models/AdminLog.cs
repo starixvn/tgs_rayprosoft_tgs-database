@@ -43,7 +43,7 @@ public class AdminLog
     public static explicit operator AdminLog(AdminLogEvent a) =>
         new()
         {
-            Id = GuidExtensions.NewSequentialGuid(),
+            Id = Guid.NewGuid(),
             TrackingId = a.TrackingId,
             Ip = a.IpAddress ?? string.Empty,
             Path = a.Path ?? string.Empty,

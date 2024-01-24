@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 
 namespace TGS.Core.Infrastructures.Redis;
 
+[Obsolete("過時")]
 public interface IRedisLock
 {
     Task<TResult> ExecuteLockAsync<TResult>(string resource, TimeSpan expiryTime, Func<IRedisLockSummary, Task<TResult>> execFunc, Func<IRedisLockSummary, TResult> handleFailureFunc, TimeSpan? waitTime = null, TimeSpan? retryInterval = null);
