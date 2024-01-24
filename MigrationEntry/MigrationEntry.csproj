@@ -1,12 +1,13 @@
-﻿<Project Sdk="Microsoft.NET.Sdk;Microsoft.NET.Sdk.Publish">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <DockerfileBuildArguments>--build-arg "BuildConfiguration=$(Configuration)"</DockerfileBuildArguments>
     <DockerfileTag Condition="$(DockerfileTag) == ''">tgs/migration</DockerfileTag>
     <RootNamespace>Tgs.Migrations</RootNamespace>
+    <OutputType>Library</OutputType>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
   </PropertyGroup>
 
   <ItemGroup>
@@ -31,6 +32,10 @@
 
   <ItemGroup>
     <EmbeddedResource Remove="Tgs\SqlScripts\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Dockerfile.original" />
   </ItemGroup>
 
   <ItemGroup>

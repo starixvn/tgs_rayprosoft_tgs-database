@@ -37,7 +37,8 @@ build-migrations-image:
   variables:
     BuildConfiguration: Release
   script:
-    - push_docker "MigrationEntry" $MigrationImageName $Tag
+    - docker build -t "$MigrationImageName:$Tag" --build-arg [BuildConfiguration]=$BuildConfiguration -f "MigrationEntry/Dockerfile" . --no-cache
+    - docker push $MigrationImageName:$Tag
   when: manual
   only:
     - main
