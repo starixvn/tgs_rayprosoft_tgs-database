@@ -6,4 +6,6 @@ public record PlayerVipLevelExp
 
     public decimal AccumDeposit { get; set; } = default!;
     public decimal AccumTurnover { get; set; } = default!;
+    public Guid AccumDepositId { get; set; } = default!;
+    public Guid AccumTurnoverId { get; set; } = default!;
 }

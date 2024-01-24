@@ -20,15 +20,25 @@ public class PlayerVipLevelExpMap : IEntityTypeConfiguration<PlayerVipLevelExp>
             .HasMaxLength(16)
             .HasComment("玩家代碼");
 
-        _ = builder.Property(b => b.AccumDeposit)
-            .HasPrecision(18, 6)
+        _ = builder.Property(b => b.AccumDepositId)
             .IsRequired()
+            .HasDefaultValue(Guid.Empty)
+            .HasComment("累積存款識別碼");
+
+        _ = builder.Property(b => b.AccumDeposit)
+            .IsRequired()
+            .HasPrecision(18, 6)
             .HasDefaultValue(0.0)
             .HasComment("累積存款");
 
-        _ = builder.Property(b => b.AccumTurnover)
-            .HasPrecision(18, 6)
+        _ = builder.Property(b => b.AccumTurnoverId)
             .IsRequired()
+            .HasDefaultValue(Guid.Empty)
+            .HasComment("累積有效投注識別碼");
+
+        _ = builder.Property(b => b.AccumTurnover)
+            .IsRequired()
+            .HasPrecision(18, 6)
             .HasDefaultValue(0.0)
             .HasComment("累積有效投注");
     }
