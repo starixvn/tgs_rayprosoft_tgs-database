@@ -5,6 +5,7 @@ using System.Threading;
 
 namespace TGS.Core.Infrastructures.Extensions;
 
+[Obsolete("過時")]
 public static class GuidExtensions
 {
     private static long _Counter = DateTime.UtcNow.Ticks;

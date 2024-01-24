@@ -10,7 +10,7 @@ public static class StringExtensions
 {
     public static string AppendQueryString(this string url, string queryString)
     {
-        if (url == null)
+        if (string.IsNullOrEmpty(url))
         {
             throw new ArgumentNullException(nameof(url));
         }
@@ -20,12 +20,12 @@ public static class StringExtensions
             return url;
         }
 
-        if (queryString.StartsWith("/"))
+        if (queryString.StartsWith('/'))
         {
             return $"{url}{queryString}";
         }
 
-        if (queryString.StartsWith("&") || queryString.StartsWith("?"))
+        if (queryString.StartsWith('&') || queryString.StartsWith('?'))
         {
             queryString = queryString[1..];
         }
@@ -70,7 +70,7 @@ public static class StringExtensions
         var rgx = new Regex(pattern);
 
         return rgx.Matches(str).Select(x =>
-            x.Value[(x.Value.LastIndexOf("/", StringComparison.Ordinal) + 1)..]).ToArray();
+            x.Value[(x.Value.LastIndexOf('/') + 1)..]).ToArray();
     }
 
     public static bool IgnoreCaseContains(this IEnumerable<string> enumerable, string second)

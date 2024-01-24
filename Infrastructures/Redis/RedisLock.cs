@@ -5,6 +5,7 @@ using StackExchange.Redis;
 
 namespace TGS.Core.Infrastructures.Redis;
 
+[Obsolete("過時")]
 internal sealed class RedisLock : IRedisLock
 {
     private readonly IRedisRepository _redisRepository;

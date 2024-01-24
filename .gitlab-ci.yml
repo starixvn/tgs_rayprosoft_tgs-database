@@ -1,5 +1,11 @@
+include:
+  - project: rayprosoft/tgs-ci-scripts
+    ref: main
+    file: GitLab/Templates/gitlab-job-templates.yml
+
 variables:
   MigrationImageName: pgtgs/migration
+  BuildCacheKey: Tgs.Database.$CI_PIPELINE_IID
 
 stages:
   - build
@@ -10,103 +16,96 @@ stages:
   - dbmigration-prod
 
 build-code:
-  stage: build
-  script:
-    - dotnet build -c $BuildConfiguration
-  only:
-    - merge_requests
-    - main
-  cache:
-    key: Tgs.Database.$CI_PIPELINE_ID
-    untracked: true
+  extends: .build-code-template
 
 unit-test:
-  stage: test
-  script:
-    - dotnet test -c $BuildConfiguration -l:"junit;LogFilePath=../TestReports/{assembly}-TestReport.xml" --no-restore
-  needs:
-    - job: build-code
-  only:
-    - merge_requests
-    - main
-  cache:
-    key: Tgs.Database.$CI_PIPELINE_ID
-    untracked: true
-    policy: pull
+  extends: .unit-test-template
   artifacts:
     reports:
       junit: ./TestReports/*-TestReport.xml
 
 push-nuget:
-  stage: publish
-  needs:
-    - job: build-code
-    - unit-test
-  only:
-    - main
-  cache:
-    key: Tgs.Database.$CI_PIPELINE_ID
-    untracked: true
-    policy: pull
+  extends: .push-nuget-template
   script:
-    - dotnet pack -c $BuildConfiguration "DataServices.Tgs/DataServices.Tgs.csproj"
-    - dotnet nuget push "DataServices.Tgs/bin/$BuildConfiguration/*.nupkg" -s "raypro-baget" -k $NugetApiKey --skip-duplicate
+    - push_package "DataServices.Tgs"
   artifacts:
-    name: Nuget
-    untracked: false
-    expire_in: "30 days"
     paths:
       - DataServices.Tgs/bin/$BuildConfiguration/*.nupkg
 
 build-migrations-image:
+  extends: .push-docker-image-template
   variables:
     BuildConfiguration: Release
-  stage: publish
-  needs:
-    - unit-test
-    - job: build-code
-      artifacts: true
-  cache:
-    key: Tgs.Database.$CI_PIPELINE_ID
-    untracked: true
-    policy: pull
   script:
-    - export Tag="$(date -d $CI_PIPELINE_CREATED_AT +%Y%m%d%H%M).$CI_PIPELINE_IID"
-    #- dotnet build "MigrationEntry/MigrationEntry.csproj" -c $BuildConfiguration -t:ContainerBuild -p:DockerfileTag="$MigrationImageName:$Tag"
-    - docker build -t "$MigrationImageName:$Tag" --build-arg [BuildConfiguration]=$BuildConfiguration -f "MigrationEntry/Dockerfile" . --no-cache
-    #- dotnet publish "MigrationEntry/MigrationEntry.csproj" --os linux  --arch x64 -c $BuildConfiguration /t:PublishContainer /p:ContainerImageName="$MigrationImageName" /p:ContainerImageTag="$Tag"
-    - docker push $MigrationImageName:$Tag
+    - push_docker "MigrationEntry" $MigrationImageName $Tag
   when: manual
   only:
     - main
 
 push-migrations-k8s-template:
-  stage: publish
+  extends: .push-k8s-template
   needs:
     - unit-test
     - build-migrations-image
   script:
-    - export Tag="$(date -d $CI_PIPELINE_CREATED_AT +%Y%m%d%H%M).$CI_PIPELINE_IID"
-    - mkdir -p artifacts/k8s
-    - cp -R deployment/k8s/ef-migration artifacts/k8s/
+    - push_k8s_template 'ef-migration' $MigrationImageName $Tag
+
+.migrate-deploy:
+  extends: .deploy-template
+  before_script:
+    - !reference [.deploy-template, before_script]
     - |
-      yq -i e '
-        .image.repository = strenv(MigrationImageName) |
-        .image.tag = strenv(Tag)
-      ' artifacts/k8s/ef-migration/values.yaml
-  only:
-    - main
-  artifacts:
-    name: HelmTemplate
-    untracked: false
-    expire_in: "180 days"
-    paths:
-      - artifacts/**/*
+      name_template="tgs-$Tag"
+      function deploy_k8s() {
+        local settingKey=$1
+        local helmFolderName=$2
+        local ns=$3
+        local extendSettings=${4:-"$(</dev/stdin)"}
+
+        local serviceResourceSetting=$(kubectl get cm resources-setting -o jsonpath={.data.${settingKey:=$TgsSettingKey}})
+        local defaultResourceSetting=$(kubectl get cm resources-setting -o jsonpath={.data.default})
+        local resources=$(echo $serviceResourceSetting $defaultResourceSetting | jq -s '.' | jq '.[0]')
+
+        local dedicated=$(kubectl get cm tgs-settings -o jsonpath={.data.dedicated})
+        
+        local node_selector=$(kubectl get cm tgs-settings -o jsonpath={.data.node-selector})
+        
+        local serviceAutoScaling=$(kubectl get cm autoscaling-setting -o jsonpath={.data.${settingKey:=$TgsSettingKey}})
+        local defaultAutoScaling=$(kubectl get cm autoscaling-setting -o jsonpath={.data.default})
+        local autoscaling=$(echo $serviceAutoScaling $defaultAutoScaling | jq -s '.' | jq '.[0]')
+
+        local valueConfig=$(
+          cat << EOF
+          {
+            "replicaCount": $replica,
+            "nodeSelector": $node_selector,
+            "tolerations": [$dedicated],
+            "resources": $resources,
+            "autoscaling": $autoscaling
+          }
+      EOF
+        )
+
+        echo "$valueConfig" "$extendSettings" | jq -s 'reduce .[] as $item ({}; . * $item)' \
+          | yq e -P | helm template artifacts/k8s/${helmFolderName:=$HelmTemplateFolderName} \
+          -n ${ns:$namespace} \
+          --name-template $name_template \
+          -f - 
+
+        echo "$valueConfig" "$extendSettings" | jq -s 'reduce .[] as $item ({}; . * $item)' \
+          | yq e -P | helm template artifacts/k8s/${helmFolderName:=$HelmTemplateFolderName} \
+          -n ${ns:$namespace} \
+          --name-template $name_template \
+          -f - \
+          | kubectl -n ${ns:=$namespace} apply -f -
+      }
+
 
 migrate-dev:
+  extends: .migrate-deploy
   variables:
     namespace: dev
-    GIT_STRATEGY: none
+    kube_config: KubeConfig_Raypro_dev
   environment:
     name: dbmigration-dev
   stage: dbmigration-dev
@@ -116,42 +115,14 @@ migrate-dev:
       artifacts: true
   only:
     - main
-  before_script:
-    - export KUBECONFIG=$KubeConfig_Raypro_dev
   script:
-    - export Tag="$(date -d $CI_PIPELINE_CREATED_AT +%Y%m%d%H%M).$CI_PIPELINE_IID"
-    - export release_name="tgs-$Tag"
-    - export resources=$(kubectl get cm resources-setting -o jsonpath={.data.ef-migration})
-    - export dedicated=$(kubectl get cm tgs-settings -o jsonpath={.data.dedicated})
-    - export node_selector=$(kubectl get cm tgs-settings -o jsonpath={.data.node-selector})
-    - |
-      cat << EOF | yq e -P | helm template artifacts/k8s/ef-migration \
-        -n $namespace \
-        --name-template $release_name \
-        -f - 
-      {
-        "nodeSelector": $node_selector,
-        "tolerations": [$dedicated],
-        "resources": $resources
-      }
-      EOF
-    - |
-      cat << EOF | yq e -P | helm template artifacts/k8s/ef-migration \
-        -n $namespace \
-        --name-template $release_name \
-        -f - \
-        | kubectl -n $namespace apply -f -
-      {
-        "nodeSelector": $node_selector,
-        "tolerations": [$dedicated],
-        "resources": $resources
-      }
-      EOF
+    - deploy_k8s 'ef-migration' 'ef-migration' $namespace
 
 migrate-staging:
+  extends: .migrate-deploy
   variables:
     namespace: staging
-    GIT_STRATEGY: none
+    kube_config: KubeConfig_Raypro_staging
   environment:
     name: dbmigration-staging
   stage: dbmigration-staging
@@ -162,42 +133,14 @@ migrate-staging:
   when: manual
   only:
     - main
-  before_script:
-    - export KUBECONFIG=$KubeConfig_Raypro_staging
   script:
-    - export Tag="$(date -d $CI_PIPELINE_CREATED_AT +%Y%m%d%H%M).$CI_PIPELINE_IID"
-    - export release_name="tgs-$Tag"
-    - export resources=$(kubectl get cm resources-setting -o jsonpath={.data.ef-migration})
-    - export dedicated=$(kubectl get cm tgs-settings -o jsonpath={.data.dedicated})
-    - export node_selector=$(kubectl get cm tgs-settings -o jsonpath={.data.node-selector})
-    - |
-      cat << EOF | yq e -P | helm template artifacts/k8s/ef-migration \
-        -n $namespace \
-        --name-template $release_name \
-        -f - 
-      {
-        "nodeSelector": $node_selector,
-        "tolerations": [$dedicated],
-        "resources": $resources
-      }
-      EOF
-    - |
-      cat << EOF | yq e -P | helm template artifacts/k8s/ef-migration \
-        -n $namespace \
-        --name-template $release_name \
-        -f - \
-        | kubectl -n $namespace apply -f -
-      {
-        "nodeSelector": $node_selector,
-        "tolerations": [$dedicated],
-        "resources": $resources
-      }
-      EOF
+    - deploy_k8s 'ef-migration' 'ef-migration' $namespace
 
 migrate-prod:
+  extends: .migrate-deploy
   variables:
     namespace: prod
-    GIT_STRATEGY: none
+    kube_config: KubeConfig_Raypro_prod
   environment:
     name: dbmigration-prod
   stage: dbmigration-prod
@@ -208,34 +151,5 @@ migrate-prod:
   when: manual
   only:
     - main
-  before_script:
-    - export KUBECONFIG=$KubeConfig_Raypro_prod
   script:
-    - export Tag="$(date -d $CI_PIPELINE_CREATED_AT +%Y%m%d%H%M).$CI_PIPELINE_IID"
-    - export release_name="tgs-$Tag"
-    - export resources=$(kubectl get cm resources-setting -o jsonpath={.data.ef-migration})
-    - export dedicated=$(kubectl get cm tgs-settings -o jsonpath={.data.dedicated})
-    - export node_selector=$(kubectl get cm tgs-settings -o jsonpath={.data.node-selector})
-    - |
-      cat << EOF | yq e -P | helm template artifacts/k8s/ef-migration \
-        -n $namespace \
-        --name-template $release_name \
-        -f - 
-      {
-        "nodeSelector": $node_selector,
-        "tolerations": [$dedicated],
-        "resources": $resources
-      }
-      EOF
-    - |
-      cat << EOF | yq e -P | helm template artifacts/k8s/ef-migration \
-        -n $namespace \
-        --name-template $release_name \
-        -f - \
-        | kubectl -n $namespace apply -f -
-      {
-        "nodeSelector": $node_selector,
-        "tolerations": [$dedicated],
-        "resources": $resources
-      }
-      EOF
+    - deploy_k8s 'ef-migration' 'ef-migration' $namespace

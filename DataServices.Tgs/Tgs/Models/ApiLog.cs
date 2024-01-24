@@ -37,7 +37,7 @@ public class ApiLog
     public static explicit operator ApiLog(ApiLogEvent a) =>
         new()
         {
-            Id = GuidExtensions.NewSequentialGuid(),
+            Id = Guid.NewGuid(),
             TrackingId = a.TrackingId,
             Ip = a.Ip,
             Path = a.Path,

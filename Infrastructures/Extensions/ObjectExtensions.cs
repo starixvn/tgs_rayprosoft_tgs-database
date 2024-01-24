@@ -7,6 +7,7 @@ namespace TGS.Core.Infrastructures.Extensions;
 
 public static class ObjectExtensions
 {
+    [Obsolete("過時")]
     public static TAttribute GetPropertyAttribute<TObject, TAttribute>(this TObject obj, string propertyName)
         where TObject : class
         where TAttribute : Attribute
@@ -14,6 +15,7 @@ public static class ObjectExtensions
             ? throw new ArgumentException($"PropertyName({propertyName}) can't not be null or empty")
             : (obj.GetType()?.GetProperty(propertyName)?.GetCustomAttribute<TAttribute>());
 
+    [Obsolete("過時")]
     public static string ToJson(this object obj, bool indented = false)
         => obj is null
             ? null
@@ -22,6 +24,7 @@ public static class ObjectExtensions
                 obj.GetType(),
                 new JsonSerializerOptions { WriteIndented = indented });
 
+    [Obsolete("過時")]
     public static PropertyAccessor<T> WithPropertyExpression<T>(this T _, Expression<Func<T, object>> expr)
         => expr is not LambdaExpression _
             ? throw new ArgumentException("expr must be Lambda Expression.")

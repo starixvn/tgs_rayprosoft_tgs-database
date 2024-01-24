@@ -25,7 +25,7 @@ public class LogRecord
     public static explicit operator LogRecord(LogRecordEvent a) =>
         new()
         {
-            Id = GuidExtensions.NewSequentialGuid(),
+            Id = Guid.NewGuid(),
             TrackingId = a.TrackingId,
             ServerName = a.ServerName,
             RecordedOn = a.RecordedOn,

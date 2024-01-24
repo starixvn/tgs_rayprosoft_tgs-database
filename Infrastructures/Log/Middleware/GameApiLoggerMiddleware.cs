@@ -14,6 +14,7 @@ using TGS.Core.Infrastructures.WebApiServices;
 
 namespace TGS.Core.Infrastructures.Log.Middleware;
 
+[Obsolete("過時")]
 public sealed class GameApiLoggerMiddleware
 {
     private const int ResMessageSizeLimit = 8000;

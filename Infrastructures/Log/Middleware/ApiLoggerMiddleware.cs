@@ -15,6 +15,7 @@ using TGS.Core.Infrastructures.WebApiServices;
 
 namespace TGS.Core.Infrastructures.Log.Middleware;
 
+[Obsolete("過時")]
 public sealed class ApiLoggerMiddleware
 {
     private const int ResMessageSizeLimit = 8000;
@@ -65,7 +66,7 @@ public sealed class ApiLoggerMiddleware
             return;
         }
 
-        log.TrackingId = GuidExtensions.NewSequentialGuid();
+        log.TrackingId = Guid.NewGuid();
 
         var requestTime = DateTimeOffset.UtcNow;
 

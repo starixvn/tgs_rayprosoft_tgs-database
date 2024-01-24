@@ -3,37 +3,37 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using StackExchange.Redis;
 
-namespace TGS.Core.Infrastructures.Redis
+namespace TGS.Core.Infrastructures.Redis;
+
+[Obsolete("過時")]
+public class RedisSubscriber : IRedisSubscriber
 {
-    public class RedisSubscriber : IRedisSubscriber
+    private readonly IRedisConnectionFactory _connectionFactory;
+
+    public RedisSubscriber(
+        IRedisConnectionFactory connectionFactory)
     {
-        private readonly IRedisConnectionFactory _connectionFactory;
+        _connectionFactory = connectionFactory;
+    }
 
-        public RedisSubscriber(
-            IRedisConnectionFactory connectionFactory)
+    Task IRedisSubscriber.SubscribeAsync<T>(Action<T> handler)
+    {
+        var connection = GetConnection();
+
+        return connection.GetSubscriber().SubscribeAsync($"{typeof(T).FullName}", (channel, message) =>
         {
-            _connectionFactory = connectionFactory;
-        }
+            handler(JsonSerializer.Deserialize<T>(message));
+        });
+    }
 
-        Task IRedisSubscriber.SubscribeAsync<T>(Action<T> handler)
-        {
-            var connection = GetConnection();
+    Task IRedisSubscriber.UnsubscribeAsync<T>()
+    {
+        var connection = GetConnection();
+        return connection.GetSubscriber().UnsubscribeAsync($"{typeof(T).FullName}");
+    }
 
-            return connection.GetSubscriber().SubscribeAsync($"{typeof(T).FullName}", (channel, message) =>
-            {
-                handler(JsonSerializer.Deserialize<T>(message));
-            });
-        }
-
-        Task IRedisSubscriber.UnsubscribeAsync<T>()
-        {
-            var connection = GetConnection();
-            return connection.GetSubscriber().UnsubscribeAsync($"{typeof(T).FullName}");
-        }
-
-        private IConnectionMultiplexer GetConnection()
-        {
-            return _connectionFactory.GetConnection();
-        }
+    private IConnectionMultiplexer GetConnection()
+    {
+        return _connectionFactory.GetConnection();
     }
 }

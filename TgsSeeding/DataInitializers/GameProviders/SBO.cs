@@ -71,22 +71,22 @@ public partial class DataInitializer
 
         GameProviderBetLimit[] IGameProvider.BetLimits => new GameProviderBetLimit[]
         {
-            new(GuidExtensions.NewSequentialGuid(), "CNY", 1, 1000, 1000),
-            new(GuidExtensions.NewSequentialGuid(), "CNY", 1, 200, 1000),
-            new(GuidExtensions.NewSequentialGuid(), "CNY", 15, 250, 1000),
-            new(GuidExtensions.NewSequentialGuid(), "EUR", 1, 1000, 1000),
-            new(GuidExtensions.NewSequentialGuid(), "GBP", 1, 1000, 1000),
-            new(GuidExtensions.NewSequentialGuid(), "IDR", 1000, 200000, 1000000),
-            new(GuidExtensions.NewSequentialGuid(), "IDR_1000", 1, 1000, 1000),
-            new(GuidExtensions.NewSequentialGuid(), "INR", 1, 1000, 1000),
-            new(GuidExtensions.NewSequentialGuid(), "JPY", 1, 1000, 1000),
-            new(GuidExtensions.NewSequentialGuid(), "KRW", 1, 1000, 1000),
-            new(GuidExtensions.NewSequentialGuid(), "MYR", 1, 1000, 1000),
-            new(GuidExtensions.NewSequentialGuid(), "SGD", 1, 1000, 1000),
-            new(GuidExtensions.NewSequentialGuid(), "THB", 1, 1000, 1000),
-            new(GuidExtensions.NewSequentialGuid(), "USD", 1, 1000, 1000),
-            new(GuidExtensions.NewSequentialGuid(), "VND", 1000, 200000, 1000000),
-            new(GuidExtensions.NewSequentialGuid(), "VND_1000", 1, 1000, 1000)
+            new(Guid.NewGuid(), "CNY", 1, 1000, 1000),
+            new(Guid.NewGuid(), "CNY", 1, 200, 1000),
+            new(Guid.NewGuid(), "CNY", 15, 250, 1000),
+            new(Guid.NewGuid(), "EUR", 1, 1000, 1000),
+            new(Guid.NewGuid(), "GBP", 1, 1000, 1000),
+            new(Guid.NewGuid(), "IDR", 1000, 200000, 1000000),
+            new(Guid.NewGuid(), "IDR_1000", 1, 1000, 1000),
+            new(Guid.NewGuid(), "INR", 1, 1000, 1000),
+            new(Guid.NewGuid(), "JPY", 1, 1000, 1000),
+            new(Guid.NewGuid(), "KRW", 1, 1000, 1000),
+            new(Guid.NewGuid(), "MYR", 1, 1000, 1000),
+            new(Guid.NewGuid(), "SGD", 1, 1000, 1000),
+            new(Guid.NewGuid(), "THB", 1, 1000, 1000),
+            new(Guid.NewGuid(), "USD", 1, 1000, 1000),
+            new(Guid.NewGuid(), "VND", 1000, 200000, 1000000),
+            new(Guid.NewGuid(), "VND_1000", 1, 1000, 1000)
         };
 
         PluggableConfigurationBase IGameProvider.GetConfiguration() =>

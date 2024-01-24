@@ -2,30 +2,30 @@
 using System.Threading.Tasks;
 using StackExchange.Redis;
 
-namespace TGS.Core.Infrastructures.Redis
+namespace TGS.Core.Infrastructures.Redis;
+
+[Obsolete("過時")]
+public class RedisPublisher : IRedisPublisher
 {
-    public class RedisPublisher : IRedisPublisher
+    private readonly IRedisConnectionFactory _connectionFactory;
+
+    public RedisPublisher(
+        IRedisConnectionFactory connectionFactory)
     {
-        private readonly IRedisConnectionFactory _connectionFactory;
+        _connectionFactory = connectionFactory;
+    }
 
-        public RedisPublisher(
-            IRedisConnectionFactory connectionFactory)
-        {
-            _connectionFactory = connectionFactory;
-        }
+    Task<long> IRedisPublisher.PublishAsync<T>(T message)
+    {
+        var connection = GetConnection();
 
-        Task<long> IRedisPublisher.PublishAsync<T>(T message)
-        {
-            var connection = GetConnection();
+        var messageValue = JsonSerializer.Serialize(message);
 
-            var messageValue = JsonSerializer.Serialize(message);
+        return connection.GetSubscriber().PublishAsync($"{typeof(T).FullName}", messageValue);
+    }
 
-            return connection.GetSubscriber().PublishAsync($"{typeof(T).FullName}", messageValue);
-        }
-
-        private IConnectionMultiplexer GetConnection()
-        {
-            return _connectionFactory.GetConnection();
-        }
+    private IConnectionMultiplexer GetConnection()
+    {
+        return _connectionFactory.GetConnection();
     }
 }

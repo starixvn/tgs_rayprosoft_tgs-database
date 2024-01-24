@@ -9,7 +9,7 @@ namespace TGS.Core.Infrastructures.ErrorMappers;
 public static class ServiceExtensions
 {
     public static ErrorMapperBuilder AddErrorMapper(this IServiceCollection services)
-            => new(services);
+        => new(services);
 
     /// <summary>
     /// Dependency Injection of Infrastructure.ErrorMappers, it adds and resolves TgsErrorMapper as default;
