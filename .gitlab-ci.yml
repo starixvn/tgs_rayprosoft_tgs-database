@@ -101,7 +101,6 @@ push-migrations-k8s-template:
           | kubectl -n ${ns:=$namespace} apply -f -
       }
 
-
 migrate-dev:
   extends: .migrate-deploy
   variables:
@@ -118,6 +117,7 @@ migrate-dev:
     - main
   script:
     - deploy_k8s 'ef-migration' 'ef-migration' $namespace
+  when: on_success
 
 migrate-staging:
   extends: .migrate-deploy

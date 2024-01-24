@@ -1,8 +1,4 @@
-﻿using System;
-using Tgs.Logging;
-using TGS.Core.Infrastructures.Extensions;
-
-namespace TGS.Core.DataServices.Tgs.Models;
+﻿namespace TGS.Core.DataServices.Tgs.Models;
 
 public class ApiLog
 {
@@ -33,23 +29,4 @@ public class ApiLog
     public string ServerName { get; set; }
 
     public Guid TrackingId { get; set; }
-
-    public static explicit operator ApiLog(ApiLogEvent a) =>
-        new()
-        {
-            Id = Guid.NewGuid(),
-            TrackingId = a.TrackingId,
-            Ip = a.Ip,
-            Path = a.Path,
-            Method = a.Method,
-            Prefix = a.Prefix,
-            ServerName = a.ServerName,
-            RequestHeaders = a.RequestHeaders,
-            RequestContent = a.RequestContent,
-            ResponseHeaders = a.ResponseHeaders,
-            ResponseContent = a.ResponseContent,
-            ResponseCode = a.ResponseCode,
-            ExecutionTimeMs = a.ExecutionTimeMs,
-            RecordedOn = a.RecordedOn
-        };
 }
