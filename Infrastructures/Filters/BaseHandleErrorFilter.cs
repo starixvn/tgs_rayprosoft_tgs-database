@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using Tgs.Logging;
+using Microsoft.Extensions.Logging;
 using TGS.Core.Infrastructures.Extensions;
 using TGS.Core.Models.Interfaces;
 
@@ -16,16 +12,16 @@ namespace TGS.Core.Infrastructures.Filters;
 public abstract class BaseHandleErrorFilter : IAsyncActionFilter
 {
     private IDictionary<string, object> _actionArguments;
-    protected IErrorMapper ErrorMapper { get; }
+    private readonly ILogger _logger;
 
-    protected ITgsLog Log { get; }
+    protected IErrorMapper ErrorMapper { get; }
 
     protected abstract string LoggerName { get; }
 
-    public BaseHandleErrorFilter(Func<string, IErrorMapper> mapper, string mapperKey, ITgsLog log)
+    public BaseHandleErrorFilter(Func<string, IErrorMapper> mapper, string mapperKey, ILogger logger)
     {
         ErrorMapper = mapper(mapperKey);
-        Log = log.SetLogger(LoggerName);
+        _logger = logger;
     }
 
     public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
@@ -46,7 +42,7 @@ public abstract class BaseHandleErrorFilter : IAsyncActionFilter
         var statusCode = ErrorMapper.GetHttpStatusByException(exception);
 
         var message = GetErrorMessage(aec, "Tgs Api Error", error.ToString(), statusCode);
-        Log.LogError(message, aec.Exception);
+        _logger.LogError(message, aec.Exception);
 
         aec.Result = await CreateResponseAsync(aec, statusCode, error);
     }
@@ -55,12 +51,9 @@ public abstract class BaseHandleErrorFilter : IAsyncActionFilter
 
     #region Private Methods
 
-    private static string GetRequestHeadersAsString(HttpRequest request)
-    {
-        return request.Headers
+    private static string GetRequestHeadersAsString(HttpRequest request) => request.Headers
             .Aggregate(new StringBuilder(), (b, p) => b.AppendLine($"{p.Key}={p.Value.JoinAsStringBySemicolon()}"))
             .ToString();
-    }
 
     [Obsolete("過時")]
     private string GetErrorMessage(ActionExecutedContext context, string type, string errorMessage, int statusCode)

@@ -1,10 +1,8 @@
-﻿using System;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Tgs.Logging;
 using TGS.Core.Infrastructures.Extensions;
 using TGS.Core.Models;
 using TGS.Core.Models.Interfaces;
@@ -32,14 +30,18 @@ public static class ApplicationBuilderExtensions
 
                 using var scope = app.ApplicationServices.CreateScope();
                 var serviceProvider = scope.ServiceProvider;
-                var log = serviceProvider.GetRequiredService<ITgsLog>();
+                var logger = serviceProvider.GetRequiredService<ILogger<ExceptionHandlerOptions>>();
                 var mapper = serviceProvider.GetRequiredService<Func<string, IErrorMapper>>();
                 var errorMapper = mapper(Consts.Default);
                 var error = errorMapper.GetApiErrorByException(exception);
                 var statusCode = errorMapper.GetHttpStatusByException(exception);
                 var message = exception.GetMessageChain();
 
-                log.LogError($"Caught global error on :{context.Request.Host} with message: {message}", exception);
+                logger.LogError(
+                    exception,
+                    "Caught global error on :{host} with message: {message}",
+                    context.Request.Host,
+                    message);
 
                 context.Response.ContentType = "application/json";
                 context.Response.StatusCode = statusCode;
@@ -55,9 +57,7 @@ public static class ApplicationBuilderExtensions
         return app;
     }
 
-    public static IApplicationBuilder UseTgsErrorHandler(this IApplicationBuilder app)
-    {
-        return app.UseExceptionHandler(
+    public static IApplicationBuilder UseTgsErrorHandler(this IApplicationBuilder app) => app.UseExceptionHandler(
             new ExceptionHandlerOptions
             {
                 ExceptionHandler = async context =>
@@ -79,7 +79,9 @@ public static class ApplicationBuilderExtensions
                         logger.LogError(exception, "Caught global error!");
                     }
                     else
+                    {
                         logger.LogWarning(exception, "Caught global exception!");
+                    }
 
                     context.Response.ContentType = "application/json";
                     context.Response.StatusCode = statusCode;
@@ -92,5 +94,4 @@ public static class ApplicationBuilderExtensions
                     });
                 }
             });
-    }
 }
