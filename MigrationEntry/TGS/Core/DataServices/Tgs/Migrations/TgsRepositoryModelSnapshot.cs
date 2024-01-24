@@ -10441,6 +10441,13 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnName("accum_deposit")
                         .HasComment("累積存款");
 
+                    b.Property<Guid>("AccumDepositId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasDefaultValue(new Guid("00000000-0000-0000-0000-000000000000"))
+                        .HasColumnName("accum_deposit_id")
+                        .HasComment("累積存款識別碼");
+
                     b.Property<decimal>("AccumTurnover")
                         .ValueGeneratedOnAdd()
                         .HasPrecision(18, 6)
@@ -10448,6 +10455,13 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasDefaultValue(0m)
                         .HasColumnName("accum_turnover")
                         .HasComment("累積有效投注");
+
+                    b.Property<Guid>("AccumTurnoverId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasDefaultValue(new Guid("00000000-0000-0000-0000-000000000000"))
+                        .HasColumnName("accum_turnover_id")
+                        .HasComment("累積有效投注識別碼");
 
                     b.HasKey("PlayerCode")
                         .HasName("pk_player_vip_level_exps");
