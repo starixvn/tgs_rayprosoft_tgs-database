@@ -6,3 +6,4 @@
 using System.Diagnostics.CodeAnalysis;
 
 [assembly: SuppressMessage("Performance", "CA1861:避免常數陣列作為引數")]
+[assembly: SuppressMessage("Performance", "CA1859:盡可能使用具象類型以提高效能")]
