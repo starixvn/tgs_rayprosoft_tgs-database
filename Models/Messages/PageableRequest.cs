@@ -1,7 +1,6 @@
-﻿using System.Data.SqlClient;
+﻿namespace TGS.Core.Models.Messages;
 
-namespace TGS.Core.Models.Messages;
-
+[Obsolete("過時")]
 public class PageableRequest
 {
     public bool IsDesc => OrderBy == SortOrder.Descending;
