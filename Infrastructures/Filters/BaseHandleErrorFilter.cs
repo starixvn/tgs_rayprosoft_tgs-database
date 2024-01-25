@@ -11,9 +11,8 @@ namespace TGS.Core.Infrastructures.Filters;
 [Obsolete("過時")]
 public abstract class BaseHandleErrorFilter : IAsyncActionFilter
 {
-    private IDictionary<string, object> _actionArguments;
     private readonly ILogger _logger;
-
+    private IDictionary<string, object> _actionArguments;
     protected IErrorMapper ErrorMapper { get; }
 
     protected abstract string LoggerName { get; }
@@ -42,7 +41,7 @@ public abstract class BaseHandleErrorFilter : IAsyncActionFilter
         var statusCode = ErrorMapper.GetHttpStatusByException(exception);
 
         var message = GetErrorMessage(aec, "Tgs Api Error", error.ToString(), statusCode);
-        _logger.LogError(message, aec.Exception);
+        _logger.LogError(aec.Exception, "{errorMessage}", message);
 
         aec.Result = await CreateResponseAsync(aec, statusCode, error);
     }

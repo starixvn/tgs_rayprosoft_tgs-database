@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Concurrent;
 using System.Linq.Expressions;
 using System.Reflection;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using TGS.Core.Models.Messages;
 
@@ -12,7 +8,9 @@ namespace TGS.Core.DataServices.Base.Extensions;
 
 public static class QueryableExtensions
 {
-    public static PagedResponse<TModel> CreatePagedResponse<TModel>(this IQueryable<TModel> query,
+    [Obsolete("過時")]
+    public static PagedResponse<TModel> CreatePagedResponse<TModel>(
+        this IQueryable<TModel> query,
         PageableRequest request)
     {
         var result = request.SortBy == null ? query : query.OrderBy(request.GetSortOption());
@@ -28,7 +26,9 @@ public static class QueryableExtensions
         return new() { Valid = true, TotalCount = pagedResult.TotalCount, Items = pagedResult.Items };
     }
 
-    public static async Task<PagedResponse<TModel>> CreatePagedResponseAsync<TModel>(this IQueryable<TModel> query,
+    [Obsolete("過時")]
+    public static async Task<PagedResponse<TModel>> CreatePagedResponseAsync<TModel>(
+        this IQueryable<TModel> query,
         PageableRequest request)
     {
         var result = request.SortBy == null ? query : query.OrderBy(request.GetSortOption());

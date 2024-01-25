@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <Version>1.1.0</Version>
+    <Version>1.1.1</Version>
     <Authors>Raypro</Authors>
     <PackageProjectUrl>https://gitlab.com/rayprosoft/tgs-database</PackageProjectUrl>
     <RepositoryUrl>https://gitlab.com/rayprosoft/tgs-database.git</RepositoryUrl>
