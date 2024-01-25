@@ -14,6 +14,7 @@
     <RepositoryUrl>https://gitlab.com/rayprosoft/tgs-database.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <Product>Tgs.Core</Product>
+    <PackageId>Tgs.Core</PackageId>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
