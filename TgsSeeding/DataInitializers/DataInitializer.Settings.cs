@@ -205,7 +205,8 @@ public partial class DataInitializer
                             new MenuSetting("Contact"),
                             new MenuSetting("DepositForm"),
                             new MenuSetting("WithdrawalForm"),
-                            new MenuSetting("BalanceChangeUnsaved")
+                            new MenuSetting("BalanceChangeUnsaved"),
+                            new MenuSetting("EditIdNumber")
                         }
                     },
                     new MenuSetting("PlayerIdentity")
