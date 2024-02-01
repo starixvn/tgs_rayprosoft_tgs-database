@@ -12843,6 +12843,56 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.ToTable("vip_levels", "dbo");
                 });
 
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.VipLevelSnapshot", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id")
+                        .HasComment("識別碼");
+
+                    b.Property<Guid>("BrandId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("brand_id")
+                        .HasComment("平台識別碼");
+
+                    b.Property<string>("Data")
+                        .IsRequired()
+                        .HasColumnType("jsonb")
+                        .HasColumnName("data")
+                        .HasComment("資料");
+
+                    b.Property<DateTimeOffset>("EffectiveOn")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("effective_on")
+                        .HasComment("生效時間");
+
+                    b.Property<DateTimeOffset>("SnapshotOn")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("snapshot_on")
+                        .HasComment("快照時間");
+
+                    b.Property<Guid>("SnapshotUserId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("snapshot_user_id")
+                        .HasComment("快照使用者識別碼");
+
+                    b.Property<string>("SnapshotUsername")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)")
+                        .HasColumnName("snapshot_username")
+                        .HasComment("快照使用者名稱");
+
+                    b.HasKey("Id")
+                        .HasName("pk_vip_level_snapshots");
+
+                    b.HasIndex("BrandId")
+                        .HasDatabaseName("ix_vip_level_snapshots_brand_id");
+
+                    b.ToTable("vip_level_snapshots", "dbo");
+                });
+
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.Wallet", b =>
                 {
                     b.Property<Guid>("Id")
