@@ -41,6 +41,7 @@ public class WithdrawForm
     public string PaymentReturn { get; set; }
 
     public string Remark { get; set; }
+    public string PlayerRemark { get; set; }
 
     public DateTimeOffset? ReviewedOn { get; set; }
 

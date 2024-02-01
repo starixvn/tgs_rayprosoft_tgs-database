@@ -13060,6 +13060,10 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("jsonb")
                         .HasColumnName("payment_return");
 
+                    b.Property<string>("PlayerRemark")
+                        .HasColumnType("text")
+                        .HasColumnName("player_remark");
+
                     b.Property<string>("Remark")
                         .HasColumnType("text")
                         .HasColumnName("remark");
