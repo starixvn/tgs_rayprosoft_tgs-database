@@ -55,6 +55,8 @@ internal class WithdrawFormMap : IEntityTypeConfiguration<WithdrawForm>
 
         _ = builder.Property(w => w.Remark);
 
+        _ = builder.Property(w => w.PlayerRemark);
+
         _ = builder.Property(w => w.Note);
 
         _ = builder.Property(w => w.BankInfoId)
