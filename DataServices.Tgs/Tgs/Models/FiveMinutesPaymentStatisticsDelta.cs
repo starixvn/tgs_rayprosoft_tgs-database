@@ -14,15 +14,15 @@ public class FiveMinutesPaymentStatisticsDelta
 
     public DateTime TimePoint { get; set; }
 
-    public decimal? DepositAmount { get; set; }
+    public decimal DepositAmount { get; set; }
 
-    public int? DepositCount { get; set; }
+    public int DepositCount { get; set; }
 
-    public decimal? WithdrawAmount { get; set; }
+    public decimal WithdrawAmount { get; set; }
 
-    public int? WithdrawCount { get; set; }
+    public int WithdrawCount { get; set; }
 
-    public decimal? DepositHandlingFee { get; set; }
+    public decimal DepositHandlingFee { get; set; }
 
-    public decimal? WithdrawHandlingFee { get; set; }
+    public decimal WithdrawHandlingFee { get; set; }
 }

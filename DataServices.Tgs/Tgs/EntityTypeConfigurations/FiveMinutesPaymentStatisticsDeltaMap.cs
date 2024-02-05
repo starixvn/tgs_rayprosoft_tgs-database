@@ -21,11 +21,17 @@ internal class FiveMinutesPaymentStatisticsDeltaMap : IEntityTypeConfiguration<F
             .IsRequired();
         _ = builder.Property(f => f.BrandId)
             .IsRequired();
-        _ = builder.Property(f => f.DepositAmount);
-        _ = builder.Property(f => f.DepositCount);
-        _ = builder.Property(f => f.DepositHandlingFee);
-        _ = builder.Property(f => f.WithdrawAmount);
-        _ = builder.Property(f => f.WithdrawCount);
-        _ = builder.Property(f => f.WithdrawHandlingFee);
+        _ = builder.Property(f => f.DepositAmount)
+            .IsRequired();
+        _ = builder.Property(f => f.DepositCount)
+            .IsRequired();
+        _ = builder.Property(f => f.DepositHandlingFee)
+            .IsRequired();
+        _ = builder.Property(f => f.WithdrawAmount)
+            .IsRequired();
+        _ = builder.Property(f => f.WithdrawCount)
+            .IsRequired();
+        _ = builder.Property(f => f.WithdrawHandlingFee)
+            .IsRequired();
     }
 }

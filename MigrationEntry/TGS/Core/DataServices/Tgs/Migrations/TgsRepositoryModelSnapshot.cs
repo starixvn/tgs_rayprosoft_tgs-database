@@ -4545,15 +4545,15 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("brand_id");
 
-                    b.Property<decimal?>("DepositAmount")
+                    b.Property<decimal>("DepositAmount")
                         .HasColumnType("numeric")
                         .HasColumnName("deposit_amount");
 
-                    b.Property<int?>("DepositCount")
+                    b.Property<int>("DepositCount")
                         .HasColumnType("integer")
                         .HasColumnName("deposit_count");
 
-                    b.Property<decimal?>("DepositHandlingFee")
+                    b.Property<decimal>("DepositHandlingFee")
                         .HasColumnType("numeric")
                         .HasColumnName("deposit_handling_fee");
 
@@ -4570,15 +4570,15 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("integer")
                         .HasColumnName("user_type");
 
-                    b.Property<decimal?>("WithdrawAmount")
+                    b.Property<decimal>("WithdrawAmount")
                         .HasColumnType("numeric")
                         .HasColumnName("withdraw_amount");
 
-                    b.Property<int?>("WithdrawCount")
+                    b.Property<int>("WithdrawCount")
                         .HasColumnType("integer")
                         .HasColumnName("withdraw_count");
 
-                    b.Property<decimal?>("WithdrawHandlingFee")
+                    b.Property<decimal>("WithdrawHandlingFee")
                         .HasColumnType("numeric")
                         .HasColumnName("withdraw_handling_fee");
 
