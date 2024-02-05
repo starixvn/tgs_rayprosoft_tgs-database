@@ -4534,6 +4534,60 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.ToTable("five_minutes_payment_statistics", "dbo");
                 });
 
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.FiveMinutesPaymentStatisticsDelta", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<Guid>("BrandId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("brand_id");
+
+                    b.Property<decimal?>("DepositAmount")
+                        .HasColumnType("numeric")
+                        .HasColumnName("deposit_amount");
+
+                    b.Property<int?>("DepositCount")
+                        .HasColumnType("integer")
+                        .HasColumnName("deposit_count");
+
+                    b.Property<decimal?>("DepositHandlingFee")
+                        .HasColumnType("numeric")
+                        .HasColumnName("deposit_handling_fee");
+
+                    b.Property<DateTime>("TimePoint")
+                        .HasColumnType("timestamptz")
+                        .HasColumnName("time_point");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("user_id");
+
+                    b.Property<int>("UserType")
+                        .HasColumnType("integer")
+                        .HasColumnName("user_type");
+
+                    b.Property<decimal?>("WithdrawAmount")
+                        .HasColumnType("numeric")
+                        .HasColumnName("withdraw_amount");
+
+                    b.Property<int?>("WithdrawCount")
+                        .HasColumnType("integer")
+                        .HasColumnName("withdraw_count");
+
+                    b.Property<decimal?>("WithdrawHandlingFee")
+                        .HasColumnType("numeric")
+                        .HasColumnName("withdraw_handling_fee");
+
+                    b.HasKey("Id")
+                        .HasName("pk_five_minutes_payment_statistics_delta");
+
+                    b.ToTable("five_minutes_payment_statistics_delta", "dbo");
+                });
+
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.Function", b =>
                 {
                     b.Property<Guid>("Id")
