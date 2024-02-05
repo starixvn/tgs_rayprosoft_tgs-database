@@ -1,7 +1,5 @@
 ﻿#nullable enable
 
-using System;
-
 namespace TGS.Core.DataServices.Tgs.Models;
 
 public class FiveMinutesPaymentStatistics
