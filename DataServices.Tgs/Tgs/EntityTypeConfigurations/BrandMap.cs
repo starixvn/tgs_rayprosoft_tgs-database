@@ -124,6 +124,10 @@ internal class BrandMap : BaseConfiguration, IEntityTypeConfiguration<Brand>
         _ = builder.Property(c => c.TimeSpanMinutes)
             .HasDefaultValue(480);
 
+        _ = builder.Property(c => c.EnablePlatformAccountFundCheck)
+            .IsRequired()
+            .HasDefaultValue(false);
+
         _ = builder.HasOne(c => c.Licensee)
             .WithMany(c => c.Brands)
             .HasForeignKey(c => c.LicenseeId)
