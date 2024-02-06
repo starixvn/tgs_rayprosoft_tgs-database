@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using TGS.Core.Models.Enums;
 
 namespace TGS.Core.DataServices.Tgs.Models;
 
@@ -90,4 +91,6 @@ public class AgentDividend
     public decimal PlatformChargePercentage { get; set; }
 
     public int ActiveNumber { get; set; }
+
+    public bool NegativeAgentDividendCarryForward { get; set; }
 }

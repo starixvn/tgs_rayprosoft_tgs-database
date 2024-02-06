@@ -457,6 +457,12 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("numeric(18,6)")
                         .HasColumnName("lottery_rebate_percentage");
 
+                    b.Property<bool>("NegativeAgentDividendCarryForward")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(true)
+                        .HasColumnName("negative_agent_dividend_carry_forward");
+
                     b.Property<Guid?>("ParentAgentId")
                         .HasColumnType("uuid")
                         .HasColumnName("parent_agent_id");
@@ -950,6 +956,12 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("numeric(18,6)")
                         .HasColumnName("lottery_win_loss");
 
+                    b.Property<bool>("NegativeAgentDividendCarryForward")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(true)
+                        .HasColumnName("negative_agent_dividend_carry_forward");
+
                     b.Property<decimal>("NetProfit")
                         .HasPrecision(18, 6)
                         .HasColumnType("numeric(18,6)")
@@ -1269,6 +1281,11 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("id");
 
+                    b.Property<decimal>("ActualAgentDividendAmount")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("actual_agent_dividend_amount");
+
                     b.Property<decimal>("AgentDividendAmount")
                         .HasPrecision(18, 6)
                         .HasColumnType("numeric(18,6)")
@@ -1290,6 +1307,19 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("created_on");
 
+                    b.Property<decimal>("NegativeAgentDividendAmount")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("negative_agent_dividend_amount");
+
+                    b.Property<bool>("NegativeAgentDividendCarryForward")
+                        .HasColumnType("boolean")
+                        .HasColumnName("negative_agent_dividend_carry_forward");
+
+                    b.Property<string>("Remark")
+                        .HasColumnType("text")
+                        .HasColumnName("remark");
+
                     b.Property<string>("SentByUsername")
                         .HasMaxLength(64)
                         .HasColumnType("character varying(64)")
@@ -1299,12 +1329,19 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("sent_on");
 
+                    b.Property<short>("Status")
+                        .HasColumnType("smallint")
+                        .HasColumnName("status");
+
                     b.HasKey("Id")
                         .HasName("pk_agent_dividend_records_id");
 
                     b.HasIndex("AgentDividendId")
                         .IsUnique()
                         .HasDatabaseName("ux_agent_dividend_records");
+
+                    b.HasIndex("BrandId", "AgentId")
+                        .HasDatabaseName("ix_agent_dividend_records_brand_id_agent_id");
 
                     b.ToTable("agent_dividend_records", "dbo");
                 });
@@ -2049,6 +2086,10 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("boolean")
                         .HasDefaultValue(false)
                         .HasColumnName("enable_email_register_flow");
+
+                    b.Property<bool>("EnablePlayerAgent")
+                        .HasColumnType("boolean")
+                        .HasColumnName("enable_player_agent");
 
                     b.Property<bool>("EnablePlayerIdentity")
                         .ValueGeneratedOnAdd()

@@ -95,4 +95,6 @@ public class Agent
     public Guid? SnapshotEventId { get; set; }
 
     public Guid? WalletId { get; set; }
+
+    public bool NegativeAgentDividendCarryForward { get; set; }
 }
