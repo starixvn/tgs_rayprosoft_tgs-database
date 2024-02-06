@@ -111,4 +111,6 @@ public class Brand : BaseEntity<Guid>
     public decimal WithdrawHandlingFeeRateTenPercentile { get; set; }
 
     public bool EnablePlayerAgent { get; set; }
+
+    public bool EnablePlatformAccountFundCheck { get; set; }
 }

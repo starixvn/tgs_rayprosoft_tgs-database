@@ -2087,6 +2087,12 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasDefaultValue(false)
                         .HasColumnName("enable_email_register_flow");
 
+                    b.Property<bool>("EnablePlatformAccountFundCheck")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(false)
+                        .HasColumnName("enable_platform_account_fund_check");
+
                     b.Property<bool>("EnablePlayerAgent")
                         .HasColumnType("boolean")
                         .HasColumnName("enable_player_agent");
