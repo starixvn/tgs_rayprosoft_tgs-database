@@ -30,9 +30,9 @@ internal class PlayerVipLevelBirthdayFormMap : IEntityTypeConfiguration<PlayerVi
             .IsRequired()
             .HasMaxLength(16)
             .HasComment("玩家代碼");
-        _ = builder.Property(b => b.Level)
+        _ = builder.Property(b => b.VipLevel)
             .IsRequired()
-            .HasComment("等級");
+            .HasComment("Vip等級");
         _ = builder.Property(b => b.Birthday)
             .IsRequired()
             .HasComment("生日");
