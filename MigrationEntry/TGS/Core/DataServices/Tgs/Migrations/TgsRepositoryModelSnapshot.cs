@@ -10469,11 +10469,6 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnName("created_username")
                         .HasComment("創建使用者名稱");
 
-                    b.Property<int>("Level")
-                        .HasColumnType("integer")
-                        .HasColumnName("level")
-                        .HasComment("等級");
-
                     b.Property<string>("PlayerCode")
                         .IsRequired()
                         .HasMaxLength(16)
@@ -10524,6 +10519,11 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasDefaultValue("")
                         .HasColumnName("updated_username")
                         .HasComment("更新使用者名稱");
+
+                    b.Property<int>("VipLevel")
+                        .HasColumnType("integer")
+                        .HasColumnName("vip_level")
+                        .HasComment("Vip等級");
 
                     b.HasKey("Id")
                         .HasName("pk_player_vip_level_birthday_forms");
