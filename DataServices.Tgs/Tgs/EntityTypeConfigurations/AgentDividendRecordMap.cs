@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using TGS.Core.DataServices.Base;
 using TGS.Core.DataServices.Tgs.Models;
 
 namespace TGS.Core.DataServices.Tgs.EntityTypeConfigurations;
@@ -22,7 +23,19 @@ internal class AgentDividendRecordMap : IEntityTypeConfiguration<AgentDividendRe
         _ = builder.Property(b => b.AgentId)
             .IsRequired();
 
+        _ = builder.Property(b => b.Status)
+            .HasColumnType(ColumnTypes.SmallInt)
+            .IsRequired();
+
+        _ = builder.Property(b => b.NegativeAgentDividendAmount)
+            .HasPrecision(18, 6)
+            .IsRequired();
+
         _ = builder.Property(b => b.AgentDividendAmount)
+            .HasPrecision(18, 6)
+            .IsRequired();
+        
+        _ = builder.Property(b => b.ActualAgentDividendAmount)
             .HasPrecision(18, 6)
             .IsRequired();
 
@@ -39,5 +52,12 @@ internal class AgentDividendRecordMap : IEntityTypeConfiguration<AgentDividendRe
         _ = builder.HasIndex(b => b.AgentDividendId)
             .IsUnique()
             .HasDatabaseName("ux_agent_dividend_records");
+
+        _ = builder.HasIndex(b => new
+            {
+                b.BrandId,
+                b.AgentId
+            })
+            .HasDatabaseName("ix_agent_dividend_records_brand_id_agent_id");
     }
 }

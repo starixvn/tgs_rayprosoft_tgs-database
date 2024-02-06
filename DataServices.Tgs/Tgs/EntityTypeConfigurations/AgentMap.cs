@@ -103,6 +103,10 @@ internal class AgentMap : IEntityTypeConfiguration<Agent>
 
         _ = builder.Property(p => p.SnapshotEventId);
 
+        _ = builder.Property(c => c.NegativeAgentDividendCarryForward)
+            .HasDefaultValue(true)
+            .IsRequired();
+
         _ = builder.HasOne(p => p.Brand)
             .WithMany()
             .HasForeignKey(p => p.BrandId)
