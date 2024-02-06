@@ -143,6 +143,10 @@ internal class AgentDividendMap : IEntityTypeConfiguration<AgentDividend>
             .HasPrecision(18, 6)
             .IsRequired();
 
+        _ = builder.Property(b => b.NegativeAgentDividendCarryForward)
+            .HasDefaultValue(true)
+            .IsRequired();
+
         _ = builder.Property(b => b.From)
             .IsRequired();
 
