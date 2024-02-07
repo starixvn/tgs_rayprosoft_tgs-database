@@ -10597,6 +10597,142 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.ToTable("player_vip_level_birthday_promotions", "dbo");
                 });
 
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.PlayerVipLevelCycleForm", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id")
+                        .HasComment("識別碼");
+
+                    b.Property<decimal>("ActualAmount")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("actual_amount")
+                        .HasComment("實際金額");
+
+                    b.Property<decimal>("Amount")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("amount")
+                        .HasComment("金額");
+
+                    b.Property<Guid>("BrandId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("brand_id")
+                        .HasComment("平台識別碼");
+
+                    b.Property<DateTimeOffset>("CreatedOn")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_on")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP")
+                        .HasComment("創建時間");
+
+                    b.Property<Guid>("CreatedUserId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasDefaultValue(new Guid("00000000-0000-0000-0000-000000000000"))
+                        .HasColumnName("created_user_id")
+                        .HasComment("創建使用者識別碼");
+
+                    b.Property<string>("CreatedUsername")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)")
+                        .HasDefaultValue("")
+                        .HasColumnName("created_username")
+                        .HasComment("創建使用者名稱");
+
+                    b.Property<DateOnly>("CycleOn")
+                        .HasColumnType("date")
+                        .HasColumnName("cycle_on")
+                        .HasComment("週期日期");
+
+                    b.Property<int>("CycleType")
+                        .HasColumnType("integer")
+                        .HasColumnName("cycle_type")
+                        .HasComment("週期類型(1:日 2:周 3:月)");
+
+                    b.Property<DateOnly>("FromOn")
+                        .HasColumnType("date")
+                        .HasColumnName("from_on")
+                        .HasComment("起始日期");
+
+                    b.Property<string>("PlayerCode")
+                        .IsRequired()
+                        .HasMaxLength(16)
+                        .HasColumnType("character varying(16)")
+                        .HasColumnName("player_code")
+                        .HasComment("玩家代碼");
+
+                    b.Property<string>("Remark")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("text")
+                        .HasDefaultValue("")
+                        .HasColumnName("remark")
+                        .HasComment("備註");
+
+                    b.Property<string>("SnapshotVipLevel")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("jsonb")
+                        .HasColumnName("snapshot_vip_level")
+                        .HasDefaultValueSql("'{}'::jsonb")
+                        .HasComment("Snapshot Vip Level");
+
+                    b.Property<int>("State")
+                        .HasColumnType("integer")
+                        .HasColumnName("state")
+                        .HasComment("狀態");
+
+                    b.Property<DateOnly>("ToOn")
+                        .HasColumnType("date")
+                        .HasColumnName("to_on")
+                        .HasComment("結束日期");
+
+                    b.Property<DateTimeOffset>("UpdatedOn")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("updated_on")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP")
+                        .HasComment("更新時間");
+
+                    b.Property<Guid>("UpdatedUserId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasDefaultValue(new Guid("00000000-0000-0000-0000-000000000000"))
+                        .HasColumnName("updated_user_id")
+                        .HasComment("更新使用者識別碼");
+
+                    b.Property<string>("UpdatedUsername")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)")
+                        .HasDefaultValue("")
+                        .HasColumnName("updated_username")
+                        .HasComment("更新使用者名稱");
+
+                    b.Property<int>("VipLevel")
+                        .HasColumnType("integer")
+                        .HasColumnName("vip_level")
+                        .HasComment("Vip等級");
+
+                    b.HasKey("Id")
+                        .HasName("pk_player_vip_level_cycle_forms");
+
+                    b.HasIndex("CreatedOn")
+                        .HasDatabaseName("ix_player_vip_level_cycle_f_created_on");
+
+                    b.HasIndex("PlayerCode", "CycleType", "CycleOn")
+                        .HasDatabaseName("ix_player_vip_level_cycle_f_player_code_cycle");
+
+                    b.ToTable("player_vip_level_cycle_forms", "dbo");
+                });
+
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.PlayerVipLevelExp", b =>
                 {
                     b.Property<string>("PlayerCode")
