@@ -10942,6 +10942,11 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnName("remark")
                         .HasComment("備註");
 
+                    b.Property<int>("Sign")
+                        .HasColumnType("integer")
+                        .HasColumnName("sign")
+                        .HasComment("符號(1:正號 -1:負號)");
+
                     b.Property<string>("SnapshotExp")
                         .IsRequired()
                         .ValueGeneratedOnAdd()
