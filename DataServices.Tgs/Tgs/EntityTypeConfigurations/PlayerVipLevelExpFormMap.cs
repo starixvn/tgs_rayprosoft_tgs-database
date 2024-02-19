@@ -33,6 +33,9 @@ internal class PlayerVipLevelExpFormMap : IEntityTypeConfiguration<PlayerVipLeve
         _ = builder.Property(b => b.AutoState)
             .IsRequired()
             .HasComment("自動狀態(True:自動;False:手動)");
+        _ = builder.Property(b => b.Sign)
+            .IsRequired()
+            .HasComment("符號(1:正號 -1:負號)");
         _ = builder.Property(b => b.State)
             .IsRequired()
             .HasComment("狀態");
