@@ -1299,6 +1299,10 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("agent_id");
 
+                    b.Property<DateTime?>("ApprovedOn")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("approved_on");
+
                     b.Property<Guid>("BrandId")
                         .HasColumnType("uuid")
                         .HasColumnName("brand_id");
@@ -1325,13 +1329,13 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("character varying(64)")
                         .HasColumnName("sent_by_username");
 
-                    b.Property<DateTime?>("SentOn")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("sent_on");
-
                     b.Property<short>("Status")
                         .HasColumnType("smallint")
                         .HasColumnName("status");
+
+                    b.Property<DateTime>("UpdatedOn")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("updated_on");
 
                     b.HasKey("Id")
                         .HasName("pk_agent_dividend_records_id");

@@ -46,7 +46,10 @@ internal class AgentDividendRecordMap : IEntityTypeConfiguration<AgentDividendRe
         _ = builder.Property(b => b.CreatedOn)
             .IsRequired();
 
-        _ = builder.Property(e => e.SentOn)
+        _ = builder.Property(e => e.UpdatedOn)
+            .IsRequired();
+
+        _ = builder.Property(e => e.ApprovedOn)
             .IsRequired(false);
 
         _ = builder.HasIndex(b => b.AgentDividendId)

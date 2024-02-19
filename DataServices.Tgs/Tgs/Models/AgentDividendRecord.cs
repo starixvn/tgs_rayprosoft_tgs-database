@@ -29,5 +29,7 @@ public class AgentDividendRecord
 
     public DateTime CreatedOn { get; set; }
 
-    public DateTime? SentOn { get; set; }
+    public DateTime UpdatedOn { get; set; }
+
+    public DateTime? ApprovedOn { get; set; }
 }
