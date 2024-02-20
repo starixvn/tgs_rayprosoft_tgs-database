@@ -370,6 +370,14 @@ public partial class DataInitializer
                         {
                             new MenuSetting("View")
                         }
+                    },
+                    new MenuSetting("AgentDividendDistribution")
+                    {
+                        SubMenus = new[]
+                        {
+                            new MenuSetting("View"),
+                            new MenuSetting("Update")
+                        }
                     }
                 }
             },
