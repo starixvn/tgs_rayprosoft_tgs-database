@@ -371,7 +371,7 @@ public partial class DataInitializer
                             new MenuSetting("View")
                         }
                     },
-                    new MenuSetting("AgentDividendDistribution")
+                    new MenuSetting("AgentDividend")
                     {
                         SubMenus = new[]
                         {
