@@ -6,6 +6,7 @@ public record PlayerVipLevelUpgradeForm
     public Guid BrandId { get; set; }
     public string PlayerCode { get; set; }
     public int VipLevel { get; set; }
+    public bool AutoState { get; set; }
     public int State { get; set; }
     public decimal Amount { get; set; }
     public decimal ActualAmount { get; set; }

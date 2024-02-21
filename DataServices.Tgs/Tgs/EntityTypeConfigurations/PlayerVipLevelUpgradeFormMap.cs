@@ -33,6 +33,10 @@ internal class PlayerVipLevelUpgradeFormMap : IEntityTypeConfiguration<PlayerVip
         _ = builder.Property(b => b.VipLevel)
             .IsRequired()
             .HasComment("Vip等級");
+        _ = builder.Property(b => b.AutoState)
+            .IsRequired()
+            .HasDefaultValue(true)
+            .HasComment("自動狀態(True:自動;False:手動)");
         _ = builder.Property(b => b.State)
             .IsRequired()
             .HasComment("狀態");

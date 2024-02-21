@@ -45,6 +45,10 @@ internal class PlayerVipLevelCycleFormMap : IEntityTypeConfiguration<PlayerVipLe
         _ = builder.Property(b => b.ToOn)
             .IsRequired()
             .HasComment("結束日期");
+        _ = builder.Property(b => b.AutoState)
+            .IsRequired()
+            .HasDefaultValue(true)
+            .HasComment("自動狀態(True:自動;False:手動)");
         _ = builder.Property(b => b.State)
             .IsRequired()
             .HasComment("狀態");

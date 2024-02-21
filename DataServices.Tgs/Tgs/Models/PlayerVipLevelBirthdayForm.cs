@@ -7,6 +7,7 @@ public record PlayerVipLevelBirthdayForm
     public string PlayerCode { get; set; }
     public int VipLevel { get; set; }
     public DateOnly Birthday { get; set; }
+    public bool AutoState { get; set; }
     public int State { get; set; }
     public decimal Amount { get; set; }
     public decimal ActualAmount { get; set; }
