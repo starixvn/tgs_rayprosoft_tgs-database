@@ -36,6 +36,10 @@ internal class PlayerVipLevelBirthdayFormMap : IEntityTypeConfiguration<PlayerVi
         _ = builder.Property(b => b.Birthday)
             .IsRequired()
             .HasComment("生日");
+        _ = builder.Property(b => b.AutoState)
+            .IsRequired()
+            .HasDefaultValue(true)
+            .HasComment("自動狀態(True:自動;False:手動)");
         _ = builder.Property(b => b.State)
             .IsRequired()
             .HasComment("狀態");

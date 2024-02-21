@@ -32,6 +32,7 @@ internal class PlayerVipLevelExpFormMap : IEntityTypeConfiguration<PlayerVipLeve
             .HasComment("類型(1:流水,2:存款)");
         _ = builder.Property(b => b.AutoState)
             .IsRequired()
+            .HasDefaultValue(true)
             .HasComment("自動狀態(True:自動;False:手動)");
         _ = builder.Property(b => b.Sign)
             .IsRequired()

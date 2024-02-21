@@ -10446,6 +10446,13 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnName("amount")
                         .HasComment("金額");
 
+                    b.Property<bool>("AutoState")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(true)
+                        .HasColumnName("auto_state")
+                        .HasComment("自動狀態(True:自動;False:手動)");
+
                     b.Property<DateOnly>("Birthday")
                         .HasColumnType("date")
                         .HasColumnName("birthday")
@@ -10620,6 +10627,13 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("numeric(18,6)")
                         .HasColumnName("amount")
                         .HasComment("金額");
+
+                    b.Property<bool>("AutoState")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(true)
+                        .HasColumnName("auto_state")
+                        .HasComment("自動狀態(True:自動;False:手動)");
 
                     b.Property<Guid>("BrandId")
                         .HasColumnType("uuid")
@@ -10895,7 +10909,9 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasComment("金額");
 
                     b.Property<bool>("AutoState")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("boolean")
+                        .HasDefaultValue(true)
                         .HasColumnName("auto_state")
                         .HasComment("自動狀態(True:自動;False:手動)");
 
@@ -11245,6 +11261,13 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("numeric(18,6)")
                         .HasColumnName("amount")
                         .HasComment("金額");
+
+                    b.Property<bool>("AutoState")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(true)
+                        .HasColumnName("auto_state")
+                        .HasComment("自動狀態(True:自動;False:手動)");
 
                     b.Property<Guid>("BrandId")
                         .HasColumnType("uuid")

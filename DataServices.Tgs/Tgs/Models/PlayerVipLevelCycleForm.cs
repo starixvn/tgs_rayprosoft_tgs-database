@@ -16,6 +16,7 @@ public record PlayerVipLevelCycleForm
     public DateOnly CycleOn { get; set; }
     public DateOnly FromOn { get; set; }
     public DateOnly ToOn { get; set; }
+    public bool AutoState { get; set; }
     public int State { get; set; }
     public decimal Amount { get; set; }
     public decimal ActualAmount { get; set; }
