@@ -10106,9 +10106,21 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("numeric")
                         .HasColumnName("total_deposit_amount");
 
+                    b.Property<int>("TotalDepositCount")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasDefaultValue(0)
+                        .HasColumnName("total_deposit_count");
+
                     b.Property<decimal>("TotalWithdrawAmount")
                         .HasColumnType("numeric")
                         .HasColumnName("total_withdraw_amount");
+
+                    b.Property<int>("TotalWithdrawCount")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasDefaultValue(0)
+                        .HasColumnName("total_withdraw_count");
 
                     b.HasKey("PlayerCode")
                         .HasName("pk_player_payment_overview");

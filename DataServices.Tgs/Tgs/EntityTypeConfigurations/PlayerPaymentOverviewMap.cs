@@ -25,5 +25,11 @@ internal class PlayerPaymentOverviewMap : IEntityTypeConfiguration<PlayerPayment
         _ = builder.Property(pt => pt.FirstWithdrawAmount);
         _ = builder.Property(pt => pt.FirstWithdrawHandlingFee);
         _ = builder.Property(pt => pt.RecordedBy);
+        _ = builder.Property(pt => pt.TotalDepositCount)
+            .HasDefaultValue(0)
+            .IsRequired();
+        _ = builder.Property(pt => pt.TotalWithdrawCount)
+            .HasDefaultValue(0)
+            .IsRequired();
     }
 }

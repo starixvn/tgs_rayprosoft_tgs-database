@@ -8,6 +8,7 @@
     <RootNamespace>Tgs.Migrations</RootNamespace>
     <OutputType>Library</OutputType>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <SqlQueryToolsConnectionString />
   </PropertyGroup>
 
   <ItemGroup>
