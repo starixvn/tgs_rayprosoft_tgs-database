@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace TGS.Core.DataServices.Tgs.Models;
+﻿namespace TGS.Core.DataServices.Tgs.Models;
 
 public class PlayerPaymentOverview
 {
@@ -23,4 +21,8 @@ public class PlayerPaymentOverview
     public decimal TotalDepositAmount { get; set; }
 
     public decimal TotalWithdrawAmount { get; set; }
+
+    public int TotalDepositCount { get; set; }
+
+    public int TotalWithdrawCount { get; set; }
 }
