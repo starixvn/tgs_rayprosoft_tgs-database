@@ -33,4 +33,6 @@ public class PlayerBankInfo
     public string UpdatedByUsername { get; set; }
 
     public DateTimeOffset UpdatedOn { get; set; }
+
+    public Guid? SnapshotId { get; set; }
 }
