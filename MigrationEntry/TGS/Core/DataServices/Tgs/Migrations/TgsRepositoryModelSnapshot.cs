@@ -9068,6 +9068,10 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("character varying(16)")
                         .HasColumnName("player_code");
 
+                    b.Property<Guid?>("SnapshotId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("snapshot_id");
+
                     b.Property<string>("UpdatedByUsername")
                         .IsRequired()
                         .HasMaxLength(32)
@@ -9115,6 +9119,41 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasDatabaseName("ix_player_bankinfo_attributions_player_code");
 
                     b.ToTable("player_bankinfo_attributions", "dbo");
+                });
+
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.PlayerBankInfoEvent", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<Guid>("BankInfoId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("bank_info_id");
+
+                    b.Property<string>("ChangeAction")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("change_action");
+
+                    b.Property<string>("ChangeSets")
+                        .IsRequired()
+                        .HasColumnType("jsonb")
+                        .HasColumnName("change_sets");
+
+                    b.Property<DateTime>("ModifiedOn")
+                        .HasColumnType("timestamptz")
+                        .HasColumnName("modified_on");
+
+                    b.Property<string>("Modifier")
+                        .HasColumnType("text")
+                        .HasColumnName("modifier");
+
+                    b.HasKey("Id")
+                        .HasName("pk_player_bank_info_event_source");
+
+                    b.ToTable("player_bank_info_event_source", "dbo");
                 });
 
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.PlayerBankInfoTag", b =>
