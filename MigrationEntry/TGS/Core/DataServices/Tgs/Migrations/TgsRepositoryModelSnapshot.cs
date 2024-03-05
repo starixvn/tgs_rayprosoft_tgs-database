@@ -6263,6 +6263,128 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.ToTable("game_wager_firsts", "dbo");
                 });
 
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.GameWagerPlayerAccum", b =>
+                {
+                    b.Property<DateTimeOffset>("AccumOn")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("accum_on")
+                        .HasComment("累積時間");
+
+                    b.Property<Guid>("ResellerId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("reseller_id")
+                        .HasComment("公司識別碼");
+
+                    b.Property<Guid>("LicenseeId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("licensee_id")
+                        .HasComment("分公司識別碼");
+
+                    b.Property<Guid>("BrandId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("brand_id")
+                        .HasComment("平台識別碼");
+
+                    b.Property<string>("PlayerCode")
+                        .HasMaxLength(16)
+                        .HasColumnType("character varying(16)")
+                        .HasColumnName("player_code")
+                        .HasComment("玩家代碼");
+
+                    b.Property<decimal>("Bet")
+                        .ValueGeneratedOnAdd()
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasDefaultValue(0m)
+                        .HasColumnName("bet")
+                        .HasComment("下注");
+
+                    b.Property<decimal>("Commission")
+                        .ValueGeneratedOnAdd()
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasDefaultValue(0m)
+                        .HasColumnName("commission")
+                        .HasComment("傭金");
+
+                    b.Property<int>("Count")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasDefaultValue(0)
+                        .HasColumnName("count")
+                        .HasComment("筆數");
+
+                    b.Property<DateTimeOffset>("CreatedOn")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_on")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP")
+                        .HasComment("創建時間");
+
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<decimal>("Settle")
+                        .ValueGeneratedOnAdd()
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasDefaultValue(0m)
+                        .HasColumnName("settle")
+                        .HasComment("結算(包含本金)");
+
+                    b.Property<decimal>("Turnover")
+                        .ValueGeneratedOnAdd()
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasDefaultValue(0m)
+                        .HasColumnName("turnover")
+                        .HasComment("有效投注");
+
+                    b.Property<DateTimeOffset>("UpdatedOn")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("updated_on")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP")
+                        .HasComment("修改時間");
+
+                    b.Property<decimal>("ValidBet")
+                        .ValueGeneratedOnAdd()
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasDefaultValue(0m)
+                        .HasColumnName("valid_bet")
+                        .HasComment("實際/有效下注");
+
+                    b.Property<decimal>("WinLoss")
+                        .ValueGeneratedOnAdd()
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasDefaultValue(0m)
+                        .HasColumnName("win_loss")
+                        .HasComment("玩家損益/淨利");
+
+                    b.HasKey("AccumOn", "ResellerId", "LicenseeId", "BrandId", "PlayerCode")
+                        .HasName("pk_game_wager_player_accums");
+
+                    b.HasIndex("AccumOn")
+                        .HasDatabaseName("ix_game_wager_player_accums_accum_on");
+
+                    b.HasIndex("AccumOn", "BrandId")
+                        .HasDatabaseName("ix_game_wager_player_accums_brand_id");
+
+                    b.HasIndex("AccumOn", "LicenseeId")
+                        .HasDatabaseName("ix_game_wager_player_accums_licensee_id");
+
+                    b.HasIndex("AccumOn", "PlayerCode")
+                        .HasDatabaseName("ix_game_wager_player_accums_player_code");
+
+                    b.HasIndex("AccumOn", "ResellerId")
+                        .HasDatabaseName("ix_game_wager_player_accums_reseller_id");
+
+                    b.ToTable("game_wager_player_accums", "dbo");
+                });
+
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.GameWagerStatClose", b =>
                 {
                     b.Property<DateTimeOffset>("StatOn")
