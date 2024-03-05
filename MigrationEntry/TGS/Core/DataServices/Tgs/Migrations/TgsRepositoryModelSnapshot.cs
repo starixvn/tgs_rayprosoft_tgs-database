@@ -6321,10 +6321,6 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasDefaultValueSql("CURRENT_TIMESTAMP")
                         .HasComment("創建時間");
 
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uuid")
-                        .HasColumnName("id");
-
                     b.Property<decimal>("Settle")
                         .ValueGeneratedOnAdd()
                         .HasPrecision(18, 6)
