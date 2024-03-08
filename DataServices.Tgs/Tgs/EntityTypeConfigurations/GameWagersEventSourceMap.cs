@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using TGS.Core.DataServices.Base;
 using TGS.Core.DataServices.Tgs.Models;
 
 namespace TGS.Core.DataServices.Tgs.EntityTypeConfigurations;
@@ -150,5 +151,10 @@ internal class GameWagersEventSourceMap : IEntityTypeConfiguration<GameWagersEve
             .IsRequired()
             .HasDefaultValueSql("CURRENT_TIMESTAMP")
             .HasComment("創建時間");
+        _ = builder.Property(c => c.AdditionalData)
+            .IsRequired()
+            .HasColumnType(ColumnTypes.Jsonb)
+            .HasDefaultValue("{}")
+            .HasComment("附加數據");
     }
 }

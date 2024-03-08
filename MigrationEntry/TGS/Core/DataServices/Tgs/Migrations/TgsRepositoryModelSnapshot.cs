@@ -6389,6 +6389,14 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnName("id")
                         .HasComment("識別碼");
 
+                    b.Property<string>("AdditionalData")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("jsonb")
+                        .HasDefaultValue("{}")
+                        .HasColumnName("additional_data")
+                        .HasComment("附加數據");
+
                     b.Property<decimal>("Bet")
                         .ValueGeneratedOnAdd()
                         .HasPrecision(18, 6)

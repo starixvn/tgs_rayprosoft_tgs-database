@@ -34,5 +34,8 @@ public class GameWagersEventSource
     public decimal Commission { get; set; }
     public decimal Turnover { get; set; }
     public decimal WinLoss { get; set; }
+
+    public string AdditionalData { get; set; }
+
     public DateTimeOffset CreatedOn { get; set; }
 }
