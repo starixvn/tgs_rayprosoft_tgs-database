@@ -6969,8 +6969,14 @@ namespace TGS.Core.DataServices.Tgs.Migrations
 
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.GameWagersEventSource", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<DateTimeOffset>("CreatedOn")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_on")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP")
+                        .HasComment("創建時間");
+
+                    b.Property<Guid>("Id")
                         .HasColumnType("uuid")
                         .HasColumnName("id")
                         .HasComment("識別碼");
@@ -6996,26 +7002,12 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnName("brand_id")
                         .HasComment("平台識別碼");
 
-                    b.Property<int>("CancelState")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasDefaultValue(0)
-                        .HasColumnName("cancel_state")
-                        .HasComment("取消狀態");
-
                     b.Property<int>("CashoutState")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasDefaultValue(0)
                         .HasColumnName("cashout_state")
                         .HasComment("兌現狀態");
-
-                    b.Property<int>("ClosedState")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasDefaultValue(0)
-                        .HasColumnName("closed_state")
-                        .HasComment("關閉狀態");
 
                     b.Property<decimal>("Commission")
                         .ValueGeneratedOnAdd()
@@ -7024,13 +7016,6 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasDefaultValue(0m)
                         .HasColumnName("commission")
                         .HasComment("傭金");
-
-                    b.Property<DateTimeOffset>("CreatedOn")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("created_on")
-                        .HasDefaultValueSql("CURRENT_TIMESTAMP")
-                        .HasComment("創建時間");
 
                     b.Property<string>("CurrencyCode")
                         .IsRequired()
@@ -7165,13 +7150,6 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnName("valid_bet")
                         .HasComment("實際/有效下注");
 
-                    b.Property<int>("VoidState")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasDefaultValue(0)
-                        .HasColumnName("void_state")
-                        .HasComment("作廢狀態");
-
                     b.Property<int>("WagerState")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
@@ -7199,11 +7177,8 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnName("win_loss")
                         .HasComment("玩家損益/淨利");
 
-                    b.HasKey("Id")
+                    b.HasKey("CreatedOn", "Id")
                         .HasName("pk_game_wagers_event_sources");
-
-                    b.HasIndex("CreatedOn")
-                        .HasDatabaseName("ix_game_wagers_event_sources_created_on");
 
                     b.HasIndex("GameProviderId", "GameId", "WalletId", "ExternalWagerId")
                         .HasDatabaseName("ix_game_wagers_event_sources");

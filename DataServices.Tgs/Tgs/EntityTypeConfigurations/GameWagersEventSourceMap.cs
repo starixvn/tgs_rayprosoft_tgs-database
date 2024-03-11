@@ -12,14 +12,12 @@ internal class GameWagersEventSourceMap : IEntityTypeConfiguration<GameWagersEve
         _ = builder.ToTable("game_wagers_event_sources");
 
         _ = builder
-            .HasKey(c => new { c.Id })
+            .HasKey(c => new { c.CreatedOn, c.Id })
             .HasName("pk_game_wagers_event_sources");
+
         _ = builder
             .HasIndex(c => new { c.GameProviderId, c.GameId, c.WalletId, c.ExternalWagerId })
             .HasDatabaseName("ix_game_wagers_event_sources");
-        _ = builder
-            .HasIndex(c => new { c.CreatedOn })
-            .HasDatabaseName("ix_game_wagers_event_sources_created_on");
 
         _ = builder.Property(c => c.Id)
             .IsRequired()
@@ -60,18 +58,6 @@ internal class GameWagersEventSourceMap : IEntityTypeConfiguration<GameWagersEve
             .IsRequired()
             .HasDefaultValue(0)
             .HasComment("投注類型");
-        _ = builder.Property(c => c.ClosedState)
-            .IsRequired()
-            .HasDefaultValue(0)
-            .HasComment("關閉狀態");
-        _ = builder.Property(c => c.VoidState)
-            .IsRequired()
-            .HasDefaultValue(0)
-            .HasComment("作廢狀態");
-        _ = builder.Property(c => c.CancelState)
-            .IsRequired()
-            .HasDefaultValue(0)
-            .HasComment("取消狀態");
         _ = builder.Property(c => c.FreeGameState)
             .IsRequired()
             .HasDefaultValue(0)

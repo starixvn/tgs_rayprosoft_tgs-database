@@ -14,9 +14,6 @@ public class GameWagersEventSource
     public Guid WalletId { get; set; }
     public int WagerState { get; set; }
     public int WagerType { get; set; }
-    public int ClosedState { get; set; }
-    public int VoidState { get; set; }
-    public int CancelState { get; set; }
     public int FreeGameState { get; set; }
     public int GambleState { get; set; }
     public int CashoutState { get; set; }
