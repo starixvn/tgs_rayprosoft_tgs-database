@@ -6533,8 +6533,10 @@ namespace TGS.Core.DataServices.Tgs.Migrations
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.GameWagerPrimaryDetail", b =>
                 {
                     b.Property<DateTimeOffset>("CreatedOn")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("created_on")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP")
                         .HasComment("創建時間");
 
                     b.Property<Guid>("Id")
@@ -6549,10 +6551,6 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasDefaultValue("{}")
                         .HasColumnName("additional_data")
                         .HasComment("附加數據");
-
-                    b.Property<DateTimeOffset>("GameWagerPrimaryCreatedOn")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("game_wager_primary_created_on");
 
                     b.Property<Guid>("GameWagerPrimaryId")
                         .HasColumnType("uuid")
