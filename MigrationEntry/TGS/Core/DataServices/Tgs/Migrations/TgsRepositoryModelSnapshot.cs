@@ -6381,6 +6381,145 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.ToTable("game_wager_player_accums", "dbo");
                 });
 
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.GameWagerPrimary", b =>
+                {
+                    b.Property<DateTimeOffset>("ExternalCreatedOn")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("external_created_on")
+                        .HasDefaultValueSql("'1970-01-01 00:00:00+00'::timestamp with time zone")
+                        .HasComment("三方下注/創建時間");
+
+                    b.Property<Guid>("GameProviderId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("game_provider_id")
+                        .HasComment("遊戲供應商識別碼");
+
+                    b.Property<int>("GameId")
+                        .HasColumnType("integer")
+                        .HasColumnName("game_id")
+                        .HasComment("遊戲識別碼");
+
+                    b.Property<Guid>("WalletId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("wallet_id")
+                        .HasComment("錢包識別碼");
+
+                    b.Property<string>("ExternalWagerId")
+                        .HasMaxLength(255)
+                        .HasColumnType("character varying(255)")
+                        .HasColumnName("external_wager_id")
+                        .HasComment("三方投注識別碼");
+
+                    b.Property<Guid>("BrandId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("brand_id")
+                        .HasComment("平台識別碼");
+
+                    b.Property<DateTimeOffset>("CreatedOn")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_on")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP")
+                        .HasComment("創建時間");
+
+                    b.Property<string>("CurrencyCode")
+                        .IsRequired()
+                        .HasMaxLength(16)
+                        .HasColumnType("character varying(16)")
+                        .HasColumnName("currency_code")
+                        .HasComment("貨幣代碼");
+
+                    b.Property<string>("ExternalRoundId")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("character varying(255)")
+                        .HasColumnName("external_round_id")
+                        .HasComment("三方局/回合識別碼");
+
+                    b.Property<Guid>("GameProviderConfigurationId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("game_provider_configuration_id")
+                        .HasComment("遊戲供應商設定識別碼");
+
+                    b.Property<long>("Id")
+                        .HasColumnType("bigint")
+                        .HasColumnName("id")
+                        .HasComment("識別碼");
+
+                    b.Property<Guid>("LicenseeId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("licensee_id")
+                        .HasComment("分公司識別碼");
+
+                    b.Property<string>("PlayerCode")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("player_code")
+                        .HasComment("玩家代碼");
+
+                    b.Property<Guid>("ResellerId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("reseller_id")
+                        .HasComment("公司識別碼");
+
+                    b.HasKey("ExternalCreatedOn", "GameProviderId", "GameId", "WalletId", "ExternalWagerId")
+                        .HasName("pk_game_wager_primaries");
+
+                    b.HasIndex("ExternalCreatedOn")
+                        .HasDatabaseName("ix_game_wager_primaries_e_c_on");
+
+                    b.HasIndex("ExternalCreatedOn", "BrandId")
+                        .HasDatabaseName("ix_game_wager_primaries_e_c_on_brand_id");
+
+                    b.HasIndex("ExternalCreatedOn", "CreatedOn")
+                        .HasDatabaseName("ix_game_wager_primaries_e_c_on_c_on");
+
+                    b.HasIndex("ExternalCreatedOn", "GameId")
+                        .HasDatabaseName("ix_game_wager_primaries_e_c_on_game_id");
+
+                    b.HasIndex("ExternalCreatedOn", "GameProviderId")
+                        .HasDatabaseName("ix_game_wager_primaries_e_c_on_game_provider_id");
+
+                    b.HasIndex("ExternalCreatedOn", "Id")
+                        .HasDatabaseName("ix_game_wager_primaries_e_c_on_id");
+
+                    b.HasIndex("ExternalCreatedOn", "LicenseeId")
+                        .HasDatabaseName("ix_game_wager_primaries_e_c_on_licensee_id");
+
+                    b.HasIndex("ExternalCreatedOn", "PlayerCode")
+                        .HasDatabaseName("ix_game_wager_primaries_e_c_on_player_code");
+
+                    b.HasIndex("ExternalCreatedOn", "ResellerId")
+                        .HasDatabaseName("ix_game_wager_primaries_e_c_on_reseller_id");
+
+                    b.HasIndex("ExternalCreatedOn", "CreatedOn", "BrandId")
+                        .HasDatabaseName("ix_game_wager_primaries_e_c_on_c_on_brand_id");
+
+                    b.HasIndex("ExternalCreatedOn", "CreatedOn", "GameId")
+                        .HasDatabaseName("ix_game_wager_primaries_e_c_on_c_on_game_id");
+
+                    b.HasIndex("ExternalCreatedOn", "CreatedOn", "GameProviderId")
+                        .HasDatabaseName("ix_game_wager_primaries_e_c_on_c_on_game_provider_id");
+
+                    b.HasIndex("ExternalCreatedOn", "CreatedOn", "Id")
+                        .HasDatabaseName("ix_game_wager_primaries_e_c_on_c_on_id");
+
+                    b.HasIndex("ExternalCreatedOn", "CreatedOn", "LicenseeId")
+                        .HasDatabaseName("ix_game_wager_primaries_e_c_on_c_on_licensee_id");
+
+                    b.HasIndex("ExternalCreatedOn", "CreatedOn", "PlayerCode")
+                        .HasDatabaseName("ix_game_wager_primaries_e_c_on_c_on_player_code");
+
+                    b.HasIndex("ExternalCreatedOn", "CreatedOn", "ResellerId")
+                        .HasDatabaseName("ix_game_wager_primaries_e_c_on_c_on_reseller_id");
+
+                    b.HasIndex("GameProviderId", "GameId", "WalletId", "ExternalWagerId")
+                        .HasDatabaseName("ix_game_wager_primaries");
+
+                    b.ToTable("game_wager_primaries", "dbo");
+                });
+
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.GameWagersEventSource", b =>
                 {
                     b.Property<Guid>("Id")
