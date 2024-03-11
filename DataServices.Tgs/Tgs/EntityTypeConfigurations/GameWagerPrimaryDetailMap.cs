@@ -32,6 +32,7 @@ internal class GameWagerPrimaryDetailMap : IEntityTypeConfiguration<GameWagerPri
             .HasComment("附加數據");
         _ = builder.Property(b => b.CreatedOn)
             .IsRequired()
+            .HasDefaultValueSql("CURRENT_TIMESTAMP")
             .HasComment("創建時間");
         _ = builder.Property(c => c.UpdatedOn)
             .IsRequired()
