@@ -16,8 +16,8 @@ internal class GameWagerPrimaryDetailMap : IEntityTypeConfiguration<GameWagerPri
             .HasName("pk_game_wager_primary_details");
 
         _ = builder
-            .HasIndex(c => new { c.GameWagerPrimaryId })
-            .HasDatabaseName("ix_game_wager_primary_details");
+            .HasIndex(c => new { c.CreatedOn, c.GameWagerPrimaryId })
+            .HasDatabaseName("ix_game_wager_primary_details_c_on_g_w_p_id");
 
         _ = builder.Property(c => c.Id)
             .IsRequired()

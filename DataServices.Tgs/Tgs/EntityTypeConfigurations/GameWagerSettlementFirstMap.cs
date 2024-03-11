@@ -15,12 +15,11 @@ internal class GameWagerSettlementFirstMap : IEntityTypeConfiguration<GameWagerS
             .HasName("pk_game_wager_settlement_firsts");
 
         _ = builder
-            .HasIndex(c => new { c.GameWagerPrimaryId })
-            .HasDatabaseName("ix_game_wager_settlement_firsts");
-
-        _ = builder
             .HasIndex(c => new { c.FirstOn })
             .HasDatabaseName("ix_game_wager_settlement_firsts_f_on");
+        _ = builder
+            .HasIndex(c => new { c.FirstOn, c.GameWagerPrimaryId })
+            .HasDatabaseName("ix_game_wager_settlement_firsts_f_on_g_w_p_id");
         _ = builder
             .HasIndex(c => new { c.FirstOn, c.WagerState })
             .HasDatabaseName("ix_game_wager_settlement_firsts_f_on_wager_state");

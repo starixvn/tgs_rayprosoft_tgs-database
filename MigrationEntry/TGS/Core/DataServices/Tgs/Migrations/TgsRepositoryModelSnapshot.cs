@@ -6567,8 +6567,8 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.HasKey("CreatedOn", "Id")
                         .HasName("pk_game_wager_primary_details");
 
-                    b.HasIndex("GameWagerPrimaryId")
-                        .HasDatabaseName("ix_game_wager_primary_details");
+                    b.HasIndex("CreatedOn", "GameWagerPrimaryId")
+                        .HasDatabaseName("ix_game_wager_primary_details_c_on_g_w_p_id");
 
                     b.ToTable("game_wager_primary_details", "dbo");
                 });
@@ -6752,9 +6752,6 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.HasIndex("CreatedOn")
                         .HasDatabaseName("ix_game_wager_settlements_c_on");
 
-                    b.HasIndex("GameWagerPrimaryId")
-                        .HasDatabaseName("ix_game_wager_settlements");
-
                     b.HasIndex("CreatedOn", "ClosedOn")
                         .HasDatabaseName("ix_game_wager_settlements_c_on_closed_on");
 
@@ -6766,6 +6763,9 @@ namespace TGS.Core.DataServices.Tgs.Migrations
 
                     b.HasIndex("CreatedOn", "ExternalPayoffOn")
                         .HasDatabaseName("ix_game_wager_settlements_c_on_external_payoff_on");
+
+                    b.HasIndex("CreatedOn", "GameWagerPrimaryId")
+                        .HasDatabaseName("ix_game_wager_settlements_c_on_g_w_p_id");
 
                     b.HasIndex("CreatedOn", "WagerState")
                         .HasDatabaseName("ix_game_wager_settlements_c_on_wager_state");
@@ -6935,9 +6935,6 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.HasIndex("FirstOn")
                         .HasDatabaseName("ix_game_wager_settlement_firsts_f_on");
 
-                    b.HasIndex("GameWagerPrimaryId")
-                        .HasDatabaseName("ix_game_wager_settlement_firsts");
-
                     b.HasIndex("FirstOn", "ClosedOn")
                         .HasDatabaseName("ix_game_wager_settlement_firsts_f_on_closed_on");
 
@@ -6955,6 +6952,9 @@ namespace TGS.Core.DataServices.Tgs.Migrations
 
                     b.HasIndex("FirstOn", "ExternalResettleOn")
                         .HasDatabaseName("ix_game_wager_settlement_firsts_f_on_external_resettle_on");
+
+                    b.HasIndex("FirstOn", "GameWagerPrimaryId")
+                        .HasDatabaseName("ix_game_wager_settlement_firsts_f_on_g_w_p_id");
 
                     b.HasIndex("FirstOn", "UpdatedOn")
                         .HasDatabaseName("ix_game_wager_settlement_firsts_f_on_updated_on");
