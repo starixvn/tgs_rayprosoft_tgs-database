@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TGS.Core.DataServices.Tgs.Models;
+﻿namespace TGS.Core.DataServices.Tgs.Models;
 
 public record GameWagerPrimary
 {
-    public long Id { get; set; }
+    public Guid Id { get; set; }
     public Guid GameProviderId { get; set; }
     public Guid GameProviderConfigurationId { get; set; }
     public int GameId { get; set; }

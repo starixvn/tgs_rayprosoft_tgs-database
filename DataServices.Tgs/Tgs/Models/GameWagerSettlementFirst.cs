@@ -6,9 +6,6 @@ public record GameWagerSettlementFirst
     public Guid GameWagerPrimaryId { get; set; }
     public int WagerState { get; set; }
     public int WagerType { get; set; }
-    public int ClosedState { get; set; }
-    public int VoidState { get; set; }
-    public int CancelState { get; set; }
     public int FreeGameState { get; set; }
     public int GambleState { get; set; }
     public int CashoutState { get; set; }
@@ -26,5 +23,6 @@ public record GameWagerSettlementFirst
     public DateTimeOffset ExternalResettleOn { get; set; }
     public DateTimeOffset CreatedOn { get; set; }
     public DateTimeOffset ClosedOn { get; set; }
+    public DateTimeOffset UpdatedOn { get; set; }
     public DateTimeOffset FirstOn { get; set; }
 }
