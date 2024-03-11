@@ -44,29 +44,29 @@ internal class GameWagerPrimaryMap : IEntityTypeConfiguration<GameWagerPrimary>
             .HasDatabaseName("ix_game_wager_primaries_e_c_on_player_code");
 
         _ = builder
-            .HasIndex(c => new { c.CreatedOn })
-            .HasDatabaseName("ix_game_wager_primaries_c_on");
+            .HasIndex(c => new { c.ExternalCreatedOn, c.CreatedOn })
+            .HasDatabaseName("ix_game_wager_primaries_e_c_on_c_on");
         _ = builder
-            .HasIndex(c => new { c.CreatedOn, c.Id })
-            .HasDatabaseName("ix_game_wager_primaries_c_on_id");
+            .HasIndex(c => new { c.ExternalCreatedOn, c.CreatedOn, c.Id })
+            .HasDatabaseName("ix_game_wager_primaries_e_c_on_c_on_id");
         _ = builder
-            .HasIndex(c => new { c.CreatedOn, c.GameProviderId })
-            .HasDatabaseName("ix_game_wager_primaries_c_on_game_provider_id");
+            .HasIndex(c => new { c.ExternalCreatedOn, c.CreatedOn, c.GameProviderId })
+            .HasDatabaseName("ix_game_wager_primaries_e_c_on_c_on_game_provider_id");
         _ = builder
-            .HasIndex(c => new { c.CreatedOn, c.GameId })
-            .HasDatabaseName("ix_game_wager_primaries_c_on_game_id");
+            .HasIndex(c => new { c.ExternalCreatedOn, c.CreatedOn, c.GameId })
+            .HasDatabaseName("ix_game_wager_primaries_e_c_on_c_on_game_id");
         _ = builder
-            .HasIndex(c => new { c.CreatedOn, c.ResellerId })
-            .HasDatabaseName("ix_game_wager_primaries_c_on_reseller_id");
+            .HasIndex(c => new { c.ExternalCreatedOn, c.CreatedOn, c.ResellerId })
+            .HasDatabaseName("ix_game_wager_primaries_e_c_on_c_on_reseller_id");
         _ = builder
-            .HasIndex(c => new { c.CreatedOn, c.LicenseeId })
-            .HasDatabaseName("ix_game_wager_primaries_c_on_licensee_id");
+            .HasIndex(c => new { c.ExternalCreatedOn, c.CreatedOn, c.LicenseeId })
+            .HasDatabaseName("ix_game_wager_primaries_e_c_on_c_on_licensee_id");
         _ = builder
-            .HasIndex(c => new { c.CreatedOn, c.BrandId })
-            .HasDatabaseName("ix_game_wager_primaries_c_on_brand_id");
+            .HasIndex(c => new { c.ExternalCreatedOn, c.CreatedOn, c.BrandId })
+            .HasDatabaseName("ix_game_wager_primaries_e_c_on_c_on_brand_id");
         _ = builder
-            .HasIndex(c => new { c.CreatedOn, c.PlayerCode })
-            .HasDatabaseName("ix_game_wager_primaries_c_on_player_code");
+            .HasIndex(c => new { c.ExternalCreatedOn, c.CreatedOn, c.PlayerCode })
+            .HasDatabaseName("ix_game_wager_primaries_e_c_on_c_on_player_code");
 
         _ = builder.Property(c => c.Id)
             .IsRequired()

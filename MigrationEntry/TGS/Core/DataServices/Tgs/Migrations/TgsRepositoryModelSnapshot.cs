@@ -6466,35 +6466,14 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.HasKey("ExternalCreatedOn", "GameProviderId", "GameId", "WalletId", "ExternalWagerId")
                         .HasName("pk_game_wager_primaries");
 
-                    b.HasIndex("CreatedOn")
-                        .HasDatabaseName("ix_game_wager_primaries_c_on");
-
                     b.HasIndex("ExternalCreatedOn")
                         .HasDatabaseName("ix_game_wager_primaries_e_c_on");
 
-                    b.HasIndex("CreatedOn", "BrandId")
-                        .HasDatabaseName("ix_game_wager_primaries_c_on_brand_id");
-
-                    b.HasIndex("CreatedOn", "GameId")
-                        .HasDatabaseName("ix_game_wager_primaries_c_on_game_id");
-
-                    b.HasIndex("CreatedOn", "GameProviderId")
-                        .HasDatabaseName("ix_game_wager_primaries_c_on_game_provider_id");
-
-                    b.HasIndex("CreatedOn", "Id")
-                        .HasDatabaseName("ix_game_wager_primaries_c_on_id");
-
-                    b.HasIndex("CreatedOn", "LicenseeId")
-                        .HasDatabaseName("ix_game_wager_primaries_c_on_licensee_id");
-
-                    b.HasIndex("CreatedOn", "PlayerCode")
-                        .HasDatabaseName("ix_game_wager_primaries_c_on_player_code");
-
-                    b.HasIndex("CreatedOn", "ResellerId")
-                        .HasDatabaseName("ix_game_wager_primaries_c_on_reseller_id");
-
                     b.HasIndex("ExternalCreatedOn", "BrandId")
                         .HasDatabaseName("ix_game_wager_primaries_e_c_on_brand_id");
+
+                    b.HasIndex("ExternalCreatedOn", "CreatedOn")
+                        .HasDatabaseName("ix_game_wager_primaries_e_c_on_c_on");
 
                     b.HasIndex("ExternalCreatedOn", "GameId")
                         .HasDatabaseName("ix_game_wager_primaries_e_c_on_game_id");
@@ -6513,6 +6492,27 @@ namespace TGS.Core.DataServices.Tgs.Migrations
 
                     b.HasIndex("ExternalCreatedOn", "ResellerId")
                         .HasDatabaseName("ix_game_wager_primaries_e_c_on_reseller_id");
+
+                    b.HasIndex("ExternalCreatedOn", "CreatedOn", "BrandId")
+                        .HasDatabaseName("ix_game_wager_primaries_e_c_on_c_on_brand_id");
+
+                    b.HasIndex("ExternalCreatedOn", "CreatedOn", "GameId")
+                        .HasDatabaseName("ix_game_wager_primaries_e_c_on_c_on_game_id");
+
+                    b.HasIndex("ExternalCreatedOn", "CreatedOn", "GameProviderId")
+                        .HasDatabaseName("ix_game_wager_primaries_e_c_on_c_on_game_provider_id");
+
+                    b.HasIndex("ExternalCreatedOn", "CreatedOn", "Id")
+                        .HasDatabaseName("ix_game_wager_primaries_e_c_on_c_on_id");
+
+                    b.HasIndex("ExternalCreatedOn", "CreatedOn", "LicenseeId")
+                        .HasDatabaseName("ix_game_wager_primaries_e_c_on_c_on_licensee_id");
+
+                    b.HasIndex("ExternalCreatedOn", "CreatedOn", "PlayerCode")
+                        .HasDatabaseName("ix_game_wager_primaries_e_c_on_c_on_player_code");
+
+                    b.HasIndex("ExternalCreatedOn", "CreatedOn", "ResellerId")
+                        .HasDatabaseName("ix_game_wager_primaries_e_c_on_c_on_reseller_id");
 
                     b.HasIndex("GameProviderId", "GameId", "WalletId", "ExternalWagerId")
                         .HasDatabaseName("ix_game_wager_primaries");
