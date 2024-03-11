@@ -121,7 +121,6 @@ internal class GameWagerPrimaryMap : IEntityTypeConfiguration<GameWagerPrimary>
             .HasComment("三方投注識別碼");
         _ = builder.Property(c => c.ExternalCreatedOn)
             .IsRequired()
-            .HasDefaultValueSql("'1970-01-01 00:00:00+00'::timestamp with time zone")
             .HasComment("三方下注/創建時間");
         _ = builder.Property(b => b.CreatedOn)
             .IsRequired()

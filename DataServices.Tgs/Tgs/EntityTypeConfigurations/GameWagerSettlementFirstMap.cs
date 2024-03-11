@@ -11,27 +11,40 @@ internal class GameWagerSettlementFirstMap : IEntityTypeConfiguration<GameWagerS
         _ = builder.ToTable("game_wager_settlement_firsts");
 
         _ = builder
-            .HasKey(c => new { c.ExternalCreatedOn, c.GameWagerPrimaryId })
+            .HasKey(c => new { c.FirstOn, c.Id })
             .HasName("pk_game_wager_settlement_firsts");
 
         _ = builder
-            .HasIndex(c => new { c.ExternalCreatedOn })
-            .HasDatabaseName("ix_game_wager_settlement_f_e_c_on");
+            .HasIndex(c => new { c.GameWagerPrimaryId })
+            .HasDatabaseName("ix_game_wager_settlement_firsts");
+
         _ = builder
-            .HasIndex(c => new { c.ExternalCreatedOn, c.WagerState })
-            .HasDatabaseName("ix_game_wager_settlement_f_e_c_on_wager_state");
+            .HasIndex(c => new { c.FirstOn })
+            .HasDatabaseName("ix_game_wager_settlement_firsts_f_on");
         _ = builder
-            .HasIndex(c => new { c.ExternalCreatedOn, c.CreatedOn })
-            .HasDatabaseName("ix_game_wager_settlement_f_e_c_on_created_on");
+            .HasIndex(c => new { c.FirstOn, c.WagerState })
+            .HasDatabaseName("ix_game_wager_settlement_firsts_f_on_wager_state");
         _ = builder
-            .HasIndex(c => new { c.ExternalCreatedOn, c.ClosedOn })
-            .HasDatabaseName("ix_game_wager_settlement_f_e_c_on_closed_on");
+            .HasIndex(c => new { c.FirstOn, c.ExternalCreatedOn })
+            .HasDatabaseName("ix_game_wager_settlement_firsts_f_on_external_created_on");
         _ = builder
-            .HasIndex(c => new { c.ExternalCreatedOn, c.ExternalClosedOn })
-            .HasDatabaseName("ix_game_wager_settlement_f_e_c_on_external_closed_on");
+            .HasIndex(c => new { c.FirstOn, c.ExternalClosedOn })
+            .HasDatabaseName("ix_game_wager_settlement_firsts_f_on_external_closed_on");
         _ = builder
-            .HasIndex(c => new { c.ExternalCreatedOn, c.ExternalPayoffOn })
-            .HasDatabaseName("ix_game_wager_settlement_f_e_c_on_external_payoff_on");
+            .HasIndex(c => new { c.FirstOn, c.ExternalPayoffOn })
+            .HasDatabaseName("ix_game_wager_settlement_firsts_f_on_external_payoff_on");
+        _ = builder
+            .HasIndex(c => new { c.FirstOn, c.ExternalResettleOn })
+            .HasDatabaseName("ix_game_wager_settlement_firsts_f_on_external_resettle_on");
+        _ = builder
+            .HasIndex(c => new { c.FirstOn, c.CreatedOn })
+            .HasDatabaseName("ix_game_wager_settlement_firsts_f_on_created_on");
+        _ = builder
+            .HasIndex(c => new { c.FirstOn, c.ClosedOn })
+            .HasDatabaseName("ix_game_wager_settlement_firsts_f_on_closed_on");
+        _ = builder
+            .HasIndex(c => new { c.FirstOn, c.UpdatedOn })
+            .HasDatabaseName("ix_game_wager_settlement_firsts_f_on_updated_on");
 
         _ = builder.Property(c => c.Id)
             .IsRequired()
@@ -47,18 +60,6 @@ internal class GameWagerSettlementFirstMap : IEntityTypeConfiguration<GameWagerS
             .IsRequired()
             .HasDefaultValue(0)
             .HasComment("投注類型");
-        _ = builder.Property(c => c.ClosedState)
-            .IsRequired()
-            .HasDefaultValue(0)
-            .HasComment("關閉狀態");
-        _ = builder.Property(c => c.VoidState)
-            .IsRequired()
-            .HasDefaultValue(0)
-            .HasComment("作廢狀態");
-        _ = builder.Property(c => c.CancelState)
-            .IsRequired()
-            .HasDefaultValue(0)
-            .HasComment("取消狀態");
         _ = builder.Property(c => c.FreeGameState)
             .IsRequired()
             .HasDefaultValue(0)
@@ -112,6 +113,7 @@ internal class GameWagerSettlementFirstMap : IEntityTypeConfiguration<GameWagerS
             .HasComment("玩家損益/淨利");
         _ = builder.Property(c => c.ExternalCreatedOn)
             .IsRequired()
+            .HasDefaultValueSql("'1970-01-01 00:00:00+00'::timestamp with time zone")
             .HasComment("三方下注/創建時間");
         _ = builder.Property(c => c.ExternalClosedOn)
             .IsRequired()
@@ -128,6 +130,10 @@ internal class GameWagerSettlementFirstMap : IEntityTypeConfiguration<GameWagerS
         _ = builder.Property(c => c.ClosedOn)
             .IsRequired()
             .HasComment("結束時間");
+        _ = builder.Property(c => c.UpdatedOn)
+            .IsRequired()
+            .HasDefaultValueSql("CURRENT_TIMESTAMP")
+            .HasComment("修改時間");
         _ = builder.Property(c => c.FirstOn)
             .IsRequired()
             .HasDefaultValueSql("CURRENT_TIMESTAMP")

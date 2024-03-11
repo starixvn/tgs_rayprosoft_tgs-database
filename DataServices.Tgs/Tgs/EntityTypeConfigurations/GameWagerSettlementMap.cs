@@ -11,27 +11,31 @@ internal class GameWagerSettlementMap : IEntityTypeConfiguration<GameWagerSettle
         _ = builder.ToTable("game_wager_settlements");
 
         _ = builder
-            .HasKey(c => new { c.ExternalCreatedOn, c.GameWagerPrimaryId })
+            .HasKey(c => new { c.CreatedOn, c.Id })
             .HasName("pk_game_wager_settlements");
 
         _ = builder
-            .HasIndex(c => new { c.ExternalCreatedOn })
-            .HasDatabaseName("ix_game_wager_settlements_e_c_on");
+            .HasIndex(c => new { c.GameWagerPrimaryId })
+            .HasDatabaseName("ix_game_wager_settlements");
+
         _ = builder
-            .HasIndex(c => new { c.ExternalCreatedOn, c.WagerState })
-            .HasDatabaseName("ix_game_wager_settlements_e_c_on_wager_state");
+            .HasIndex(c => new { c.CreatedOn })
+            .HasDatabaseName("ix_game_wager_settlements_c_on");
         _ = builder
-            .HasIndex(c => new { c.ExternalCreatedOn, c.CreatedOn })
-            .HasDatabaseName("ix_game_wager_settlements_e_c_on_created_on");
+            .HasIndex(c => new { c.CreatedOn, c.WagerState })
+            .HasDatabaseName("ix_game_wager_settlements_c_on_wager_state");
         _ = builder
-            .HasIndex(c => new { c.ExternalCreatedOn, c.ClosedOn })
-            .HasDatabaseName("ix_game_wager_settlements_e_c_on_closed_on");
+            .HasIndex(c => new { c.CreatedOn, c.ClosedOn })
+            .HasDatabaseName("ix_game_wager_settlements_c_on_closed_on");
         _ = builder
-            .HasIndex(c => new { c.ExternalCreatedOn, c.ExternalClosedOn })
-            .HasDatabaseName("ix_game_wager_settlements_e_c_on_external_closed_on");
+            .HasIndex(c => new { c.CreatedOn, c.ExternalCreatedOn })
+            .HasDatabaseName("ix_game_wager_settlements_c_on_external_created_on");
         _ = builder
-            .HasIndex(c => new { c.ExternalCreatedOn, c.ExternalPayoffOn })
-            .HasDatabaseName("ix_game_wager_settlements_e_c_on_external_payoff_on");
+            .HasIndex(c => new { c.CreatedOn, c.ExternalClosedOn })
+            .HasDatabaseName("ix_game_wager_settlements_c_on_external_closed_on");
+        _ = builder
+            .HasIndex(c => new { c.CreatedOn, c.ExternalPayoffOn })
+            .HasDatabaseName("ix_game_wager_settlements_c_on_external_payoff_on");
 
         _ = builder.Property(c => c.Id)
             .IsRequired()
@@ -47,18 +51,6 @@ internal class GameWagerSettlementMap : IEntityTypeConfiguration<GameWagerSettle
             .IsRequired()
             .HasDefaultValue(0)
             .HasComment("投注類型");
-        _ = builder.Property(c => c.ClosedState)
-            .IsRequired()
-            .HasDefaultValue(0)
-            .HasComment("關閉狀態");
-        _ = builder.Property(c => c.VoidState)
-            .IsRequired()
-            .HasDefaultValue(0)
-            .HasComment("作廢狀態");
-        _ = builder.Property(c => c.CancelState)
-            .IsRequired()
-            .HasDefaultValue(0)
-            .HasComment("取消狀態");
         _ = builder.Property(c => c.FreeGameState)
             .IsRequired()
             .HasDefaultValue(0)
