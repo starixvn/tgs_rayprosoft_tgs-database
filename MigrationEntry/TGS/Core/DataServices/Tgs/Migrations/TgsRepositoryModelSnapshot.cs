@@ -11983,6 +11983,9 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.HasIndex("CreatedOn")
                         .HasDatabaseName("ix_player_vip_level_u_f_created_on");
 
+                    b.HasIndex("PlayerCode", "VipLevel")
+                        .HasDatabaseName("ix_player_vip_level_u_f_player_code_vip_level");
+
                     b.HasIndex("PlayerCode", "VipLevel", "RepeatTimes")
                         .IsUnique()
                         .HasDatabaseName("uni_player_vip_level_u_f_player_code_vip_level");
