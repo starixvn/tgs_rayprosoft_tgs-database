@@ -18,4 +18,6 @@ public record PlayerVipLevelUpgradeForm
     public DateTimeOffset UpdatedOn { get; set; }
     public Guid UpdatedUserId { get; set; }
     public string UpdatedUsername { get; set; }
+
+    public int RepeatTimes { get; set; }
 }

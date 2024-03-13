@@ -11929,6 +11929,13 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnName("remark")
                         .HasComment("備註");
 
+                    b.Property<int>("RepeatTimes")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasDefaultValue(0)
+                        .HasColumnName("repeat_times")
+                        .HasComment("重複次數");
+
                     b.Property<string>("SnapshotVipLevel")
                         .IsRequired()
                         .ValueGeneratedOnAdd()
