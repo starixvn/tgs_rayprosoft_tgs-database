@@ -83,5 +83,9 @@ internal class PlayerVipLevelUpgradeFormMap : IEntityTypeConfiguration<PlayerVip
             .IsRequired()
             .HasDefaultValue("")
             .HasComment("備註");
+        _ = builder.Property(b => b.RepeatTimes)
+            .IsRequired()
+            .HasDefaultValue(0)
+            .HasComment("重複次數");
     }
 }
