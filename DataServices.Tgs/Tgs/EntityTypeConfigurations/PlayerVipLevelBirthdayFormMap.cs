@@ -18,7 +18,8 @@ internal class PlayerVipLevelBirthdayFormMap : IEntityTypeConfiguration<PlayerVi
             .HasDatabaseName("ix_player_vip_level_b_f_created_on");
         _ = builder
             .HasIndex(c => new { c.PlayerCode, c.Birthday })
-            .HasDatabaseName("ix_player_vip_level_b_f_player_code_birthday");
+            .IsUnique()
+            .HasDatabaseName("uni_player_vip_level_b_f_player_code_birthday");
 
         _ = builder.Property(b => b.Id)
             .IsRequired()
