@@ -6263,6 +6263,54 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.ToTable("game_wager_firsts", "dbo");
                 });
 
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.GameWagerMarker", b =>
+                {
+                    b.Property<string>("Code")
+                        .HasMaxLength(128)
+                        .HasColumnType("character varying(128)")
+                        .HasColumnName("code")
+                        .HasComment("代碼");
+
+                    b.Property<DateTimeOffset>("CreatedOn")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_on")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP")
+                        .HasComment("創建時間");
+
+                    b.Property<string>("Directions")
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("character varying(128)")
+                        .HasColumnName("directions")
+                        .HasComment("說明");
+
+                    b.Property<string>("Expansions")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("jsonb")
+                        .HasDefaultValue("{}")
+                        .HasColumnName("expansions")
+                        .HasComment("擴充");
+
+                    b.Property<Guid>("Marker")
+                        .HasColumnType("uuid")
+                        .HasColumnName("marker")
+                        .HasComment("標記");
+
+                    b.Property<DateTimeOffset>("UpdatedOn")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("updated_on")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP")
+                        .HasComment("修改時間");
+
+                    b.HasKey("Code")
+                        .HasName("pk_game_wager_markers");
+
+                    b.ToTable("game_wager_markers", "dbo");
+                });
+
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.GameWagerPlayerAccum", b =>
                 {
                     b.Property<DateTimeOffset>("AccumOn")
