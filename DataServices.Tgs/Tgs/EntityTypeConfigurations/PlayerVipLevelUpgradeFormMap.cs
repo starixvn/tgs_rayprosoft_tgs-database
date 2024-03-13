@@ -23,6 +23,10 @@ internal class PlayerVipLevelUpgradeFormMap : IEntityTypeConfiguration<PlayerVip
             .IsUnique()
             .HasDatabaseName("uni_player_vip_level_u_f_player_code_vip_level");
 
+        _ = builder
+            .HasIndex(c => new { c.PlayerCode, c.VipLevel })
+            .HasDatabaseName("ix_player_vip_level_u_f_player_code_vip_level");
+
         _ = builder.Property(b => b.Id)
             .IsRequired()
             .HasComment("識別碼");
