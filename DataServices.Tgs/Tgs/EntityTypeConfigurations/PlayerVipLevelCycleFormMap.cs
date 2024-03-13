@@ -19,7 +19,7 @@ internal class PlayerVipLevelCycleFormMap : IEntityTypeConfiguration<PlayerVipLe
         _ = builder
             .HasIndex(c => new { c.PlayerCode, c.CycleType, c.CycleOn })
             .IsUnique()
-            .HasDatabaseName("ix_player_vip_level_cycle_f_player_code_cycle");
+            .HasDatabaseName("uni_player_vip_level_cycle_f_player_code_cycle");
 
         _ = builder.Property(b => b.Id)
             .IsRequired()

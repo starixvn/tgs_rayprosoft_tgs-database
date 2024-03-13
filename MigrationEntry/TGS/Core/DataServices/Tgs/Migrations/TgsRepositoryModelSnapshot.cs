@@ -11521,7 +11521,8 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasDatabaseName("ix_player_vip_level_b_f_created_on");
 
                     b.HasIndex("PlayerCode", "Birthday")
-                        .HasDatabaseName("ix_player_vip_level_b_f_player_code_birthday");
+                        .IsUnique()
+                        .HasDatabaseName("uni_player_vip_level_b_f_player_code_birthday");
 
                     b.ToTable("player_vip_level_birthday_forms", "dbo");
                 });
@@ -11718,7 +11719,8 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasDatabaseName("ix_player_vip_level_cycle_f_created_on");
 
                     b.HasIndex("PlayerCode", "CycleType", "CycleOn")
-                        .HasDatabaseName("ix_player_vip_level_cycle_f_player_code_cycle");
+                        .IsUnique()
+                        .HasDatabaseName("uni_player_vip_level_cycle_f_player_code_cycle");
 
                     b.ToTable("player_vip_level_cycle_forms", "dbo");
                 });
