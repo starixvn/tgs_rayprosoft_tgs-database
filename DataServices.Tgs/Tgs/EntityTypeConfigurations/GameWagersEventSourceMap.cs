@@ -27,6 +27,9 @@ internal class GameWagersEventSourceMap : IEntityTypeConfiguration<GameWagersEve
         _ = builder
             .HasIndex(c => new { c.CreatedOn, c.GameProviderId, c.WagerState, c.Id })
             .HasDatabaseName("ix_game_wagers_event_sources_g_p_wager_state_id");
+        _ = builder
+            .HasIndex(c => new { c.CreatedOn, c.GameProviderId, c.Id })
+            .HasDatabaseName("ix_game_wagers_event_sources_g_p_id");
 
         _ = builder.Property(c => c.Id)
             .IsRequired()

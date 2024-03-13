@@ -7229,6 +7229,9 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.HasIndex("CreatedOn", "GameProviderId")
                         .HasDatabaseName("ix_game_wagers_event_sources_g_p");
 
+                    b.HasIndex("CreatedOn", "GameProviderId", "Id")
+                        .HasDatabaseName("ix_game_wagers_event_sources_g_p_id");
+
                     b.HasIndex("CreatedOn", "GameProviderId", "WagerState")
                         .HasDatabaseName("ix_game_wagers_event_sources_g_p_wager_state");
 
