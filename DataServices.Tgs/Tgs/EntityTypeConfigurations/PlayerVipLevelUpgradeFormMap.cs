@@ -13,12 +13,15 @@ internal class PlayerVipLevelUpgradeFormMap : IEntityTypeConfiguration<PlayerVip
 
         _ = builder.HasKey(b => b.Id)
             .HasName("pk_player_vip_level_upgrade_forms");
+
         _ = builder
             .HasIndex(c => new { c.CreatedOn })
             .HasDatabaseName("ix_player_vip_level_u_f_created_on");
+
         _ = builder
-            .HasIndex(c => new { c.PlayerCode, c.VipLevel })
-            .HasDatabaseName("ix_player_vip_level_u_f_player_code_vip_level");
+            .HasIndex(c => new { c.PlayerCode, c.VipLevel, c.RepeatTimes })
+            .IsUnique()
+            .HasDatabaseName("uni_player_vip_level_u_f_player_code_vip_level");
 
         _ = builder.Property(b => b.Id)
             .IsRequired()
