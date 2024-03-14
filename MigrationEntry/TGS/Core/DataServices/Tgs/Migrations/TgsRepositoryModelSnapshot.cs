@@ -6518,8 +6518,8 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.HasIndex("ExternalCreatedOn", "BrandId")
                         .HasDatabaseName("ix_game_wager_primaries_e_c_on_brand_id");
 
-                    b.HasIndex("ExternalCreatedOn", "CreatedOn")
-                        .HasDatabaseName("ix_game_wager_primaries_e_c_on_c_on");
+                    b.HasIndex("ExternalCreatedOn", "CurrencyCode")
+                        .HasDatabaseName("ix_game_wager_primaries_e_c_on_currency_code");
 
                     b.HasIndex("ExternalCreatedOn", "ExternalRoundId")
                         .HasDatabaseName("ix_game_wager_primaries_e_c_on_external_round_id");
@@ -6529,6 +6529,9 @@ namespace TGS.Core.DataServices.Tgs.Migrations
 
                     b.HasIndex("ExternalCreatedOn", "GameId")
                         .HasDatabaseName("ix_game_wager_primaries_e_c_on_game_id");
+
+                    b.HasIndex("ExternalCreatedOn", "GameProviderConfigurationId")
+                        .HasDatabaseName("ix_game_wager_primaries_e_c_on_g_p_c_id");
 
                     b.HasIndex("ExternalCreatedOn", "GameProviderId")
                         .HasDatabaseName("ix_game_wager_primaries_e_c_on_game_provider_id");
@@ -6545,32 +6548,8 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.HasIndex("ExternalCreatedOn", "ResellerId")
                         .HasDatabaseName("ix_game_wager_primaries_e_c_on_reseller_id");
 
-                    b.HasIndex("ExternalCreatedOn", "CreatedOn", "BrandId")
-                        .HasDatabaseName("ix_game_wager_primaries_e_c_on_c_on_brand_id");
-
-                    b.HasIndex("ExternalCreatedOn", "CreatedOn", "ExternalRoundId")
-                        .HasDatabaseName("ix_game_wager_primaries_e_c_on_c_on_external_round_id");
-
-                    b.HasIndex("ExternalCreatedOn", "CreatedOn", "ExternalWagerId")
-                        .HasDatabaseName("ix_game_wager_primaries_e_c_on_c_on_external_wager_id");
-
-                    b.HasIndex("ExternalCreatedOn", "CreatedOn", "GameId")
-                        .HasDatabaseName("ix_game_wager_primaries_e_c_on_c_on_game_id");
-
-                    b.HasIndex("ExternalCreatedOn", "CreatedOn", "GameProviderId")
-                        .HasDatabaseName("ix_game_wager_primaries_e_c_on_c_on_game_provider_id");
-
-                    b.HasIndex("ExternalCreatedOn", "CreatedOn", "Id")
-                        .HasDatabaseName("ix_game_wager_primaries_e_c_on_c_on_id");
-
-                    b.HasIndex("ExternalCreatedOn", "CreatedOn", "LicenseeId")
-                        .HasDatabaseName("ix_game_wager_primaries_e_c_on_c_on_licensee_id");
-
-                    b.HasIndex("ExternalCreatedOn", "CreatedOn", "PlayerCode")
-                        .HasDatabaseName("ix_game_wager_primaries_e_c_on_c_on_player_code");
-
-                    b.HasIndex("ExternalCreatedOn", "CreatedOn", "ResellerId")
-                        .HasDatabaseName("ix_game_wager_primaries_e_c_on_c_on_reseller_id");
+                    b.HasIndex("ExternalCreatedOn", "WalletId")
+                        .HasDatabaseName("ix_game_wager_primaries_e_c_on_wallet_id");
 
                     b.HasIndex("GameProviderId", "GameId", "WalletId", "ExternalWagerId")
                         .HasDatabaseName("ix_game_wager_primaries");
@@ -6580,6 +6559,24 @@ namespace TGS.Core.DataServices.Tgs.Migrations
 
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.GameWagerPrimaryDetail", b =>
                 {
+                    b.Property<DateTimeOffset>("ExternalCreatedOn")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("external_created_on")
+                        .HasComment("三方下注/創建時間");
+
+                    b.Property<Guid>("GameWagerPrimaryId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("game_wager_primary_id")
+                        .HasComment("遊戲投注主要識別碼");
+
+                    b.Property<string>("AdditionalData")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("jsonb")
+                        .HasDefaultValue("{}")
+                        .HasColumnName("additional_data")
+                        .HasComment("附加數據");
+
                     b.Property<DateTimeOffset>("CreatedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("timestamp with time zone")
@@ -6592,19 +6589,6 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnName("id")
                         .HasComment("識別碼");
 
-                    b.Property<string>("AdditionalData")
-                        .IsRequired()
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("jsonb")
-                        .HasDefaultValue("{}")
-                        .HasColumnName("additional_data")
-                        .HasComment("附加數據");
-
-                    b.Property<Guid>("GameWagerPrimaryId")
-                        .HasColumnType("uuid")
-                        .HasColumnName("game_wager_primary_id")
-                        .HasComment("遊戲投注主要識別碼");
-
                     b.Property<DateTimeOffset>("UpdatedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("timestamp with time zone")
@@ -6612,11 +6596,11 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasDefaultValueSql("CURRENT_TIMESTAMP")
                         .HasComment("修改時間");
 
-                    b.HasKey("CreatedOn", "Id")
+                    b.HasKey("ExternalCreatedOn", "GameWagerPrimaryId")
                         .HasName("pk_game_wager_primary_details");
 
-                    b.HasIndex("CreatedOn", "GameWagerPrimaryId")
-                        .HasDatabaseName("ix_game_wager_primary_details_c_on_g_w_p_id");
+                    b.HasIndex("ExternalCreatedOn", "Id")
+                        .HasDatabaseName("ix_game_wager_primary_details_e_c_on_id");
 
                     b.ToTable("game_wager_primary_details", "dbo");
                 });
