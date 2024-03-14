@@ -358,6 +358,13 @@ public partial class DataInitializer
                             new MenuSetting("View")
                         }
                     },
+                    new MenuSetting("GameProviders")
+                    {
+                        SubMenus = new[]
+                        {
+                            new MenuSetting("View")
+                        }
+                    },
                     new MenuSetting("GameProviderReport")
                     {
                         SubMenus = new[]
