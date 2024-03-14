@@ -12,12 +12,12 @@ internal class GameWagerPrimaryDetailMap : IEntityTypeConfiguration<GameWagerPri
         _ = builder.ToTable("game_wager_primary_details");
 
         _ = builder
-            .HasKey(c => new { c.CreatedOn, c.Id })
+            .HasKey(c => new { c.ExternalCreatedOn, c.GameWagerPrimaryId })
             .HasName("pk_game_wager_primary_details");
 
         _ = builder
-            .HasIndex(c => new { c.CreatedOn, c.GameWagerPrimaryId })
-            .HasDatabaseName("ix_game_wager_primary_details_c_on_g_w_p_id");
+            .HasIndex(c => new { c.ExternalCreatedOn, c.Id })
+            .HasDatabaseName("ix_game_wager_primary_details_e_c_on_id");
 
         _ = builder.Property(c => c.Id)
             .IsRequired()
@@ -25,6 +25,9 @@ internal class GameWagerPrimaryDetailMap : IEntityTypeConfiguration<GameWagerPri
         _ = builder.Property(c => c.GameWagerPrimaryId)
             .IsRequired()
             .HasComment("遊戲投注主要識別碼");
+        _ = builder.Property(c => c.ExternalCreatedOn)
+            .IsRequired()
+            .HasComment("三方下注/創建時間");
         _ = builder.Property(c => c.AdditionalData)
             .IsRequired()
             .HasColumnType(ColumnTypes.Jsonb)
