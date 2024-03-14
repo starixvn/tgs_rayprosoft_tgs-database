@@ -6623,17 +6623,17 @@ namespace TGS.Core.DataServices.Tgs.Migrations
 
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.GameWagerSettlement", b =>
                 {
-                    b.Property<DateTimeOffset>("CreatedOn")
+                    b.Property<DateTimeOffset>("ExternalCreatedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("timestamp with time zone")
-                        .HasColumnName("created_on")
-                        .HasDefaultValueSql("CURRENT_TIMESTAMP")
-                        .HasComment("創建時間");
+                        .HasColumnName("external_created_on")
+                        .HasDefaultValueSql("'1970-01-01 00:00:00+00'::timestamp with time zone")
+                        .HasComment("三方下注/創建時間");
 
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("GameWagerPrimaryId")
                         .HasColumnType("uuid")
-                        .HasColumnName("id")
-                        .HasComment("識別碼");
+                        .HasColumnName("game_wager_primary_id")
+                        .HasComment("遊戲投注主要識別碼");
 
                     b.Property<decimal>("Bet")
                         .ValueGeneratedOnAdd()
@@ -6665,6 +6665,13 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnName("commission")
                         .HasComment("傭金");
 
+                    b.Property<DateTimeOffset>("CreatedOn")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_on")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP")
+                        .HasComment("創建時間");
+
                     b.Property<decimal>("CurrencyRatio")
                         .ValueGeneratedOnAdd()
                         .HasPrecision(18, 6)
@@ -6679,13 +6686,6 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnName("external_closed_on")
                         .HasDefaultValueSql("'1970-01-01 00:00:00+00'::timestamp with time zone")
                         .HasComment("三方結算/結束時間");
-
-                    b.Property<DateTimeOffset>("ExternalCreatedOn")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("external_created_on")
-                        .HasDefaultValueSql("'1970-01-01 00:00:00+00'::timestamp with time zone")
-                        .HasComment("三方下注/創建時間");
 
                     b.Property<DateTimeOffset>("ExternalPayoffOn")
                         .ValueGeneratedOnAdd()
@@ -6715,10 +6715,10 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnName("gamble_state")
                         .HasComment("博取遊戲狀態");
 
-                    b.Property<Guid>("GameWagerPrimaryId")
+                    b.Property<Guid>("Id")
                         .HasColumnType("uuid")
-                        .HasColumnName("game_wager_primary_id")
-                        .HasComment("遊戲投注主要識別碼");
+                        .HasColumnName("id")
+                        .HasComment("識別碼");
 
                     b.Property<DateTimeOffset>("ResetOn")
                         .ValueGeneratedOnAdd()
@@ -6794,46 +6794,49 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnName("win_loss")
                         .HasComment("玩家損益/淨利");
 
-                    b.HasKey("CreatedOn", "Id")
+                    b.HasKey("ExternalCreatedOn", "GameWagerPrimaryId")
                         .HasName("pk_game_wager_settlements");
 
-                    b.HasIndex("CreatedOn")
-                        .HasDatabaseName("ix_game_wager_settlements_c_on");
+                    b.HasIndex("ExternalCreatedOn")
+                        .HasDatabaseName("ix_game_wager_settlements_e_c_on");
 
-                    b.HasIndex("CreatedOn", "ClosedOn")
-                        .HasDatabaseName("ix_game_wager_settlements_c_on_closed_on");
+                    b.HasIndex("ExternalCreatedOn", "ClosedOn")
+                        .HasDatabaseName("ix_game_wager_settlements_e_c_on_closed_on");
 
-                    b.HasIndex("CreatedOn", "ExternalClosedOn")
-                        .HasDatabaseName("ix_game_wager_settlements_c_on_external_closed_on");
+                    b.HasIndex("ExternalCreatedOn", "ExternalClosedOn")
+                        .HasDatabaseName("ix_game_wager_settlements_e_c_on_e_closed_on");
 
-                    b.HasIndex("CreatedOn", "ExternalCreatedOn")
-                        .HasDatabaseName("ix_game_wager_settlements_c_on_external_created_on");
+                    b.HasIndex("ExternalCreatedOn", "ExternalPayoffOn")
+                        .HasDatabaseName("ix_game_wager_settlements_e_c_on_e_payoff_on");
 
-                    b.HasIndex("CreatedOn", "ExternalPayoffOn")
-                        .HasDatabaseName("ix_game_wager_settlements_c_on_external_payoff_on");
+                    b.HasIndex("ExternalCreatedOn", "ExternalResettleOn")
+                        .HasDatabaseName("ix_game_wager_settlements_e_c_on_e_resettle_on");
 
-                    b.HasIndex("CreatedOn", "GameWagerPrimaryId")
-                        .HasDatabaseName("ix_game_wager_settlements_c_on_g_w_p_id");
+                    b.HasIndex("ExternalCreatedOn", "Id")
+                        .HasDatabaseName("ix_game_wager_settlements_e_c_on_id");
 
-                    b.HasIndex("CreatedOn", "WagerState")
-                        .HasDatabaseName("ix_game_wager_settlements_c_on_wager_state");
+                    b.HasIndex("ExternalCreatedOn", "UpdatedOn")
+                        .HasDatabaseName("ix_game_wager_settlements_e_c_on_updated_on");
+
+                    b.HasIndex("ExternalCreatedOn", "WagerState")
+                        .HasDatabaseName("ix_game_wager_settlements_e_c_on_wager_state");
 
                     b.ToTable("game_wager_settlements", "dbo");
                 });
 
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.GameWagerSettlementFirst", b =>
                 {
-                    b.Property<DateTimeOffset>("FirstOn")
+                    b.Property<DateTimeOffset>("ExternalCreatedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("timestamp with time zone")
-                        .HasColumnName("first_on")
-                        .HasDefaultValueSql("CURRENT_TIMESTAMP")
-                        .HasComment("首筆時間");
+                        .HasColumnName("external_created_on")
+                        .HasDefaultValueSql("'1970-01-01 00:00:00+00'::timestamp with time zone")
+                        .HasComment("三方下注/創建時間");
 
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("GameWagerPrimaryId")
                         .HasColumnType("uuid")
-                        .HasColumnName("id")
-                        .HasComment("識別碼");
+                        .HasColumnName("game_wager_primary_id")
+                        .HasComment("遊戲投注主要識別碼");
 
                     b.Property<decimal>("Bet")
                         .ValueGeneratedOnAdd()
@@ -6881,13 +6884,6 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnName("external_closed_on")
                         .HasComment("三方結算/結束時間");
 
-                    b.Property<DateTimeOffset>("ExternalCreatedOn")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("external_created_on")
-                        .HasDefaultValueSql("'1970-01-01 00:00:00+00'::timestamp with time zone")
-                        .HasComment("三方下注/創建時間");
-
                     b.Property<DateTimeOffset>("ExternalPayoffOn")
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("external_payoff_on")
@@ -6897,6 +6893,13 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("external_resettle_on")
                         .HasComment("三方重新結算時間");
+
+                    b.Property<DateTimeOffset>("FirstOn")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("first_on")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP")
+                        .HasComment("首筆時間");
 
                     b.Property<int>("FreeGameState")
                         .ValueGeneratedOnAdd()
@@ -6912,10 +6915,10 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnName("gamble_state")
                         .HasComment("博取遊戲狀態");
 
-                    b.Property<Guid>("GameWagerPrimaryId")
+                    b.Property<Guid>("Id")
                         .HasColumnType("uuid")
-                        .HasColumnName("game_wager_primary_id")
-                        .HasComment("遊戲投注主要識別碼");
+                        .HasColumnName("id")
+                        .HasComment("識別碼");
 
                     b.Property<int>("ResettleState")
                         .ValueGeneratedOnAdd()
@@ -6977,38 +6980,32 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnName("win_loss")
                         .HasComment("玩家損益/淨利");
 
-                    b.HasKey("FirstOn", "Id")
+                    b.HasKey("ExternalCreatedOn", "GameWagerPrimaryId")
                         .HasName("pk_game_wager_settlement_firsts");
 
-                    b.HasIndex("FirstOn")
-                        .HasDatabaseName("ix_game_wager_settlement_firsts_f_on");
+                    b.HasIndex("ExternalCreatedOn")
+                        .HasDatabaseName("ix_game_wager_settlement_f_e_c_on");
 
-                    b.HasIndex("FirstOn", "ClosedOn")
-                        .HasDatabaseName("ix_game_wager_settlement_firsts_f_on_closed_on");
+                    b.HasIndex("ExternalCreatedOn", "ClosedOn")
+                        .HasDatabaseName("ix_game_wager_settlement_f_e_c_on_closed_on");
 
-                    b.HasIndex("FirstOn", "CreatedOn")
-                        .HasDatabaseName("ix_game_wager_settlement_firsts_f_on_created_on");
+                    b.HasIndex("ExternalCreatedOn", "ExternalClosedOn")
+                        .HasDatabaseName("ix_game_wager_settlement_f_e_c_on_e_closed_on");
 
-                    b.HasIndex("FirstOn", "ExternalClosedOn")
-                        .HasDatabaseName("ix_game_wager_settlement_firsts_f_on_external_closed_on");
+                    b.HasIndex("ExternalCreatedOn", "ExternalPayoffOn")
+                        .HasDatabaseName("ix_game_wager_settlement_f_e_c_on_e_payoff_on");
 
-                    b.HasIndex("FirstOn", "ExternalCreatedOn")
-                        .HasDatabaseName("ix_game_wager_settlement_firsts_f_on_external_created_on");
+                    b.HasIndex("ExternalCreatedOn", "ExternalResettleOn")
+                        .HasDatabaseName("ix_game_wager_settlement_f_e_c_on_e_resettle_on");
 
-                    b.HasIndex("FirstOn", "ExternalPayoffOn")
-                        .HasDatabaseName("ix_game_wager_settlement_firsts_f_on_external_payoff_on");
+                    b.HasIndex("ExternalCreatedOn", "Id")
+                        .HasDatabaseName("ix_game_wager_settlement_f_e_c_on_id");
 
-                    b.HasIndex("FirstOn", "ExternalResettleOn")
-                        .HasDatabaseName("ix_game_wager_settlement_firsts_f_on_external_resettle_on");
+                    b.HasIndex("ExternalCreatedOn", "UpdatedOn")
+                        .HasDatabaseName("ix_game_wager_settlement_f_e_c_on_updated_on");
 
-                    b.HasIndex("FirstOn", "GameWagerPrimaryId")
-                        .HasDatabaseName("ix_game_wager_settlement_firsts_f_on_g_w_p_id");
-
-                    b.HasIndex("FirstOn", "UpdatedOn")
-                        .HasDatabaseName("ix_game_wager_settlement_firsts_f_on_updated_on");
-
-                    b.HasIndex("FirstOn", "WagerState")
-                        .HasDatabaseName("ix_game_wager_settlement_firsts_f_on_wager_state");
+                    b.HasIndex("ExternalCreatedOn", "WagerState")
+                        .HasDatabaseName("ix_game_wager_settlement_f_e_c_on_wager_state");
 
                     b.ToTable("game_wager_settlement_firsts", "dbo");
                 });

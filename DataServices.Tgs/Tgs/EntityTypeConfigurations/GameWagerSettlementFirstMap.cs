@@ -11,39 +11,32 @@ internal class GameWagerSettlementFirstMap : IEntityTypeConfiguration<GameWagerS
         _ = builder.ToTable("game_wager_settlement_firsts");
 
         _ = builder
-            .HasKey(c => new { c.FirstOn, c.Id })
+            .HasKey(c => new { c.ExternalCreatedOn, c.GameWagerPrimaryId })
             .HasName("pk_game_wager_settlement_firsts");
-
         _ = builder
-            .HasIndex(c => new { c.FirstOn })
-            .HasDatabaseName("ix_game_wager_settlement_firsts_f_on");
+            .HasIndex(c => new { c.ExternalCreatedOn })
+            .HasDatabaseName("ix_game_wager_settlement_f_e_c_on");
         _ = builder
-            .HasIndex(c => new { c.FirstOn, c.GameWagerPrimaryId })
-            .HasDatabaseName("ix_game_wager_settlement_firsts_f_on_g_w_p_id");
+            .HasIndex(c => new { c.ExternalCreatedOn, c.Id })
+            .HasDatabaseName("ix_game_wager_settlement_f_e_c_on_id");
         _ = builder
-            .HasIndex(c => new { c.FirstOn, c.WagerState })
-            .HasDatabaseName("ix_game_wager_settlement_firsts_f_on_wager_state");
+            .HasIndex(c => new { c.ExternalCreatedOn, c.WagerState })
+            .HasDatabaseName("ix_game_wager_settlement_f_e_c_on_wager_state");
         _ = builder
-            .HasIndex(c => new { c.FirstOn, c.ExternalCreatedOn })
-            .HasDatabaseName("ix_game_wager_settlement_firsts_f_on_external_created_on");
+            .HasIndex(c => new { c.ExternalCreatedOn, c.ExternalClosedOn })
+            .HasDatabaseName("ix_game_wager_settlement_f_e_c_on_e_closed_on");
         _ = builder
-            .HasIndex(c => new { c.FirstOn, c.ExternalClosedOn })
-            .HasDatabaseName("ix_game_wager_settlement_firsts_f_on_external_closed_on");
+            .HasIndex(c => new { c.ExternalCreatedOn, c.ExternalPayoffOn })
+            .HasDatabaseName("ix_game_wager_settlement_f_e_c_on_e_payoff_on");
         _ = builder
-            .HasIndex(c => new { c.FirstOn, c.ExternalPayoffOn })
-            .HasDatabaseName("ix_game_wager_settlement_firsts_f_on_external_payoff_on");
+            .HasIndex(c => new { c.ExternalCreatedOn, c.ExternalResettleOn })
+            .HasDatabaseName("ix_game_wager_settlement_f_e_c_on_e_resettle_on");
         _ = builder
-            .HasIndex(c => new { c.FirstOn, c.ExternalResettleOn })
-            .HasDatabaseName("ix_game_wager_settlement_firsts_f_on_external_resettle_on");
+            .HasIndex(c => new { c.ExternalCreatedOn, c.ClosedOn })
+            .HasDatabaseName("ix_game_wager_settlement_f_e_c_on_closed_on");
         _ = builder
-            .HasIndex(c => new { c.FirstOn, c.CreatedOn })
-            .HasDatabaseName("ix_game_wager_settlement_firsts_f_on_created_on");
-        _ = builder
-            .HasIndex(c => new { c.FirstOn, c.ClosedOn })
-            .HasDatabaseName("ix_game_wager_settlement_firsts_f_on_closed_on");
-        _ = builder
-            .HasIndex(c => new { c.FirstOn, c.UpdatedOn })
-            .HasDatabaseName("ix_game_wager_settlement_firsts_f_on_updated_on");
+            .HasIndex(c => new { c.ExternalCreatedOn, c.UpdatedOn })
+            .HasDatabaseName("ix_game_wager_settlement_f_e_c_on_updated_on");
 
         _ = builder.Property(c => c.Id)
             .IsRequired()
