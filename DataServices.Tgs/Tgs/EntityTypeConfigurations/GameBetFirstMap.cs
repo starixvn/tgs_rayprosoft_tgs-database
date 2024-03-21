@@ -120,14 +120,14 @@ internal class GameBetFirstMap : IEntityTypeConfiguration<GameBetFirst>
             .IsRequired()
             .HasDefaultValueSql("'1970-01-01 00:00:00+00'::timestamp with time zone")
             .HasComment("三方重新結算時間");
-        _ = builder.Property(c => c.WagerState)
+        _ = builder.Property(c => c.BetState)
             .IsRequired()
             .HasDefaultValue(0)
-            .HasComment("投注狀態");
-        _ = builder.Property(c => c.WagerType)
+            .HasComment("注單狀態");
+        _ = builder.Property(c => c.BetType)
             .IsRequired()
             .HasDefaultValue(0)
-            .HasComment("投注類型");
+            .HasComment("注單類型");
         _ = builder.Property(c => c.FreeGameState)
             .IsRequired()
             .HasDefaultValue(0)

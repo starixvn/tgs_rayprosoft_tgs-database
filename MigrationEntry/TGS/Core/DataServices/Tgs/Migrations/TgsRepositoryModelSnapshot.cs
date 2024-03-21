@@ -5075,6 +5075,20 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnName("bet")
                         .HasComment("下注");
 
+                    b.Property<int>("BetState")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasDefaultValue(0)
+                        .HasColumnName("bet_state")
+                        .HasComment("注單狀態");
+
+                    b.Property<int>("BetType")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasDefaultValue(0)
+                        .HasColumnName("bet_type")
+                        .HasComment("注單類型");
+
                     b.Property<Guid>("BrandId")
                         .HasColumnType("uuid")
                         .HasColumnName("brand_id")
@@ -5259,20 +5273,6 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnName("valid_bet")
                         .HasComment("實際/有效下注");
 
-                    b.Property<int>("WagerState")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasDefaultValue(0)
-                        .HasColumnName("wager_state")
-                        .HasComment("投注狀態");
-
-                    b.Property<int>("WagerType")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasDefaultValue(0)
-                        .HasColumnName("wager_type")
-                        .HasComment("投注類型");
-
                     b.Property<decimal>("WinLoss")
                         .ValueGeneratedOnAdd()
                         .HasPrecision(18, 6)
@@ -5358,6 +5358,20 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasDefaultValue(0m)
                         .HasColumnName("bet")
                         .HasComment("下注");
+
+                    b.Property<int>("BetState")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasDefaultValue(0)
+                        .HasColumnName("bet_state")
+                        .HasComment("注單狀態");
+
+                    b.Property<int>("BetType")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasDefaultValue(0)
+                        .HasColumnName("bet_type")
+                        .HasComment("注單類型");
 
                     b.Property<Guid>("BrandId")
                         .HasColumnType("uuid")
@@ -5527,20 +5541,6 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnName("valid_bet")
                         .HasComment("實際/有效下注");
 
-                    b.Property<int>("WagerState")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasDefaultValue(0)
-                        .HasColumnName("wager_state")
-                        .HasComment("投注狀態");
-
-                    b.Property<int>("WagerType")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasDefaultValue(0)
-                        .HasColumnName("wager_type")
-                        .HasComment("投注類型");
-
                     b.Property<Guid>("WalletId")
                         .HasColumnType("uuid")
                         .HasColumnName("wallet_id")
@@ -5560,14 +5560,14 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.HasIndex("CreatedOn", "GameProviderId")
                         .HasDatabaseName("ix_game_bet_event_sources_g_p");
 
+                    b.HasIndex("CreatedOn", "GameProviderId", "BetState")
+                        .HasDatabaseName("ix_game_bet_event_sources_g_p_bet_state");
+
                     b.HasIndex("CreatedOn", "GameProviderId", "Id")
                         .HasDatabaseName("ix_game_bet_event_sources_g_p_id");
 
-                    b.HasIndex("CreatedOn", "GameProviderId", "WagerState")
-                        .HasDatabaseName("ix_game_bet_event_sources_g_p_wager_state");
-
-                    b.HasIndex("CreatedOn", "GameProviderId", "WagerState", "Id")
-                        .HasDatabaseName("ix_game_bet_event_sources_g_p_wager_state_id");
+                    b.HasIndex("CreatedOn", "GameProviderId", "BetState", "Id")
+                        .HasDatabaseName("ix_game_bet_event_sources_g_p_bet_state_id");
 
                     b.HasIndex("CreatedOn", "GameProviderId", "GameId", "WalletId", "ExternalWagerId")
                         .HasDatabaseName("ix_game_bet_event_sources");
@@ -5620,6 +5620,20 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasDefaultValue(0m)
                         .HasColumnName("bet")
                         .HasComment("下注");
+
+                    b.Property<int>("BetState")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasDefaultValue(0)
+                        .HasColumnName("bet_state")
+                        .HasComment("注單狀態");
+
+                    b.Property<int>("BetType")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasDefaultValue(0)
+                        .HasColumnName("bet_type")
+                        .HasComment("注單類型");
 
                     b.Property<Guid>("BrandId")
                         .HasColumnType("uuid")
@@ -5803,20 +5817,6 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnName("valid_bet")
                         .HasComment("實際/有效下注");
 
-                    b.Property<int>("WagerState")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasDefaultValue(0)
-                        .HasColumnName("wager_state")
-                        .HasComment("投注狀態");
-
-                    b.Property<int>("WagerType")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasDefaultValue(0)
-                        .HasColumnName("wager_type")
-                        .HasComment("投注類型");
-
                     b.Property<decimal>("WinLoss")
                         .ValueGeneratedOnAdd()
                         .HasPrecision(18, 6)
@@ -5963,6 +5963,13 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnName("bet")
                         .HasComment("下注");
 
+                    b.Property<int>("BetType")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasDefaultValue(0)
+                        .HasColumnName("bet_type")
+                        .HasComment("注單類型");
+
                     b.Property<Guid>("BrandId")
                         .HasColumnType("uuid")
                         .HasColumnName("brand_id")
@@ -6037,13 +6044,6 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasDefaultValue(0m)
                         .HasColumnName("valid_bet")
                         .HasComment("實際/有效下注");
-
-                    b.Property<int>("WagerType")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasDefaultValue(0)
-                        .HasColumnName("wager_type")
-                        .HasComment("投注類型");
 
                     b.HasKey("GameProviderId", "GameId", "WalletId", "ExternalWagerId")
                         .HasName("pk_game_betting");
