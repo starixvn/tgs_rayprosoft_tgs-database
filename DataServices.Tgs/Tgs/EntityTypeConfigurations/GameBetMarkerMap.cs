@@ -5,15 +5,15 @@ using TGS.Core.DataServices.Tgs.Models;
 
 namespace TGS.Core.DataServices.Tgs.EntityTypeConfigurations;
 
-internal class GameWagerMarkerMap : IEntityTypeConfiguration<GameWagerMarker>
+internal class GameBetMarkerMap : IEntityTypeConfiguration<GameBetMarker>
 {
-    void IEntityTypeConfiguration<GameWagerMarker>.Configure(EntityTypeBuilder<GameWagerMarker> builder)
+    void IEntityTypeConfiguration<GameBetMarker>.Configure(EntityTypeBuilder<GameBetMarker> builder)
     {
-        _ = builder.ToTable("game_wager_markers");
+        _ = builder.ToTable("game_bet_markers");
 
         _ = builder
             .HasKey(c => new { c.Code })
-            .HasName("pk_game_wager_markers");
+            .HasName("pk_game_bet_markers");
 
         _ = builder.Property(c => c.Code)
             .IsRequired()

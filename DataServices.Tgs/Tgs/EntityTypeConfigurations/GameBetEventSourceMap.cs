@@ -1,39 +1,39 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using TGS.Core.DataServices.Base;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Microsoft.EntityFrameworkCore;
 using TGS.Core.DataServices.Tgs.Models;
+using TGS.Core.DataServices.Base;
 
 namespace TGS.Core.DataServices.Tgs.EntityTypeConfigurations;
 
-internal class GameWagersEventSourceMap : IEntityTypeConfiguration<GameWagersEventSource>
+internal class GameBetEventSourceMap : IEntityTypeConfiguration<GameBetEventSource>
 {
-    void IEntityTypeConfiguration<GameWagersEventSource>.Configure(EntityTypeBuilder<GameWagersEventSource> builder)
+    void IEntityTypeConfiguration<GameBetEventSource>.Configure(EntityTypeBuilder<GameBetEventSource> builder)
     {
-        _ = builder.ToTable("game_wagers_event_sources");
+        _ = builder.ToTable("game_bet_event_sources");
 
         _ = builder
             .HasKey(c => new { c.CreatedOn, c.Id })
-            .HasName("pk_game_wagers_event_sources");
+            .HasName("pk_game_bet_event_sources");
 
         _ = builder
             .HasIndex(c => new { c.CreatedOn, c.GameProviderId, c.GameId, c.WalletId, c.ExternalWagerId })
-            .HasDatabaseName("ix_game_wagers_event_sources");
+            .HasDatabaseName("ix_game_bet_event_sources");
         _ = builder
             .HasIndex(c => new { c.CreatedOn, c.GameProviderId })
-            .HasDatabaseName("ix_game_wagers_event_sources_g_p");
+            .HasDatabaseName("ix_game_bet_event_sources_g_p");
         _ = builder
             .HasIndex(c => new { c.CreatedOn, c.GameProviderId, c.WagerState })
-            .HasDatabaseName("ix_game_wagers_event_sources_g_p_wager_state");
+            .HasDatabaseName("ix_game_bet_event_sources_g_p_wager_state");
         _ = builder
             .HasIndex(c => new { c.CreatedOn, c.GameProviderId, c.WagerState, c.Id })
-            .HasDatabaseName("ix_game_wagers_event_sources_g_p_wager_state_id");
+            .HasDatabaseName("ix_game_bet_event_sources_g_p_wager_state_id");
         _ = builder
             .HasIndex(c => new { c.CreatedOn, c.GameProviderId, c.Id })
-            .HasDatabaseName("ix_game_wagers_event_sources_g_p_id");
+            .HasDatabaseName("ix_game_bet_event_sources_g_p_id");
 
         _ = builder.Property(c => c.Id)
             .IsRequired()
-            .HasComment(comment: "識別碼");
+            .HasComment("識別碼");
         _ = builder.Property(c => c.GameProviderId)
             .IsRequired()
             .HasComment("遊戲供應商識別碼");
@@ -62,30 +62,6 @@ internal class GameWagersEventSourceMap : IEntityTypeConfiguration<GameWagersEve
         _ = builder.Property(c => c.WalletId)
             .IsRequired()
             .HasComment("錢包識別碼");
-        _ = builder.Property(c => c.WagerState)
-            .IsRequired()
-            .HasDefaultValue(0)
-            .HasComment("投注狀態");
-        _ = builder.Property(c => c.WagerType)
-            .IsRequired()
-            .HasDefaultValue(0)
-            .HasComment("投注類型");
-        _ = builder.Property(c => c.FreeGameState)
-            .IsRequired()
-            .HasDefaultValue(0)
-            .HasComment("免費遊戲狀態");
-        _ = builder.Property(c => c.GambleState)
-            .IsRequired()
-            .HasDefaultValue(0)
-            .HasComment("博取遊戲狀態");
-        _ = builder.Property(c => c.CashoutState)
-            .IsRequired()
-            .HasDefaultValue(0)
-            .HasComment("兌現狀態");
-        _ = builder.Property(c => c.ResettleState)
-            .IsRequired()
-            .HasDefaultValue(0)
-            .HasComment("重新結算狀態");
         _ = builder.Property(c => c.ExternalRoundId)
             .IsRequired()
             .HasMaxLength(255)
@@ -110,6 +86,34 @@ internal class GameWagersEventSourceMap : IEntityTypeConfiguration<GameWagersEve
             .IsRequired()
             .HasDefaultValueSql("'1970-01-01 00:00:00+00'::timestamp with time zone")
             .HasComment("三方重新結算時間");
+        _ = builder.Property(c => c.WagerState)
+            .IsRequired()
+            .HasDefaultValue(0)
+            .HasComment("投注狀態");
+        _ = builder.Property(c => c.WagerType)
+            .IsRequired()
+            .HasDefaultValue(0)
+            .HasComment("投注類型");
+        _ = builder.Property(c => c.FreeGameState)
+            .IsRequired()
+            .HasDefaultValue(0)
+            .HasComment("免費遊戲狀態");
+        _ = builder.Property(c => c.GambleState)
+            .IsRequired()
+            .HasDefaultValue(0)
+            .HasComment("博取遊戲狀態");
+        _ = builder.Property(c => c.CashoutState)
+            .IsRequired()
+            .HasDefaultValue(0)
+            .HasComment("兌現狀態");
+        _ = builder.Property(c => c.JackpotState)
+            .IsRequired()
+            .HasDefaultValue(0)
+            .HasComment("彩金狀態");
+        _ = builder.Property(c => c.ResettleState)
+            .IsRequired()
+            .HasDefaultValue(0)
+            .HasComment("重新結算狀態");
         _ = builder.Property(b => b.CurrencyRatio)
             .HasPrecision(18, 6)
             .IsRequired()
@@ -145,6 +149,11 @@ internal class GameWagersEventSourceMap : IEntityTypeConfiguration<GameWagersEve
             .IsRequired()
             .HasDefaultValue(0.0)
             .HasComment("玩家損益/淨利");
+        _ = builder.Property(b => b.Jackpot)
+            .HasPrecision(18, 6)
+            .IsRequired()
+            .HasDefaultValue(0.0)
+            .HasComment("彩金");
         _ = builder.Property(b => b.CreatedOn)
             .IsRequired()
             .HasDefaultValueSql("CURRENT_TIMESTAMP")
@@ -156,3 +165,4 @@ internal class GameWagersEventSourceMap : IEntityTypeConfiguration<GameWagersEve
             .HasComment("附加數據");
     }
 }
+
