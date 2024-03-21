@@ -1,6 +1,6 @@
 ﻿namespace TGS.Core.DataServices.Tgs.Models;
 
-public record GameWagerMarker
+public record GameBetMarker
 {
     public string Code { get; set; }
     public Guid Marker { get; set; }
