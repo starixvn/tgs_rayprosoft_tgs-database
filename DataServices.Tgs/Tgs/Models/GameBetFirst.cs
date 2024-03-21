@@ -19,8 +19,8 @@ public record GameBetFirst
     public DateTimeOffset ExternalClosedOn { get; set; }
     public DateTimeOffset ExternalPayoffOn { get; set; }
     public DateTimeOffset ExternalResettleOn { get; set; }
-    public int WagerState { get; set; }
-    public int WagerType { get; set; }
+    public int BetState { get; set; }
+    public int BetType { get; set; }
     public int FreeGameState { get; set; }
     public int GambleState { get; set; }
     public int CashoutState { get; set; }

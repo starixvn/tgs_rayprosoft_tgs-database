@@ -54,10 +54,10 @@ internal class GameBettingMap : IEntityTypeConfiguration<GameBetting>
             .IsRequired()
             .HasMaxLength(255)
             .HasComment("三方投注識別碼");
-        _ = builder.Property(c => c.WagerType)
+        _ = builder.Property(c => c.BetType)
             .IsRequired()
             .HasDefaultValue(0)
-            .HasComment("投注類型");
+            .HasComment("注單類型");
         _ = builder.Property(b => b.CurrencyRatio)
             .HasPrecision(18, 6)
             .IsRequired()

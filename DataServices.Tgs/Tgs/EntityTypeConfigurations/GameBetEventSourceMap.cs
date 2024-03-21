@@ -22,11 +22,11 @@ internal class GameBetEventSourceMap : IEntityTypeConfiguration<GameBetEventSour
             .HasIndex(c => new { c.CreatedOn, c.GameProviderId })
             .HasDatabaseName("ix_game_bet_event_sources_g_p");
         _ = builder
-            .HasIndex(c => new { c.CreatedOn, c.GameProviderId, c.WagerState })
-            .HasDatabaseName("ix_game_bet_event_sources_g_p_wager_state");
+            .HasIndex(c => new { c.CreatedOn, c.GameProviderId, c.BetState })
+            .HasDatabaseName("ix_game_bet_event_sources_g_p_bet_state");
         _ = builder
-            .HasIndex(c => new { c.CreatedOn, c.GameProviderId, c.WagerState, c.Id })
-            .HasDatabaseName("ix_game_bet_event_sources_g_p_wager_state_id");
+            .HasIndex(c => new { c.CreatedOn, c.GameProviderId, c.BetState, c.Id })
+            .HasDatabaseName("ix_game_bet_event_sources_g_p_bet_state_id");
         _ = builder
             .HasIndex(c => new { c.CreatedOn, c.GameProviderId, c.Id })
             .HasDatabaseName("ix_game_bet_event_sources_g_p_id");
@@ -86,14 +86,14 @@ internal class GameBetEventSourceMap : IEntityTypeConfiguration<GameBetEventSour
             .IsRequired()
             .HasDefaultValueSql("'1970-01-01 00:00:00+00'::timestamp with time zone")
             .HasComment("三方重新結算時間");
-        _ = builder.Property(c => c.WagerState)
+        _ = builder.Property(c => c.BetState)
             .IsRequired()
             .HasDefaultValue(0)
-            .HasComment("投注狀態");
-        _ = builder.Property(c => c.WagerType)
+            .HasComment("注單狀態");
+        _ = builder.Property(c => c.BetType)
             .IsRequired()
             .HasDefaultValue(0)
-            .HasComment("投注類型");
+            .HasComment("注單類型");
         _ = builder.Property(c => c.FreeGameState)
             .IsRequired()
             .HasDefaultValue(0)
