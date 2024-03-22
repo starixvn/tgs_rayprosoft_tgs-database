@@ -16,7 +16,7 @@ internal class GameBetEventSourceMap : IEntityTypeConfiguration<GameBetEventSour
             .HasName("pk_game_bet_event_sources");
 
         _ = builder
-            .HasIndex(c => new { c.CreatedOn, c.GameProviderId, c.GameId, c.WalletId, c.ExternalWagerId })
+            .HasIndex(c => new { c.CreatedOn, c.GameProviderId, c.GameId, c.WalletId, c.ExternalBetId })
             .HasDatabaseName("ix_game_bet_event_sources");
         _ = builder
             .HasIndex(c => new { c.CreatedOn, c.GameProviderId })
@@ -30,6 +30,19 @@ internal class GameBetEventSourceMap : IEntityTypeConfiguration<GameBetEventSour
         _ = builder
             .HasIndex(c => new { c.CreatedOn, c.GameProviderId, c.Id })
             .HasDatabaseName("ix_game_bet_event_sources_g_p_id");
+
+        _ = builder
+            .HasIndex(c => new { c.CreatedOn, c.BrandId })
+            .HasDatabaseName("ix_game_bet_event_sources_brand_id");
+        _ = builder
+            .HasIndex(c => new { c.CreatedOn, c.BrandId, c.BetState })
+            .HasDatabaseName("ix_game_bet_event_sources_brand_id_bet_state");
+        _ = builder
+            .HasIndex(c => new { c.CreatedOn, c.BrandId, c.BetState, c.Id })
+            .HasDatabaseName("ix_game_bet_event_sources_brand_id_bet_state_id");
+        _ = builder
+            .HasIndex(c => new { c.CreatedOn, c.BrandId, c.Id })
+            .HasDatabaseName("ix_game_bet_event_sources_brand_id_id");
 
         _ = builder.Property(c => c.Id)
             .IsRequired()
@@ -66,10 +79,10 @@ internal class GameBetEventSourceMap : IEntityTypeConfiguration<GameBetEventSour
             .IsRequired()
             .HasMaxLength(255)
             .HasComment("三方局/回合識別碼");
-        _ = builder.Property(c => c.ExternalWagerId)
+        _ = builder.Property(c => c.ExternalBetId)
             .IsRequired()
             .HasMaxLength(255)
-            .HasComment("三方投注識別碼");
+            .HasComment("三方投注單別碼");
         _ = builder.Property(c => c.ExternalCreatedOn)
             .IsRequired()
             .HasDefaultValueSql("'1970-01-01 00:00:00+00'::timestamp with time zone")

@@ -12,7 +12,7 @@ internal class GameBettingMap : IEntityTypeConfiguration<GameBetting>
         _ = builder.ToTable("game_betting");
 
         _ = builder
-            .HasKey(c => new { c.GameProviderId, c.GameId, c.WalletId, c.ExternalWagerId })
+            .HasKey(c => new { c.GameProviderId, c.GameId, c.WalletId, c.ExternalBetId })
             .HasName("pk_game_betting");
 
         _ = builder.Property(c => c.Id)
@@ -50,10 +50,10 @@ internal class GameBettingMap : IEntityTypeConfiguration<GameBetting>
             .IsRequired()
             .HasMaxLength(255)
             .HasComment("三方局/回合識別碼");
-        _ = builder.Property(c => c.ExternalWagerId)
+        _ = builder.Property(c => c.ExternalBetId)
             .IsRequired()
             .HasMaxLength(255)
-            .HasComment("三方投注識別碼");
+            .HasComment("三方投注單別碼");
         _ = builder.Property(c => c.BetType)
             .IsRequired()
             .HasDefaultValue(0)
