@@ -4342,6 +4342,30 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.ToTable("deposit_promotion_calculate_pairs", "dbo");
                 });
 
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.DepositPromotionStatistics", b =>
+                {
+                    b.Property<Guid>("PromotionId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("promotion_id");
+
+                    b.Property<string>("PlayerCode")
+                        .HasColumnType("text")
+                        .HasColumnName("player_code");
+
+                    b.Property<DateTime>("ProcessedDate")
+                        .HasColumnType("timestamptz")
+                        .HasColumnName("processed_date");
+
+                    b.Property<int>("TotalDepositCount")
+                        .HasColumnType("integer")
+                        .HasColumnName("total_deposit_count");
+
+                    b.HasKey("PromotionId", "PlayerCode")
+                        .HasName("pk_deposit_promotion_statistics");
+
+                    b.ToTable("deposit_promotion_statistics", "dbo");
+                });
+
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.DistributeRegisterEvent", b =>
                 {
                     b.Property<Guid>("Id")
