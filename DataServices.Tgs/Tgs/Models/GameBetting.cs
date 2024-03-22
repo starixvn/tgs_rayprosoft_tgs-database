@@ -13,7 +13,7 @@ public record GameBetting
     public string CurrencyCode { get; set; }
     public Guid WalletId { get; set; }
     public string ExternalRoundId { get; set; }
-    public string ExternalWagerId { get; set; }
+    public string ExternalBetId { get; set; }
     public int BetType { get; set; }
     public decimal CurrencyRatio { get; set; }
     public decimal Bet { get; set; }

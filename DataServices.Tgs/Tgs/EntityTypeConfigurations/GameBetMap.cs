@@ -12,11 +12,11 @@ internal class GameBetMap : IEntityTypeConfiguration<GameBet>
         _ = builder.ToTable("game_bets");
 
         _ = builder
-            .HasKey(c => new { c.ExternalCreatedOn, c.GameProviderId, c.GameId, c.WalletId, c.ExternalWagerId })
+            .HasKey(c => new { c.ExternalCreatedOn, c.GameProviderId, c.GameId, c.WalletId, c.ExternalBetId })
             .HasName("pk_game_bets");
 
         _ = builder
-            .HasIndex(c => new { c.GameProviderId, c.GameId, c.WalletId, c.ExternalWagerId })
+            .HasIndex(c => new { c.GameProviderId, c.GameId, c.WalletId, c.ExternalBetId })
             .HasDatabaseName("ix_game_bets");
 
         _ = builder
@@ -56,8 +56,18 @@ internal class GameBetMap : IEntityTypeConfiguration<GameBet>
             .HasIndex(c => new { c.ExternalCreatedOn, c.ExternalRoundId })
             .HasDatabaseName("ix_game_bets_e_c_on_external_round_id");
         _ = builder
-            .HasIndex(c => new { c.ExternalCreatedOn, c.ExternalWagerId })
-            .HasDatabaseName("ix_game_bets_e_c_on_external_wager_id");
+            .HasIndex(c => new { c.ExternalCreatedOn, c.ExternalBetId })
+            .HasDatabaseName("ix_game_bets_e_c_on_external_bet_id");
+
+        _ = builder
+            .HasIndex(c => new { c.ExternalCreatedOn, c.ClosedOn })
+            .HasDatabaseName("ix_game_bets_e_c_on_closed_on");
+        _ = builder
+            .HasIndex(c => new { c.ExternalCreatedOn, c.ClosedOn, c.BrandId })
+            .HasDatabaseName("ix_game_bets_e_c_on_closed_on_brand_id");
+        _ = builder
+            .HasIndex(c => new { c.ExternalCreatedOn, c.ClosedOn, c.PlayerCode })
+            .HasDatabaseName("ix_game_bets_e_c_on_closed_on_player_code");
 
         _ = builder.Property(c => c.Id)
             .IsRequired()
@@ -94,10 +104,10 @@ internal class GameBetMap : IEntityTypeConfiguration<GameBet>
             .IsRequired()
             .HasMaxLength(255)
             .HasComment("三方局/回合識別碼");
-        _ = builder.Property(c => c.ExternalWagerId)
+        _ = builder.Property(c => c.ExternalBetId)
             .IsRequired()
             .HasMaxLength(255)
-            .HasComment("三方投注識別碼");
+            .HasComment("三方投注單別碼");
         _ = builder.Property(c => c.ExternalCreatedOn)
             .IsRequired()
             .HasDefaultValueSql("'1970-01-01 00:00:00+00'::timestamp with time zone")

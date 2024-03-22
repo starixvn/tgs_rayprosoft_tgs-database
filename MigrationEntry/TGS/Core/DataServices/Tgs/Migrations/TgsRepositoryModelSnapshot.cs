@@ -5053,11 +5053,11 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnName("wallet_id")
                         .HasComment("錢包識別碼");
 
-                    b.Property<string>("ExternalWagerId")
+                    b.Property<string>("ExternalBetId")
                         .HasMaxLength(255)
                         .HasColumnType("character varying(255)")
-                        .HasColumnName("external_wager_id")
-                        .HasComment("三方投注識別碼");
+                        .HasColumnName("external_bet_id")
+                        .HasComment("三方投注單別碼");
 
                     b.Property<string>("AdditionalData")
                         .IsRequired()
@@ -5281,7 +5281,7 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnName("win_loss")
                         .HasComment("玩家損益/淨利");
 
-                    b.HasKey("ExternalCreatedOn", "GameProviderId", "GameId", "WalletId", "ExternalWagerId")
+                    b.HasKey("ExternalCreatedOn", "GameProviderId", "GameId", "WalletId", "ExternalBetId")
                         .HasName("pk_game_bets");
 
                     b.HasIndex("ExternalCreatedOn")
@@ -5290,14 +5290,17 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.HasIndex("ExternalCreatedOn", "BrandId")
                         .HasDatabaseName("ix_game_bets_e_c_on_brand_id");
 
+                    b.HasIndex("ExternalCreatedOn", "ClosedOn")
+                        .HasDatabaseName("ix_game_bets_e_c_on_closed_on");
+
                     b.HasIndex("ExternalCreatedOn", "CurrencyCode")
                         .HasDatabaseName("ix_game_bets_e_c_on_currency_code");
 
+                    b.HasIndex("ExternalCreatedOn", "ExternalBetId")
+                        .HasDatabaseName("ix_game_bets_e_c_on_external_bet_id");
+
                     b.HasIndex("ExternalCreatedOn", "ExternalRoundId")
                         .HasDatabaseName("ix_game_bets_e_c_on_external_round_id");
-
-                    b.HasIndex("ExternalCreatedOn", "ExternalWagerId")
-                        .HasDatabaseName("ix_game_bets_e_c_on_external_wager_id");
 
                     b.HasIndex("ExternalCreatedOn", "GameId")
                         .HasDatabaseName("ix_game_bets_e_c_on_game_id");
@@ -5323,7 +5326,13 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.HasIndex("ExternalCreatedOn", "WalletId")
                         .HasDatabaseName("ix_game_bets_e_c_on_wallet_id");
 
-                    b.HasIndex("GameProviderId", "GameId", "WalletId", "ExternalWagerId")
+                    b.HasIndex("ExternalCreatedOn", "ClosedOn", "BrandId")
+                        .HasDatabaseName("ix_game_bets_e_c_on_closed_on_brand_id");
+
+                    b.HasIndex("ExternalCreatedOn", "ClosedOn", "PlayerCode")
+                        .HasDatabaseName("ix_game_bets_e_c_on_closed_on_player_code");
+
+                    b.HasIndex("GameProviderId", "GameId", "WalletId", "ExternalBetId")
                         .HasDatabaseName("ix_game_bets");
 
                     b.ToTable("game_bets", "dbo");
@@ -5408,6 +5417,13 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnName("currency_ratio")
                         .HasComment("貨幣比例");
 
+                    b.Property<string>("ExternalBetId")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("character varying(255)")
+                        .HasColumnName("external_bet_id")
+                        .HasComment("三方投注單別碼");
+
                     b.Property<DateTimeOffset>("ExternalClosedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("timestamp with time zone")
@@ -5442,13 +5458,6 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("character varying(255)")
                         .HasColumnName("external_round_id")
                         .HasComment("三方局/回合識別碼");
-
-                    b.Property<string>("ExternalWagerId")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("character varying(255)")
-                        .HasColumnName("external_wager_id")
-                        .HasComment("三方投注識別碼");
 
                     b.Property<int>("FreeGameState")
                         .ValueGeneratedOnAdd()
@@ -5557,8 +5566,17 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.HasKey("CreatedOn", "Id")
                         .HasName("pk_game_bet_event_sources");
 
+                    b.HasIndex("CreatedOn", "BrandId")
+                        .HasDatabaseName("ix_game_bet_event_sources_brand_id");
+
                     b.HasIndex("CreatedOn", "GameProviderId")
                         .HasDatabaseName("ix_game_bet_event_sources_g_p");
+
+                    b.HasIndex("CreatedOn", "BrandId", "BetState")
+                        .HasDatabaseName("ix_game_bet_event_sources_brand_id_bet_state");
+
+                    b.HasIndex("CreatedOn", "BrandId", "Id")
+                        .HasDatabaseName("ix_game_bet_event_sources_brand_id_id");
 
                     b.HasIndex("CreatedOn", "GameProviderId", "BetState")
                         .HasDatabaseName("ix_game_bet_event_sources_g_p_bet_state");
@@ -5566,10 +5584,13 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.HasIndex("CreatedOn", "GameProviderId", "Id")
                         .HasDatabaseName("ix_game_bet_event_sources_g_p_id");
 
+                    b.HasIndex("CreatedOn", "BrandId", "BetState", "Id")
+                        .HasDatabaseName("ix_game_bet_event_sources_brand_id_bet_state_id");
+
                     b.HasIndex("CreatedOn", "GameProviderId", "BetState", "Id")
                         .HasDatabaseName("ix_game_bet_event_sources_g_p_bet_state_id");
 
-                    b.HasIndex("CreatedOn", "GameProviderId", "GameId", "WalletId", "ExternalWagerId")
+                    b.HasIndex("CreatedOn", "GameProviderId", "GameId", "WalletId", "ExternalBetId")
                         .HasDatabaseName("ix_game_bet_event_sources");
 
                     b.ToTable("game_bet_event_sources", "dbo");
@@ -5599,11 +5620,11 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnName("wallet_id")
                         .HasComment("錢包識別碼");
 
-                    b.Property<string>("ExternalWagerId")
+                    b.Property<string>("ExternalBetId")
                         .HasMaxLength(255)
                         .HasColumnType("character varying(255)")
-                        .HasColumnName("external_wager_id")
-                        .HasComment("三方投注識別碼");
+                        .HasColumnName("external_bet_id")
+                        .HasComment("三方投注單別碼");
 
                     b.Property<string>("AdditionalData")
                         .IsRequired()
@@ -5825,7 +5846,7 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnName("win_loss")
                         .HasComment("玩家損益/淨利");
 
-                    b.HasKey("ExternalCreatedOn", "GameProviderId", "GameId", "WalletId", "ExternalWagerId")
+                    b.HasKey("ExternalCreatedOn", "GameProviderId", "GameId", "WalletId", "ExternalBetId")
                         .HasName("pk_game_bet_firsts");
 
                     b.HasIndex("ExternalCreatedOn")
@@ -5834,14 +5855,17 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.HasIndex("ExternalCreatedOn", "BrandId")
                         .HasDatabaseName("ix_game_bet_firsts_e_c_on_brand_id");
 
+                    b.HasIndex("ExternalCreatedOn", "ClosedOn")
+                        .HasDatabaseName("ix_game_bet_firsts_e_c_on_closed_on");
+
                     b.HasIndex("ExternalCreatedOn", "CurrencyCode")
                         .HasDatabaseName("ix_game_bet_firsts_e_c_on_currency_code");
 
+                    b.HasIndex("ExternalCreatedOn", "ExternalBetId")
+                        .HasDatabaseName("ix_game_bet_firsts_e_c_on_external_bet_id");
+
                     b.HasIndex("ExternalCreatedOn", "ExternalRoundId")
                         .HasDatabaseName("ix_game_bet_firsts_e_c_on_external_round_id");
-
-                    b.HasIndex("ExternalCreatedOn", "ExternalWagerId")
-                        .HasDatabaseName("ix_game_bet_firsts_e_c_on_external_wager_id");
 
                     b.HasIndex("ExternalCreatedOn", "GameBetId")
                         .HasDatabaseName("ix_game_bet_firsts_e_c_on_game_bet_id");
@@ -5870,7 +5894,13 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.HasIndex("ExternalCreatedOn", "WalletId")
                         .HasDatabaseName("ix_game_bet_firsts_e_c_on_wallet_id");
 
-                    b.HasIndex("GameProviderId", "GameId", "WalletId", "ExternalWagerId")
+                    b.HasIndex("ExternalCreatedOn", "ClosedOn", "BrandId")
+                        .HasDatabaseName("ix_game_bet_firsts_e_c_on_closed_on_brand_id");
+
+                    b.HasIndex("ExternalCreatedOn", "ClosedOn", "PlayerCode")
+                        .HasDatabaseName("ix_game_bet_firsts_e_c_on_closed_on_player_code");
+
+                    b.HasIndex("GameProviderId", "GameId", "WalletId", "ExternalBetId")
                         .HasDatabaseName("ix_game_bet_firsts");
 
                     b.ToTable("game_bet_firsts", "dbo");
@@ -5941,11 +5971,11 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnName("wallet_id")
                         .HasComment("錢包識別碼");
 
-                    b.Property<string>("ExternalWagerId")
+                    b.Property<string>("ExternalBetId")
                         .HasMaxLength(255)
                         .HasColumnType("character varying(255)")
-                        .HasColumnName("external_wager_id")
-                        .HasComment("三方投注識別碼");
+                        .HasColumnName("external_bet_id")
+                        .HasComment("三方投注單別碼");
 
                     b.Property<string>("AdditionalData")
                         .IsRequired()
@@ -6045,7 +6075,7 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnName("valid_bet")
                         .HasComment("實際/有效下注");
 
-                    b.HasKey("GameProviderId", "GameId", "WalletId", "ExternalWagerId")
+                    b.HasKey("GameProviderId", "GameId", "WalletId", "ExternalBetId")
                         .HasName("pk_game_betting");
 
                     b.ToTable("game_betting", "dbo");

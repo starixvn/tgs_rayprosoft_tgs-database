@@ -14,7 +14,7 @@ public record GameBetFirst
     public string CurrencyCode { get; set; }
     public Guid WalletId { get; set; }
     public string ExternalRoundId { get; set; }
-    public string ExternalWagerId { get; set; }
+    public string ExternalBetId { get; set; }
     public DateTimeOffset ExternalCreatedOn { get; set; }
     public DateTimeOffset ExternalClosedOn { get; set; }
     public DateTimeOffset ExternalPayoffOn { get; set; }
