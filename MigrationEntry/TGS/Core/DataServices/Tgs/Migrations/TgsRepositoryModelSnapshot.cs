@@ -3894,6 +3894,67 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.ToTable("brand_player_bankinfo_check_flags", "dbo");
                 });
 
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.BrandProductFee", b =>
+                {
+                    b.Property<Guid>("BrandId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("brand_id");
+
+                    b.Property<decimal>("CardGameRebatePercentage")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("card_game_rebate_percentage");
+
+                    b.Property<string>("CreatedByUsername")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("created_by_username");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_on");
+
+                    b.Property<decimal>("LiveDealerRebatePercentage")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("live_dealer_rebate_percentage");
+
+                    b.Property<decimal>("LotteryRebatePercentage")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("lottery_rebate_percentage");
+
+                    b.Property<decimal>("SlotRebatePercentage")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("slot_rebate_percentage");
+
+                    b.Property<decimal>("SportsRebatePercentage")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("sports_rebate_percentage");
+
+                    b.Property<string>("UpdatedByUsername")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("updated_by_username");
+
+                    b.Property<DateTime>("UpdatedOn")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("updated_on");
+
+                    b.Property<decimal>("VirtualSportsRebatePercentage")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("virtual_sports_rebate_percentage");
+
+                    b.HasKey("BrandId")
+                        .HasName("pk_brand_product_fees");
+
+                    b.ToTable("brand_product_fees", "dbo");
+                });
+
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.Calculate", b =>
                 {
                     b.Property<Guid>("Id")
