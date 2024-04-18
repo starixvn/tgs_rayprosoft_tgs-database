@@ -11,8 +11,8 @@ public class BrandProductFee
     public decimal SlotRebatePercentage { get; set; }
     public decimal SportsRebatePercentage { get; set; }
     public decimal VirtualSportsRebatePercentage { get; set; }
-    public required string CreatedByUsername { get; set; }
-    public required string UpdatedByUsername { get; set; }
+    public string CreatedByUsername { get; set; }
+    public string UpdatedByUsername { get; set; }
     public DateTime CreatedOn { get; set; }
     public DateTime UpdatedOn { get; set; }
 }

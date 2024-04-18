@@ -12,7 +12,7 @@ using TGS.Core.DataServices.Tgs;
 namespace TGS.Core.DataServices.Tgs.Migrations
 {
     [DbContext(typeof(TgsRepository))]
-    [Migration("20240417011617_AddBrandAgentProductFeeTable")]
+    [Migration("20240418013222_AddBrandAgentProductFeeTable")]
     partial class AddBrandAgentProductFeeTable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
