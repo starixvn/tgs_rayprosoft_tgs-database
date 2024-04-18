@@ -879,15 +879,8 @@ public partial class DataInitializer : BaseDataInitializer
                                 Level = v.Level
                             })
                         .ToHashSet(),
-                PromotionParticipants =
-                    x.Value.Players.Select(p =>
-                            new PromotionParticipant
-                            {
-                                PlayerCode = p.PlayerCode,
-                                PromotionId = promotionId,
-                                CreatedOn = now
-                            })
-                        .ToHashSet(),
+                Localization = "{}",
+                CampaignDetail = "{}",
                 CreatedOn = DateTimeOffset.Now,
                 UpdatedOn = DateTimeOffset.Now
             };
