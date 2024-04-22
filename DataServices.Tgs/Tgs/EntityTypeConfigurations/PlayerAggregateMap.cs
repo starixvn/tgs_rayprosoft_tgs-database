@@ -133,6 +133,11 @@ internal class PlayerAggregateMap : IEntityTypeConfiguration<PlayerAggregate>
             .HasColumnType("jsonb")
             .IsRequired(false);
 
+        _ = builder.Property(b => b.PlatformChargePercentage)
+            .HasPrecision(18, 6)
+            .HasDefaultValue(0)
+            .IsRequired();
+
         _ = builder.Property(b => b.ReportDate)
             .IsRequired();
 

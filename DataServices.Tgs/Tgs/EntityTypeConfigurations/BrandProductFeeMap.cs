@@ -13,27 +13,27 @@ internal class BrandProductFeeMap : IEntityTypeConfiguration<BrandProductFee>
         _ = builder.HasKey(b => b.BrandId)
             .HasName("pk_brand_product_fees");
 
-        _ = builder.Property(c => c.LiveDealerRebatePercentage)
+        _ = builder.Property(c => c.LiveDealerPercentage)
             .HasPrecision(18, 6)
             .IsRequired();
 
-        _ = builder.Property(c => c.SlotRebatePercentage)
+        _ = builder.Property(c => c.SlotPercentage)
             .HasPrecision(18, 6)
             .IsRequired();
 
-        _ = builder.Property(c => c.LotteryRebatePercentage)
+        _ = builder.Property(c => c.LotteryPercentage)
             .HasPrecision(18, 6)
             .IsRequired();
 
-        _ = builder.Property(c => c.CardGameRebatePercentage)
+        _ = builder.Property(c => c.CardGamePercentage)
             .HasPrecision(18, 6)
             .IsRequired();
 
-        _ = builder.Property(c => c.SportsRebatePercentage)
+        _ = builder.Property(c => c.SportsPercentage)
             .HasPrecision(18, 6)
             .IsRequired();
 
-        _ = builder.Property(c => c.VirtualSportsRebatePercentage)
+        _ = builder.Property(c => c.VirtualSportsPercentage)
             .HasPrecision(18, 6)
             .IsRequired();
 
