@@ -1274,6 +1274,78 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.ToTable("agent_dividend_multiple_layers", "dbo");
                 });
 
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.AgentDividendPlatformCharge", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<int>("AgentDividendId")
+                        .HasColumnType("integer")
+                        .HasColumnName("agent_dividend_id");
+
+                    b.Property<DateTimeOffset>("CreatedOn")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_on");
+
+                    b.Property<decimal>("Percentage")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("percentage");
+
+                    b.Property<decimal>("WinLossAmount")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("win_loss_amount");
+
+                    b.HasKey("Id")
+                        .HasName("pk_agent_dividend_platform_charges_id");
+
+                    b.HasIndex("AgentDividendId")
+                        .HasDatabaseName("ix_agent_dividend_platform_charges_agent_dividend_id");
+
+                    b.ToTable("agent_dividend_platform_charges", "dbo");
+                });
+
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.AgentDividendProductFee", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<int>("AgentDividendId")
+                        .HasColumnType("integer")
+                        .HasColumnName("agent_dividend_id");
+
+                    b.Property<DateTimeOffset>("CreatedOn")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_on");
+
+                    b.Property<short>("GameType")
+                        .HasColumnType("smallint")
+                        .HasColumnName("game_type");
+
+                    b.Property<decimal>("Percentage")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("percentage");
+
+                    b.Property<decimal>("WinLossAmount")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("win_loss_amount");
+
+                    b.HasKey("Id")
+                        .HasName("pk_agent_dividend_product_fees_id");
+
+                    b.HasIndex("AgentDividendId")
+                        .HasDatabaseName("ix_agent_dividend_product_fees_agent_dividend_id");
+
+                    b.ToTable("agent_dividend_product_fees", "dbo");
+                });
+
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.AgentDividendRecord", b =>
                 {
                     b.Property<Guid>("Id")
@@ -3901,10 +3973,10 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("brand_id");
 
-                    b.Property<decimal>("CardGameRebatePercentage")
+                    b.Property<decimal>("CardGamePercentage")
                         .HasPrecision(18, 6)
                         .HasColumnType("numeric(18,6)")
-                        .HasColumnName("card_game_rebate_percentage");
+                        .HasColumnName("card_game_percentage");
 
                     b.Property<string>("CreatedByUsername")
                         .IsRequired()
@@ -3915,25 +3987,25 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("created_on");
 
-                    b.Property<decimal>("LiveDealerRebatePercentage")
+                    b.Property<decimal>("LiveDealerPercentage")
                         .HasPrecision(18, 6)
                         .HasColumnType("numeric(18,6)")
-                        .HasColumnName("live_dealer_rebate_percentage");
+                        .HasColumnName("live_dealer_percentage");
 
-                    b.Property<decimal>("LotteryRebatePercentage")
+                    b.Property<decimal>("LotteryPercentage")
                         .HasPrecision(18, 6)
                         .HasColumnType("numeric(18,6)")
-                        .HasColumnName("lottery_rebate_percentage");
+                        .HasColumnName("lottery_percentage");
 
-                    b.Property<decimal>("SlotRebatePercentage")
+                    b.Property<decimal>("SlotPercentage")
                         .HasPrecision(18, 6)
                         .HasColumnType("numeric(18,6)")
-                        .HasColumnName("slot_rebate_percentage");
+                        .HasColumnName("slot_percentage");
 
-                    b.Property<decimal>("SportsRebatePercentage")
+                    b.Property<decimal>("SportsPercentage")
                         .HasPrecision(18, 6)
                         .HasColumnType("numeric(18,6)")
-                        .HasColumnName("sports_rebate_percentage");
+                        .HasColumnName("sports_percentage");
 
                     b.Property<string>("UpdatedByUsername")
                         .IsRequired()
@@ -3944,10 +4016,10 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("updated_on");
 
-                    b.Property<decimal>("VirtualSportsRebatePercentage")
+                    b.Property<decimal>("VirtualSportsPercentage")
                         .HasPrecision(18, 6)
                         .HasColumnType("numeric(18,6)")
-                        .HasColumnName("virtual_sports_rebate_percentage");
+                        .HasColumnName("virtual_sports_percentage");
 
                     b.HasKey("BrandId")
                         .HasName("pk_brand_product_fees");
@@ -8825,6 +8897,13 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("numeric(18,6)")
                         .HasColumnName("original_turnover");
 
+                    b.Property<decimal>("PlatformChargePercentage")
+                        .ValueGeneratedOnAdd()
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasDefaultValue(0m)
+                        .HasColumnName("platform_charge_percentage");
+
                     b.Property<string>("PlayerCode")
                         .IsRequired()
                         .HasMaxLength(16)
@@ -10224,11 +10303,25 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("numeric(18,6)")
                         .HasColumnName("original_turnover");
 
+                    b.Property<decimal>("PlatformChargePercentage")
+                        .ValueGeneratedOnAdd()
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasDefaultValue(0m)
+                        .HasColumnName("platform_charge_percentage");
+
                     b.Property<string>("PlayerCode")
                         .IsRequired()
                         .HasMaxLength(16)
                         .HasColumnType("character varying(16)")
                         .HasColumnName("player_code");
+
+                    b.Property<decimal>("ProductFeePercentage")
+                        .ValueGeneratedOnAdd()
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasDefaultValue(0m)
+                        .HasColumnName("product_fee_percentage");
 
                     b.Property<DateTimeOffset>("ReportDate")
                         .HasColumnType("timestamp with time zone")
