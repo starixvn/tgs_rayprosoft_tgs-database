@@ -254,7 +254,8 @@ public partial class DataInitializer
                             new MenuSetting("UpdateIngress"),
                             new MenuSetting("UpdateDnsZone"),
                             new MenuSetting("ClearProfitShare"),
-                            new MenuSetting("ChangeWithdrawalPassword")
+                            new MenuSetting("ChangeWithdrawalPassword"),
+                            new MenuSetting("ProductFee")
                         }
                     },
                     new MenuSetting("BalanceAdjustment")
