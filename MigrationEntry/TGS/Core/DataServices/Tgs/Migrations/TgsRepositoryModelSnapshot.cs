@@ -1543,6 +1543,67 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.ToTable("agent_login_records", "dbo");
                 });
 
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.AgentProductFee", b =>
+                {
+                    b.Property<Guid>("AgentId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("agent_id");
+
+                    b.Property<decimal>("CardGamePercentage")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("card_game_percentage");
+
+                    b.Property<string>("CreatedByUsername")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("created_by_username");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_on");
+
+                    b.Property<decimal>("LiveDealerPercentage")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("live_dealer_percentage");
+
+                    b.Property<decimal>("LotteryPercentage")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("lottery_percentage");
+
+                    b.Property<decimal>("SlotPercentage")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("slot_percentage");
+
+                    b.Property<decimal>("SportsPercentage")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("sports_percentage");
+
+                    b.Property<string>("UpdatedByUsername")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("updated_by_username");
+
+                    b.Property<DateTime>("UpdatedOn")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("updated_on");
+
+                    b.Property<decimal>("VirtualSportsPercentage")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("virtual_sports_percentage");
+
+                    b.HasKey("AgentId")
+                        .HasName("pk_agent_product_fees");
+
+                    b.ToTable("agent_product_fees", "dbo");
+                });
+
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.AgentTransaction", b =>
                 {
                     b.Property<Guid>("Id")
