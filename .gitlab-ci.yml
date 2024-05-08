@@ -11,7 +11,7 @@ stages:
   - build
   - test
   - publish
-  - dbmigration-dev
+#  - dbmigration-dev
   - dbmigration-staging
   - dbmigration-prod
 
@@ -128,7 +128,7 @@ migrate-staging:
     name: dbmigration-staging
   stage: dbmigration-staging
   needs:
-    - migrate-dev
+#    - migrate-dev
     - job: push-migrations-k8s-template
       artifacts: true
   when: manual
