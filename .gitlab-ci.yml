@@ -11,6 +11,7 @@ stages:
   - build
   - test
   - publish
+  - dbmigration-dev
   - dbmigration-staging
   - dbmigration-prod
 
@@ -100,6 +101,24 @@ push-migrations-k8s-template:
           | kubectl -n ${ns:=$namespace} apply -f -
       }
 
+migrate-dev:
+  extends: .migrate-deploy
+  variables:
+    namespace: dev
+    kube_config: KubeConfig_Raypro_dev
+  environment:
+    name: dbmigration-dev
+  stage: dbmigration-dev
+  needs:
+    - build-migrations-image
+    - job: push-migrations-k8s-template
+      artifacts: true
+  only:
+    - main
+  script:
+    - deploy_k8s 'ef-migration' 'ef-migration' $namespace
+  when: on_success
+
 migrate-staging:
   extends: .migrate-deploy
   variables:
@@ -109,6 +128,7 @@ migrate-staging:
     name: dbmigration-staging
   stage: dbmigration-staging
   needs:
+    - migrate-dev
     - job: push-migrations-k8s-template
       artifacts: true
   when: manual
