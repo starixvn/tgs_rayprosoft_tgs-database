@@ -9,6 +9,7 @@
     <OutputType>Library</OutputType>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <SqlQueryToolsConnectionString />
+    <RunAnalyzersDuringBuild>False</RunAnalyzersDuringBuild>
   </PropertyGroup>
 
   <ItemGroup>
