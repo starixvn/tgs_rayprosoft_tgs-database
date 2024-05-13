@@ -26,22 +26,22 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Dapper" Version="2.1.28" />
+    <PackageReference Include="Dapper" Version="2.1.35" />
     <PackageReference Include="EFCore.NamingConventions" Version="6.0.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="6.0.9" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="6.0.9" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="6.0.29" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="6.0.29" />
     <PackageReference Include="Microsoft.IO.RecyclableMemoryStream" Version="3.0.0" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.0" />
-    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.6" />
-    <PackageReference Include="PhoenixToolkits.NuGet.BuildTools" Version="0.0.3">
-      <PrivateAssets>All</PrivateAssets>
-    </PackageReference>
-    <PackageReference Include="StackExchange.Redis" Version="2.7.17" />
-    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.2.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.9">
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.1" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.29" />
+    <PackageReference Include="PhoenixToolkits.CodeAnalysis.Analyzers" Version="0.0.12">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="PhoenixToolkits.NuGet.BuildTools" Version="0.0.3">
+      <PrivateAssets>All</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="StackExchange.Redis" Version="2.7.33" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.5.1" />
   </ItemGroup>
 
   <ItemGroup>

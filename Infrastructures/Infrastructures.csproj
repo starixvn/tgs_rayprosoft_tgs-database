@@ -18,10 +18,14 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.IO.RecyclableMemoryStream" Version="3.0.0" />
-    <PackageReference Include="StackExchange.Redis" Version="2.7.17" />
-    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.2.0" />
+    <PackageReference Include="PhoenixToolkits.CodeAnalysis.Analyzers" Version="0.0.12">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="StackExchange.Redis" Version="2.7.33" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.5.1" />
     <PackageReference Include="TGS.Core.Infrastructures.Json" Version="0.0.1" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.1" />
   </ItemGroup>
 
   <ItemGroup>
