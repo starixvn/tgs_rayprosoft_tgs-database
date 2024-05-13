@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System.Reflection;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace TGS.Core.DataServices.Tgs.Migrations;
 
@@ -10,6 +11,13 @@ public partial class Initial : Migration
 
     protected override void Up(MigrationBuilder migrationBuilder)
     {
+        var assembly = Assembly.GetExecutingAssembly();
+        using var stream = assembly.GetManifestResourceStream("Tgs.Migrations.SqlScripts.tgs_init.sql");
+        using var reader = new StreamReader(stream!);
+
+        var sql = reader.ReadToEnd();
+        _ = migrationBuilder.Sql(sql);
+
         _ = migrationBuilder.EnsureSchema(
             name: "log");
 
