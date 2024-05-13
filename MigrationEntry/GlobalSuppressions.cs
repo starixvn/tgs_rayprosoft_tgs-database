@@ -6,3 +6,4 @@
 using System.Diagnostics.CodeAnalysis;
 
 [assembly: SuppressMessage("Performance", "CA1861:避免常數陣列作為引數")]
+[assembly: SuppressMessage("Style", "IDE0058:永遠不會使用運算式值", Justification = "暫止")]

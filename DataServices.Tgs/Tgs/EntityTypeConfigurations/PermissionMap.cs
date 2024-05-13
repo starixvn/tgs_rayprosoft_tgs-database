@@ -36,6 +36,7 @@ internal class PermissionMap : IEntityTypeConfiguration<Permission>
             .HasConstraintName("fk_systems");
         _ = builder.HasOne<Function>()
             .WithMany()
-            .HasForeignKey("fk_functions");
+            .HasForeignKey("fk_functions")
+            .HasConstraintName("fk_permissions_functions_function_id");
     }
 }

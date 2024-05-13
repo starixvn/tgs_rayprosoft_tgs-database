@@ -18,7 +18,7 @@ namespace TGS.Core.DataServices.Tgs.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasDefaultSchema("dbo")
-                .HasAnnotation("ProductVersion", "6.0.9")
+                .HasAnnotation("ProductVersion", "8.0.4")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.HasPostgresExtension(modelBuilder, "ltree");
@@ -7996,6 +7996,38 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.ToTable("log_records", "log");
                 });
 
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.MarketType", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("character varying(64)")
+                        .HasColumnName("code");
+
+                    b.Property<string>("ExternalId")
+                        .IsRequired()
+                        .HasMaxLength(16)
+                        .HasColumnType("character varying(16)")
+                        .HasColumnName("external_id");
+
+                    b.Property<Guid>("GameProviderId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("game_provider_id");
+
+                    b.HasKey("Id")
+                        .HasName("pk_market_types");
+
+                    b.HasAlternateKey("GameProviderId", "Code")
+                        .HasName("ak_market_types_game_provider_id_code");
+
+                    b.ToTable("market_types", "dbo");
+                });
+
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.MarketingReportDailyAggregate", b =>
                 {
                     b.Property<DateOnly>("ReportDate")
@@ -8044,38 +8076,6 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasName("pk_marketing_statistics_settings");
 
                     b.ToTable("marketing_statistics_settings", "dbo");
-                });
-
-            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.MarketType", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid")
-                        .HasColumnName("id");
-
-                    b.Property<string>("Code")
-                        .IsRequired()
-                        .HasMaxLength(64)
-                        .HasColumnType("character varying(64)")
-                        .HasColumnName("code");
-
-                    b.Property<string>("ExternalId")
-                        .IsRequired()
-                        .HasMaxLength(16)
-                        .HasColumnType("character varying(16)")
-                        .HasColumnName("external_id");
-
-                    b.Property<Guid>("GameProviderId")
-                        .HasColumnType("uuid")
-                        .HasColumnName("game_provider_id");
-
-                    b.HasKey("Id")
-                        .HasName("pk_market_types");
-
-                    b.HasAlternateKey("GameProviderId", "Code")
-                        .HasName("ak_market_types_game_provider_id_code");
-
-                    b.ToTable("market_types", "dbo");
                 });
 
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.NotificationContact", b =>
@@ -9730,9 +9730,8 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasName("pk_player_bonus_aggregates_id");
 
                     b.HasIndex("ReportDate", "BrandId", "AgentId", "PlayerCode")
+                        .IsDescending(true, false, false, false)
                         .HasDatabaseName("ix_player_bonus_aggregates_multiple_keys");
-
-                    NpgsqlIndexBuilderExtensions.HasSortOrder(b.HasIndex("ReportDate", "BrandId", "AgentId", "PlayerCode"), new[] { SortOrder.Descending, SortOrder.Ascending, SortOrder.Ascending, SortOrder.Ascending });
 
                     b.ToTable("player_bonus_aggregates", "report");
                 });
@@ -12895,6 +12894,63 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasDatabaseName("ix_sign_in_events_promotion_id");
 
                     b.ToTable("sign_in_events", "dbo");
+                });
+
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.SocialMediaSetting", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<Guid>("BrandId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("brand_id");
+
+                    b.Property<string>("CreatedBy")
+                        .HasMaxLength(256)
+                        .HasColumnType("character varying(256)")
+                        .HasColumnName("created_by");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("timestamptz")
+                        .HasColumnName("created_on");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("character varying(256)")
+                        .HasColumnName("name");
+
+                    b.Property<int>("Order")
+                        .HasColumnType("integer")
+                        .HasColumnName("order");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("character varying(128)")
+                        .HasColumnName("type");
+
+                    b.Property<string>("UpdatedBy")
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("character varying(256)")
+                        .HasColumnName("updated_by");
+
+                    b.Property<DateTime>("UpdatedOn")
+                        .HasColumnType("timestamptz")
+                        .HasColumnName("updated_on");
+
+                    b.Property<string>("Url")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("url");
+
+                    b.HasKey("Id")
+                        .HasName("pk_social_media_settings");
+
+                    b.ToTable("social_media_settings", "dbo");
                 });
 
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.SportMarketType", b =>

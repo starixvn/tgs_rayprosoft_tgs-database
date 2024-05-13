@@ -11,13 +11,6 @@ public partial class Initial : Migration
 
     protected override void Up(MigrationBuilder migrationBuilder)
     {
-        var assembly = Assembly.GetExecutingAssembly();
-        using var stream = assembly.GetManifestResourceStream("Tgs.Migrations.SqlScripts.tgs_init.sql");
-        using var reader = new StreamReader(stream!);
-
-        var sql = reader.ReadToEnd();
-        _ = migrationBuilder.Sql(sql);
-
         _ = migrationBuilder.EnsureSchema(
             name: "log");
 
@@ -32,5 +25,12 @@ public partial class Initial : Migration
 
         _ = migrationBuilder.AlterDatabase()
             .Annotation("Npgsql:PostgresExtension:pg_trgm", ",,");
+
+        var assembly = Assembly.GetExecutingAssembly();
+        using var stream = assembly.GetManifestResourceStream("Tgs.Migrations.SqlScripts.tgs_init.sql");
+        using var reader = new StreamReader(stream!);
+
+        var sql = reader.ReadToEnd();
+        _ = migrationBuilder.Sql(sql);
     }
 }

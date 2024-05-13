@@ -59,5 +59,9 @@ internal class AgentBankInfoMap : IEntityTypeConfiguration<AgentBankInfo>
 
         _ = builder.HasIndex(c => c.PaymentChannelId)
             .HasDatabaseName("ix_agent_bank_infos_payment_channel_id");
+
+        _ = builder.HasOne(c => c.Player)
+            .WithMany()
+            .HasConstraintName("fk_agent_bank_infos_players_player_temp_id");
     }
 }
