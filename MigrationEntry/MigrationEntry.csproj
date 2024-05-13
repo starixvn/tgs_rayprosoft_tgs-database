@@ -37,6 +37,11 @@
 
   <ItemGroup>
     <None Remove="Dockerfile.original" />
+    <None Remove="SqlScripts\tgs_init.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="SqlScripts\tgs_init.sql" />
   </ItemGroup>
 
   <ItemGroup>

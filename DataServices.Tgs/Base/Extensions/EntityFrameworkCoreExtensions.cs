@@ -1,5 +1,4 @@
-﻿using System.IO;
-using System.Reflection;
+﻿using System.Reflection;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace TGS.Core.DataServices.Base.Extensions;
