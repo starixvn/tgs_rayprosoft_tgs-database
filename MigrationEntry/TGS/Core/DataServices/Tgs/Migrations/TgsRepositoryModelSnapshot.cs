@@ -4088,6 +4088,22 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.ToTable("brand_product_fees", "dbo");
                 });
 
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.BrandSms", b =>
+                {
+                    b.Property<Guid>("BrandId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("brand_id");
+
+                    b.Property<Guid>("SmsSettingId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("sms_setting_id");
+
+                    b.HasKey("BrandId", "SmsSettingId")
+                        .HasName("pk_brand_sms");
+
+                    b.ToTable("brand_sms", "dbo");
+                });
+
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.Calculate", b =>
                 {
                     b.Property<Guid>("Id")
@@ -12894,6 +12910,55 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasDatabaseName("ix_sign_in_events_promotion_id");
 
                     b.ToTable("sign_in_events", "dbo");
+                });
+
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.SmsSetting", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)")
+                        .HasColumnName("code");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("character varying(256)")
+                        .HasColumnName("created_by");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("timestamptz")
+                        .HasColumnName("created_on");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("character varying(256)")
+                        .HasColumnName("name");
+
+                    b.Property<string>("Setting")
+                        .IsRequired()
+                        .HasColumnType("jsonb")
+                        .HasColumnName("setting");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasMaxLength(256)
+                        .HasColumnType("character varying(256)")
+                        .HasColumnName("updated_by");
+
+                    b.Property<DateTime?>("UpdatedOn")
+                        .HasColumnType("timestamptz")
+                        .HasColumnName("updated_on");
+
+                    b.HasKey("Id")
+                        .HasName("pk_sms_settings");
+
+                    b.ToTable("sms_settings", "dbo");
                 });
 
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.SocialMediaSetting", b =>
