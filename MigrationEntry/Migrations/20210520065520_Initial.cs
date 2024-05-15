@@ -24,6 +24,7 @@ public partial class Initial : Migration
             name: "report");
 
         _ = migrationBuilder.AlterDatabase()
+            .Annotation("Npgsql:PostgresExtension:ltree", ",,")
             .Annotation("Npgsql:PostgresExtension:pg_trgm", ",,");
 
         var assembly = Assembly.GetExecutingAssembly();
