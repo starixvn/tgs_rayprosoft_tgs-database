@@ -1274,70 +1274,94 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.ToTable("agent_dividend_multiple_layers", "dbo");
                 });
 
-            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.AgentDividendPlatformCharge", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid")
-                        .HasColumnName("id");
-
-                    b.Property<int>("AgentDividendId")
-                        .HasColumnType("integer")
-                        .HasColumnName("agent_dividend_id");
-
-                    b.Property<DateTimeOffset>("CreatedOn")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("created_on");
-
-                    b.Property<decimal>("Percentage")
-                        .HasPrecision(18, 6)
-                        .HasColumnType("numeric(18,6)")
-                        .HasColumnName("percentage");
-
-                    b.Property<decimal>("WinLossAmount")
-                        .HasPrecision(18, 6)
-                        .HasColumnType("numeric(18,6)")
-                        .HasColumnName("win_loss_amount");
-
-                    b.HasKey("Id")
-                        .HasName("pk_agent_dividend_platform_charges_id");
-
-                    b.HasIndex("AgentDividendId")
-                        .HasDatabaseName("ix_agent_dividend_platform_charges_agent_dividend_id");
-
-                    b.ToTable("agent_dividend_platform_charges", "dbo");
-                });
-
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.AgentDividendProductFee", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("AgentId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
-                        .HasColumnName("id");
+                        .HasColumnName("agent_id");
 
                     b.Property<int>("AgentDividendId")
                         .HasColumnType("integer")
                         .HasColumnName("agent_dividend_id");
 
-                    b.Property<DateTimeOffset>("CreatedOn")
+                    b.Property<Guid>("BrandId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("brand_id");
+
+                    b.Property<decimal>("CardGamePercentage")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("card_game_percentage");
+
+                    b.Property<decimal>("CardGameWinLossAmount")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("card_game_win_loss_amount");
+
+                    b.Property<DateTime>("CreatedOn")
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("created_on");
 
-                    b.Property<short>("GameType")
-                        .HasColumnType("smallint")
-                        .HasColumnName("game_type");
+                    b.Property<DateTime>("From")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("from");
 
-                    b.Property<decimal>("Percentage")
+                    b.Property<decimal>("LiveDealerPercentage")
                         .HasPrecision(18, 6)
                         .HasColumnType("numeric(18,6)")
-                        .HasColumnName("percentage");
+                        .HasColumnName("live_dealer_percentage");
 
-                    b.Property<decimal>("WinLossAmount")
+                    b.Property<decimal>("LiveDealerWinLossAmount")
                         .HasPrecision(18, 6)
                         .HasColumnType("numeric(18,6)")
-                        .HasColumnName("win_loss_amount");
+                        .HasColumnName("live_dealer_win_loss_amount");
 
-                    b.HasKey("Id")
+                    b.Property<decimal>("LotteryPercentage")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("lottery_percentage");
+
+                    b.Property<decimal>("LotteryWinLossAmount")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("lottery_win_loss_amount");
+
+                    b.Property<decimal>("SlotPercentage")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("slot_percentage");
+
+                    b.Property<decimal>("SlotWinLossAmount")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("slot_win_loss_amount");
+
+                    b.Property<decimal>("SportsPercentage")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("sports_percentage");
+
+                    b.Property<decimal>("SportsWinLossAmount")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("sports_win_loss_amount");
+
+                    b.Property<DateTime>("To")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("to");
+
+                    b.Property<decimal>("VirtualSportsPercentage")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("virtual_sports_percentage");
+
+                    b.Property<decimal>("VirtualSportsWinLossAmount")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("virtual_sports_win_loss_amount");
+
+                    b.HasKey("AgentId")
                         .HasName("pk_agent_dividend_product_fees_id");
 
                     b.HasIndex("AgentDividendId")
@@ -1550,10 +1574,9 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("agent_id");
 
-                    b.Property<decimal>("CardGamePercentage")
-                        .HasPrecision(18, 6)
-                        .HasColumnType("numeric(18,6)")
-                        .HasColumnName("card_game_percentage");
+                    b.Property<Guid>("BrandId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("brand_id");
 
                     b.Property<string>("CreatedByUsername")
                         .IsRequired()
@@ -1564,25 +1587,95 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("created_on");
 
-                    b.Property<decimal>("LiveDealerPercentage")
+                    b.Property<decimal>("CurrentCardGamePercentage")
                         .HasPrecision(18, 6)
                         .HasColumnType("numeric(18,6)")
-                        .HasColumnName("live_dealer_percentage");
+                        .HasColumnName("current_card_game_percentage");
 
-                    b.Property<decimal>("LotteryPercentage")
+                    b.Property<decimal>("CurrentLiveDealerPercentage")
                         .HasPrecision(18, 6)
                         .HasColumnType("numeric(18,6)")
-                        .HasColumnName("lottery_percentage");
+                        .HasColumnName("current_live_dealer_percentage");
 
-                    b.Property<decimal>("SlotPercentage")
+                    b.Property<decimal>("CurrentLotteryPercentage")
                         .HasPrecision(18, 6)
                         .HasColumnType("numeric(18,6)")
-                        .HasColumnName("slot_percentage");
+                        .HasColumnName("current_lottery_percentage");
 
-                    b.Property<decimal>("SportsPercentage")
+                    b.Property<decimal>("CurrentSlotPercentage")
                         .HasPrecision(18, 6)
                         .HasColumnType("numeric(18,6)")
-                        .HasColumnName("sports_percentage");
+                        .HasColumnName("current_slot_percentage");
+
+                    b.Property<decimal>("CurrentSportsPercentage")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("current_sports_percentage");
+
+                    b.Property<decimal>("CurrentVirtualSportsPercentage")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("current_virtual_sports_percentage");
+
+                    b.Property<decimal>("NextCardGamePercentage")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("next_card_game_percentage");
+
+                    b.Property<decimal>("NextLiveDealerPercentage")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("next_live_dealer_percentage");
+
+                    b.Property<decimal>("NextLotteryPercentage")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("next_lottery_percentage");
+
+                    b.Property<decimal>("NextSlotPercentage")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("next_slot_percentage");
+
+                    b.Property<decimal>("NextSportsPercentage")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("next_sports_percentage");
+
+                    b.Property<decimal>("NextVirtualSportsPercentage")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("next_virtual_sports_percentage");
+
+                    b.Property<decimal>("PreviousCardGamePercentage")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("previous_card_game_percentage");
+
+                    b.Property<decimal>("PreviousLiveDealerPercentage")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("previous_live_dealer_percentage");
+
+                    b.Property<decimal>("PreviousLotteryPercentage")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("previous_lottery_percentage");
+
+                    b.Property<decimal>("PreviousSlotPercentage")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("previous_slot_percentage");
+
+                    b.Property<decimal>("PreviousSportsPercentage")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("previous_sports_percentage");
+
+                    b.Property<decimal>("PreviousVirtualSportsPercentage")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("previous_virtual_sports_percentage");
 
                     b.Property<string>("UpdatedByUsername")
                         .IsRequired()
@@ -1592,11 +1685,6 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.Property<DateTime>("UpdatedOn")
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("updated_on");
-
-                    b.Property<decimal>("VirtualSportsPercentage")
-                        .HasPrecision(18, 6)
-                        .HasColumnType("numeric(18,6)")
-                        .HasColumnName("virtual_sports_percentage");
 
                     b.HasKey("AgentId")
                         .HasName("pk_agent_product_fees");

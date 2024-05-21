@@ -13,27 +13,78 @@ internal class AgentProductFeeMap : IEntityTypeConfiguration<AgentProductFee>
         _ = builder.HasKey(b => b.AgentId)
             .HasName("pk_agent_product_fees");
 
-        _ = builder.Property(c => c.LiveDealerPercentage)
+        _ = builder.Property(b => b.BrandId)
+            .IsRequired();
+
+        _ = builder.Property(c => c.PreviousLiveDealerPercentage)
             .HasPrecision(18, 6)
             .IsRequired();
 
-        _ = builder.Property(c => c.SlotPercentage)
+        _ = builder.Property(c => c.PreviousSlotPercentage)
             .HasPrecision(18, 6)
             .IsRequired();
 
-        _ = builder.Property(c => c.LotteryPercentage)
+        _ = builder.Property(c => c.PreviousLotteryPercentage)
             .HasPrecision(18, 6)
             .IsRequired();
 
-        _ = builder.Property(c => c.CardGamePercentage)
+        _ = builder.Property(c => c.PreviousCardGamePercentage)
             .HasPrecision(18, 6)
             .IsRequired();
 
-        _ = builder.Property(c => c.SportsPercentage)
+        _ = builder.Property(c => c.PreviousSportsPercentage)
             .HasPrecision(18, 6)
             .IsRequired();
 
-        _ = builder.Property(c => c.VirtualSportsPercentage)
+        _ = builder.Property(c => c.PreviousVirtualSportsPercentage)
+            .HasPrecision(18, 6)
+            .IsRequired();
+
+        _ = builder.Property(c => c.CurrentLiveDealerPercentage)
+            .HasPrecision(18, 6)
+            .IsRequired();
+
+        _ = builder.Property(c => c.CurrentSlotPercentage)
+            .HasPrecision(18, 6)
+            .IsRequired();
+
+        _ = builder.Property(c => c.CurrentLotteryPercentage)
+            .HasPrecision(18, 6)
+            .IsRequired();
+
+        _ = builder.Property(c => c.CurrentCardGamePercentage)
+            .HasPrecision(18, 6)
+            .IsRequired();
+
+        _ = builder.Property(c => c.CurrentSportsPercentage)
+            .HasPrecision(18, 6)
+            .IsRequired();
+
+        _ = builder.Property(c => c.CurrentVirtualSportsPercentage)
+            .HasPrecision(18, 6)
+            .IsRequired();
+
+        _ = builder.Property(c => c.NextLiveDealerPercentage)
+            .HasPrecision(18, 6)
+            .IsRequired();
+
+        _ = builder.Property(c => c.NextSlotPercentage)
+            .HasPrecision(18, 6)
+            .IsRequired();
+
+        _ = builder.Property(c => c.NextLotteryPercentage)
+            .HasPrecision(18, 6)
+            .IsRequired();
+
+        _ = builder.Property(c => c.NextCardGamePercentage)
+            .HasPrecision(18, 6)
+            .IsRequired();
+
+        _ = builder.Property(c => c.NextSportsPercentage)
+            .HasPrecision(18, 6)
+            .IsRequired();
+
+        _ = builder.Property(c => c.NextVirtualSportsPercentage)
             .HasPrecision(18, 6)
             .IsRequired();
 
