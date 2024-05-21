@@ -11,26 +11,63 @@ internal class AgentDividendProductFeeMap : IEntityTypeConfiguration<AgentDivide
     {
         _ = builder.ToTable("agent_dividend_product_fees");
 
-        _ = builder.HasKey(b => b.Id)
+        _ = builder.HasKey(b => b.AgentId)
             .HasName("pk_agent_dividend_product_fees_id");
 
-        _ = builder.Property(b => b.Id)
-            .ValueGeneratedOnAdd();
+        _ = builder.Property(b => b.BrandId)
+            .IsRequired();
 
         _ = builder.Property(b => b.AgentDividendId)
             .IsRequired();
 
-        _ = builder.Property(e => e.GameType)
-            .HasColumnType(ColumnTypes.SmallInt)
-            .IsRequired();
-
-        _ = builder.Property(b => b.Percentage)
+        _ = builder.Property(c => c.LiveDealerPercentage)
             .HasPrecision(18, 6)
             .IsRequired();
 
-        _ = builder.Property(b => b.WinLossAmount)
+        _ = builder.Property(c => c.SlotPercentage)
             .HasPrecision(18, 6)
             .IsRequired();
+
+        _ = builder.Property(c => c.LotteryPercentage)
+            .HasPrecision(18, 6)
+            .IsRequired();
+
+        _ = builder.Property(c => c.CardGamePercentage)
+            .HasPrecision(18, 6)
+            .IsRequired();
+
+        _ = builder.Property(c => c.SportsPercentage)
+            .HasPrecision(18, 6)
+            .IsRequired();
+
+        _ = builder.Property(c => c.VirtualSportsPercentage)
+            .HasPrecision(18, 6)
+            .IsRequired();
+
+        _ = builder.Property(c => c.CardGameWinLossAmount)
+            .HasPrecision(18, 6)
+            .IsRequired();
+
+        _ = builder.Property(c => c.LiveDealerWinLossAmount)
+            .HasPrecision(18, 6)
+            .IsRequired();
+
+        _ = builder.Property(c => c.LotteryWinLossAmount)
+            .HasPrecision(18, 6)
+            .IsRequired();
+
+        _ = builder.Property(c => c.SlotWinLossAmount)
+            .HasPrecision(18, 6)
+            .IsRequired();
+
+        _ = builder.Property(c => c.SportsWinLossAmount)
+            .HasPrecision(18, 6)
+            .IsRequired();
+
+        _ = builder.Property(c => c.VirtualSportsWinLossAmount)
+            .HasPrecision(18, 6)
+            .IsRequired();
+
 
         _ = builder.Property(b => b.CreatedOn)
             .IsRequired();
