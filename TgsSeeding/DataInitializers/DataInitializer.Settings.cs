@@ -579,6 +579,14 @@ public partial class DataInitializer
                             new MenuSetting("View"),
                             new MenuSetting("Update")
                         }
+                    },
+                    new MenuSetting("BrandSms")
+                    {
+                        SubMenus = new[]
+                        {
+                            new MenuSetting("View"),
+                            new MenuSetting("Update")
+                        }
                     }
                 }
             },
