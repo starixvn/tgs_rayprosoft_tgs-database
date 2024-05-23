@@ -987,11 +987,6 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("numeric(18,6)")
                         .HasColumnName("original_turnover");
 
-                    b.Property<decimal>("PlatformChargePercentage")
-                        .HasPrecision(18, 6)
-                        .HasColumnType("numeric(18,6)")
-                        .HasColumnName("platform_charge_percentage");
-
                     b.Property<decimal>("PromotionAmount")
                         .HasPrecision(18, 6)
                         .HasColumnType("numeric(18,6)")
@@ -9062,13 +9057,6 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("numeric(18,6)")
                         .HasColumnName("original_turnover");
 
-                    b.Property<decimal>("PlatformChargePercentage")
-                        .ValueGeneratedOnAdd()
-                        .HasPrecision(18, 6)
-                        .HasColumnType("numeric(18,6)")
-                        .HasDefaultValue(0m)
-                        .HasColumnName("platform_charge_percentage");
-
                     b.Property<string>("PlayerCode")
                         .IsRequired()
                         .HasMaxLength(16)
@@ -10467,25 +10455,11 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("numeric(18,6)")
                         .HasColumnName("original_turnover");
 
-                    b.Property<decimal>("PlatformChargePercentage")
-                        .ValueGeneratedOnAdd()
-                        .HasPrecision(18, 6)
-                        .HasColumnType("numeric(18,6)")
-                        .HasDefaultValue(0m)
-                        .HasColumnName("platform_charge_percentage");
-
                     b.Property<string>("PlayerCode")
                         .IsRequired()
                         .HasMaxLength(16)
                         .HasColumnType("character varying(16)")
                         .HasColumnName("player_code");
-
-                    b.Property<decimal>("ProductFeePercentage")
-                        .ValueGeneratedOnAdd()
-                        .HasPrecision(18, 6)
-                        .HasColumnType("numeric(18,6)")
-                        .HasDefaultValue(0m)
-                        .HasColumnName("product_fee_percentage");
 
                     b.Property<DateTimeOffset>("ReportDate")
                         .HasColumnType("timestamp with time zone")

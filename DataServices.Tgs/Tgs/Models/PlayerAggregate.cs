@@ -81,6 +81,4 @@ public class PlayerAggregate
     public decimal UpgradeAmount { get; set; }
 
     public decimal BirthdayAmount { get; set; }
-
-    public decimal PlatformChargePercentage { get; set; }
 }
