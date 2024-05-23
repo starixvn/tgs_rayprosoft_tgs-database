@@ -24,6 +24,11 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                 name: "platform_charge_percentage",
                 schema: "report",
                 table: "player_aggregates");
+
+            migrationBuilder.DropColumn(
+                name: "platform_charge_percentage",
+                schema: "dbo",
+                table: "agent_dividends");
         }
 
         /// <inheritdoc />
@@ -53,6 +58,16 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                 name: "platform_charge_percentage",
                 schema: "report",
                 table: "player_aggregates",
+                type: "numeric(18,6)",
+                precision: 18,
+                scale: 6,
+                nullable: false,
+                defaultValue: 0m);
+
+            migrationBuilder.AddColumn<decimal>(
+                name: "platform_charge_percentage",
+                schema: "dbo",
+                table: "agent_dividends",
                 type: "numeric(18,6)",
                 precision: 18,
                 scale: 6,

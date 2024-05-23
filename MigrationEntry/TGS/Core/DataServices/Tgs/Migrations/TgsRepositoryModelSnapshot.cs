@@ -987,11 +987,6 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("numeric(18,6)")
                         .HasColumnName("original_turnover");
 
-                    b.Property<decimal>("PlatformChargePercentage")
-                        .HasPrecision(18, 6)
-                        .HasColumnType("numeric(18,6)")
-                        .HasColumnName("platform_charge_percentage");
-
                     b.Property<decimal>("PromotionAmount")
                         .HasPrecision(18, 6)
                         .HasColumnType("numeric(18,6)")

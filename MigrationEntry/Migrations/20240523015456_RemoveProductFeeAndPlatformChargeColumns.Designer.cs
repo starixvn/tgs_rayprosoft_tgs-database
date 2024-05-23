@@ -12,7 +12,7 @@ using TGS.Core.DataServices.Tgs;
 namespace TGS.Core.DataServices.Tgs.Migrations
 {
     [DbContext(typeof(TgsRepository))]
-    [Migration("20240522090056_RemoveProductFeeAndPlatformChargeColumns")]
+    [Migration("20240523015456_RemoveProductFeeAndPlatformChargeColumns")]
     partial class RemoveProductFeeAndPlatformChargeColumns
     {
         /// <inheritdoc />
@@ -989,11 +989,6 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasPrecision(18, 6)
                         .HasColumnType("numeric(18,6)")
                         .HasColumnName("original_turnover");
-
-                    b.Property<decimal>("PlatformChargePercentage")
-                        .HasPrecision(18, 6)
-                        .HasColumnType("numeric(18,6)")
-                        .HasColumnName("platform_charge_percentage");
 
                     b.Property<decimal>("PromotionAmount")
                         .HasPrecision(18, 6)
