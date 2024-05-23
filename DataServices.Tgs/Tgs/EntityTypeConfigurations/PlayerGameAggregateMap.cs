@@ -78,16 +78,6 @@ internal class PlayerGameTypeAggregateMap : IEntityTypeConfiguration<PlayerGameA
             .HasPrecision(18, 6)
             .IsRequired();
 
-        _ = builder.Property(c => c.PlatformChargePercentage)
-            .HasPrecision(18, 6)
-            .HasDefaultValue(0)
-            .IsRequired();
-
-        _ = builder.Property(c => c.ProductFeePercentage)
-            .HasPrecision(18, 6)
-            .HasDefaultValue(0)
-            .IsRequired();
-
         _ = builder.Property(b => b.ReportDate)
             .IsRequired();
 
