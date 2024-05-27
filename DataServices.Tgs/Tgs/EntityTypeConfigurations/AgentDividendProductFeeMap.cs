@@ -11,7 +11,7 @@ internal class AgentDividendProductFeeMap : IEntityTypeConfiguration<AgentDivide
     {
         _ = builder.ToTable("agent_dividend_product_fees");
 
-        _ = builder.HasKey(b => b.AgentId)
+        _ = builder.HasKey(b => b.AgentDividendId)
             .HasName("pk_agent_dividend_product_fees_id");
 
         _ = builder.Property(b => b.BrandId)

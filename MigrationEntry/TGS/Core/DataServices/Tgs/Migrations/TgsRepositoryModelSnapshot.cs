@@ -1271,14 +1271,16 @@ namespace TGS.Core.DataServices.Tgs.Migrations
 
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.AgentDividendProductFee", b =>
                 {
-                    b.Property<Guid>("AgentId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid")
-                        .HasColumnName("agent_id");
-
                     b.Property<int>("AgentDividendId")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasColumnName("agent_dividend_id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("AgentDividendId"));
+
+                    b.Property<Guid>("AgentId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("agent_id");
 
                     b.Property<Guid>("BrandId")
                         .HasColumnType("uuid")
@@ -1356,7 +1358,7 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("numeric(18,6)")
                         .HasColumnName("virtual_sports_win_loss_amount");
 
-                    b.HasKey("AgentId")
+                    b.HasKey("AgentDividendId")
                         .HasName("pk_agent_dividend_product_fees_id");
 
                     b.HasIndex("AgentDividendId")
