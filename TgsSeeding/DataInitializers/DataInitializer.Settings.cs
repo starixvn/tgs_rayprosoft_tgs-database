@@ -141,7 +141,9 @@ public partial class DataInitializer
                             new MenuSetting("ViewLiveChat"),
                             new MenuSetting("UpdateLiveChat"),
                             new MenuSetting("ViewAllAgent"),
-                            new MenuSetting("UpdateAllAgent")
+                            new MenuSetting("UpdateAllAgent"),
+                            new MenuSetting("ViewSms"),
+                            new MenuSetting("UpdateSms")
                         }
                     },
                     new MenuSetting("IPAddress")
@@ -637,7 +639,7 @@ public partial class DataInitializer
                             new MenuSetting("Update")
                         }
                     },
-                    new MenuSetting("BrandSms")
+                    new MenuSetting("Sms")
                     {
                         SubMenus = new[]
                         {
