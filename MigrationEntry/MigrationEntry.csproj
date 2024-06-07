@@ -42,10 +42,12 @@
 
   <ItemGroup>
     <None Remove="Dockerfile.original" />
+    <None Remove="SqlScripts\Functions\agent_get_agents_with_team_counts.sql" />
     <None Remove="SqlScripts\tgs_init.sql" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="SqlScripts\Functions\agent_get_agents_with_team_counts.sql" />
     <EmbeddedResource Include="SqlScripts\tgs_init.sql" />
   </ItemGroup>
 
