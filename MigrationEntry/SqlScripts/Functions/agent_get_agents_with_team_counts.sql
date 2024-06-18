@@ -65,7 +65,7 @@ SELECT A.ID as "Id",
 	A.SPORTS_REBATE_PERCENTAGE as "SportsRebatePercentage",
 	A.VIRTUAL_SPORTS_REBATE_PERCENTAGE as "VirtualSportsRebatePercentage",
 	T.AGENT_COUNT + T.PLAYER_COUNT as "TeamNumber",
-	(SELECT COUNT(*) FROM DBO.PLAYERS WHERE AGENT_ID = A.ID AND REGISTERED_ON IS NOT null) as "PlayerNumber",
+	(SELECT COUNT(*) FROM DBO.PLAYERS WHERE AGENT_ID = A.ID AND STATUS <> 3) as "PlayerNumber",
 	count(*) over() as "TotalCount"
 FROM DBO.AGENTS A
 INNER JOIN (SELECT G.MAIN_ID,
