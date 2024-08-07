@@ -143,7 +143,9 @@ public partial class DataInitializer
                             new MenuSetting("ViewAllAgent"),
                             new MenuSetting("UpdateAllAgent"),
                             new MenuSetting("ViewSms"),
-                            new MenuSetting("UpdateSms")
+                            new MenuSetting("UpdateSms"),
+                            new MenuSetting("ViewPlayerContactField"),
+                            new MenuSetting("UpdatePlayerContactField")
                         }
                     },
                     new MenuSetting("IPAddress")
