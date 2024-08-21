@@ -1,16 +1,10 @@
 ﻿namespace TGS.Core.Models.Services;
 
-public class MenuSetting
+public class MenuSetting(string code, MenuSetting[] subMenus = null)
 {
-    public string Code { get; set; }
+    public string Code { get; } = code;
 
-    public bool IsDisplay { get; set; }
+    public bool IsDisplay { get; init; } = true;
 
-    public MenuSetting[] SubMenus { get; set; }
-
-    public MenuSetting(string code)
-    {
-        Code = code;
-        IsDisplay = true;
-    }
+    public IList<MenuSetting> SubMenus { get; } = subMenus;
 }

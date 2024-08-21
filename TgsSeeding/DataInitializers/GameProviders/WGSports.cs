@@ -19,10 +19,7 @@ public partial class DataInitializer
         public WGSportsGameProvider()
         {
             _games = LoadGamesFromCsv(GameProviderConst.WGSports)
-                ?.Select(g =>
-                {
-                    return g.EndpointPath.IsNotNullOrEmpty() ? g : ((Game)g with { EndpointPath = string.Empty });
-                })
+                ?.Select(g => g.EndpointPath.IsNotNullOrEmpty() ? g : ((Game)g with { EndpointPath = string.Empty }))
                 .ToArray();
         }
 
@@ -33,22 +30,21 @@ public partial class DataInitializer
         string IGameProvider.Name => "WG Sports";
 
         IGameProviderConfiguration[] IGameProvider.GameProviderConfigurations =>
-            new IGameProviderConfiguration[]
-            {
-                new WGSportsGameProviderConfiguration()
-            };
+        [
+            new WGSportsGameProviderConfiguration()
+        ];
 
-        ICurrency[] IGameProvider.Currencies => new ICurrency[]
-        {
+        ICurrency[] IGameProvider.Currencies =>
+        [
             new CNYCurrency("RMB"),new HKDCurrency("HKD"),new SGDCurrency("SGD"),new GBPCurrency("GBP"),
             new EURCurrency("EUR"),new JPYCurrency("JPY"),new THBCurrency("THB"),new USDCurrency("USD"),
             new MYRCurrency("MYR")
-        };
+        ];
 
-        ILanguage[] IGameProvider.Languages => new ILanguage[]
-        {
+        ILanguage[] IGameProvider.Languages =>
+        [
             new CNLanguage("0"),new TWLanguage("1"),new USLanguage("2"),new JPLanguage("3"),new KRLanguage("4")
-        };
+        ];
 
         IGame[]? IGameProvider.Games => _games;
 
@@ -60,7 +56,7 @@ public partial class DataInitializer
 
         bool IGameProvider.TransferWallet => true;
 
-        GameProviderBetLimit[] IGameProvider.BetLimits => Array.Empty<GameProviderBetLimit>();
+        GameProviderBetLimit[] IGameProvider.BetLimits => [];
 
         PluggableConfigurationBase IGameProvider.GetConfiguration() => new WGSportsConfiguration
         {
@@ -73,10 +69,10 @@ public partial class DataInitializer
             IV = "cba1238888888888"
         };
 
-        SubGameProvider[] IGameProvider.SubGameProviders => new SubGameProvider[]
-        {
+        SubGameProvider[] IGameProvider.SubGameProviders =>
+        [
             new(GameProviderConst.WGSports, GameProviderConst.WGSports)
-        };
+        ];
     }
 
     internal class WGSportsGameProviderConfiguration : IGameProviderConfiguration

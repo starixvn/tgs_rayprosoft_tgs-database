@@ -31,13 +31,13 @@ public partial class DataInitializer
 
         string IGameProvider.Name => "AWC_COCKFIGHT";
 
-        IGameProviderConfiguration[] IGameProvider.GameProviderConfigurations => new IGameProviderConfiguration[]
-        {
+        IGameProviderConfiguration[] IGameProvider.GameProviderConfigurations =>
+        [
             new AWC_COCKFIGHTGameProviderConfiguration()
-        };
+        ];
 
-        ICurrency[] IGameProvider.Currencies => new ICurrency[]
-        {
+        ICurrency[] IGameProvider.Currencies =>
+        [
             new CNYCurrency("CNY"),
             new HKDCurrency("HKD"),
             new IDRCurrency("PTI"),
@@ -46,17 +46,17 @@ public partial class DataInitializer
             new MYRCurrency("MYR"),
             new THBCurrency("THB"),
             new USDCurrency("USD")
-        };
+        ];
 
-        ILanguage[] IGameProvider.Languages => new ILanguage[]
-        {
+        ILanguage[] IGameProvider.Languages =>
+        [
             new USLanguage("en"),
             new CNLanguage("cn"),
             new TWLanguage("cn"),
             new JPLanguage("jp"),
             new THLanguage("th"),
             new VNLanguage("vn"),
-        };
+        ];
 
         IGame[]? IGameProvider.Games => _games;
 
@@ -66,7 +66,7 @@ public partial class DataInitializer
 
         ushort IGameProvider.UniqueId => 37;
 
-        GameProviderBetLimit[] IGameProvider.BetLimits => Array.Empty<GameProviderBetLimit>();
+        GameProviderBetLimit[] IGameProvider.BetLimits => [];
 
         PluggableConfigurationBase IGameProvider.GetConfiguration() =>
             new AWCConfiguration
@@ -76,14 +76,14 @@ public partial class DataInitializer
                 ApiRecordUrl = new Uri("https://tttint.onlinegames22.com/")
             };
 
-        Dictionary<string, string> IGameProvider.SportTypes => new();
+        Dictionary<string, string> IGameProvider.SportTypes => [];
 
-        Dictionary<string, string> IGameProvider.MarketTypes => new();
+        Dictionary<string, string> IGameProvider.MarketTypes => [];
 
-        SubGameProvider[] IGameProvider.SubGameProviders => new SubGameProvider[]
-        {
+        SubGameProvider[] IGameProvider.SubGameProviders =>
+        [
             new(GameProviderConst.AWC_COCKFIGHT, GameProviderConst.AWC_COCKFIGHT)
-        };
+        ];
     }
 
     internal record AWC_COCKFIGHTGameProviderConfiguration : IGameProviderConfiguration

@@ -31,13 +31,13 @@ public partial class DataInitializer
 
         string IGameProvider.Name => "365 Cards";
 
-        IGameProviderConfiguration[] IGameProvider.GameProviderConfigurations => new IGameProviderConfiguration[]
-        {
+        IGameProviderConfiguration[] IGameProvider.GameProviderConfigurations =>
+        [
             new Card365GameProviderConfiguration()
-        };
+        ];
 
-        ICurrency[] IGameProvider.Currencies => new ICurrency[]
-        {
+        ICurrency[] IGameProvider.Currencies =>
+        [
             new MYRCurrency("1"),
             new HKDCurrency("2"),
             new CNYCurrency("3"),
@@ -50,14 +50,14 @@ public partial class DataInitializer
             new INRCurrency("15"),
             new VNDCurrency("55"),
             new IDRCurrency("56")
-        };
+        ];
 
-        ILanguage[] IGameProvider.Languages => new ILanguage[]
-        {
+        ILanguage[] IGameProvider.Languages =>
+        [
             new USLanguage("EN"),
             new CNLanguage("CN"),
             new THLanguage("TH")
-        };
+        ];
 
         IGame[]? IGameProvider.Games => _games;
 
@@ -65,7 +65,7 @@ public partial class DataInitializer
 
         ushort IGameProvider.UniqueId => UniqueId;
 
-        GameProviderBetLimit[] IGameProvider.BetLimits => Array.Empty<GameProviderBetLimit>();
+        GameProviderBetLimit[] IGameProvider.BetLimits => [];
 
         PluggableConfigurationBase IGameProvider.GetConfiguration() =>
             new Card365Configuration
@@ -84,14 +84,14 @@ public partial class DataInitializer
                 }
             };
 
-        Dictionary<string, string> IGameProvider.SportTypes => new();
+        Dictionary<string, string> IGameProvider.SportTypes => [];
 
-        Dictionary<string, string> IGameProvider.MarketTypes => new();
+        Dictionary<string, string> IGameProvider.MarketTypes => [];
 
-        SubGameProvider[] IGameProvider.SubGameProviders => new SubGameProvider[]
-        {
+        SubGameProvider[] IGameProvider.SubGameProviders =>
+        [
             new(GameProviderConst.Card365, "365")
-        };
+        ];
     }
 
     internal record Card365GameProviderConfiguration : IGameProviderConfiguration

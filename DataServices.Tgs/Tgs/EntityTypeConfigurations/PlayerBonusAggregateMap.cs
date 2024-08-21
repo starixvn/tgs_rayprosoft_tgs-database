@@ -59,6 +59,14 @@ internal class PlayerBonusAggregateMap : IEntityTypeConfiguration<PlayerBonusAgg
             b.PlayerCode
         })
             .HasDatabaseName("ix_player_bonus_aggregates_multiple_keys")
+#if NET8_0_OR_GREATER
+            .IsDescending(
+                true,
+                false,
+                false,
+                false
+            );
+#else
             .HasSortOrder(new[]
             {
                 SortOrder.Descending,
@@ -66,5 +74,6 @@ internal class PlayerBonusAggregateMap : IEntityTypeConfiguration<PlayerBonusAgg
                 SortOrder.Ascending,
                 SortOrder.Ascending
             });
+#endif
     }
 }

@@ -11,8 +11,8 @@ public partial class DataInitializer
 
         string Code { get; }
 
-        ICurrency[] Currencies => new ICurrency[]
-        {
+        ICurrency[] Currencies =>
+        [
             new CNYCurrency(),
             new IDRCurrency(),
             new IDR1000Currency(),
@@ -25,20 +25,20 @@ public partial class DataInitializer
             new KRWCurrency(),
             new JPYCurrency(),
             new HKDCurrency()
-        };
+        ];
 
-        string[] GameProviders => Array.Empty<string>();
+        string[] GameProviders => [];
 
         Guid Id { get; }
 
-        ILanguage[] Languages => new ILanguage[]
-        {
+        ILanguage[] Languages =>
+        [
             new CNLanguage(),
             new USLanguage(),
             new IDLanguage(),
             new VNLanguage(),
             new THLanguage()
-        };
+        ];
 
         ILicensee[] Licensees { get; }
 
@@ -59,9 +59,9 @@ public partial class DataInitializer
 
         BusinessType IReseller.BusinessType => BusinessType.B2C;
 
-        ILicensee[] IReseller.Licensees => new ILicensee[]
-        {
+        ILicensee[] IReseller.Licensees =>
+        [
             new TgsLicensee()
-        };
+        ];
     }
 }

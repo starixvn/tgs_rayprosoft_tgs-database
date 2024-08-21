@@ -31,13 +31,12 @@ public partial class DataInitializer
         string IGameProvider.Name => "BigGaming";
 
         IGameProviderConfiguration[] IGameProvider.GameProviderConfigurations =>
-            new IGameProviderConfiguration[]
-            {
-                new BigGamingGameProviderConfiguration()
-            };
+        [
+            new BigGamingGameProviderConfiguration()
+        ];
 
-        ICurrency[] IGameProvider.Currencies => new ICurrency[]
-        {
+        ICurrency[] IGameProvider.Currencies =>
+        [
             new CNYCurrency(),
             new IDRCurrency(),
             new IDR1000Currency(),
@@ -45,10 +44,10 @@ public partial class DataInitializer
             new THBCurrency(),
             new VNDCurrency(),
             new VND1000Currency()
-        };
+        ];
 
-        ILanguage[] IGameProvider.Languages => new ILanguage[]
-        {
+        ILanguage[] IGameProvider.Languages =>
+        [
             new USLanguage("en_US"),
             new CNLanguage("zh_CN"),
             new TWLanguage("zh_TW"),
@@ -57,13 +56,13 @@ public partial class DataInitializer
             new KRLanguage("ko_KR"),
             new JPLanguage("ja_JP"),
             new VNLanguage("vi_VN")
-        };
+        ];
 
         IGame[]? IGameProvider.Games => _games;
 
         ushort IGameProvider.UniqueId => 8;
 
-        GameProviderBetLimit[] IGameProvider.BetLimits => Array.Empty<GameProviderBetLimit>();
+        GameProviderBetLimit[] IGameProvider.BetLimits => [];
 
         PluggableConfigurationBase IGameProvider.GetConfiguration()
         {
@@ -229,10 +228,10 @@ public partial class DataInitializer
             };
         }
 
-        SubGameProvider[] IGameProvider.SubGameProviders => new SubGameProvider[]
-        {
+        SubGameProvider[] IGameProvider.SubGameProviders =>
+        [
             new(GameProviderConst.BigGaming, "BigGaming")
-        };
+        ];
     }
 
     internal class BigGamingGameProviderConfiguration : IGameProviderConfiguration

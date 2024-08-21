@@ -18,15 +18,7 @@ public partial class DataInitializer
         public PragmaticPlayGameProvider()
         {
             _games = LoadGamesFromCsv(GameProviderConst.PragmaticPlay)
-                ?.Select(g =>
-                {
-                    return g.EndpointPath.IsNotNullOrEmpty()
-                        ? g
-                        : ((Game)g with
-                        {
-                            EndpointPath = _EndpointPath
-                        });
-                })
+                ?.Select(g => g.EndpointPath.IsNotNullOrEmpty() ? g : ((Game)g with { EndpointPath = _EndpointPath }))
                 .ToArray();
         }
 
@@ -37,13 +29,12 @@ public partial class DataInitializer
         string IGameProvider.Name => "PragmaticPlay";
 
         IGameProviderConfiguration[] IGameProvider.GameProviderConfigurations =>
-            new IGameProviderConfiguration[]
-            {
-                new PragmaticPlayGameProviderConfiguration()
-            };
+        [
+            new PragmaticPlayGameProviderConfiguration()
+        ];
 
-        ICurrency[] IGameProvider.Currencies => new ICurrency[]
-        {
+        ICurrency[] IGameProvider.Currencies =>
+        [
             new CNYCurrency("CNY"),
             new USDCurrency("USD"),
             new VNDCurrency("VND"),
@@ -56,10 +47,10 @@ public partial class DataInitializer
             new MYRCurrency("MYR"),
             new THBCurrency("THB"),
             new GBPCurrency("GBP")
-        };
+        ];
 
-        ILanguage[] IGameProvider.Languages => new ILanguage[]
-        {
+        ILanguage[] IGameProvider.Languages =>
+        [
             new USLanguage("en"),
             new THLanguage("th"),
             new JPLanguage("ja"),
@@ -68,13 +59,13 @@ public partial class DataInitializer
             new CNLanguage("zh"),
             new TWLanguage("zt"),
             new KRLanguage("ko")
-        };
+        ];
 
         IGame[]? IGameProvider.Games => _games;
 
         ushort IGameProvider.UniqueId => 3;
 
-        GameProviderBetLimit[] IGameProvider.BetLimits => Array.Empty<GameProviderBetLimit>();
+        GameProviderBetLimit[] IGameProvider.BetLimits => [];
 
         PluggableConfigurationBase IGameProvider.GetConfiguration() => new PragmaticPlayConfiguration
         {
@@ -86,10 +77,10 @@ public partial class DataInitializer
             DelaySecondsForPlaceBet = 0
         };
 
-        SubGameProvider[] IGameProvider.SubGameProviders => new SubGameProvider[]
-        {
+        SubGameProvider[] IGameProvider.SubGameProviders =>
+        [
             new(GameProviderConst.PragmaticPlay, "PragmaticPlay")
-        };
+        ];
     }
 
     internal class PragmaticPlayGameProviderConfiguration : IGameProviderConfiguration

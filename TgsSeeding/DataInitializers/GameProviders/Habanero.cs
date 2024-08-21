@@ -31,13 +31,13 @@ public partial class DataInitializer
 
         string IGameProvider.Name => "Habanero";
 
-        IGameProviderConfiguration[] IGameProvider.GameProviderConfigurations => new IGameProviderConfiguration[]
-        {
+        IGameProviderConfiguration[] IGameProvider.GameProviderConfigurations =>
+        [
             new HabaneroGameProviderConfiguration()
-        };
+        ];
 
-        ICurrency[] IGameProvider.Currencies => new ICurrency[]
-        {
+        ICurrency[] IGameProvider.Currencies =>
+        [
             new CNYCurrency("CNY"),
             new USDCurrency("USD"),
             new VNDCurrency("VND"),
@@ -49,10 +49,10 @@ public partial class DataInitializer
             new MYRCurrency("MYR"),
             new THBCurrency("THB"),
             new GBPCurrency("GBP")
-        };
+        ];
 
-        ILanguage[] IGameProvider.Languages => new ILanguage[]
-        {
+        ILanguage[] IGameProvider.Languages =>
+        [
             new USLanguage("en"),
             new CNLanguage("zh-CN"),
             new IDLanguage("id"),
@@ -61,13 +61,13 @@ public partial class DataInitializer
             new THLanguage("th"),
             new VNLanguage("vi"),
             new TWLanguage("zh-TW")
-        };
+        ];
 
         IGame[]? IGameProvider.Games => _games;
 
         ushort IGameProvider.UniqueId => 2;
 
-        GameProviderBetLimit[] IGameProvider.BetLimits => Array.Empty<GameProviderBetLimit>();
+        GameProviderBetLimit[] IGameProvider.BetLimits => [];
 
         PluggableConfigurationBase IGameProvider.GetConfiguration() =>
             new HabaneroConfiguration
@@ -80,14 +80,14 @@ public partial class DataInitializer
                 DelaySecondsForPlaceBet = 0
             };
 
-        Dictionary<string, string> IGameProvider.SportTypes => new();
+        Dictionary<string, string> IGameProvider.SportTypes => [];
 
-        Dictionary<string, string> IGameProvider.MarketTypes => new();
+        Dictionary<string, string> IGameProvider.MarketTypes => [];
 
-        SubGameProvider[] IGameProvider.SubGameProviders => new SubGameProvider[]
-        {
+        SubGameProvider[] IGameProvider.SubGameProviders =>
+        [
             new(GameProviderConst.Habanero, "Habanero")
-        };
+        ];
     }
 
     internal record HabaneroGameProviderConfiguration : IGameProviderConfiguration

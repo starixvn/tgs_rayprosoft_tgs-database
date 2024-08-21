@@ -22,10 +22,7 @@ public partial class DataInitializer
         public JokerGameProvider()
         {
             _games = LoadGamesFromCsv(GameProviderConst.Joker)
-                ?.Select(g
-                    => !string.IsNullOrEmpty(g.EndpointPath)
-                        ? g
-                        : (Game)g with { EndpointPath = string.Empty })
+                ?.Select(g => g.EndpointPath is { Length: > 0 } ? g : (Game)g with { EndpointPath = string.Empty })
                 .ToArray();
         }
 
@@ -35,23 +32,23 @@ public partial class DataInitializer
 
         string IGameProvider.Name => "Joker";
 
-        IGameProviderConfiguration[] IGameProvider.GameProviderConfigurations => new IGameProviderConfiguration[]
-        {
+        IGameProviderConfiguration[] IGameProvider.GameProviderConfigurations =>
+        [
             new JokerGameProviderConfiguration()
-        };
+        ];
 
-        ICurrency[] IGameProvider.Currencies => new ICurrency[]
-        {
+        ICurrency[] IGameProvider.Currencies =>
+        [
             new HKDCurrency("HKD"),
             new THBCurrency("THB")
-        };
+        ];
 
-        ILanguage[] IGameProvider.Languages => new ILanguage[]
-        {
+        ILanguage[] IGameProvider.Languages =>
+        [
             new USLanguage("en"),
             new THLanguage("th"),
             new TWLanguage("zh")
-        };
+        ];
 
         IGame[]? IGameProvider.Games => _games;
 
@@ -61,7 +58,7 @@ public partial class DataInitializer
 
         bool IGameProvider.TransferWallet => true;
 
-        GameProviderBetLimit[] IGameProvider.BetLimits => Array.Empty<GameProviderBetLimit>();
+        GameProviderBetLimit[] IGameProvider.BetLimits => [];
 
         PluggableConfigurationBase IGameProvider.GetConfiguration() =>
             new JokerConfiguration
@@ -95,14 +92,14 @@ public partial class DataInitializer
                 }
             };
 
-        Dictionary<string, string> IGameProvider.SportTypes => new();
+        Dictionary<string, string> IGameProvider.SportTypes => [];
 
-        Dictionary<string, string> IGameProvider.MarketTypes => new();
+        Dictionary<string, string> IGameProvider.MarketTypes => [];
 
-        SubGameProvider[] IGameProvider.SubGameProviders => new SubGameProvider[]
-        {
+        SubGameProvider[] IGameProvider.SubGameProviders =>
+        [
             new(GameProviderConst.Joker, "Joker")
-        };
+        ];
     }
 
     internal record JokerGameProviderConfiguration : IGameProviderConfiguration

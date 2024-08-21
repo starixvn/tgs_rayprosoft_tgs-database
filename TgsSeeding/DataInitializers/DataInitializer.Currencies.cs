@@ -4,135 +4,53 @@ namespace TGS.Core.DataServices.Tgs.DataInitializers;
 
 public partial class DataInitializer
 {
-    internal interface ICurrency : ICodeMapper
-    {
-    }
+    internal interface ICurrency : ICodeMapper { }
 
-    internal record CNYCurrency : BaseCodeMapper, ICurrency
-    {
-        public CNYCurrency(string? externalCode = null)
-            : base("CNY", externalCode)
-        {
-        }
-    }
+    internal record CNYCurrency(string? externalCode = null)
+        : BaseCodeMapper("CNY", externalCode), ICurrency { }
 
-    internal record EURCurrency : BaseCodeMapper, ICurrency
-    {
-        public EURCurrency(string? externalCode = null)
-            : base("EUR", externalCode)
-        {
-        }
-    }
+    internal record EURCurrency(string? externalCode = null)
+        : BaseCodeMapper("EUR", externalCode), ICurrency { }
 
-    internal record GBPCurrency : BaseCodeMapper, ICurrency
-    {
-        public GBPCurrency(string? externalCode = null)
-            : base("GBP", externalCode)
-        {
-        }
-    }
+    internal record GBPCurrency(string? externalCode = null)
+        : BaseCodeMapper("GBP", externalCode), ICurrency { }
 
-    internal record IDRCurrency : BaseCodeMapper, ICurrency
-    {
-        public IDRCurrency(string? externalCode = null)
-            : base("IDR", externalCode)
-        {
-        }
-    }
+    internal record IDRCurrency(string? externalCode = null)
+        : BaseCodeMapper("IDR", externalCode), ICurrency { }
 
-    internal record IDR1000Currency : BaseCodeMapper, ICurrency
-    {
-        public IDR1000Currency(string? externalCode = null)
-            : base("IDR_1000", externalCode)
-        {
-        }
-    }
+    internal record IDR1000Currency(string? externalCode = null)
+        : BaseCodeMapper("IDR_1000", externalCode), ICurrency { }
 
-    internal record INRCurrency : BaseCodeMapper, ICurrency
-    {
-        public INRCurrency(string? externalCode = null)
-            : base("INR", externalCode)
-        {
-        }
-    }
+    internal record INRCurrency(string? externalCode = null)
+        : BaseCodeMapper("INR", externalCode), ICurrency { }
 
-    internal record JPYCurrency : BaseCodeMapper, ICurrency
-    {
-        public JPYCurrency(string? externalCode = null)
-            : base("JPY", externalCode)
-        {
-        }
-    }
+    internal record JPYCurrency(string? externalCode = null)
+        : BaseCodeMapper("JPY", externalCode), ICurrency { }
 
-    internal record KRWCurrency : BaseCodeMapper, ICurrency
-    {
-        public KRWCurrency(string? externalCode = null)
-            : base("KRW", externalCode)
-        {
-        }
-    }
+    internal record KRWCurrency(string? externalCode = null)
+        : BaseCodeMapper("KRW", externalCode), ICurrency { }
 
-    internal record MYRCurrency : BaseCodeMapper, ICurrency
-    {
-        public MYRCurrency(string? externalCode = null)
-            : base("MYR", externalCode)
-        {
-        }
-    }
+    internal record MYRCurrency(string? externalCode = null)
+        : BaseCodeMapper("MYR", externalCode), ICurrency { }
 
-    internal record SGDCurrency : BaseCodeMapper, ICurrency
-    {
-        public SGDCurrency(string? externalCode = null)
-            : base("SGD", externalCode)
-        {
-        }
-    }
+    internal record SGDCurrency(string? externalCode = null)
+        : BaseCodeMapper("SGD", externalCode), ICurrency { }
 
-    internal record THBCurrency : BaseCodeMapper, ICurrency
-    {
-        public THBCurrency(string? externalCode = null)
-            : base("THB", externalCode)
-        {
-        }
-    }
+    internal record THBCurrency(string? externalCode = null)
+        : BaseCodeMapper("THB", externalCode), ICurrency { }
 
-    internal record USDCurrency : BaseCodeMapper, ICurrency
-    {
-        public USDCurrency(string? externalCode = null)
-            : base("USD", externalCode)
-        {
-        }
-    }
+    internal record USDCurrency(string? externalCode = null)
+        : BaseCodeMapper("USD", externalCode), ICurrency { }
 
-    internal record VNDCurrency : BaseCodeMapper, ICurrency
-    {
-        public VNDCurrency(string? externalCode = null)
-            : base("VND", externalCode)
-        {
-        }
-    }
+    internal record VNDCurrency(string? externalCode = null)
+        : BaseCodeMapper("VND", externalCode), ICurrency { }
 
-    internal record VND1000Currency : BaseCodeMapper, ICurrency
-    {
-        public VND1000Currency(string? externalCode = null)
-            : base("VND_1000", externalCode)
-        {
-        }
-    }
+    internal record VND1000Currency(string? externalCode = null)
+        : BaseCodeMapper("VND_1000", externalCode), ICurrency { }
 
-    internal record HKDCurrency : BaseCodeMapper, ICurrency
-    {
-        public HKDCurrency(string? externalCode = null)
-            : base("HKD", externalCode)
-        {
-        }
-    }
+    internal record HKDCurrency(string? externalCode = null)
+        : BaseCodeMapper("HKD", externalCode), ICurrency { }
 
-    internal record PHPCurrency : BaseCodeMapper, ICurrency
-    {
-        public PHPCurrency(string? externalCode = null)
-            : base("PHP", externalCode)
-        {
-        }
-    }
+    internal record PHPCurrency(string? externalCode = null)
+        : BaseCodeMapper("PHP", externalCode), ICurrency { }
 }

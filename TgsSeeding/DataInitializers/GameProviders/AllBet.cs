@@ -33,13 +33,13 @@ public partial class DataInitializer
 
         string IGameProvider.Name => "AllBet";
 
-        IGameProviderConfiguration[] IGameProvider.GameProviderConfigurations => new IGameProviderConfiguration[]
-        {
+        IGameProviderConfiguration[] IGameProvider.GameProviderConfigurations =>
+        [
             new AllBetGameProviderConfiguration()
-        };
+        ];
 
-        ICurrency[] IGameProvider.Currencies => new ICurrency[]
-        {
+        ICurrency[] IGameProvider.Currencies =>
+        [
             new CNYCurrency("CNY"),
             new USDCurrency("USD"),
             new VND1000Currency("VND2"),
@@ -49,10 +49,10 @@ public partial class DataInitializer
             new MYRCurrency("MYR"),
             new THBCurrency("THB"),
             new GBPCurrency("GBP")
-        };
+        ];
 
-        ILanguage[] IGameProvider.Languages => new ILanguage[]
-        {
+        ILanguage[] IGameProvider.Languages =>
+        [
             new USLanguage("en"),
             new CNLanguage("zh_CN"),
             new IDLanguage("id"),
@@ -61,7 +61,7 @@ public partial class DataInitializer
             new THLanguage("th"),
             new VNLanguage("vi"),
             new TWLanguage("zh_TW")
-        };
+        ];
 
         IGame[]? IGameProvider.Games => _games;
 
@@ -69,20 +69,20 @@ public partial class DataInitializer
 
         ushort IGameProvider.UniqueId => UniqueId;
 
-        GameProviderBetLimit[] IGameProvider.BetLimits => Array.Empty<GameProviderBetLimit>();
+        GameProviderBetLimit[] IGameProvider.BetLimits => [];
 
         PluggableConfigurationBase IGameProvider.GetConfiguration() =>
             new AllBetConfiguration
             {
                 ServiceEndpointUrl = new Uri("http://localhost:62330"),
                 ApiUrl = new("https://sw2.apidemo.net:8443/"),
-                BrandMerchants = new AllBetBrandMerchant[]
-                {
+                BrandMerchants =
+                [
                     new()
                     {
                         BrandCode = "Default",
-                        Agents = new AllBetAgent[]
-                        {
+                        Agents =
+                        [
                             new()
                             {
                                 PropertyId = "4222910",
@@ -94,19 +94,19 @@ public partial class DataInitializer
                                     "wqRXtqmTssY6dsMb6y7janayZosdF2+KIOZx8G0UWeNOIl+B1+hn56y/unBBR2OUBhgyvxo7sdD9RQt5C9TDkg==",
                                 Suffix = "mkb"
                             }
-                        }
+                        ]
                     }
-                }
+                ]
             };
 
-        Dictionary<string, string> IGameProvider.SportTypes => new();
+        Dictionary<string, string> IGameProvider.SportTypes => [];
 
-        Dictionary<string, string> IGameProvider.MarketTypes => new();
+        Dictionary<string, string> IGameProvider.MarketTypes => [];
 
-        SubGameProvider[] IGameProvider.SubGameProviders => new SubGameProvider[]
-        {
+        SubGameProvider[] IGameProvider.SubGameProviders =>
+        [
             new(GameProviderConst.AllBet, "AllBet")
-        };
+        ];
     }
 
     internal record AllBetGameProviderConfiguration : IGameProviderConfiguration

@@ -31,13 +31,13 @@ public partial class DataInitializer
 
         string IGameProvider.Name => "Avia";
 
-        IGameProviderConfiguration[] IGameProvider.GameProviderConfigurations => new IGameProviderConfiguration[]
-        {
+        IGameProviderConfiguration[] IGameProvider.GameProviderConfigurations =>
+        [
             new AviaGameProviderConfiguration()
-        };
+        ];
 
-        ICurrency[] IGameProvider.Currencies => new ICurrency[]
-        {
+        ICurrency[] IGameProvider.Currencies =>
+        [
             new CNYCurrency("CNY"),
             new USDCurrency("USD"),
             new VNDCurrency("VND"),
@@ -51,10 +51,10 @@ public partial class DataInitializer
             new EURCurrency("EUR"),
             new PHPCurrency("PHP"),
             new INRCurrency("INR")
-        };
+        ];
 
-        ILanguage[] IGameProvider.Languages => new ILanguage[]
-        {
+        ILanguage[] IGameProvider.Languages =>
+        [
             new USLanguage("ENG"),
             new CNLanguage("CHN"),
             new TWLanguage("CHN"),
@@ -63,7 +63,7 @@ public partial class DataInitializer
             new THLanguage("TH"),
             new KRLanguage("KR"),
             new VNLanguage("VN"),
-        };
+        ];
 
         IGame[]? IGameProvider.Games => _games;
 
@@ -73,7 +73,7 @@ public partial class DataInitializer
 
         ushort IGameProvider.UniqueId => 23;
 
-        GameProviderBetLimit[] IGameProvider.BetLimits => Array.Empty<GameProviderBetLimit>();
+        GameProviderBetLimit[] IGameProvider.BetLimits => [];
 
         PluggableConfigurationBase IGameProvider.GetConfiguration() =>
             new AviaConfiguration
@@ -81,24 +81,24 @@ public partial class DataInitializer
                 ServiceEndpointUrl = new Uri("http://localhost:62330"),
                 AmountMaximum = 10000000m,
                 AmountFormat = "10,2",
-                BrandMerchants = new[]  {new AviaBrandMerchant
+                BrandMerchants = [new AviaBrandMerchant
                 {
                     BrandCode = "Default",
                     ApiUrl = new Uri("https://api.aviaapi.vip"),
                     Authorization = "81e2d1a24c684a76a710a70f4900a353",
                     PlayerPassword = "TgsP@ssw0rd",
                     Status = true,
-                } }
+                } ]
             };
 
-        Dictionary<string, string> IGameProvider.SportTypes => new();
+        Dictionary<string, string> IGameProvider.SportTypes => [];
 
-        Dictionary<string, string> IGameProvider.MarketTypes => new();
+        Dictionary<string, string> IGameProvider.MarketTypes => [];
 
-        SubGameProvider[] IGameProvider.SubGameProviders => new SubGameProvider[]
-        {
+        SubGameProvider[] IGameProvider.SubGameProviders =>
+        [
             new(GameProviderConst.Avia, GameProviderConst.Avia)
-        };
+        ];
     }
 
     internal record AviaGameProviderConfiguration : IGameProviderConfiguration
