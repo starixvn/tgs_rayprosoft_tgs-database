@@ -20,7 +20,10 @@ public partial class DataInitializer
         public WMCasinoGameProvider()
         {
             _games = LoadGamesFromCsv(GameProviderConst.WMCasino)
-                ?.Select(g => g.EndpointPath.IsNotNullOrEmpty() ? g : ((Game)g with { EndpointPath = string.Empty }))
+                ?.Select(g =>
+                {
+                    return g.EndpointPath.IsNotNullOrEmpty() ? g : ((Game)g with { EndpointPath = string.Empty });
+                })
                 .ToArray();
         }
 
@@ -31,12 +34,13 @@ public partial class DataInitializer
         string IGameProvider.Name => "WM Casino";
 
         IGameProviderConfiguration[] IGameProvider.GameProviderConfigurations =>
-        [
-            new WMCasinoGameProviderConfiguration()
-        ];
+            new IGameProviderConfiguration[]
+            {
+                new WMCasinoGameProviderConfiguration()
+            };
 
-        ICurrency[] IGameProvider.Currencies =>
-        [
+        ICurrency[] IGameProvider.Currencies => new ICurrency[]
+        {
             new USDCurrency(),
             new EURCurrency(),
             new MYRCurrency(),
@@ -48,10 +52,10 @@ public partial class DataInitializer
             new IDR1000Currency(),
             new VNDCurrency(),
             new VND1000Currency()
-        ];
+        };
 
-        ILanguage[] IGameProvider.Languages =>
-        [
+        ILanguage[] IGameProvider.Languages => new ILanguage[]
+        {
             new CNLanguage("0"),
             new USLanguage("1"),
             new THLanguage("2"),
@@ -60,7 +64,7 @@ public partial class DataInitializer
             new KRLanguage("5"),
             new IDLanguage("6"),
             new TWLanguage("9")
-        ];
+        };
 
         IGame[]? IGameProvider.Games => _games;
 
@@ -72,7 +76,7 @@ public partial class DataInitializer
 
         bool IGameProvider.TransferWallet => false;
 
-        GameProviderBetLimit[] IGameProvider.BetLimits => [];
+        GameProviderBetLimit[] IGameProvider.BetLimits => Array.Empty<GameProviderBetLimit>();
 
         PluggableConfigurationBase IGameProvider.GetConfiguration() =>
             new WMCasinoConfiguration
@@ -102,10 +106,10 @@ public partial class DataInitializer
                 }
             };
 
-        SubGameProvider[] IGameProvider.SubGameProviders =>
-        [
+        SubGameProvider[] IGameProvider.SubGameProviders => new SubGameProvider[]
+        {
             new(GameProviderConst.WMCasino, GameProviderConst.WMCasino)
-        ];
+        };
     }
 
     internal class WMCasinoGameProviderConfiguration : IGameProviderConfiguration

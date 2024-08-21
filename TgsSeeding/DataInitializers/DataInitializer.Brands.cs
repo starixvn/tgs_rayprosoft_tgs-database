@@ -1,4 +1,5 @@
-﻿using TGS.Core.Models;
+﻿using System;
+using TGS.Core.Models;
 using TGS.Core.Models.Enums;
 
 namespace TGS.Core.DataServices.Tgs.DataInitializers;
@@ -15,17 +16,17 @@ public partial class DataInitializer
 
         ICurrency[] Currencies { get; }
 
-        string[] GameProviders => [];
+        string[] GameProviders => Array.Empty<string>();
 
-        string[] Groups =>
-        [
+        string[] Groups => new[]
+        {
             "Normal"
-        ];
+        };
 
         Guid Id { get; }
 
-        ILanguage[] Languages =>
-        [
+        ILanguage[] Languages => new ILanguage[]
+        {
             new CNLanguage(),
             new USLanguage(),
             new IDLanguage(),
@@ -34,7 +35,7 @@ public partial class DataInitializer
             new TWLanguage(),
             new JPLanguage(),
             new KRLanguage()
-        ];
+        };
 
         string Name { get; }
 
@@ -71,15 +72,15 @@ public partial class DataInitializer
 
         int? IBrand.SettlementDay => 13;
 
-        string[] IBrand.GameProviders =>
-        [
+        string[] IBrand.GameProviders => new[]
+        {
             Consts.GameProvider.SBOBET
-        ];
+        };
 
-        ICurrency[] IBrand.Currencies =>
-        [
+        ICurrency[] IBrand.Currencies => new ICurrency[]
+        {
             new CNYCurrency()
-        ];
+        };
     }
 
     internal record GpiBrand : IBrand
@@ -104,10 +105,10 @@ public partial class DataInitializer
 
         int? IBrand.SettlementDay => null;
 
-        ICurrency[] IBrand.Currencies =>
-        [
+        ICurrency[] IBrand.Currencies => new ICurrency[]
+        {
             new CNYCurrency()
-        ];
+        };
     }
 
     internal record GpiHkdBrand : IBrand
@@ -132,16 +133,16 @@ public partial class DataInitializer
 
         int? IBrand.SettlementDay => null;
 
-        ICurrency[] IBrand.Currencies =>
-        [
+        ICurrency[] IBrand.Currencies => new ICurrency[]
+        {
             new HKDCurrency()
-        ];
+        };
 
-        ILanguage[] IBrand.Languages =>
-        [
+        ILanguage[] IBrand.Languages => new ILanguage[]
+        {
             new CNLanguage(),
             new USLanguage(),
             new TWLanguage(),
-        ];
+        };
     }
 }

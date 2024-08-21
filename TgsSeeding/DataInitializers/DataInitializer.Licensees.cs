@@ -10,34 +10,23 @@ public partial class DataInitializer
 
         string Code { get; }
 
-        ICurrency[] Currencies =>
-        [
-            new CNYCurrency(),
-            new IDRCurrency(),
-            new IDR1000Currency(),
-            new INRCurrency(),
-            new VNDCurrency(),
-            new VND1000Currency(),
-            new THBCurrency(),
-            new EURCurrency(),
-            new GBPCurrency(),
-            new KRWCurrency(),
-            new JPYCurrency(),
-            new HKDCurrency()
-        ];
+        ICurrency[] Currencies => new ICurrency[]
+        {
+            new CNYCurrency(), new IDRCurrency(), new IDR1000Currency(),
+            new INRCurrency(), new VNDCurrency(), new VND1000Currency(),
+            new THBCurrency(), new EURCurrency(), new GBPCurrency(),
+            new KRWCurrency(), new JPYCurrency(), new HKDCurrency()
+        };
 
-        string[] GameProviders => [];
+        string[] GameProviders => Array.Empty<string>();
 
         Guid Id { get; }
 
-        ILanguage[] Languages =>
-        [
-            new CNLanguage(),
-            new USLanguage(),
-            new IDLanguage(),
-            new VNLanguage(),
-            new THLanguage()
-        ];
+        ILanguage[] Languages => new ILanguage[]
+        {
+            new CNLanguage(), new USLanguage(), new IDLanguage(),
+            new VNLanguage(), new THLanguage()
+        };
 
         string Name { get; }
 
@@ -54,11 +43,9 @@ public partial class DataInitializer
 
         string ILicensee.OperationalEmail => "tgs.services@gmail.com";
 
-        IBrand[] ILicensee.Brands =>
-        [
-            new TgsBrand(),
-            new GpiBrand(),
-            new GpiHkdBrand()
-        ];
+        IBrand[] ILicensee.Brands => new IBrand[]
+        {
+            new TgsBrand(), new GpiBrand(), new GpiHkdBrand()
+        };
     }
 }

@@ -20,7 +20,10 @@ public partial class DataInitializer
         public TCGGameProvider()
         {
             _games = LoadGamesFromCsv(GameProviderConst.TCG)
-                ?.Select(g => g.EndpointPath.IsNotNullOrEmpty() ? g : ((Game)g with { EndpointPath = string.Empty }))
+                ?.Select(g =>
+                {
+                    return g.EndpointPath.IsNotNullOrEmpty() ? g : ((Game)g with { EndpointPath = string.Empty });
+                })
                 .ToArray();
         }
 
@@ -31,12 +34,13 @@ public partial class DataInitializer
         string IGameProvider.Name => "TCG";
 
         IGameProviderConfiguration[] IGameProvider.GameProviderConfigurations =>
-        [
-            new TCGGameProviderConfiguration()
-        ];
+            new IGameProviderConfiguration[]
+            {
+                new TCGGameProviderConfiguration()
+            };
 
-        ICurrency[] IGameProvider.Currencies =>
-        [
+        ICurrency[] IGameProvider.Currencies => new ICurrency[]
+        {
             new CNYCurrency("CNY"),
             new IDRCurrency("IDR"),
             new IDR1000Currency("IDRK"),
@@ -47,10 +51,10 @@ public partial class DataInitializer
             new USDCurrency("USD"),
             new HKDCurrency("HKD"),
             new INRCurrency("INR")
-        ];
+        };
 
-        ILanguage[] IGameProvider.Languages =>
-        [
+        ILanguage[] IGameProvider.Languages => new ILanguage[]
+        {
             new CNLanguage("CN"),
             new TWLanguage("TW"),
             new USLanguage("EN"),
@@ -59,7 +63,7 @@ public partial class DataInitializer
             new IDLanguage("ID"),
             new JPLanguage("JA"),
             new KRLanguage("KO")
-        ];
+        };
 
         IGame[]? IGameProvider.Games => _games;
 
@@ -71,7 +75,7 @@ public partial class DataInitializer
 
         bool IGameProvider.TransferWallet => false;
 
-        GameProviderBetLimit[] IGameProvider.BetLimits => [];
+        GameProviderBetLimit[] IGameProvider.BetLimits => Array.Empty<GameProviderBetLimit>();
 
         PluggableConfigurationBase IGameProvider.GetConfiguration() =>
             new TCGConfiguration
@@ -162,10 +166,12 @@ public partial class DataInitializer
                 }
             };
 
-        SubGameProvider[] IGameProvider.SubGameProviders =>
-        [
+        SubGameProvider[] IGameProvider.SubGameProviders => new SubGameProvider[]
+        {
+            new("TCG_SEA", "TCG_SEA 东南亚彩"),
+            new("TCG_LOTTO", "TCG LOTTO"),
             new("TCG_LOTTO_VN", "TCG_LOTTO_VN 越南彩")
-        ];
+        };
     }
 
     internal class TCGGameProviderConfiguration : IGameProviderConfiguration
