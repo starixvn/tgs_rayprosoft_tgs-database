@@ -20,7 +20,10 @@ public partial class DataInitializer
         public VRGameProvider()
         {
             _games = LoadGamesFromCsv(GameProviderConst.VR)
-                ?.Select(g => g.EndpointPath.IsNotNullOrEmpty() ? g : ((Game)g with { EndpointPath = string.Empty }))
+                ?.Select(g =>
+                {
+                    return g.EndpointPath.IsNotNullOrEmpty() ? g : ((Game)g with { EndpointPath = string.Empty });
+                })
                 .ToArray();
         }
 
@@ -31,19 +34,20 @@ public partial class DataInitializer
         string IGameProvider.Name => "VR";
 
         IGameProviderConfiguration[] IGameProvider.GameProviderConfigurations =>
-        [
-            new VRGameProviderConfiguration()
-        ];
+            new IGameProviderConfiguration[]
+            {
+                new VRGameProviderConfiguration()
+            };
 
-        ICurrency[] IGameProvider.Currencies =>
-        [
+        ICurrency[] IGameProvider.Currencies => new ICurrency[]
+        {
             new CNYCurrency("CNY")
-        ];
+        };
 
-        ILanguage[] IGameProvider.Languages =>
-        [
+        ILanguage[] IGameProvider.Languages => new ILanguage[]
+        {
             new CNLanguage("zh")
-        ];
+        };
 
         IGame[]? IGameProvider.Games => _games;
 
@@ -55,7 +59,7 @@ public partial class DataInitializer
 
         bool IGameProvider.TransferWallet => true;
 
-        GameProviderBetLimit[] IGameProvider.BetLimits => [];
+        GameProviderBetLimit[] IGameProvider.BetLimits => Array.Empty<GameProviderBetLimit>();
 
         PluggableConfigurationBase IGameProvider.GetConfiguration() => new VRConfiguration
         {
@@ -76,10 +80,10 @@ public partial class DataInitializer
             }
         };
 
-        SubGameProvider[] IGameProvider.SubGameProviders =>
-        [
+        SubGameProvider[] IGameProvider.SubGameProviders => new SubGameProvider[]
+        {
             new(GameProviderConst.VR, "VR")
-        ];
+        };
     }
 
     internal class VRGameProviderConfiguration : IGameProviderConfiguration

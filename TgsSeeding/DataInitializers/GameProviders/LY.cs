@@ -31,13 +31,13 @@ public partial class DataInitializer
 
         string IGameProvider.Name => "LY";
 
-        IGameProviderConfiguration[] IGameProvider.GameProviderConfigurations =>
-        [
+        IGameProviderConfiguration[] IGameProvider.GameProviderConfigurations => new IGameProviderConfiguration[]
+        {
             new LYGameProviderConfiguration()
-        ];
+        };
 
-        ICurrency[] IGameProvider.Currencies =>
-        [
+        ICurrency[] IGameProvider.Currencies => new ICurrency[]
+        {
             new USDCurrency("USD"),
             new VNDCurrency("VND"),
             new IDRCurrency("IDR"),
@@ -47,14 +47,14 @@ public partial class DataInitializer
             new THBCurrency("THB"),
             new EURCurrency("EUR"),
             new HKDCurrency("RMB")
-        ];
+        };
 
-        ILanguage[] IGameProvider.Languages =>
-        [
+        ILanguage[] IGameProvider.Languages => new ILanguage[]
+        {
             new USLanguage(),
             new CNLanguage(),
             new TWLanguage()
-        ];
+        };
 
         IGame[]? IGameProvider.Games => _games;
 
@@ -64,7 +64,7 @@ public partial class DataInitializer
 
         ushort IGameProvider.UniqueId => 20;
 
-        GameProviderBetLimit[] IGameProvider.BetLimits => [];
+        GameProviderBetLimit[] IGameProvider.BetLimits => Array.Empty<GameProviderBetLimit>();
 
         PluggableConfigurationBase IGameProvider.GetConfiguration() =>
             new LYConfiguration
@@ -95,14 +95,14 @@ public partial class DataInitializer
                 }
             };
 
-        Dictionary<string, string> IGameProvider.SportTypes => [];
+        Dictionary<string, string> IGameProvider.SportTypes => new();
 
-        Dictionary<string, string> IGameProvider.MarketTypes => [];
+        Dictionary<string, string> IGameProvider.MarketTypes => new();
 
-        SubGameProvider[] IGameProvider.SubGameProviders =>
-        [
+        SubGameProvider[] IGameProvider.SubGameProviders => new SubGameProvider[]
+        {
             new(GameProviderConst.LY, "LY")
-        ];
+        };
     }
 
     internal record LYGameProviderConfiguration : IGameProviderConfiguration

@@ -26,12 +26,13 @@ public partial class DataInitializer
         string IGameProvider.Name => "BetConstruct";
 
         IGameProviderConfiguration[] IGameProvider.GameProviderConfigurations =>
-        [
-            new BetConstructGameProviderConfiguration()
-        ];
+            new IGameProviderConfiguration[]
+            {
+                new BetConstructGameProviderConfiguration()
+            };
 
-        ICurrency[] IGameProvider.Currencies =>
-        [
+        ICurrency[] IGameProvider.Currencies => new ICurrency[]
+        {
             new CNYCurrency(),
             new THBCurrency(),
             new MYRCurrency(),
@@ -44,14 +45,14 @@ public partial class DataInitializer
             new GBPCurrency(),
             new KRWCurrency(),
             new USDCurrency()
-        ];
+        };
 
-        ILanguage[] IGameProvider.Languages =>
-        [
+        ILanguage[] IGameProvider.Languages => new ILanguage[]
+        {
             new USLanguage("en"),
             new CNLanguage("zh"),
             new TWLanguage("zh")
-        ];
+        };
 
         IGame[]? IGameProvider.Games => _games;
 
@@ -61,12 +62,12 @@ public partial class DataInitializer
 
         ushort IGameProvider.UniqueId => 21;
 
-        GameProviderBetLimit[] IGameProvider.BetLimits => [];
+        GameProviderBetLimit[] IGameProvider.BetLimits => Array.Empty<GameProviderBetLimit>();
 
-        SubGameProvider[] IGameProvider.SubGameProviders =>
-        [
+        SubGameProvider[] IGameProvider.SubGameProviders => new SubGameProvider[]
+        {
             new(GameProviderConst.BetConstruct,"BetConstruct")
-        ];
+        };
 
         PluggableConfigurationBase IGameProvider.GetConfiguration() =>
             new BetConstructConfiguration

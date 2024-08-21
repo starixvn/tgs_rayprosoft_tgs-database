@@ -16,7 +16,10 @@ public partial class DataInitializer
         public TFGameProvider()
         {
             _games = LoadGamesFromCsv(GameProviderConst.TFGaming)
-                ?.Select(g => g.EndpointPath.IsNotNullOrEmpty() ? g : ((Game)g with { EndpointPath = string.Empty }))
+                ?.Select(g =>
+                {
+                    return g.EndpointPath.IsNotNullOrEmpty() ? g : ((Game)g with { EndpointPath = string.Empty });
+                })
                 .ToArray();
         }
 
@@ -27,12 +30,13 @@ public partial class DataInitializer
         string IGameProvider.Name => "TF";
 
         IGameProviderConfiguration[] IGameProvider.GameProviderConfigurations =>
-        [
-            new TFGameProviderConfiguration()
-        ];
+            new IGameProviderConfiguration[]
+            {
+                new TFGameProviderConfiguration()
+            };
 
-        ICurrency[] IGameProvider.Currencies =>
-        [
+        ICurrency[] IGameProvider.Currencies => new ICurrency[]
+        {
             new HKDCurrency(),
             new IDRCurrency(),
             new IDR1000Currency(),
@@ -48,10 +52,10 @@ public partial class DataInitializer
             new USDCurrency(),
             new SGDCurrency(),
             new EURCurrency(),
-        ];
+        };
 
-        ILanguage[] IGameProvider.Languages =>
-        [
+        ILanguage[] IGameProvider.Languages => new ILanguage[]
+        {
             new CNLanguage("zh"),
             new TWLanguage("zh"),
             new THLanguage("th"),
@@ -59,7 +63,7 @@ public partial class DataInitializer
             new KRLanguage("kr"),
             new JPLanguage("jp"),
             new USLanguage("en")
-        ];
+        };
 
         IGame[]? IGameProvider.Games => _games;
 
@@ -71,12 +75,12 @@ public partial class DataInitializer
 
         ushort IGameProvider.UniqueId => 24;
 
-        GameProviderBetLimit[] IGameProvider.BetLimits => [];
+        GameProviderBetLimit[] IGameProvider.BetLimits => Array.Empty<GameProviderBetLimit>();
 
-        SubGameProvider[] IGameProvider.SubGameProviders =>
-        [
+        SubGameProvider[] IGameProvider.SubGameProviders => new SubGameProvider[]
+        {
             new(GameProviderConst.TFGaming,"TF")
-        ];
+        };
 
         PluggableConfigurationBase IGameProvider.GetConfiguration() => new TFConfiguration
         {

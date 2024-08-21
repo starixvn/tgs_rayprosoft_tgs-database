@@ -21,7 +21,10 @@ public partial class DataInitializer
         public AWC_KMGameProvider()
         {
             _games = LoadGamesFromCsv(GameProviderConst.AWC_KM)
-                ?.Select(g => g.EndpointPath.IsNotNullOrEmpty() ? g : ((Game)g with { EndpointPath = string.Empty }))
+                ?.Select(g =>
+                {
+                    return g.EndpointPath.IsNotNullOrEmpty() ? g : ((Game)g with { EndpointPath = string.Empty });
+                })
                 .ToArray();
         }
 
@@ -31,13 +34,13 @@ public partial class DataInitializer
 
         string IGameProvider.Name => "AWC_KM";
 
-        IGameProviderConfiguration[] IGameProvider.GameProviderConfigurations =>
-        [
+        IGameProviderConfiguration[] IGameProvider.GameProviderConfigurations => new IGameProviderConfiguration[]
+        {
             new AWC_KMGameProviderConfiguration()
-        ];
+        };
 
-        ICurrency[] IGameProvider.Currencies =>
-        [
+        ICurrency[] IGameProvider.Currencies => new ICurrency[]
+        {
             new CNYCurrency("CNY"),
             new HKDCurrency("HKD"),
             new IDRCurrency("PTI"),
@@ -49,17 +52,17 @@ public partial class DataInitializer
             new USDCurrency("USD"),
             new VNDCurrency("PTV"),
             new VND1000Currency("VND")
-        ];
+        };
 
-        ILanguage[] IGameProvider.Languages =>
-        [
+        ILanguage[] IGameProvider.Languages => new ILanguage[]
+        {
             new USLanguage("en"),
             new CNLanguage("cn"),
             new TWLanguage("cn"),
             new JPLanguage("jp"),
             new THLanguage("th"),
             new VNLanguage("vn"),
-        ];
+        };
 
         IGame[]? IGameProvider.Games => _games;
 
@@ -69,7 +72,7 @@ public partial class DataInitializer
 
         ushort IGameProvider.UniqueId => 31;
 
-        GameProviderBetLimit[] IGameProvider.BetLimits => [];
+        GameProviderBetLimit[] IGameProvider.BetLimits => Array.Empty<GameProviderBetLimit>();
 
         PluggableConfigurationBase IGameProvider.GetConfiguration() =>
             new AWCConfiguration
@@ -79,14 +82,14 @@ public partial class DataInitializer
                 ApiRecordUrl = new Uri("https://tttint.onlinegames22.com/")
             };
 
-        Dictionary<string, string> IGameProvider.SportTypes => [];
+        Dictionary<string, string> IGameProvider.SportTypes => new();
 
-        Dictionary<string, string> IGameProvider.MarketTypes => [];
+        Dictionary<string, string> IGameProvider.MarketTypes => new();
 
-        SubGameProvider[] IGameProvider.SubGameProviders =>
-        [
+        SubGameProvider[] IGameProvider.SubGameProviders => new SubGameProvider[]
+        {
             new(GameProviderConst.AWC_KM, GameProviderConst.AWC_KM)
-        ];
+        };
     }
 
     internal record AWC_KMGameProviderConfiguration : IGameProviderConfiguration

@@ -30,13 +30,13 @@ public partial class DataInitializer
 
         string IGameProvider.Name => "Evolution";
 
-        IGameProviderConfiguration[] IGameProvider.GameProviderConfigurations =>
-        [
+        IGameProviderConfiguration[] IGameProvider.GameProviderConfigurations => new IGameProviderConfiguration[]
+        {
             new EvolutionGameProviderConfiguration()
-        ];
+        };
 
-        ICurrency[] IGameProvider.Currencies =>
-        [
+        ICurrency[] IGameProvider.Currencies => new ICurrency[]
+        {
             new CNYCurrency("CNY"),
             new USDCurrency("USD"),
             new VNDCurrency("VND"),
@@ -49,10 +49,10 @@ public partial class DataInitializer
             new THBCurrency("THB"),
             new EURCurrency("EUR"),
             new HKDCurrency("HKD")
-        ];
+        };
 
-        ILanguage[] IGameProvider.Languages =>
-        [
+        ILanguage[] IGameProvider.Languages => new ILanguage[]
+        {
             new USLanguage("en"),
             new CNLanguage("cn"),
             new THLanguage("th"),
@@ -60,7 +60,7 @@ public partial class DataInitializer
             new IDLanguage("id"),
             new VNLanguage("vi"),
             new TWLanguage("b5")
-        ];
+        };
 
         IGame[]? IGameProvider.Games => _games;
 
@@ -70,7 +70,7 @@ public partial class DataInitializer
 
         ushort IGameProvider.UniqueId => 14;
 
-        GameProviderBetLimit[] IGameProvider.BetLimits => [];
+        GameProviderBetLimit[] IGameProvider.BetLimits => Array.Empty<GameProviderBetLimit>();
 
         PluggableConfigurationBase IGameProvider.GetConfiguration() =>
             new EvolutionConfiguration
@@ -85,14 +85,16 @@ public partial class DataInitializer
                 OwAuthToken = "I2gcyH6kRTiHYAzLxy1RfH"
             };
 
-        Dictionary<string, string> IGameProvider.SportTypes => [];
+        Dictionary<string, string> IGameProvider.SportTypes => new();
 
-        Dictionary<string, string> IGameProvider.MarketTypes => [];
+        Dictionary<string, string> IGameProvider.MarketTypes => new();
 
-        SubGameProvider[] IGameProvider.SubGameProviders =>
-        [
+        SubGameProvider[] IGameProvider.SubGameProviders => new SubGameProvider[]
+        {
+            new(GameProviderConst.Evolution, "Evolution"),
+            new("NT", "Netent"),
             new("RT", "Red Tiger")
-        ];
+        };
     }
 
     internal record EvolutionGameProviderConfiguration : IGameProviderConfiguration

@@ -33,13 +33,13 @@ public partial class DataInitializer
 
         string IGameProvider.Name => "Saba Sports";
 
-        IGameProviderConfiguration[] IGameProvider.GameProviderConfigurations =>
-        [
+        IGameProviderConfiguration[] IGameProvider.GameProviderConfigurations => new IGameProviderConfiguration[]
+        {
             new SabaGameProviderConfiguration()
-        ];
+        };
 
-        ICurrency[] IGameProvider.Currencies =>
-        [
+        ICurrency[] IGameProvider.Currencies => new ICurrency[]
+        {
             new CNYCurrency("13"),
             new USDCurrency("3"),
             new VND1000Currency("51"),
@@ -49,10 +49,10 @@ public partial class DataInitializer
             new MYRCurrency("2"),
             new THBCurrency("4"),
             new GBPCurrency("12")
-        ];
+        };
 
-        ILanguage[] IGameProvider.Languages =>
-        [
+        ILanguage[] IGameProvider.Languages => new ILanguage[]
+        {
             new USLanguage("en"),
             new CNLanguage("cs"),
             new IDLanguage("id"),
@@ -61,7 +61,7 @@ public partial class DataInitializer
             new THLanguage("th"),
             new VNLanguage("vn"),
             new TWLanguage("ch")
-        ];
+        };
 
         IGame[]? IGameProvider.Games => _games;
 
@@ -69,7 +69,7 @@ public partial class DataInitializer
 
         ushort IGameProvider.UniqueId => UniqueId;
 
-        GameProviderBetLimit[] IGameProvider.BetLimits => [];
+        GameProviderBetLimit[] IGameProvider.BetLimits => Array.Empty<GameProviderBetLimit>();
 
         PluggableConfigurationBase IGameProvider.GetConfiguration() =>
             new SabaConfiguration
@@ -86,14 +86,14 @@ public partial class DataInitializer
                 }
             };
 
-        Dictionary<string, string> IGameProvider.SportTypes => [];
+        Dictionary<string, string> IGameProvider.SportTypes => new();
 
-        Dictionary<string, string> IGameProvider.MarketTypes => [];
+        Dictionary<string, string> IGameProvider.MarketTypes => new();
 
-        SubGameProvider[] IGameProvider.SubGameProviders =>
-        [
+        SubGameProvider[] IGameProvider.SubGameProviders => new SubGameProvider[]
+        {
             new(GameProviderConst.Saba, "Saba Sports")
-        ];
+        };
     }
 
     internal record SabaGameProviderConfiguration : IGameProviderConfiguration

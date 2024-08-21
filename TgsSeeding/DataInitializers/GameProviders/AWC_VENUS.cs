@@ -31,13 +31,13 @@ public partial class DataInitializer
 
         string IGameProvider.Name => "AWC_VENUS";
 
-        IGameProviderConfiguration[] IGameProvider.GameProviderConfigurations =>
-        [
+        IGameProviderConfiguration[] IGameProvider.GameProviderConfigurations => new IGameProviderConfiguration[]
+        {
             new AWC_VENUSGameProviderConfiguration()
-        ];
+        };
 
-        ICurrency[] IGameProvider.Currencies =>
-        [
+        ICurrency[] IGameProvider.Currencies => new ICurrency[]
+        {
             new CNYCurrency("CNY"),
             new HKDCurrency("HKD"),
             new IDRCurrency("PTI"),
@@ -47,17 +47,17 @@ public partial class DataInitializer
             new PHPCurrency("PHP"),
             new THBCurrency("THB"),
             new USDCurrency("USD")
-        ];
+        };
 
-        ILanguage[] IGameProvider.Languages =>
-        [
+        ILanguage[] IGameProvider.Languages => new ILanguage[]
+        {
             new USLanguage("en"),
             new CNLanguage("cn"),
             new TWLanguage("cn"),
             new JPLanguage("jp"),
             new THLanguage("th"),
             new VNLanguage("vn"),
-        ];
+        };
 
         IGame[]? IGameProvider.Games => _games;
 
@@ -67,7 +67,7 @@ public partial class DataInitializer
 
         ushort IGameProvider.UniqueId => 38;
 
-        GameProviderBetLimit[] IGameProvider.BetLimits => [];
+        GameProviderBetLimit[] IGameProvider.BetLimits => Array.Empty<GameProviderBetLimit>();
 
         PluggableConfigurationBase IGameProvider.GetConfiguration() =>
             new AWCConfiguration
@@ -77,14 +77,14 @@ public partial class DataInitializer
                 ApiRecordUrl = new Uri("https://tttint.onlinegames22.com/")
             };
 
-        Dictionary<string, string> IGameProvider.SportTypes => [];
+        Dictionary<string, string> IGameProvider.SportTypes => new();
 
-        Dictionary<string, string> IGameProvider.MarketTypes => [];
+        Dictionary<string, string> IGameProvider.MarketTypes => new();
 
-        SubGameProvider[] IGameProvider.SubGameProviders =>
-        [
+        SubGameProvider[] IGameProvider.SubGameProviders => new SubGameProvider[]
+        {
             new(GameProviderConst.AWC_VENUS, GameProviderConst.AWC_VENUS)
-        ];
+        };
     }
 
     internal record AWC_VENUSGameProviderConfiguration : IGameProviderConfiguration

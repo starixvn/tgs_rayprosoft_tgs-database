@@ -20,7 +20,10 @@ public partial class DataInitializer
         public SkywindGameProvider()
         {
             _games = LoadGamesFromCsv(GameProviderConst.Skywind)
-                ?.Select(g => g.EndpointPath.IsNotNullOrEmpty() ? g : ((Game)g with { EndpointPath = string.Empty }))
+                ?.Select(g =>
+                {
+                    return g.EndpointPath.IsNotNullOrEmpty() ? g : ((Game)g with { EndpointPath = string.Empty });
+                })
                 .ToArray();
         }
 
@@ -30,13 +33,13 @@ public partial class DataInitializer
 
         string IGameProvider.Name => "Skywind";
 
-        IGameProviderConfiguration[] IGameProvider.GameProviderConfigurations =>
-        [
+        IGameProviderConfiguration[] IGameProvider.GameProviderConfigurations => new IGameProviderConfiguration[]
+        {
             new SkywindGameProviderConfiguration()
-        ];
+        };
 
-        ICurrency[] IGameProvider.Currencies =>
-        [
+        ICurrency[] IGameProvider.Currencies => new ICurrency[]
+        {
             new CNYCurrency("CNY"),
             new USDCurrency("USD"),
             new VNDCurrency("VND"),
@@ -50,10 +53,10 @@ public partial class DataInitializer
             new GBPCurrency("GBP"),
             new SGDCurrency("SGD"),
             new INRCurrency("INR")
-        ];
+        };
 
-        ILanguage[] IGameProvider.Languages =>
-        [
+        ILanguage[] IGameProvider.Languages => new ILanguage[]
+        {
             new USLanguage("en"),
             new CNLanguage("zh-cn"),
             new TWLanguage("zh-tw"),
@@ -62,7 +65,7 @@ public partial class DataInitializer
             new VNLanguage("vi"),
             new THLanguage("th"),
             new IDLanguage("id")
-        ];
+        };
 
         IGame[]? IGameProvider.Games => _games;
 
@@ -72,7 +75,7 @@ public partial class DataInitializer
 
         ushort IGameProvider.UniqueId => 12;
 
-        GameProviderBetLimit[] IGameProvider.BetLimits => [];
+        GameProviderBetLimit[] IGameProvider.BetLimits => Array.Empty<GameProviderBetLimit>();
 
         PluggableConfigurationBase IGameProvider.GetConfiguration() =>
             new SkywindConfiguration
@@ -87,14 +90,14 @@ public partial class DataInitializer
                 Password = "3VSNMGFvbzBJacJT"
             };
 
-        Dictionary<string, string> IGameProvider.SportTypes => [];
+        Dictionary<string, string> IGameProvider.SportTypes => new();
 
-        Dictionary<string, string> IGameProvider.MarketTypes => [];
+        Dictionary<string, string> IGameProvider.MarketTypes => new();
 
-        SubGameProvider[] IGameProvider.SubGameProviders =>
-        [
+        SubGameProvider[] IGameProvider.SubGameProviders => new SubGameProvider[]
+        {
             new(GameProviderConst.Skywind, "Skywind")
-        ];
+        };
     }
 
     internal record SkywindGameProviderConfiguration : IGameProviderConfiguration

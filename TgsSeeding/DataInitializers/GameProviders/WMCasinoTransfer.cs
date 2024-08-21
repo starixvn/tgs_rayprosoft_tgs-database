@@ -20,7 +20,10 @@ public partial class DataInitializer
         public WMCasinoTransferGameProvider()
         {
             _games = LoadGamesFromCsv(GameProviderConst.WMCasinoTransfer)
-                ?.Select(g => g.EndpointPath.IsNotNullOrEmpty() ? g : ((Game)g with { EndpointPath = string.Empty }))
+                ?.Select(g =>
+                {
+                    return g.EndpointPath.IsNotNullOrEmpty() ? g : ((Game)g with { EndpointPath = string.Empty });
+                })
                 .ToArray();
         }
 
@@ -31,17 +34,18 @@ public partial class DataInitializer
         string IGameProvider.Name => "WM Casino Transfer";
 
         IGameProviderConfiguration[] IGameProvider.GameProviderConfigurations =>
-        [
-            new WMCasinoTransferGameProviderConfiguration()
-        ];
+            new IGameProviderConfiguration[]
+            {
+                new WMCasinoTransferGameProviderConfiguration()
+            };
 
-        ICurrency[] IGameProvider.Currencies =>
-        [
+        ICurrency[] IGameProvider.Currencies => new ICurrency[]
+        {
             new CNYCurrency("CNY")
-        ];
+        };
 
-        ILanguage[] IGameProvider.Languages =>
-        [
+        ILanguage[] IGameProvider.Languages => new ILanguage[]
+        {
             new CNLanguage("0"),
             new USLanguage("1"),
             new THLanguage("2"),
@@ -50,7 +54,7 @@ public partial class DataInitializer
             new KRLanguage("5"),
             new IDLanguage("6"),
             new TWLanguage("9")
-        ];
+        };
 
         IGame[]? IGameProvider.Games => _games;
 
@@ -62,7 +66,7 @@ public partial class DataInitializer
 
         bool IGameProvider.TransferWallet => true;
 
-        GameProviderBetLimit[] IGameProvider.BetLimits => [];
+        GameProviderBetLimit[] IGameProvider.BetLimits => Array.Empty<GameProviderBetLimit>();
 
         PluggableConfigurationBase IGameProvider.GetConfiguration() =>
             new WMCasinoTransferConfiguration
@@ -71,10 +75,10 @@ public partial class DataInitializer
                 ApiUrl = new("https://api.a45.me/api/wallet/Gateway.php")
             };
 
-        SubGameProvider[] IGameProvider.SubGameProviders =>
-        [
+        SubGameProvider[] IGameProvider.SubGameProviders => new SubGameProvider[]
+        {
             new(GameProviderConst.WMCasinoTransfer, GameProviderConst.WMCasinoTransfer)
-        ];
+        };
     }
 
     internal class WMCasinoTransferGameProviderConfiguration : IGameProviderConfiguration

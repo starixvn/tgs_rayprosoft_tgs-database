@@ -1,30 +1,33 @@
 ﻿using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Text;
+using Tgs.Core.Infrastructures.Security;
 using Tgs.Core.Infrastructures.Utility;
 using TGS.Core.DataServices.Base.DataInitializers;
 using TGS.Core.DataServices.Tgs.Models;
+using TGS.Core.Infrastructures.Extensions;
 using TGS.Core.Infrastructures.Json;
 using TGS.Core.Models.Enums;
+using static TGS.Core.Models.Enums.GameActionType;
 
 namespace TGS.Core.DataServices.Tgs.DataInitializers;
 
 [ExcludeFromCodeCoverage]
-public partial class DataInitializer(ITgsRepository repository) : BaseDataInitializer
+public partial class DataInitializer : BaseDataInitializer
 {
     private const string AdminUsername = "admin.enabled";
     private static readonly IRole _GpiBrandRole = new GpiBrandRole();
     private static readonly DateTimeOffset _Now = DateTimeOffset.UtcNow;
 
-    private static readonly IList<IReseller> _Resellers =
-    [
+    private static readonly IList<IReseller> _Resellers = new IReseller[]
+    {
         new TgsReseller()
-    ];
+    };
 
-    private readonly Dictionary<string, Brand> _brandCreated = [];
+    private readonly Dictionary<string, Brand> _brandCreated = new();
 
     private readonly CurrencyDefined[] _currencies =
-    [
+    {
         new("CNY", "Yuan", "元", "¥"),
         new("EUR", "Euro", "Euro", "€"),
         new("GBP", "Pound Sterling", "Pound Sterling", "£"),
@@ -41,85 +44,85 @@ public partial class DataInitializer(ITgsRepository repository) : BaseDataInitia
         new("VND_1000", "Vietnamese Dong", "đồng", "₫"),
         new("HKD", "Hong Kong Dollars", "元", "HK$"),
         new("PHP", "Philippine Peso", "披索", "₱")
-    ];
+    };
 
-    private readonly Dictionary<string, GameProvider> _gameProvidersCreated = [];
+    private readonly IList<IGameProvider> _gameProviders;
 
-    private readonly IJsonSerializationProvider _jsonSerializationProvider = new JsonSerializationProvider();
-    private readonly ITgsRepository _repository = repository;
+    private readonly Dictionary<string, GameProvider> _gameProvidersCreated = new();
+
+    private readonly IJsonSerializationProvider _jsonSerializationProvider;
+    private readonly ITgsRepository _repository;
 
     private readonly IRole[] _roles =
-    [
+    {
         new AdminRole(),
         new ResellerAdminRole(),
         new LicenseeAdminRole(),
         new TgsBrandRole(),
         _GpiBrandRole
-    ];
+    };
 
     private BetLimit[]? _betLimits;
     private VipLevel[]? _vipLevels;
 
-    private readonly IList<IGameProvider> _gameProviders =
-    [
-        new SBOGameProvider(),
-        new HabaneroGameProvider(),
-        new PragmaticPlayGameProvider(),
-        new AsiaGamingGameProvider(),
-        new SabaGameProvider(),
-        new KYGameProvider(),
-        new VRGameProvider(),
-        new IMESportsGameProvider(),
-        new BigGamingGameProvider(),
-        new JDBGameProvider(),
-        new SexyGamingGameProvider(),
-        new SkywindGameProvider(),
-        new AllBetGameProvider(),
-        new EvolutionGameProvider(),
-        new WGSportsGameProvider(),
-        new WGHorseGameProvider(),
-        new WMCasinoGameProvider(),
-        new TCGGameProvider(),
-        new Card365GameProvider(),
-        new LYGameProvider(),
-        new BetConstructProvider(),
-        new AviaGameProvider(),
-        new JiliGameProvider(),
-        new TFGameProvider(),
-        new DreamGameGameProvider(),
-        new JokerGameProvider(),
-        new PragmaticPlayTransferGameProvider(),
-        new AWC_AELOTTOGameProvider(),
-        new AWC_AWSGameProvider(),
-        new AWC_COCKFIGHTGameProvider(),
-        new AWC_FACAIGameProvider(),
-        new AWC_FSGameProvider(),
-        new AWC_KMGameProvider(),
-        new AWC_LUDOGameProvider(),
-        new AWC_PGSGameProvider(),
-        new AWC_RCBGameProvider(),
-        new AWC_SGGameProvider(),
-        new AWC_SPADEGameProvider(),
-        new AWC_VENUSGameProvider(),
-        new AWC_YLGameProvider(),
-        new JiliTransferGameProvider(),
-        new WMCasinoTransferGameProvider()
-    ];
+    public DataInitializer(ITgsRepository repository)
+    {
+        _repository = repository;
+
+        _jsonSerializationProvider = new JsonSerializationProvider();
+
+        _gameProviders = new IGameProvider[]
+        {
+            new SBOGameProvider(),
+            new HabaneroGameProvider(),
+            new PragmaticPlayGameProvider(),
+            new AsiaGamingGameProvider(),
+            new SabaGameProvider(),
+            new KYGameProvider(),
+            new VRGameProvider(),
+            new IMESportsGameProvider(),
+            new BigGamingGameProvider(),
+            new JDBGameProvider(),
+            new SexyGamingGameProvider(),
+            new SkywindGameProvider(),
+            new AllBetGameProvider(),
+            new EvolutionGameProvider(),
+            new WGSportsGameProvider(),
+            new WGHorseGameProvider(),
+            new WMCasinoGameProvider(),
+            new TCGGameProvider(),
+            new Card365GameProvider(),
+            new LYGameProvider(),
+            new BetConstructProvider(),
+            new AviaGameProvider(),
+            new JiliGameProvider(),
+            new TFGameProvider(),
+            new DreamGameGameProvider(),
+            new JokerGameProvider(),
+            new PragmaticPlayTransferGameProvider(),
+            new AWC_AELOTTOGameProvider(),
+            new AWC_AWSGameProvider(),
+            new AWC_COCKFIGHTGameProvider(),
+            new AWC_FACAIGameProvider(),
+            new AWC_FSGameProvider(),
+            new AWC_KMGameProvider(),
+            new AWC_LUDOGameProvider(),
+            new AWC_PGSGameProvider(),
+            new AWC_RCBGameProvider(),
+            new AWC_SGGameProvider(),
+            new AWC_SPADEGameProvider(),
+            new AWC_VENUSGameProvider(),
+            new AWC_YLGameProvider(),
+            new JiliTransferGameProvider(),
+            new WMCasinoTransferGameProvider()
+        };
+    }
 
     public override async Task SetInitialDataAsync()
     {
-        try
+        if (_repository.Currencies.Any())
         {
-            if (_repository.Currencies.Any())
-            {
-                return;
-            }
-        }
-        catch (Npgsql.PostgresException ex)
-            when (ex.Message.Contains("""relation "dbo.currencies" does not exist""", StringComparison.OrdinalIgnoreCase))
-        {
-            const string msg = "Forget exec the migrate update command to initialize the database schema? Please see the 'README.md' file.";
-            throw new InvalidOperationException(msg, ex);
+            return;
         }
 
         var logBuilder = new StringBuilder();
@@ -651,7 +654,7 @@ public partial class DataInitializer(ITgsRepository repository) : BaseDataInitia
     private async Task GenerateBetLimitsAsync()
     {
         BetLimitDefined[] limits =
-        [
+        {
             new("CNY", 1, 200, 1000),
             new("CNY", 10, 300, 1000),
             new("EUR", 1, 200, 1000),
@@ -668,7 +671,7 @@ public partial class DataInitializer(ITgsRepository repository) : BaseDataInitia
             new("VND", 1000, 200000, 1000000),
             new("VND_1000", 1, 200, 1000),
             new("HKD", 1, 200, 1000),
-        ];
+        };
 
         _betLimits = limits.Select(b => new BetLimit
         {

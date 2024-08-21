@@ -63,7 +63,10 @@ public partial class DataInitializer
         public SexyGamingGameProvider()
         {
             _games = LoadGamesFromCsv(GameProviderConst.SexyGaming)
-                ?.Select(g => g.EndpointPath.IsNotNullOrEmpty() ? g : ((Game)g with { EndpointPath = string.Empty }))
+                ?.Select(g =>
+                {
+                    return g.EndpointPath.IsNotNullOrEmpty() ? g : ((Game)g with { EndpointPath = string.Empty });
+                })
                 .ToArray();
         }
 
@@ -73,13 +76,13 @@ public partial class DataInitializer
 
         string IGameProvider.Name => "SexyGaming";
 
-        IGameProviderConfiguration[] IGameProvider.GameProviderConfigurations =>
-        [
+        IGameProviderConfiguration[] IGameProvider.GameProviderConfigurations => new IGameProviderConfiguration[]
+        {
             new SexyGamingGameProviderConfiguration()
-        ];
+        };
 
-        ICurrency[] IGameProvider.Currencies =>
-        [
+        ICurrency[] IGameProvider.Currencies => new ICurrency[]
+        {
             new CNYCurrency("CNY"),
             new USDCurrency("USD"),
             new VND1000Currency("VND"),
@@ -92,16 +95,16 @@ public partial class DataInitializer
             new THBCurrency("THB"),
             new EURCurrency("EUR"),
             new HKDCurrency("HKD")
-        ];
+        };
 
-        ILanguage[] IGameProvider.Languages =>
-        [
+        ILanguage[] IGameProvider.Languages => new ILanguage[]
+        {
             new USLanguage("en"),
             new CNLanguage("cn"),
             new JPLanguage("jp"),
             new THLanguage("th"),
             new VNLanguage("vn")
-        ];
+        };
 
         IGame[]? IGameProvider.Games => _games;
 
@@ -126,14 +129,14 @@ public partial class DataInitializer
                 }
             };
 
-        Dictionary<string, string> IGameProvider.SportTypes => [];
+        Dictionary<string, string> IGameProvider.SportTypes => new();
 
-        Dictionary<string, string> IGameProvider.MarketTypes => [];
+        Dictionary<string, string> IGameProvider.MarketTypes => new();
 
-        SubGameProvider[] IGameProvider.SubGameProviders =>
-        [
+        SubGameProvider[] IGameProvider.SubGameProviders => new SubGameProvider[]
+        {
             new(GameProviderConst.SexyGaming, "SexyGaming")
-        ];
+        };
     }
 
     internal record SexyGamingGameProviderConfiguration : IGameProviderConfiguration
