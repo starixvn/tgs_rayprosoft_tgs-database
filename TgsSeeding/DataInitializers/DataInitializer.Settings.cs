@@ -26,10 +26,10 @@ public partial class DataInitializer
         {
             Manager = new()
             {
-                Emails = new[]
-                {
+                Emails =
+                [
                     "rico.lin@rayprosoft.com"
-                },
+                ],
                 Subject = "Manager",
                 Content =
                     "HI Manager, \r\n '{0}'."
@@ -40,8 +40,8 @@ public partial class DataInitializer
                 Content =
                     "settlementDay hi please pay for arrears '{0}'. \r\n hi please pay for arrears '{0}'. \r\n hi please pay for arrears '{0}'."
             },
-            Daily = new[]
-            {
+            Daily =
+            [
                 new()
                 {
                     Subject = "60%",
@@ -49,678 +49,349 @@ public partial class DataInitializer
                     Content =
                         "60% hi please pay for arrears '{0}'. \r\n hi please pay for arrears '{0}'. \r\n hi please pay for arrears '{0}'."
                 },
-                new ArrearsEmailInfoDaily
+                new()
                 {
                     Subject = "70%",
                     SendPercentage = 70.0M,
                     Content =
                         "70% hi please pay for arrears '{0}'. \r\n hi please pay for arrears '{0}'. \r\n hi please pay for arrears '{0}'."
                 },
-                new ArrearsEmailInfoDaily
+                new()
                 {
                     Subject = "80%",
                     SendPercentage = 80.0M,
                     Content =
                         "80% hi please pay for arrears '{0}'. \r\n hi please pay for arrears '{0}'. \r\n hi please pay for arrears '{0}'."
                 },
-                new ArrearsEmailInfoDaily
+                new()
                 {
                     Subject = "90%",
                     SendPercentage = 90.0M,
                     Content =
                         "90% hi please pay for arrears '{0}'. \r\n hi please pay for arrears '{0}'. \r\n hi please pay for arrears '{0}'."
                 }
-            }
+            ]
         };
 
-    private static MenuSetting[] GetMenuSettings()
-    {
-        var menus = new[]
-        {
-            new MenuSetting("Overview")
-            {
-                SubMenus = new[]
-                {
-                    new MenuSetting("Platform")
-                    {
-                        SubMenus = new[]
-                        {
-                            new MenuSetting("View")
-                        }
-                    }
-                }
-            },
-            new MenuSetting("Platform")
-            {
-                SubMenus = new[]
-                {
-                    new MenuSetting("Banner")
-                    {
-                        SubMenus = new[]
-                        {
-                            new MenuSetting("View"),
-                            new MenuSetting("Create"),
-                            new MenuSetting("Update"),
-                            new MenuSetting("Verify")
-                        }
-                    },
-                    new MenuSetting("Announcement")
-                    {
-                        SubMenus = new[]
-                        {
-                            new MenuSetting("View"),
-                            new MenuSetting("Create"),
-                            new MenuSetting("Update"),
-                            new MenuSetting("Verify")
-                        }
-                    },
-                    new MenuSetting("StationLetter")
-                    {
-                        SubMenus = new[]
-                        {
-                            new MenuSetting("View"),
-                            new MenuSetting("Create"),
-                            new MenuSetting("Verify")
-                        }
-                    },
-                    new MenuSetting("VipLevel")
-                    {
-                        SubMenus = new[]
-                        {
-                            new MenuSetting("View"),
-                            new MenuSetting("Create"),
-                            new MenuSetting("Update")
-                        }
-                    },
-                    new MenuSetting("IMSettings")
-                    {
-                        SubMenus = new[]
-                        {
-                            new MenuSetting("View"),
-                            new MenuSetting("Update"),
-                            new MenuSetting("ViewLiveChat"),
-                            new MenuSetting("UpdateLiveChat"),
-                            new MenuSetting("ViewAllAgent"),
-                            new MenuSetting("UpdateAllAgent"),
-                            new MenuSetting("ViewSms"),
-                            new MenuSetting("UpdateSms"),
-                            new MenuSetting("ViewPlayerContactField"),
-                            new MenuSetting("UpdatePlayerContactField")
-                        }
-                    },
-                    new MenuSetting("IPAddress")
-                    {
-                        SubMenus = new[]
-                        {
-                            new MenuSetting("View")
-                        }
-                    },
-                    new MenuSetting("Letter")
-                    {
-                        SubMenus = new[]
-                        {
-                            new MenuSetting("View"),
-                            new MenuSetting("Update")
-                        }
-                    }
-                }
-            },
-            new MenuSetting("Promotion")
-            {
-                SubMenus = new[]
-                {
-                    new MenuSetting("PromotionList")
-                    {
-                        SubMenus = new[]
-                        {
-                            new MenuSetting("View"),
-                            new MenuSetting("Update"),
-                            new MenuSetting("ChangeLog")
-                        }
-                    },
-                    new MenuSetting("PayoutList")
-                    {
-                        SubMenus = new[]
-                        {
-                            new MenuSetting("View"),
-                            new MenuSetting("Update")
-                        }
-                    },
-                    new MenuSetting("WinningList")
-                    {
-                        SubMenus = new[]
-                        {
-                            new MenuSetting("View")
-                        }
-                    }
-                }
-            },
-            new MenuSetting("PlayerManagement")
-            {
-                SubMenus = new[]
-                {
-                    new MenuSetting("PlayerList")
-                    {
-                        SubMenus = new[]
-                        {
-                            new MenuSetting("View"),
-                            new MenuSetting("Update"),
-                            new MenuSetting("PhoneFilter"),
-                            new MenuSetting("Contact"),
-                            new MenuSetting("DepositForm"),
-                            new MenuSetting("WithdrawalForm"),
-                            new MenuSetting("BalanceChangeUnsaved"),
-                            new MenuSetting("EditIdNumber"),
-                            new MenuSetting("UpgradeToAgent"),
-                            new MenuSetting("Bank")
-                        }
-                    },
-                    new MenuSetting("PlayerIdentity")
-                    {
-                        SubMenus = new[]
-                        {
-                            new MenuSetting("View"),
-                            new MenuSetting("Update")
-                        }
-                    },
-                    new MenuSetting("BalanceAdjustment")
-                    {
-                        SubMenus = new[]
-                        {
-                            new MenuSetting("View"),
-                            new MenuSetting("Update"),
-                            new MenuSetting("SystemTransactionType"),
-                            new MenuSetting("BatchAddBalance"),
-                            new MenuSetting("AdjustLockedAmount"),
-                            new MenuSetting("AdjustTransactionAmount")
-                        }
-                    },
-                    new MenuSetting("OnlinePlayerList")
-                    {
-                        SubMenus = new[]
-                        {
-                            new MenuSetting("View")
-                        }
-                    }
-                }
-            },
-            new MenuSetting("AgentManagement")
-            {
-                SubMenus = new[]
-                {
-                    new MenuSetting("AgentList")
-                    {
-                        SubMenus = new[]
-                        {
-                            new MenuSetting("View"),
-                            new MenuSetting("Update"),
-                            new MenuSetting("UpdateDomain"),
-                            new MenuSetting("UpdateIngress"),
-                            new MenuSetting("UpdateDnsZone"),
-                            new MenuSetting("ClearProfitShare"),
-                            new MenuSetting("ChangeWithdrawalPassword"),
-                            new MenuSetting("ProductFee")
-                        }
-                    },
-                    new MenuSetting("BalanceAdjustment")
-                    {
-                        SubMenus = new[]
-                        {
-                            new MenuSetting("View"),
-                            new MenuSetting("Update"),
-                            new MenuSetting("SystemTransactionType")
-                        }
-                    }
-                }
-            },
-            new MenuSetting("Game")
-            {
-                SubMenus = new[]
-                {
-                    new MenuSetting("BrandProviders")
-                    {
-                        SubMenus = new[]
-                        {
-                            new MenuSetting("View"),
-                            new MenuSetting("Update")
-                        }
-                    },
-                    new MenuSetting("BrandGames")
-                    {
-                        SubMenus = new[]
-                        {
-                            new MenuSetting("View"),
-                            new MenuSetting("Update"),
-                            new MenuSetting("ViewDetail"),
-                            new MenuSetting("UpdateDetail")
-                        }
-                    }
-                }
-            },
-            new MenuSetting("Report")
-            {
-                SubMenus = new[]
-                {
-                    new MenuSetting("MarketReport")
-                    {
-                        SubMenus = new[]
-                        {
-                            new MenuSetting("View")
-                        }
-                    },
-                    new MenuSetting("OrderReport")
-                    {
-                        SubMenus = new[]
-                        {
-                            new MenuSetting("View")
-                        }
-                    },
-                    new MenuSetting("OpenRound")
-                    {
-                        SubMenus = new[]
-                        {
-                            new MenuSetting("View")
-                        }
-                    },
-                    new MenuSetting("AgentContributionReport")
-                    {
-                        SubMenus = new[]
-                        {
-                            new MenuSetting("View")
-                        }
-                    },
-                    new MenuSetting("PlayerContributionReport")
-                    {
-                        SubMenus = new[]
-                        {
-                            new MenuSetting("View")
-                        }
-                    },
-                    new MenuSetting("AgentBonusReport")
-                    {
-                        SubMenus = new[]
-                        {
-                            new MenuSetting("View")
-                        }
-                    },
-                    new MenuSetting("AllAgentRebateReport")
-                    {
-                        SubMenus = new[]
-                        {
-                            new MenuSetting("View")
-                        }
-                    },
-                    new MenuSetting("VipReport")
-                    {
-                        SubMenus = new[]
-                        {
-                            new MenuSetting("View")
-                        }
-                    },
-                    new MenuSetting("BalanceChangeReport")
-                    {
-                        SubMenus = new[]
-                        {
-                            new MenuSetting("View")
-                        }
-                    },
-                    new MenuSetting("GameProviders")
-                    {
-                        SubMenus = new[]
-                        {
-                            new MenuSetting("View")
-                        }
-                    },
-                    new MenuSetting("GameProviderReport")
-                    {
-                        SubMenus = new[]
-                        {
-                            new MenuSetting("View")
-                        }
-                    },
-                    new MenuSetting("WinlossReport")
-                    {
-                        SubMenus = new[]
-                        {
-                            new MenuSetting("View")
-                        }
-                    },
-                    new MenuSetting("AgentDividend")
-                    {
-                        SubMenus = new[]
-                        {
-                            new MenuSetting("View"),
-                            new MenuSetting("Update")
-                        }
-                    }
-                }
-            },
-            new MenuSetting("LicenseeReport")
-            {
-                SubMenus = new[]
-                {
-                    new MenuSetting("MarketReport")
-                    {
-                        SubMenus = new[]
-                        {
-                            new MenuSetting("View")
-                        }
-                    }
-                }
-            },
-            new MenuSetting("ResellerReport")
-            {
-                SubMenus = new[]
-                {
-                    new MenuSetting("MarketReport")
-                    {
-                        SubMenus = new[]
-                        {
-                            new MenuSetting("View")
-                        }
-                    },
-                    new MenuSetting("BalanceAdjustReport")
-                    {
-                        SubMenus = new[]
-                        {
-                            new MenuSetting("View")
-                        }
-                    }
-                }
-            },
-            new MenuSetting("Merchant")
-            {
-                SubMenus = new[]
-                {
-                    new MenuSetting("Resellers")
-                    {
-                        SubMenus = new[]
-                        {
-                            new MenuSetting("View"),
-                            new MenuSetting("Update")
-                        }
-                    },
-                    new MenuSetting("Licensees")
-                    {
-                        SubMenus = new[]
-                        {
-                            new MenuSetting("View"),
-                            new MenuSetting("Update")
-                        }
-                    },
-                    new MenuSetting("Brands")
-                    {
-                        SubMenus = new[]
-                        {
-                            new MenuSetting("View"),
-                            new MenuSetting("Update")
-                        }
-                    },
-                    new MenuSetting("PlatformCredit")
-                    {
-                        SubMenus = new[]
-                        {
-                            new MenuSetting("View"),
-                            new MenuSetting("Update")
-                        }
-                    },
-                    new MenuSetting("PlatformAccountFund")
-                    {
-                        SubMenus = new[]
-                        {
-                            new MenuSetting("View"),
-                            new MenuSetting("Update")
-                        }
-                    },
-                    new MenuSetting("Maintenance")
-                    {
-                        SubMenus = new[]
-                        {
-                            new MenuSetting("View"),
-                            new MenuSetting("Update")
-                        }
-                    }
-                }
-            },
-            new MenuSetting("FundManagement")
-            {
-                SubMenus = new[]
-                {
-                    new MenuSetting("Deposit")
-                    {
-                        SubMenus = new[]
-                        {
-                            new MenuSetting("View"),
-                            new MenuSetting("Update")
-                        }
-                    },
-                    new MenuSetting("DepositHistory")
-                    {
-                        SubMenus = new[]
-                        {
-                            new MenuSetting("View"),
-                            new MenuSetting("Update")
-                        }
-                    },
-                    new MenuSetting("Withdraw")
-                    {
-                        SubMenus = new[]
-                        {
-                            new MenuSetting("View"),
-                            new MenuSetting("Update"),
-                            new MenuSetting("Reject")
-                        }
-                    },
-                    new MenuSetting("WithdrawHistory")
-                    {
-                        SubMenus = new[]
-                        {
-                            new MenuSetting("View"),
-                            new MenuSetting("Update"),
-                            new MenuSetting("Reject")
-                        }
-                    }
-                }
-            },
-            new MenuSetting("Marketing")
-            {
-                SubMenus = new[]
-                {
-                    new MenuSetting("PlayerDeposit")
-                    {
-                        SubMenus = new[]
-                        {
-                            new MenuSetting("View")
-                        }
-                    },
-                    new MenuSetting("MarketingReport")
-                    {
-                        SubMenus = new[]
-                        {
-                            new MenuSetting("View")
-                        }
-                    }
-                }
-            },
-            new MenuSetting("System")
-            {
-                SubMenus = new[]
-                {
-                    new MenuSetting("Admins")
-                    {
-                        SubMenus = new[]
-                        {
-                            new MenuSetting("View"),
-                            new MenuSetting("Create"),
-                            new MenuSetting("Update")
-                        }
-                    },
-                    new MenuSetting("Roles")
-                    {
-                        SubMenus = new[]
-                        {
-                            new MenuSetting("View"),
-                            new MenuSetting("Create"),
-                            new MenuSetting("Update"),
-                            new MenuSetting("Delete"),
-                            new MenuSetting("Copy")
-                        }
-                    },
-                    new MenuSetting("Departments")
-                    {
-                        SubMenus = new[]
-                        {
-                            new MenuSetting("View"),
-                            new MenuSetting("Create"),
-                            new MenuSetting("Update"),
-                            new MenuSetting("Delete")
-                        }
-                    },
-                    new MenuSetting("BrandPayments")
-                    {
-                        SubMenus = new[]
-                        {
-                            new MenuSetting("View"),
-                            new MenuSetting("Update")
-                        }
-                    }
-                }
-            },
-            new MenuSetting("SystemAdmin")
-            {
-                SubMenus = new[]
-                {
-                    new MenuSetting("GameProviderRound")
-                    {
-                        SubMenus = new[]
-                        {
-                            new MenuSetting("View"),
-                            new MenuSetting("Update"),
-                            new MenuSetting("Export"),
-                        }
-                    },
-                    new MenuSetting("GameRound")
-                    {
-                        SubMenus = new[]
-                        {
-                            new MenuSetting("View"),
-                            new MenuSetting("ViewGameAction"),
-                            new MenuSetting("Update")
-                        }
-                    },
-                    new MenuSetting("ResettleGameRound")
-                    {
-                        SubMenus = new[]
-                        {
-                            new MenuSetting("View"),
-                            new MenuSetting("ViewGameAction"),
-                            new MenuSetting("Update")
-                        }
-                    },
-                    new MenuSetting("GameProviders")
-                    {
-                        SubMenus = new[]
-                        {
-                            new MenuSetting("View"),
-                            new MenuSetting("Update")
-                        }
-                    },
-                    new MenuSetting("GameProviderReport")
-                    {
-                        SubMenus = new[]
-                        {
-                            new MenuSetting("View"),
-                            new MenuSetting("Update")
-                        }
-                    },
-                    new MenuSetting("BrandPayments")
-                    {
-                        SubMenus = new[]
-                        {
-                            new MenuSetting("View"),
-                            new MenuSetting("Update")
-                        }
-                    },
-                    new MenuSetting("Sms")
-                    {
-                        SubMenus = new[]
-                        {
-                            new MenuSetting("View"),
-                            new MenuSetting("Update")
-                        }
-                    },
-                    new MenuSetting("PlatformGameProvider")
-                    {
-                        SubMenus = new[]
-                        {
-                            new MenuSetting("View")
-                        }
-                    },
-                    new MenuSetting("Language")
-                    {
-                        SubMenus = new[]
-                        {
-                            new MenuSetting("View"),
-                            new MenuSetting("Update")
-                        }
-                    },
-                    new MenuSetting("Currency")
-                    {
-                        SubMenus = new[]
-                        {
-                            new MenuSetting("View"),
-                            new MenuSetting("Update")
-                        }
-                    },
-                    new MenuSetting("BetLimit")
-                    {
-                        SubMenus = new[]
-                        {
-                            new MenuSetting("View"),
-                            new MenuSetting("Update")
-                        }
-                    },
-                    new MenuSetting("Settings")
-                    {
-                        SubMenus = new[]
-                        {
-                            new MenuSetting("View"),
-                            new MenuSetting("Update")
-                        }
-                    }
-                }
-            },
-            new MenuSetting("Log")
-            {
-                SubMenus = new[]
-                {
-                    new MenuSetting("AdminLog")
-                    {
-                        SubMenus = new[]
-                        {
-                            new MenuSetting("View")
-                        }
-                    },
-                    new MenuSetting("ApiLog")
-                    {
-                        SubMenus = new[]
-                        {
-                            new MenuSetting("View")
-                        }
-                    },
-                    new MenuSetting("Log")
-                    {
-                        SubMenus = new[]
-                        {
-                            new MenuSetting("View")
-                        }
-                    }
-                }
-            }
-        };
-
-        return menus;
-    }
+    private static MenuSetting[] GetMenuSettings() =>
+    [
+        new("Overview", [
+            new("Platform", [
+                new("View")
+            ]) 
+        ]),
+        new("Platform", [
+            new("Banner", [
+                new("View"),
+                new("Create"),
+                new("Update"),
+                new("Verify")
+            ]),
+            new("Announcement", [
+                new("View"),
+                new("Create"),
+                new("Update"),
+                new("Verify")
+            ]),
+            new("StationLetter", [
+                new("View"),
+                new("Create"),
+                new("Verify")
+            ]),
+            new("VipLevel", [
+                new("View"),
+                new("Create"),
+                new("Update")
+            ]),
+            new("IMSettings", [
+                new("View"),
+                new("Update"),
+                new("ViewLiveChat"),
+                new("UpdateLiveChat"),
+                new("ViewAllAgent"),
+                new("UpdateAllAgent"),
+                new("ViewSms"),
+                new("UpdateSms"),
+                new("ViewPlayerContactField"),
+                new("UpdatePlayerContactField")
+            ]),
+            new("IPAddress", [
+                new("View")
+            ]),
+            new("Letter", [
+                new("View"),
+                new("Update")
+            ])
+        ]),
+        new("Promotion", [
+            new("PromotionList", [
+                new("View"),
+                new("Update"),
+                new("ChangeLog")
+            ]),
+            new("PayoutList", [
+                new("View"),
+                new("Update")
+            ]),
+            new("WinningList", [
+                new("View")
+            ])
+        ]),
+        new("PlayerManagement", [
+            new("PlayerList", [
+                new("View"),
+                new("Update"),
+                new("PhoneFilter"),
+                new("Contact"),
+                new("DepositForm"),
+                new("WithdrawalForm"),
+                new("BalanceChangeUnsaved"),
+                new("EditIdNumber"),
+                new("UpgradeToAgent"),
+                new("Bank")
+            ]),
+            new("PlayerIdentity", [
+                new("View"),
+                new("Update")
+            ]),
+            new("BalanceAdjustment", [
+                new("View"),
+                new("Update"),
+                new("SystemTransactionType"),
+                new("BatchAddBalance"),
+                new("AdjustLockedAmount"),
+                new("AdjustTransactionAmount")
+            ]),
+            new("OnlinePlayerList", [
+                new("View")
+            ])
+        ]),
+        new("AgentManagement", [
+            new("AgentList", [
+                new("View"),
+                new("Update"),
+                new("UpdateDomain"),
+                new("UpdateIngress"),
+                new("UpdateDnsZone"),
+                new("ClearProfitShare"),
+                new("ChangeWithdrawalPassword"),
+                new("ProductFee")
+            ]),
+            new("BalanceAdjustment", [
+                new("View"),
+                new("Update"),
+                new("SystemTransactionType")
+            ])
+        ]),
+        new("Game", [
+            new("BrandProviders", [
+                new("View"),
+                new("Update")
+            ]),
+            new("BrandGames", [
+                new("View"),
+                new("Update"),
+                new("ViewDetail"),
+                new("UpdateDetail")
+            ])
+        ]),
+        new("Report", [
+            new("MarketReport", [
+                new("View")
+            ]),
+            new("OrderReport", [
+                new("View")
+            ]),
+            new("OpenRound", [
+                new("View")
+            ]),
+            new("AgentContributionReport", [
+                new("View")
+            ]),
+            new("PlayerContributionReport", [
+                new("View")
+            ]),
+            new("AgentBonusReport", [
+                new("View")
+            ]),
+            new("AllAgentRebateReport", [
+                new("View")
+            ]),
+            new("VipReport", [
+                new("View")
+            ]),
+            new("BalanceChangeReport", [
+                new("View")
+            ]),
+            new("GameProviders", [
+                new("View")
+            ]),
+            new("GameProviderReport", [
+                new("View")
+            ]),
+            new("WinlossReport", [
+                new("View")
+            ]),
+            new("AgentDividend", [
+                new("View"),
+                new("Update")
+            ])
+        ]),
+        new("LicenseeReport", [
+            new("MarketReport", [
+                new("View")
+            ])
+        ]),
+        new("ResellerReport", [
+            new("MarketReport", [
+                new("View")
+            ]),
+            new("BalanceAdjustReport", [
+                new("View")
+            ])
+        ]),
+        new("Merchant", [
+            new("Resellers", [
+                new("View"),
+                new("Update")
+            ]),
+            new("Licensees", [
+                new("View"),
+                new("Update")
+            ]),
+            new("Brands", [
+                new("View"),
+                new("Update")
+            ]),
+            new("PlatformCredit", [
+                new("View"),
+                new("Update")
+            ]),
+            new("PlatformAccountFund", [
+                new("View"),
+                new("Update")
+            ]),
+            new("Maintenance", [
+                new("View"),
+                new("Update")
+            ])
+        ]),
+        new("FundManagement", [
+            new("Deposit", [
+                new("View"),
+                new("Update")
+            ]),
+            new("DepositHistory", [
+                new("View"),
+                new("Update")
+            ]),
+            new("Withdraw", [
+                new("View"),
+                new("Update"),
+                new("Reject")
+            ]),
+            new("WithdrawHistory", [
+                new("View"),
+                new("Update"),
+                new("Reject")
+            ])
+        ]),
+        new("Marketing", [
+            new("PlayerDeposit", [
+                new("View")
+            ]),
+            new("MarketingReport", [
+                new("View")
+            ])
+        ]),
+        new("System", [
+            new("Admins", [
+                new("View"),
+                new("Create"),
+                new("Update")
+            ]),
+            new("Roles", [
+                new("View"),
+                new("Create"),
+                new("Update"),
+                new("Delete"),
+                new("Copy")
+            ]),
+            new("Departments", [
+                new("View"),
+                new("Create"),
+                new("Update"),
+                new("Delete")
+            ]),
+            new("BrandPayments", [
+                new("View"),
+                new("Update")
+            ])
+        ]),
+        new("SystemAdmin", [
+            new("GameProviderRound", [
+                new("View"),
+                new("Update"),
+                new("Export"),
+            ]),
+            new("GameRound", [
+                new("View"),
+                new("ViewGameAction"),
+                new("Update")
+            ]),
+            new("ResettleGameRound", [
+                new("View"),
+                new("ViewGameAction"),
+                new("Update")
+            ]),
+            new("GameProviders", [
+                new("View"),
+                new("Update")
+            ]),
+            new("GameProviderReport", [
+                new("View"),
+                new("Update")
+            ]),
+            new("BrandPayments", [
+                new("View"),
+                new("Update")
+            ]),
+            new("Sms", [
+                new("View"),
+                new("Update")
+            ]),
+            new("PlatformGameProvider", [
+                new("View")
+            ]),
+            new("Language", [
+                new("View"),
+                new("Update")
+            ]),
+            new("Currency", [
+                new("View"),
+                new("Update")
+            ]),
+            new("BetLimit", [
+                new("View"),
+                new("Update")
+            ]),
+            new("Settings", [
+                new("View"),
+                new("Update")
+            ])
+        ]),
+        new("Log", [
+            new("AdminLog", [
+                new("View")
+            ]),
+            new("ApiLog", [
+                new("View")
+            ]),
+            new("Log", [
+                new("View")
+            ])
+        ])
+    ];
 
     private async Task GenerateSettingsAsync()
     {

@@ -29,13 +29,13 @@ public partial class DataInitializer
 
         string IGameProvider.Name => "IMESports";
 
-        IGameProviderConfiguration[] IGameProvider.GameProviderConfigurations => new IGameProviderConfiguration[]
-        {
+        IGameProviderConfiguration[] IGameProvider.GameProviderConfigurations =>
+        [
             new IMESportsGameProviderConfiguration()
-        };
+        ];
 
-        ICurrency[] IGameProvider.Currencies => new ICurrency[]
-        {
+        ICurrency[] IGameProvider.Currencies =>
+        [
             new CNYCurrency("CNY"),
             new USDCurrency("USD"),
             new VND1000Currency("VND"),
@@ -44,10 +44,10 @@ public partial class DataInitializer
             new KRWCurrency("KRW"),
             new THBCurrency("THB"),
             new MYRCurrency("MYR")
-        };
+        ];
 
-        ILanguage[] IGameProvider.Languages => new ILanguage[]
-        {
+        ILanguage[] IGameProvider.Languages =>
+        [
             new USLanguage("EN"),
             new CNLanguage("ZH-CN"),
             new IDLanguage("ID"),
@@ -55,13 +55,13 @@ public partial class DataInitializer
             new THLanguage("TH"),
             new VNLanguage("VI"),
             new TWLanguage("ZH-HK")
-        };
+        ];
 
         IGame[]? IGameProvider.Games => _games;
 
         ushort IGameProvider.UniqueId => 9;
 
-        GameProviderBetLimit[] IGameProvider.BetLimits => Array.Empty<GameProviderBetLimit>();
+        GameProviderBetLimit[] IGameProvider.BetLimits => [];
 
         PluggableConfigurationBase IGameProvider.GetConfiguration() =>
             new IMESportsConfiguration
@@ -81,10 +81,10 @@ public partial class DataInitializer
                 SupportHttps = false
             };
 
-        SubGameProvider[] IGameProvider.SubGameProviders => new SubGameProvider[]
-        {
+        SubGameProvider[] IGameProvider.SubGameProviders =>
+        [
             new(GameProviderConst.IMESports, "IMESports")
-        };
+        ];
     }
 
     internal record IMESportsGameProviderConfiguration : IGameProviderConfiguration

@@ -23,10 +23,7 @@ public partial class DataInitializer
         public JiliGameProvider()
         {
             _games = LoadGamesFromCsv(GameProviderConst.Jili)
-                ?.Select(g =>
-                {
-                    return g.EndpointPath.IsNotNullOrEmpty() ? g : ((Game)g with { EndpointPath = string.Empty });
-                })
+                ?.Select(g => g.EndpointPath.IsNotNullOrEmpty() ? g : ((Game)g with { EndpointPath = string.Empty }))
                 .ToArray();
         }
 
@@ -36,13 +33,13 @@ public partial class DataInitializer
 
         string IGameProvider.Name => nameof(GameProviderConst.Jili);
 
-        IGameProviderConfiguration[] IGameProvider.GameProviderConfigurations => new IGameProviderConfiguration[]
-        {
+        IGameProviderConfiguration[] IGameProvider.GameProviderConfigurations =>
+        [
             new JiliGameProviderConfiguration()
-        };
+        ];
 
-        ICurrency[] IGameProvider.Currencies => new ICurrency[]
-        {
+        ICurrency[] IGameProvider.Currencies =>
+        [
             new CNYCurrency("CNY"),
             new USDCurrency("USD"),
             new VNDCurrency("VND"),
@@ -56,17 +53,17 @@ public partial class DataInitializer
             new THBCurrency("THB"),
             new PHPCurrency("PHP"),
             new INRCurrency("INR")
-        };
+        ];
 
-        ILanguage[] IGameProvider.Languages => new ILanguage[]
-        {
+        ILanguage[] IGameProvider.Languages =>
+        [
             new USLanguage("en-US"),
             new CNLanguage("zh-CN"),
             new IDLanguage("id-ID"),
             new THLanguage("th-TH"),
             new VNLanguage("vi-VN"),
             new TWLanguage("zh-TW")
-        };
+        ];
 
         IGame[]? IGameProvider.Games => _games;
 
@@ -74,7 +71,7 @@ public partial class DataInitializer
 
         ushort IGameProvider.UniqueId => UniqueId;
 
-        GameProviderBetLimit[] IGameProvider.BetLimits => Array.Empty<GameProviderBetLimit>();
+        GameProviderBetLimit[] IGameProvider.BetLimits => [];
 
         PluggableConfigurationBase IGameProvider.GetConfiguration() =>
             new JiliConfiguration
@@ -94,14 +91,14 @@ public partial class DataInitializer
                 }
             };
 
-        Dictionary<string, string> IGameProvider.SportTypes => new();
+        Dictionary<string, string> IGameProvider.SportTypes => [];
 
-        Dictionary<string, string> IGameProvider.MarketTypes => new();
+        Dictionary<string, string> IGameProvider.MarketTypes => [];
 
-        SubGameProvider[] IGameProvider.SubGameProviders => new SubGameProvider[]
-        {
+        SubGameProvider[] IGameProvider.SubGameProviders =>
+        [
             new(GameProviderConst.Jili, "Jili")
-        };
+        ];
     }
 
     internal record JiliGameProviderConfiguration : IGameProviderConfiguration

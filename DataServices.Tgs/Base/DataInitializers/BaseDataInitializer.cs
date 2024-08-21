@@ -1,7 +1,5 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Text;
-using System.Threading.Tasks;
 using TGS.Core.DataServices.Base.Interfaces;
 
 namespace TGS.Core.DataServices.Base.DataInitializers;
@@ -14,8 +12,7 @@ public abstract class BaseDataInitializer : IDataInitializer
 
     public abstract Task SetInitialDataAsync();
 
-    protected static async Task LogSeedingTimeAsync(Func<Task> getFunc,
-        StringBuilder builder)
+    protected static async Task LogSeedingTimeAsync(Func<Task> getFunc, StringBuilder builder)
     {
         var timer = Stopwatch.StartNew();
         await getFunc();

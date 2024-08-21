@@ -33,13 +33,13 @@ public partial class DataInitializer
 
         string IGameProvider.Name => "AsiaGaming";
 
-        IGameProviderConfiguration[] IGameProvider.GameProviderConfigurations => new IGameProviderConfiguration[]
-        {
+        IGameProviderConfiguration[] IGameProvider.GameProviderConfigurations =>
+        [
             new AsiaGamingGameProviderConfiguration()
-        };
+        ];
 
-        ICurrency[] IGameProvider.Currencies => new ICurrency[]
-        {
+        ICurrency[] IGameProvider.Currencies =>
+        [
             new CNYCurrency("CNY"),
             new USDCurrency("USD"),
             new VND1000Currency("VND2"),
@@ -49,10 +49,10 @@ public partial class DataInitializer
             new MYRCurrency("MYR"),
             new THBCurrency("THB"),
             new GBPCurrency("GBP")
-        };
+        ];
 
-        ILanguage[] IGameProvider.Languages => new ILanguage[]
-        {
+        ILanguage[] IGameProvider.Languages =>
+        [
             new USLanguage("3"),
             new CNLanguage("1"),
             new IDLanguage("11"),
@@ -60,7 +60,7 @@ public partial class DataInitializer
             new KRLanguage("5"),
             new THLanguage("6"),
             new VNLanguage("8")
-        };
+        ];
 
         IGame[]? IGameProvider.Games => _games;
 
@@ -68,7 +68,7 @@ public partial class DataInitializer
 
         ushort IGameProvider.UniqueId => UniqueId;
 
-        GameProviderBetLimit[] IGameProvider.BetLimits => Array.Empty<GameProviderBetLimit>();
+        GameProviderBetLimit[] IGameProvider.BetLimits => [];
 
         PluggableConfigurationBase IGameProvider.GetConfiguration() =>
             new AsiaGamingConfiguration
@@ -76,10 +76,10 @@ public partial class DataInitializer
                 ServiceEndpointUrl = new("http://localhost:62330"),
                 AgentCode = "JH2_AGIN",
                 ProductionId = "JH2",
-                LockGameTypes = new[]
-                {
+                LockGameTypes =
+                [
                     "ROU"
-                },
+                ],
                 DesKey = "jh2hnM6K",
                 Md5Key = "jh2bKFbpLZuW",
                 GameHistoryTypes =
@@ -87,12 +87,12 @@ public partial class DataInitializer
                     {
                         new AsiaGamingGameHistoryType
                         {
-                            GameTypes = new[]
-                            {
+                            GameTypes =
+                            [
                                 "BAC",
                                 "LBAC",
                                 "CBAC"
-                            },
+                            ],
                             Descriptions = new Dictionary<string, string>
                             {
                                 {"P", "Player"},
@@ -101,10 +101,10 @@ public partial class DataInitializer
                         },
                         new AsiaGamingGameHistoryType
                         {
-                            GameTypes = new[]
-                            {
+                            GameTypes =
+                            [
                                 "DT"
-                            },
+                            ],
                             Descriptions = new Dictionary<string, string>
                             {
                                 {"D", "Dragon"},
@@ -128,10 +128,10 @@ public partial class DataInitializer
                         },
                         new AsiaGamingGameHistoryType
                         {
-                            GameTypes = new[]
-                            {
+                            GameTypes =
+                            [
                                 "ZJH"
-                            },
+                            ],
                             Descriptions = new Dictionary<string, string>
                             {
                                 {"D", "Dragon"},
@@ -140,10 +140,10 @@ public partial class DataInitializer
                         },
                         new AsiaGamingGameHistoryType
                         {
-                            GameTypes = new[]
-                            {
+                            GameTypes =
+                            [
                                 "BF"
-                            },
+                            ],
                             Descriptions = new Dictionary<string, string>
                             {
                                 {"B", "BlackBull"},
@@ -152,11 +152,11 @@ public partial class DataInitializer
                         },
                         new AsiaGamingGameHistoryType
                         {
-                            GameTypes = new[]
-                            {
+                            GameTypes =
+                            [
                                 "BJ",
                                 "SG"
-                            },
+                            ],
                             Descriptions = new Dictionary<string, string>
                             {
                                 {"B", "Banker"},
@@ -172,12 +172,12 @@ public partial class DataInitializer
                     },
                 LoginApiUrl = new("http://gi.aggdemo.com:81"),
                 ApiUrl = new("https://swapi.etwlt.com"),
-                OppositeBets = new OppositeBetSetting[]
-                {
+                OppositeBets =
+                [
                     new()
                     {
-                        Games = new[]
-                        {
+                        Games =
+                        [
                             "AGIN_AGQ_BAC",
                             "AGIN_AGQ_LBAC",
                             "AGIN_AGQ_CBAC",
@@ -196,28 +196,28 @@ public partial class DataInitializer
                             "AGIN_AGNW_BAC",
                             "AGIN_AGNW_LBAC",
                             "AGIN_AGNW_CBAC"
-                        },
-                        Patterns = new OppositeBetSetting.Pattern[]
-                        {
+                        ],
+                        Patterns =
+                        [
                             new("1", 1),
                             new("2", 1),
                             new("6", 2),
                             new("7", 2)
-                        }
+                        ]
                     },
                     new()
                     {
-                        Games = new[]
-                        {
+                        Games =
+                        [
                             "AGIN_AGQ_DT",
                             "AGIN_DSP_DT",
                             "AGIN_EMA_DT",
                             "AGIN_LED_DT",
                             "AGIN_VIP_DT",
                             "AGIN_AGNW_DT"
-                        },
-                        Patterns = new OppositeBetSetting.Pattern[]
-                        {
+                        ],
+                        Patterns =
+                        [
                             new("21", 1),
                             new("22", 1),
                             new("130", 2),
@@ -228,131 +228,131 @@ public partial class DataInitializer
                             new("136", 4),
                             new("135", 5),
                             new("137", 5)
-                        }
+                        ]
                     },
                     new()
                     {
-                        Games = new[]
-                        {
+                        Games =
+                        [
                             "AGIN_AGQ_SHB",
                             "AGIN_DSP_SHB",
                             "AGIN_EMA_SHB",
                             "AGIN_LED_SHB",
                             "AGIN_VIP_SHB",
                             "AGIN_AGNW_SHB"
-                        },
-                        Patterns = new OppositeBetSetting.Pattern[]
-                        {
+                        ],
+                        Patterns =
+                        [
                             new("41", 1),
                             new("42", 1),
                             new("43", 2),
                             new("44", 2)
-                        }
+                        ]
                     },
                     new()
                     {
-                        Games = new[]
-                        {
+                        Games =
+                        [
                             "AGIN_AGQ_ROU",
                             "AGIN_DSP_ROU",
                             "AGIN_EMA_ROU",
                             "AGIN_LED_ROU",
                             "AGIN_VIP_ROU",
                             "AGIN_AGNW_ROU"
-                        },
-                        Patterns = new OppositeBetSetting.Pattern[]
-                        {
+                        ],
+                        Patterns =
+                        [
                             new("114", 1),
                             new("115", 1),
                             new("116", 2),
                             new("117", 2),
                             new("118", 2),
                             new("119", 2)
-                        }
+                        ]
                     },
                     new()
                     {
-                        Games = new[]
-                        {
+                        Games =
+                        [
                             "AGIN_DSP_ZJH",
                             "AGIN_LED_ZJH",
                             "AGIN_VIP_ZJH",
                             "AGIN_AGQ_ZJH",
                             "AGIN_AGNW_ZJH",
                             "AGIN_EMA_ZJH"
-                        },
-                        Patterns = new OppositeBetSetting.Pattern[]
-                        {
+                        ],
+                        Patterns =
+                        [
                             new("260", 1),
                             new("261", 1)
-                        }
+                        ]
                     },
                     new()
                     {
-                        Games = new[]
-                        {
+                        Games =
+                        [
                             "AGIN_DSP_ZJH",
                             "AGIN_LED_ZJH",
                             "AGIN_VIP_ZJH",
                             "AGIN_AGQ_ZJH",
                             "AGIN_AGNW_ZJH",
                             "AGIN_EMA_ZJH"
-                        },
-                        Patterns = new OppositeBetSetting.Pattern[]
-                        {
+                        ],
+                        Patterns =
+                        [
                             new("260", 1),
                             new("261", 1)
-                        }
+                        ]
                     },
                     new()
                     {
-                        Games = new[]
-                        {
+                        Games =
+                        [
                             "AGIN_DSP_BF",
                             "AGIN_AGQ_BF",
                             "AGIN_LED_BF",
                             "AGIN_VIP_BF",
                             "AGIN_EMA_BF",
                             "AGIN_AGNW_BF"
-                        },
-                        Patterns = new OppositeBetSetting.Pattern[]
-                        {
+                        ],
+                        Patterns =
+                        [
                             new("270", 1),
                             new("271", 1)
-                        }
+                        ]
                     },
                     new()
                     {
-                        Games = new[]
-                        {
+                        Games =
+                        [
                             "AGIN_DSP_SG",
                             "AGIN_AGQ_SG",
                             "AGIN_LED_SG",
                             "AGIN_VIP_SG",
                             "AGIN_EMA_SG",
                             "AGIN_AGNW_SG"
-                        },
-                        Patterns = new OppositeBetSetting.Pattern[]
-                        {
+                        ],
+                        Patterns =
+                        [
                             new("320", 1),
                             new("321", 1),
                             new("323", 2),
                             new("324", 2),
                             new("326", 3),
                             new("327", 3)
-                        }
+                        ]
                     }
-                }
+                ]
             };
 
-        Dictionary<string, string> IGameProvider.SportTypes => new();
+        Dictionary<string, string> IGameProvider.SportTypes => [];
 
-        Dictionary<string, string> IGameProvider.MarketTypes => new();
+        Dictionary<string, string> IGameProvider.MarketTypes => [];
 
-        SubGameProvider[] IGameProvider.SubGameProviders => new SubGameProvider[]
-        {
+        SubGameProvider[] IGameProvider.SubGameProviders =>
+        [
             new(GameProviderConst.AsiaGaming, "AsiaGaming")
-        };
+        ];
     }
 
     internal record AsiaGamingGameProviderConfiguration : IGameProviderConfiguration

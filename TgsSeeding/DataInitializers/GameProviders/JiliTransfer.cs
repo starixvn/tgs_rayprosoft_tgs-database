@@ -23,10 +23,7 @@ public partial class DataInitializer
         public JiliTransferGameProvider()
         {
             _games = LoadGamesFromCsv(GameProviderConst.JiliTransfer)
-                ?.Select(g =>
-                {
-                    return g.EndpointPath.IsNotNullOrEmpty() ? g : ((Game)g with { EndpointPath = string.Empty });
-                })
+                ?.Select(g => g.EndpointPath.IsNotNullOrEmpty() ? g : ((Game)g with { EndpointPath = string.Empty }))
                 .ToArray();
         }
 
@@ -36,28 +33,28 @@ public partial class DataInitializer
 
         string IGameProvider.Name => nameof(GameProviderConst.JiliTransfer);
 
-        IGameProviderConfiguration[] IGameProvider.GameProviderConfigurations => new IGameProviderConfiguration[]
-        {
+        IGameProviderConfiguration[] IGameProvider.GameProviderConfigurations =>
+        [
             new JiliTransferGameProviderConfiguration()
-        };
+        ];
 
-        ICurrency[] IGameProvider.Currencies => new ICurrency[]
-        {
+        ICurrency[] IGameProvider.Currencies =>
+        [
             new CNYCurrency("CNY"),
             new HKDCurrency("HKD"),
             new IDRCurrency("IDR"),
             new PHPCurrency("PHP")
-        };
+        ];
 
-        ILanguage[] IGameProvider.Languages => new ILanguage[]
-        {
+        ILanguage[] IGameProvider.Languages =>
+        [
             new USLanguage("en-US"),
             new CNLanguage("zh-CN"),
             new IDLanguage("id-ID"),
             new THLanguage("th-TH"),
             new VNLanguage("vi-VN"),
             new TWLanguage("zh-TW")
-        };
+        ];
 
         IGame[]? IGameProvider.Games => _games;
 
@@ -69,7 +66,7 @@ public partial class DataInitializer
 
         bool IGameProvider.TransferWallet => true;
 
-        GameProviderBetLimit[] IGameProvider.BetLimits => Array.Empty<GameProviderBetLimit>();
+        GameProviderBetLimit[] IGameProvider.BetLimits => [];
 
         PluggableConfigurationBase IGameProvider.GetConfiguration() =>
             new JiliTransferConfiguration
@@ -79,14 +76,14 @@ public partial class DataInitializer
                 AgentKey = "82af5971ae233eaa003b774be4079e7902ea7ff4"
             };
 
-        Dictionary<string, string> IGameProvider.SportTypes => new();
+        Dictionary<string, string> IGameProvider.SportTypes => [];
 
-        Dictionary<string, string> IGameProvider.MarketTypes => new();
+        Dictionary<string, string> IGameProvider.MarketTypes => [];
 
-        SubGameProvider[] IGameProvider.SubGameProviders => new SubGameProvider[]
-        {
+        SubGameProvider[] IGameProvider.SubGameProviders =>
+        [
             new(GameProviderConst.JiliTransfer, GameProviderConst.JiliTransfer)
-        };
+        ];
     }
 
     internal record JiliTransferGameProviderConfiguration : IGameProviderConfiguration

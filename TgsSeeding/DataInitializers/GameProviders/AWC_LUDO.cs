@@ -31,13 +31,13 @@ public partial class DataInitializer
 
         string IGameProvider.Name => "AWC_LUDO";
 
-        IGameProviderConfiguration[] IGameProvider.GameProviderConfigurations => new IGameProviderConfiguration[]
-        {
+        IGameProviderConfiguration[] IGameProvider.GameProviderConfigurations =>
+        [
             new AWC_LUDOGameProviderConfiguration()
-        };
+        ];
 
-        ICurrency[] IGameProvider.Currencies => new ICurrency[]
-        {
+        ICurrency[] IGameProvider.Currencies =>
+        [
             new CNYCurrency("CNY"),
             new HKDCurrency("HKD"),
             new INRCurrency("INR"),
@@ -45,17 +45,17 @@ public partial class DataInitializer
             new THBCurrency("THB"),
             new USDCurrency("USD"),
             new VND1000Currency("VND")
-        };
+        ];
 
-        ILanguage[] IGameProvider.Languages => new ILanguage[]
-        {
+        ILanguage[] IGameProvider.Languages =>
+        [
             new USLanguage("en"),
             new CNLanguage("cn"),
             new TWLanguage("cn"),
             new JPLanguage("jp"),
             new THLanguage("th"),
             new VNLanguage("vn"),
-        };
+        ];
 
         IGame[]? IGameProvider.Games => _games;
 
@@ -65,7 +65,7 @@ public partial class DataInitializer
 
         ushort IGameProvider.UniqueId => 30;
 
-        GameProviderBetLimit[] IGameProvider.BetLimits => Array.Empty<GameProviderBetLimit>();
+        GameProviderBetLimit[] IGameProvider.BetLimits => [];
 
         PluggableConfigurationBase IGameProvider.GetConfiguration() =>
             new AWCConfiguration
@@ -75,14 +75,14 @@ public partial class DataInitializer
                 ApiRecordUrl = new Uri("https://tttint.onlinegames22.com/")
             };
 
-        Dictionary<string, string> IGameProvider.SportTypes => new();
+        Dictionary<string, string> IGameProvider.SportTypes => [];
 
-        Dictionary<string, string> IGameProvider.MarketTypes => new();
+        Dictionary<string, string> IGameProvider.MarketTypes => [];
 
-        SubGameProvider[] IGameProvider.SubGameProviders => new SubGameProvider[]
-        {
+        SubGameProvider[] IGameProvider.SubGameProviders =>
+        [
             new(GameProviderConst.AWC_LUDO, GameProviderConst.AWC_LUDO)
-        };
+        ];
     }
 
     internal record AWC_LUDOGameProviderConfiguration : IGameProviderConfiguration

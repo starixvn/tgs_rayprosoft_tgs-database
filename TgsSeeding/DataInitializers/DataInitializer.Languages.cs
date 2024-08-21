@@ -2,71 +2,29 @@
 
 public partial class DataInitializer
 {
-    internal interface ILanguage : ICodeMapper
-    {
-    }
+    internal interface ILanguage : ICodeMapper { }
 
-    internal record USLanguage : BaseCodeMapper, ILanguage
-    {
-        public USLanguage(string? externalCode = null)
-            : base("en-US", externalCode)
-        {
-        }
-    }
+    internal record USLanguage(string? externalCode = null)
+        : BaseCodeMapper("en-US", externalCode), ILanguage { }
 
-    internal record IDLanguage : BaseCodeMapper, ILanguage
-    {
-        public IDLanguage(string? externalCode = null)
-            : base("id-ID", externalCode)
-        {
-        }
-    }
+    internal record IDLanguage(string? externalCode = null)
+        : BaseCodeMapper("id-ID", externalCode), ILanguage { }
 
-    internal record JPLanguage : BaseCodeMapper, ILanguage
-    {
-        public JPLanguage(string? externalCode = null)
-            : base("ja-JP", externalCode)
-        {
-        }
-    }
+    internal record JPLanguage(string? externalCode = null)
+        : BaseCodeMapper("ja-JP", externalCode), ILanguage { }
 
-    internal record THLanguage : BaseCodeMapper, ILanguage
-    {
-        public THLanguage(string? externalCode = null)
-            : base("th-TH", externalCode)
-        {
-        }
-    }
+    internal record THLanguage(string? externalCode = null)
+        : BaseCodeMapper("th-TH", externalCode), ILanguage { }
 
-    internal record KRLanguage : BaseCodeMapper, ILanguage
-    {
-        public KRLanguage(string? externalCode = null)
-            : base("ko-KR", externalCode)
-        {
-        }
-    }
+    internal record KRLanguage(string? externalCode = null)
+        : BaseCodeMapper("ko-KR", externalCode), ILanguage { }
 
-    internal record VNLanguage : BaseCodeMapper, ILanguage
-    {
-        public VNLanguage(string? externalCode = null)
-            : base("vi-VN", externalCode)
-        {
-        }
-    }
+    internal record VNLanguage(string? externalCode = null)
+        : BaseCodeMapper("vi-VN", externalCode), ILanguage { }
 
-    internal record CNLanguage : BaseCodeMapper, ILanguage
-    {
-        public CNLanguage(string? externalCode = null)
-            : base("zh-CN", externalCode)
-        {
-        }
-    }
+    internal record CNLanguage(string? externalCode = null)
+        : BaseCodeMapper("zh-CN", externalCode), ILanguage { }
 
-    internal record TWLanguage : BaseCodeMapper, ILanguage
-    {
-        public TWLanguage(string? externalCode = null)
-            : base("zh-TW", externalCode)
-        {
-        }
-    }
+    internal record TWLanguage(string? externalCode = null)
+        : BaseCodeMapper("zh-TW", externalCode), ILanguage { }
 }

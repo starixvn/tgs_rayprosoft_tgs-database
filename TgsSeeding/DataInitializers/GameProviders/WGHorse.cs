@@ -30,20 +30,19 @@ public partial class DataInitializer
         string IGameProvider.Name => "WG Horse";
 
         IGameProviderConfiguration[] IGameProvider.GameProviderConfigurations =>
-            new IGameProviderConfiguration[]
-            {
-                new WGHorseGameProviderConfiguration()
-            };
+        [
+            new WGHorseGameProviderConfiguration()
+        ];
 
-        ICurrency[] IGameProvider.Currencies => new ICurrency[]
-        {
+        ICurrency[] IGameProvider.Currencies =>
+        [
             new CNYCurrency("RMB"),new HKDCurrency("HKD")
-        };
+        ];
 
-        ILanguage[] IGameProvider.Languages => new ILanguage[]
-        {
+        ILanguage[] IGameProvider.Languages =>
+        [
             new CNLanguage("0"),new TWLanguage("1"),new USLanguage("2")
-        };
+        ];
 
         IGame[]? IGameProvider.Games => _games;
 
@@ -55,7 +54,7 @@ public partial class DataInitializer
 
         bool IGameProvider.TransferWallet => true;
 
-        GameProviderBetLimit[] IGameProvider.BetLimits => Array.Empty<GameProviderBetLimit>();
+        GameProviderBetLimit[] IGameProvider.BetLimits => [];
 
         PluggableConfigurationBase IGameProvider.GetConfiguration() => new WGHorseConfiguration
         {
@@ -68,10 +67,10 @@ public partial class DataInitializer
             IV = "b888888888888888"
         };
 
-        SubGameProvider[] IGameProvider.SubGameProviders => new SubGameProvider[]
-        {
+        SubGameProvider[] IGameProvider.SubGameProviders =>
+        [
             new(GameProviderConst.WGHorse, GameProviderConst.WGHorse)
-        };
+        ];
     }
 
     internal class WGHorseGameProviderConfiguration : IGameProviderConfiguration

@@ -29,7 +29,7 @@ public partial class DataInitializer
 
         using var reader = new StreamReader(stream);
         using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
-        return csv.GetRecords<Game>().ToList().Cast<IGame>().ToArray();
+        return csv.GetRecords<Game>().Cast<IGame>().ToArray();
     }
 
     #endregion Private Method
@@ -94,11 +94,11 @@ public partial class DataInitializer
 
         ILanguage[] Languages { get; }
 
-        Dictionary<string, string> MarketTypes => new();
+        Dictionary<string, string> MarketTypes => [];
 
         string Name { get; }
 
-        Dictionary<string, string> SportTypes => new();
+        Dictionary<string, string> SportTypes => [];
 
         SubGameProvider[] SubGameProviders { get; }
 
@@ -128,16 +128,10 @@ public partial class DataInitializer
         string SecretKey { get; }
     }
 
-    internal record BaseCodeMapper : ICodeMapper
+    internal record BaseCodeMapper(string code, string? externalCode) : ICodeMapper
     {
-        private readonly string _code;
-        private readonly string _externalCode;
-
-        protected BaseCodeMapper(string code, string? externalCode)
-        {
-            _code = code;
-            _externalCode = string.IsNullOrEmpty(externalCode) ? code : externalCode;
-        }
+        private readonly string _code = code;
+        private readonly string _externalCode = string.IsNullOrEmpty(externalCode) ? code : externalCode;
 
         string ICodeMapper.Code => _code;
         string ICodeMapper.ExternalCode => _externalCode;

@@ -5,98 +5,15 @@
     <TargetFrameworks>net8.0</TargetFrameworks>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <LangVersion>10.0</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="DataInitializers\Games\365.csv" />
-    <None Remove="DataInitializers\Games\AB.csv" />
-    <None Remove="DataInitializers\Games\AG.csv" />
-    <None Remove="DataInitializers\Games\AVIA.csv" />
-    <None Remove="DataInitializers\Games\AWC_AELOTTO.csv" />
-    <None Remove="DataInitializers\Games\AWC_AWS.csv" />
-    <None Remove="DataInitializers\Games\AWC_COCKFIGHT.csv" />
-    <None Remove="DataInitializers\Games\AWC_FACAI.csv" />
-    <None Remove="DataInitializers\Games\AWC_FS.csv" />
-    <None Remove="DataInitializers\Games\AWC_KM.csv" />
-    <None Remove="DataInitializers\Games\AWC_LUDO.csv" />
-    <None Remove="DataInitializers\Games\AWC_PGS.csv" />
-    <None Remove="DataInitializers\Games\AWC_RCB.csv" />
-    <None Remove="DataInitializers\Games\AWC_SG.csv" />
-    <None Remove="DataInitializers\Games\AWC_SPADE.csv" />
-    <None Remove="DataInitializers\Games\AWC_VENUS.csv" />
-    <None Remove="DataInitializers\Games\AWC_YL.csv" />
-    <None Remove="DataInitializers\Games\BC.csv" />
-    <None Remove="DataInitializers\Games\BG.csv" />
-    <None Remove="DataInitializers\Games\DG.csv" />
-    <None Remove="DataInitializers\Games\EVO.csv" />
-    <None Remove="DataInitializers\Games\HABA.csv" />
-    <None Remove="DataInitializers\Games\IMES.csv" />
-    <None Remove="DataInitializers\Games\JDB.csv" />
-    <None Remove="DataInitializers\Games\JILI.csv" />
-    <None Remove="DataInitializers\Games\JILITF.csv" />
-    <None Remove="DataInitializers\Games\JOKER.csv" />
-    <None Remove="DataInitializers\Games\KY.csv" />
-    <None Remove="DataInitializers\Games\LY.csv" />
-    <None Remove="DataInitializers\Games\PP.csv" />
-    <None Remove="DataInitializers\Games\PPTF.csv" />
-    <None Remove="DataInitializers\Games\SABA.csv" />
-    <None Remove="DataInitializers\Games\SBO.csv" />
-    <None Remove="DataInitializers\Games\SG.csv" />
-    <None Remove="DataInitializers\Games\SW.csv" />
-    <None Remove="DataInitializers\Games\TCG.csv" />
-    <None Remove="DataInitializers\Games\TF.csv" />
-    <None Remove="DataInitializers\Games\VR.csv" />
-    <None Remove="DataInitializers\Games\WGFM.csv" />
-    <None Remove="DataInitializers\Games\WGVIA.csv" />
-    <None Remove="DataInitializers\Games\WM.csv" />
-    <None Remove="DataInitializers\Games\WMTF.csv" />
+    <None Remove="DataInitializers\Games\*.csv" />
     <None Remove="DataInitializers\PaymentInitial\applePay.sql" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="DataInitializers\Games\365.csv" />
-    <EmbeddedResource Include="DataInitializers\Games\AB.csv" />
-    <EmbeddedResource Include="DataInitializers\Games\AG.csv" />
-    <EmbeddedResource Include="DataInitializers\Games\AVIA.csv" />
-    <EmbeddedResource Include="DataInitializers\Games\AWC_AELOTTO.csv" />
-    <EmbeddedResource Include="DataInitializers\Games\AWC_AWS.csv" />
-    <EmbeddedResource Include="DataInitializers\Games\AWC_COCKFIGHT.csv" />
-    <EmbeddedResource Include="DataInitializers\Games\AWC_FACAI.csv" />
-    <EmbeddedResource Include="DataInitializers\Games\AWC_FS.csv" />
-    <EmbeddedResource Include="DataInitializers\Games\AWC_KM.csv" />
-    <EmbeddedResource Include="DataInitializers\Games\AWC_LUDO.csv" />
-    <EmbeddedResource Include="DataInitializers\Games\AWC_PGS.csv" />
-    <EmbeddedResource Include="DataInitializers\Games\AWC_RCB.csv" />
-    <EmbeddedResource Include="DataInitializers\Games\AWC_SG.csv" />
-    <EmbeddedResource Include="DataInitializers\Games\AWC_SPADE.csv" />
-    <EmbeddedResource Include="DataInitializers\Games\AWC_VENUS.csv" />
-    <EmbeddedResource Include="DataInitializers\Games\AWC_YL.csv" />
-    <EmbeddedResource Include="DataInitializers\Games\BC.csv" />
-    <EmbeddedResource Include="DataInitializers\Games\BG.csv" />
-    <EmbeddedResource Include="DataInitializers\Games\DG.csv" />
-    <EmbeddedResource Include="DataInitializers\Games\EVO.csv" />
-    <EmbeddedResource Include="DataInitializers\Games\HABA.csv" />
-    <EmbeddedResource Include="DataInitializers\Games\IMES.csv" />
-    <EmbeddedResource Include="DataInitializers\Games\JDB.csv" />
-    <EmbeddedResource Include="DataInitializers\Games\JILI.csv" />
-    <EmbeddedResource Include="DataInitializers\Games\JILITF.csv" />
-    <EmbeddedResource Include="DataInitializers\Games\JOKER.csv" />
-    <EmbeddedResource Include="DataInitializers\Games\KY.csv" />
-    <EmbeddedResource Include="DataInitializers\Games\LY.csv" />
-    <EmbeddedResource Include="DataInitializers\Games\PP.csv" />
-    <EmbeddedResource Include="DataInitializers\Games\PPTF.csv" />
-    <EmbeddedResource Include="DataInitializers\Games\SABA.csv" />
-    <EmbeddedResource Include="DataInitializers\Games\SBO.csv" />
-    <EmbeddedResource Include="DataInitializers\Games\SG.csv" />
-    <EmbeddedResource Include="DataInitializers\Games\SW.csv" />
-    <EmbeddedResource Include="DataInitializers\Games\TCG.csv" />
-    <EmbeddedResource Include="DataInitializers\Games\TF.csv" />
-    <EmbeddedResource Include="DataInitializers\Games\VR.csv" />
-    <EmbeddedResource Include="DataInitializers\Games\WGFM.csv" />
-    <EmbeddedResource Include="DataInitializers\Games\WGVIA.csv" />
-    <EmbeddedResource Include="DataInitializers\Games\WM.csv" />
-    <EmbeddedResource Include="DataInitializers\Games\WMTF.csv" />
+    <EmbeddedResource Include="DataInitializers\Games\*.csv" />
     <EmbeddedResource Include="DataInitializers\PaymentInitial\applePay.sql" />
   </ItemGroup>
 

@@ -31,13 +31,13 @@ public partial class DataInitializer
 
         string IGameProvider.Name => "DreamGame";
 
-        IGameProviderConfiguration[] IGameProvider.GameProviderConfigurations => new IGameProviderConfiguration[]
-        {
+        IGameProviderConfiguration[] IGameProvider.GameProviderConfigurations =>
+        [
             new DreamGameGameProviderConfiguration()
-        };
+        ];
 
-        ICurrency[] IGameProvider.Currencies => new ICurrency[]
-        {
+        ICurrency[] IGameProvider.Currencies =>
+        [
             new CNYCurrency("CNY"),
             new EURCurrency("EUR"),
             new GBPCurrency("GBP"),
@@ -52,17 +52,17 @@ public partial class DataInitializer
             new VND1000Currency("VND2"),
             new HKDCurrency("HKD"),
             new PHPCurrency("PHP")
-        };
+        ];
 
-        ILanguage[] IGameProvider.Languages => new ILanguage[]
-        {
+        ILanguage[] IGameProvider.Languages =>
+        [
             new USLanguage("en"),
             new CNLanguage("cn"),
             new TWLanguage("tw"),
             new THLanguage("th"),
             new KRLanguage("kr"),
             new VNLanguage("vi"),
-        };
+        ];
 
         IGame[]? IGameProvider.Games => _games;
 
@@ -72,7 +72,7 @@ public partial class DataInitializer
 
         ushort IGameProvider.UniqueId => 25;
 
-        GameProviderBetLimit[] IGameProvider.BetLimits => Array.Empty<GameProviderBetLimit>();
+        GameProviderBetLimit[] IGameProvider.BetLimits => [];
 
         PluggableConfigurationBase IGameProvider.GetConfiguration() =>
             new DreamGameConfiguration
@@ -162,14 +162,14 @@ public partial class DataInitializer
                 }
             };
 
-        Dictionary<string, string> IGameProvider.SportTypes => new();
+        Dictionary<string, string> IGameProvider.SportTypes => [];
 
-        Dictionary<string, string> IGameProvider.MarketTypes => new();
+        Dictionary<string, string> IGameProvider.MarketTypes => [];
 
-        SubGameProvider[] IGameProvider.SubGameProviders => new SubGameProvider[]
-        {
+        SubGameProvider[] IGameProvider.SubGameProviders =>
+        [
             new(GameProviderConst.DreamGame, GameProviderConst.DreamGame)
-        };
+        ];
     }
 
     internal record DreamGameGameProviderConfiguration : IGameProviderConfiguration

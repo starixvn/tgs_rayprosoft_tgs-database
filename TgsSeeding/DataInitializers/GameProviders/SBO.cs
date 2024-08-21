@@ -20,10 +20,7 @@ public partial class DataInitializer
         public SBOGameProvider()
         {
             _games = LoadGamesFromCsv(GameProviderConst.SBOBET)
-                ?.Select(g =>
-                {
-                    return g.EndpointPath.IsNotNullOrEmpty() ? g : ((Game)g with { EndpointPath = string.Empty });
-                })
+                ?.Select(g => g.EndpointPath.IsNotNullOrEmpty() ? g : ((Game)g with { EndpointPath = string.Empty }))
                 .ToArray();
         }
 
@@ -33,13 +30,13 @@ public partial class DataInitializer
 
         string IGameProvider.Name => "SBOBET";
 
-        IGameProviderConfiguration[] IGameProvider.GameProviderConfigurations => new IGameProviderConfiguration[]
-        {
+        IGameProviderConfiguration[] IGameProvider.GameProviderConfigurations =>
+        [
             new SBOGameProviderConfiguration()
-        };
+        ];
 
-        ICurrency[] IGameProvider.Currencies => new ICurrency[]
-        {
+        ICurrency[] IGameProvider.Currencies =>
+        [
             new CNYCurrency("CNY"),
             new USDCurrency("USD"),
             new VND1000Currency("VND"),
@@ -49,10 +46,10 @@ public partial class DataInitializer
             new MYRCurrency("MYR"),
             new THBCurrency("THB"),
             new GBPCurrency("GBP")
-        };
+        ];
 
-        ILanguage[] IGameProvider.Languages => new ILanguage[]
-        {
+        ILanguage[] IGameProvider.Languages =>
+        [
             new USLanguage("en"),
             new CNLanguage("zh-cn"),
             new IDLanguage("id-id"),
@@ -61,7 +58,7 @@ public partial class DataInitializer
             new THLanguage("th-th"),
             new VNLanguage("vi-vn"),
             new TWLanguage("zh-tw")
-        };
+        ];
 
         IGame[]? IGameProvider.Games => _games;
 
@@ -121,10 +118,10 @@ public partial class DataInitializer
             { "Over_Under", "3" }
         };
 
-        SubGameProvider[] IGameProvider.SubGameProviders => new SubGameProvider[]
-        {
+        SubGameProvider[] IGameProvider.SubGameProviders =>
+        [
             new(GameProviderConst.SBOBET, "SBOBET")
-        };
+        ];
     }
 
     internal record SBOGameProviderConfiguration : IGameProviderConfiguration

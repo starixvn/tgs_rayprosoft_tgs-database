@@ -33,13 +33,13 @@ public partial class DataInitializer
 
         string IGameProvider.Name => "JDB";
 
-        IGameProviderConfiguration[] IGameProvider.GameProviderConfigurations => new IGameProviderConfiguration[]
-        {
+        IGameProviderConfiguration[] IGameProvider.GameProviderConfigurations =>
+        [
             new JDBGameProviderConfiguration()
-        };
+        ];
 
-        ICurrency[] IGameProvider.Currencies => new ICurrency[]
-        {
+        ICurrency[] IGameProvider.Currencies =>
+        [
             new CNYCurrency("RB"),
             new USDCurrency("US"),
             new VNDCurrency("VN"),
@@ -49,10 +49,10 @@ public partial class DataInitializer
             new MYRCurrency("RM"),
             new THBCurrency("TB"),
             new GBPCurrency("GB")
-        };
+        ];
 
-        ILanguage[] IGameProvider.Languages => new ILanguage[]
-        {
+        ILanguage[] IGameProvider.Languages =>
+        [
             new USLanguage("en"),
             new CNLanguage("zh-CN"),
             new IDLanguage("id"),
@@ -61,7 +61,7 @@ public partial class DataInitializer
             new THLanguage("th"),
             new VNLanguage("vi"),
             new TWLanguage("zh-TW")
-        };
+        ];
 
         IGame[]? IGameProvider.Games => _games;
 
@@ -69,7 +69,7 @@ public partial class DataInitializer
 
         ushort IGameProvider.UniqueId => UniqueId;
 
-        GameProviderBetLimit[] IGameProvider.BetLimits => Array.Empty<GameProviderBetLimit>();
+        GameProviderBetLimit[] IGameProvider.BetLimits => [];
 
         PluggableConfigurationBase IGameProvider.GetConfiguration() =>
             new JDBConfiguration
@@ -91,14 +91,14 @@ public partial class DataInitializer
                 }
             };
 
-        Dictionary<string, string> IGameProvider.SportTypes => new();
+        Dictionary<string, string> IGameProvider.SportTypes => [];
 
-        Dictionary<string, string> IGameProvider.MarketTypes => new();
+        Dictionary<string, string> IGameProvider.MarketTypes => [];
 
-        SubGameProvider[] IGameProvider.SubGameProviders => new SubGameProvider[]
-        {
+        SubGameProvider[] IGameProvider.SubGameProviders =>
+        [
             new(GameProviderConst.JDB, "JDB")
-        };
+        ];
     }
 
     private record JDBGameProviderConfiguration : IGameProviderConfiguration
