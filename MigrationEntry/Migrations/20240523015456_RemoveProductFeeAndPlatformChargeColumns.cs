@@ -25,10 +25,10 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                 schema: "report",
                 table: "player_aggregates");
 
-            migrationBuilder.DropColumn(
-                name: "platform_charge_percentage",
-                schema: "dbo",
-                table: "agent_dividends");
+            //migrationBuilder.DropColumn(
+            //    name: "platform_charge_percentage",
+            //    schema: "dbo",
+            //    table: "agent_dividends");
         }
 
         /// <inheritdoc />

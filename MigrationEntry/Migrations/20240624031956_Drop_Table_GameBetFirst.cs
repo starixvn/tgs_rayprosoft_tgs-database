@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -11,9 +10,9 @@ namespace TGS.Core.DataServices.Tgs.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "game_bet_firsts",
-                schema: "dbo");
+            //migrationBuilder.DropTable(
+            //    name: "game_bet_firsts",
+            //    schema: "dbo");
         }
 
         /// <inheritdoc />

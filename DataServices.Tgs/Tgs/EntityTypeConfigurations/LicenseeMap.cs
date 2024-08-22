@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using TGS.Core.DataServices.Base;
 using TGS.Core.DataServices.Tgs.Models;
@@ -23,6 +22,9 @@ internal class LicenseeMap : BaseConfiguration, IEntityTypeConfiguration<License
 
         _ = builder.Property(c => c.OperationalEmail)
             .HasMaxLength(128);
+
+        _ = builder.Property(c => c.ReferenceId)
+            .HasMaxLength(256);
 
         _ = builder.HasOne(p => p.Reseller)
             .WithMany(p => p.Licensees)

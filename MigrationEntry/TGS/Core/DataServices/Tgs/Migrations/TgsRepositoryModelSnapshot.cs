@@ -7647,6 +7647,11 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("character varying(128)")
                         .HasColumnName("operational_email");
 
+                    b.Property<string>("ReferenceId")
+                        .HasMaxLength(256)
+                        .HasColumnType("character varying(256)")
+                        .HasColumnName("reference_id");
+
                     b.Property<Guid>("ResellerId")
                         .HasColumnType("uuid")
                         .HasColumnName("reseller_id");

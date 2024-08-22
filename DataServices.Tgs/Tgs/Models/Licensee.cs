@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using TGS.Core.Models.Enums;
+﻿using TGS.Core.Models.Enums;
 
 namespace TGS.Core.DataServices.Tgs.Models;
 
@@ -27,4 +25,6 @@ public class Licensee : BaseEntity<Guid>
     public Guid ResellerId { get; set; }
 
     public Status Status { get; set; }
+
+    public string ReferenceId { get; set; }
 }
