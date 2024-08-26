@@ -59,4 +59,8 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="TGS\Core\DataServices\Tgs\Migrations\" />
+  </ItemGroup>
+
 </Project>

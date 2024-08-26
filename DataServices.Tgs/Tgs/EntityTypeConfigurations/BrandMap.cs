@@ -1,9 +1,7 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using TGS.Core.DataServices.Base;
 using TGS.Core.DataServices.Tgs.Models;
-using TGS.Core.Models.Enums;
 
 namespace TGS.Core.DataServices.Tgs.EntityTypeConfigurations;
 
@@ -63,6 +61,14 @@ internal class BrandMap : BaseConfiguration, IEntityTypeConfiguration<Brand>
         _ = builder.Property(b => b.EnablePlayerIdentity)
             .HasDefaultValue(false)
             .IsRequired();
+
+        _ = builder.Property(b => b.EnablePlayerAgent)
+           .HasDefaultValue(false)
+           .IsRequired();
+
+        _ = builder.Property(b => b.EnablePlatformAccountFundCheck)
+           .HasDefaultValue(false)
+           .IsRequired();
 
         _ = builder.Property(c => c.SmsVendorCode);
 

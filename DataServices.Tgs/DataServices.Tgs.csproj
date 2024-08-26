@@ -28,15 +28,15 @@
   <ItemGroup>
     <PackageReference Include="Dapper" Version="2.1.35" />
     <PackageReference Include="EFCore.NamingConventions" Version="8.0.3" Condition="$(TargetFramework) == 'net8.0'"/>
-    <PackageReference Include="EFCore.NamingConventions" Version="6.0.0" Condition="$(TargetFramework) == 'net6.0'"/>
+    <PackageReference Include="EFCore.NamingConventions" Version="8.0.3" Condition="$(TargetFramework) == 'net8.0'"/>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="8.0.4" Condition="$(TargetFramework) == 'net8.0'" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="6.0.29" Condition="$(TargetFramework) == 'net6.0'" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="8.0.4" Condition="$(TargetFramework) == 'net8.0'" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="8.0.4" Condition="$(TargetFramework) == 'net8.0'"/>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="6.0.29" Condition="$(TargetFramework) == 'net6.0'" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="8.0.4" Condition="$(TargetFramework) == 'net8.0'" />
     <PackageReference Include="Microsoft.IO.RecyclableMemoryStream" Version="3.0.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.1" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.4" Condition="$(TargetFramework) == 'net8.0'" />
-    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.29" Condition="$(TargetFramework) == 'net6.0'" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.4" Condition="$(TargetFramework) == 'net8.0'" />
     <PackageReference Include="PhoenixToolkits.CodeAnalysis.Analyzers" Version="0.0.12">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
