@@ -2316,7 +2316,9 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnName("enable_platform_account_fund_check");
 
                     b.Property<bool>("EnablePlayerAgent")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("boolean")
+                        .HasDefaultValue(false)
                         .HasColumnName("enable_player_agent");
 
                     b.Property<bool>("EnablePlayerIdentity")
@@ -7646,6 +7648,11 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasMaxLength(128)
                         .HasColumnType("character varying(128)")
                         .HasColumnName("operational_email");
+
+                    b.Property<string>("ReferenceId")
+                        .HasMaxLength(256)
+                        .HasColumnType("character varying(256)")
+                        .HasColumnName("reference_id");
 
                     b.Property<Guid>("ResellerId")
                         .HasColumnType("uuid")
