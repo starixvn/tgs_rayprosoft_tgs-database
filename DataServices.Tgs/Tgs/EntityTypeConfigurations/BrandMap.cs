@@ -66,10 +66,6 @@ internal class BrandMap : BaseConfiguration, IEntityTypeConfiguration<Brand>
            .HasDefaultValue(false)
            .IsRequired();
 
-        _ = builder.Property(b => b.EnablePlatformAccountFundCheck)
-           .HasDefaultValue(false)
-           .IsRequired();
-
         _ = builder.Property(c => c.SmsVendorCode);
 
         _ = builder.Property(c => c.SmsVendorSettings)
@@ -131,8 +127,8 @@ internal class BrandMap : BaseConfiguration, IEntityTypeConfiguration<Brand>
             .HasDefaultValue(480);
 
         _ = builder.Property(c => c.EnablePlatformAccountFundCheck)
-            .IsRequired()
-            .HasDefaultValue(false);
+            .HasDefaultValue(false)
+            .IsRequired();
 
         _ = builder.HasOne(c => c.Licensee)
             .WithMany(c => c.Brands)
