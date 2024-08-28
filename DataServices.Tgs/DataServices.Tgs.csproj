@@ -8,10 +8,10 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <Version>1.1.3</Version>
+    <Version>1.1.5</Version>
     <Authors>Raypro</Authors>
-    <PackageProjectUrl>https://gitlab.com/rayprosoft/tgs-database</PackageProjectUrl>
-    <RepositoryUrl>https://gitlab.com/rayprosoft/tgs-database.git</RepositoryUrl>
+    <PackageProjectUrl>https://git3.nexdev.net/tgs/rayprosoft/tgs-database</PackageProjectUrl>
+    <RepositoryUrl>https://git3.nexdev.net/tgs/rayprosoft/tgs-database.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <Product>Tgs.Core</Product>
     <PackageId>Tgs.Core</PackageId>
