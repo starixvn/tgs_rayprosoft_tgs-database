@@ -19,8 +19,8 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     game_provider_id = table.Column<Guid>(type: "uuid", nullable: false),
                     wallet_id = table.Column<Guid>(type: "uuid", nullable: false),
                     player_code = table.Column<string>(type: "character varying(16)", maxLength: 16, nullable: false),
-                    created_on = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    updated_on = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                    created_on = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
+                    updated_on = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {
