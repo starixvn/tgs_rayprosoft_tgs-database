@@ -5830,6 +5830,35 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.ToTable("game_betting", "dbo");
                 });
 
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.GameFundTransferTrace", b =>
+                {
+                    b.Property<Guid>("GameProviderId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("game_provider_id");
+
+                    b.Property<Guid>("WalletId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("wallet_id");
+
+                    b.Property<string>("PlayerCode")
+                        .HasMaxLength(16)
+                        .HasColumnType("character varying(16)")
+                        .HasColumnName("player_code");
+
+                    b.Property<DateTimeOffset>("CreatedOn")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_on");
+
+                    b.Property<DateTimeOffset>("UpdatedOn")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("updated_on");
+
+                    b.HasKey("GameProviderId", "WalletId", "PlayerCode")
+                        .HasName("pk_game_fund_transfer_trace");
+
+                    b.ToTable("game_fund_transfer_trace", "dbo");
+                });
+
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.GamePlayerTransformIdnLive", b =>
                 {
                     b.Property<int>("Id")
