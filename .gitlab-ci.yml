@@ -105,7 +105,6 @@ migrate-dev:
   extends: .migrate-deploy
   variables:
     namespace: dev
-    kube_config: KubeConfig_Raypro_dev
   environment:
     name: dbmigration-dev
   stage: dbmigration-dev
@@ -113,6 +112,10 @@ migrate-dev:
     - build-migrations-image
     - job: push-migrations-k8s-template
       artifacts: true
+  tags:
+    - dev
+    - kubernetes
+    - deploy
   only:
     - main
   script:
@@ -123,7 +126,6 @@ migrate-staging:
   extends: .migrate-deploy
   variables:
     namespace: staging
-    kube_config: KubeConfig_Raypro_staging
   environment:
     name: dbmigration-staging
   stage: dbmigration-staging
@@ -132,6 +134,10 @@ migrate-staging:
     - job: push-migrations-k8s-template
       artifacts: true
   when: manual
+  tags:
+    - staging
+    - kubernetes
+    - deploy
   only:
     - main
   script:
@@ -141,7 +147,6 @@ migrate-prod:
   extends: .migrate-deploy
   variables:
     namespace: prod
-    kube_config: KubeConfig_Raypro_prod
   environment:
     name: dbmigration-prod
   stage: dbmigration-prod
@@ -150,6 +155,10 @@ migrate-prod:
     - job: push-migrations-k8s-template
       artifacts: true
   when: manual
+  tags:
+    - prod
+    - kubernetes
+    - deploy
   only:
     - main
   script:
