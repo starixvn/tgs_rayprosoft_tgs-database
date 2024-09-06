@@ -53,6 +53,8 @@ push-migrations-k8s-template:
 
 .migrate-deploy:
   extends: .deploy-template
+  image: 
+    name: pgtgs/tgs-backend-deploy:latest
   before_script:
     - !reference [.deploy-template, before_script]
     - |
