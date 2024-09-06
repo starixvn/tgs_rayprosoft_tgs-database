@@ -58,7 +58,7 @@ push-migrations-k8s-template:
   before_script:
     - !reference [.deploy-template, before_script]
     - |
-      export Tag="$(date -d $CI_PIPELINE_CREATED_AT +%Y%m%d%H%M).$CI_PIPELINE_IID"
+      export Tag="$(date +%Y%m%d%H%M)"
       echo "Tag=$Tag"
       name_template="tgs-$Tag"
       function deploy_k8s() {
