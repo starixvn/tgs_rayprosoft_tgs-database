@@ -114,15 +114,11 @@ migrate-dev:
     - build-migrations-image
     - job: push-migrations-k8s-template
       artifacts: true
-  tags:
-    - dev
-    - kubernetes
-    - deploy
   only:
     - main
+  when: on_success
   script:
     - deploy_k8s 'ef-migration' 'ef-migration' $namespace
-  when: on_success
 
 migrate-staging:
   extends: .migrate-deploy
@@ -135,13 +131,9 @@ migrate-staging:
     - migrate-dev
     - job: push-migrations-k8s-template
       artifacts: true
-  when: manual
-  tags:
-    - staging
-    - kubernetes
-    - deploy
   only:
     - main
+  when: manual
   script:
     - deploy_k8s 'ef-migration' 'ef-migration' $namespace
 
@@ -156,12 +148,8 @@ migrate-prod:
     - migrate-staging
     - job: push-migrations-k8s-template
       artifacts: true
-  when: manual
-  tags:
-    - prod
-    - kubernetes
-    - deploy
   only:
     - main
+  when: manual
   script:
     - deploy_k8s 'ef-migration' 'ef-migration' $namespace
