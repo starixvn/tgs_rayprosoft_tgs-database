@@ -110,6 +110,10 @@ migrate-dev:
   environment:
     name: dbmigration-dev
   stage: dbmigration-dev
+  tags:
+    - dev
+    - kubernetes
+    - deploy
   needs:
     - build-migrations-image
     - job: push-migrations-k8s-template
@@ -127,6 +131,10 @@ migrate-staging:
   environment:
     name: dbmigration-staging
   stage: dbmigration-staging
+  tags:
+    - staging
+    - kubernetes
+    - deploy
   needs:
     - migrate-dev
     - job: push-migrations-k8s-template
@@ -144,6 +152,10 @@ migrate-prod:
   environment:
     name: dbmigration-prod
   stage: dbmigration-prod
+  tags:
+    - prod
+    - kubernetes
+    - deploy
   needs:
     - migrate-staging
     - job: push-migrations-k8s-template
