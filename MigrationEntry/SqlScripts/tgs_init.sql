@@ -2251,7 +2251,10 @@ create table if not exists dbo.transactions
     sent_on                 timestamp with time zone,
     created_by_user_id      uuid,
     locked_balance          numeric(18, 6) default 0.0 not null,
-    lock_amount             numeric(18, 6) default 0.0 not null
+    lock_amount             numeric(18, 6) default 0.0 not null,
+    provider_code           text,
+    operation_id            text,
+    action                  text,
 );
 
 create index if not exists ix_transactions_brand_id

@@ -13225,6 +13225,19 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnType("text")
                         .HasColumnName("external_transaction_id");
 
+
+                    b.Property<string>("ProviderCode")
+                        .HasColumnType("text")
+                        .HasColumnName("provider_code");
+
+                    b.Property<string>("OperationId")
+                        .HasColumnType("text")
+                        .HasColumnName("operation_id");
+
+                    b.Property<string>("Action")
+                        .HasColumnType("text")
+                        .HasColumnName("action");
+
                     b.Property<decimal>("LockAmount")
                         .ValueGeneratedOnAdd()
                         .HasPrecision(18, 6)

@@ -36,4 +36,10 @@ public class Transaction
     public virtual Wallet Wallet { get; set; }
 
     public Guid WalletId { get; set; }
+
+    public string ProviderCode { get; set; }
+
+    public string OperationId { get; set; }
+
+    public string Action { get; set; }
 }
