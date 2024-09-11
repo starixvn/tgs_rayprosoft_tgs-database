@@ -3823,48 +3823,43 @@ create table if not exists bet.rounds
     reopened_on                    timestamp with time zone,
     effective_betting_percentage   numeric(18, 6),
     primary key (id, created_on)
-)
-    partition by RANGE (created_on);
+);
 
-create index if not exists ix_rounds2_brand_id
+create index if not exists ix_rounds_brand_id
     on bet.rounds (brand_id);
 
-create index if not exists ix_rounds2_closed_on_brand_id
+create index if not exists ix_rounds_closed_on_brand_id
     on bet.rounds (closed_on, brand_id);
 
-create index if not exists ix_rounds2_closed_on
+create index if not exists ix_rounds_closed_on
     on bet.rounds using brin (closed_on);
 
-create index if not exists ix_rounds2_created_on
+create index if not exists ix_rounds_created_on
     on bet.rounds using brin (created_on);
 
-create index if not exists ix_rounds2_external_closed_on_game_provider_id
+create index if not exists ix_rounds_external_closed_on_game_provider_id
     on bet.rounds (external_closed_on, game_provider_id);
 
-create index if not exists ix_rounds2_external_closed_on
+create index if not exists ix_rounds_external_closed_on
     on bet.rounds using brin (external_closed_on);
 
-create index if not exists ix_rounds2_wallet_id_composite
+create index if not exists ix_rounds_wallet_id_composite
     on bet.rounds (external_round_id, game_provider_id, game_id, wallet_id);
 
-create index if not exists ix_rounds2_external_round_id_player_code_game_provider
+create index if not exists ix_rounds_external_round_id_player_code_game_provider
     on bet.rounds (external_round_id, player_code, game_provider_id, game_id);
 
-create index if not exists ix_rounds2_game_provider_configuration_id_composite
+create index if not exists ix_rounds_game_provider_configuration_id_composite
     on bet.rounds (game_provider_configuration_id, wallet_id, game_id, external_round_id);
 
-create index if not exists ix_rounds2_game_id
+create index if not exists ix_rounds_game_id
     on bet.rounds (game_id);
 
-create index if not exists ix_rounds2_game_provider_id
+create index if not exists ix_rounds_game_provider_id
     on bet.rounds (game_provider_id);
 
-create index if not exists ix_rounds2_player_code
+create index if not exists ix_rounds_player_code
     on bet.rounds (player_code);
-
-create table if not exists bet.rounds_default
-    partition of bet.rounds
-        DEFAULT;
 
 create table if not exists dbo.brand_player_bankinfo_check_flags
 (
@@ -4712,8 +4707,7 @@ create table if not exists dbo.game_wager_stat_closes
     updated_on       timestamp with time zone default CURRENT_TIMESTAMP not null,
     constraint pk_game_wager_stat_closes
         primary key (stat_on, reseller_id, licensee_id, brand_id, player_code, game_provider_id, game_id)
-)
-    partition by RANGE (stat_on);
+);
 
 comment on column dbo.game_wager_stat_closes.reseller_id is '公司識別碼';
 
@@ -4972,42 +4966,6 @@ create index if not exists ix_game_wager_stat_d_z_c_reseller_id
 create index if not exists ix_game_wager_stat_d_z_c_stat_on
     on dbo.game_wager_stat_daily_zone_closes (stat_on);
 
-create table if not exists dbo.game_wager_stat_closes_default
-    partition of dbo.game_wager_stat_closes
-        DEFAULT;
-
-comment on column dbo.game_wager_stat_closes_default.reseller_id is '公司識別碼';
-
-comment on column dbo.game_wager_stat_closes_default.licensee_id is '分公司識別碼';
-
-comment on column dbo.game_wager_stat_closes_default.brand_id is '平台識別碼';
-
-comment on column dbo.game_wager_stat_closes_default.player_code is '玩家代碼';
-
-comment on column dbo.game_wager_stat_closes_default.game_provider_id is '遊戲供應商識別碼';
-
-comment on column dbo.game_wager_stat_closes_default.game_id is '遊戲識別碼';
-
-comment on column dbo.game_wager_stat_closes_default.stat_on is '統計時間';
-
-comment on column dbo.game_wager_stat_closes_default.count is '筆數';
-
-comment on column dbo.game_wager_stat_closes_default.bet is '下注';
-
-comment on column dbo.game_wager_stat_closes_default.valid_bet is '實際/有效下注';
-
-comment on column dbo.game_wager_stat_closes_default.settle is '結算(包含本金)';
-
-comment on column dbo.game_wager_stat_closes_default.commission is '傭金';
-
-comment on column dbo.game_wager_stat_closes_default.turnover is '有效投注';
-
-comment on column dbo.game_wager_stat_closes_default.win_loss is '玩家損益/淨利';
-
-comment on column dbo.game_wager_stat_closes_default.created_on is '創建時間';
-
-comment on column dbo.game_wager_stat_closes_default.updated_on is '修改時間';
-
 create table if not exists dbo.game_wager_stat_hourly_closes
 (
     reseller_id      uuid                                                                not null,
@@ -5031,8 +4989,7 @@ create table if not exists dbo.game_wager_stat_hourly_closes
     updated_on       timestamp with time zone default CURRENT_TIMESTAMP                  not null,
     constraint pk_game_wager_stat_hourly_closes
         primary key (stat_on, reseller_id, licensee_id, brand_id, player_code, game_provider_id, game_id)
-)
-    partition by RANGE (stat_on);
+);
 
 comment on column dbo.game_wager_stat_hourly_closes.reseller_id is '公司識別碼';
 
@@ -5158,8 +5115,7 @@ create table if not exists dbo.game_wager_stat_hourly_zone_closes
     updated_on       timestamp with time zone default CURRENT_TIMESTAMP                  not null,
     constraint pk_game_wager_stat_hourly_zone_closes
         primary key (stat_on, reseller_id, licensee_id, brand_id, player_code, game_provider_id, game_id)
-)
-    partition by RANGE (stat_on);
+);
 
 comment on column dbo.game_wager_stat_hourly_zone_closes.reseller_id is '公司識別碼';
 
@@ -5261,90 +5217,6 @@ create index if not exists ix_game_wager_stat_h_z_c_reseller_id
 
 create index if not exists ix_game_wager_stat_h_z_c_stat_on
     on dbo.game_wager_stat_hourly_zone_closes (stat_on);
-
-create table if not exists dbo.game_wager_stat_hourly_zone_closes_default
-    partition of dbo.game_wager_stat_hourly_zone_closes
-        DEFAULT;
-
-comment on column dbo.game_wager_stat_hourly_zone_closes_default.reseller_id is '公司識別碼';
-
-comment on column dbo.game_wager_stat_hourly_zone_closes_default.licensee_id is '分公司識別碼';
-
-comment on column dbo.game_wager_stat_hourly_zone_closes_default.brand_id is '平台識別碼';
-
-comment on column dbo.game_wager_stat_hourly_zone_closes_default.player_code is '玩家代碼';
-
-comment on column dbo.game_wager_stat_hourly_zone_closes_default.game_provider_id is '遊戲供應商識別碼';
-
-comment on column dbo.game_wager_stat_hourly_zone_closes_default.game_id is '遊戲識別碼';
-
-comment on column dbo.game_wager_stat_hourly_zone_closes_default.stat_on is '統計時間';
-
-comment on column dbo.game_wager_stat_hourly_zone_closes_default.stat_day_on is '統計日時間';
-
-comment on column dbo.game_wager_stat_hourly_zone_closes_default.stat_hour_on is '統計小時時間';
-
-comment on column dbo.game_wager_stat_hourly_zone_closes_default.stat_time_span is '統計時間跨度';
-
-comment on column dbo.game_wager_stat_hourly_zone_closes_default.count is '筆數';
-
-comment on column dbo.game_wager_stat_hourly_zone_closes_default.bet is '下注';
-
-comment on column dbo.game_wager_stat_hourly_zone_closes_default.valid_bet is '實際/有效下注';
-
-comment on column dbo.game_wager_stat_hourly_zone_closes_default.settle is '結算(包含本金)';
-
-comment on column dbo.game_wager_stat_hourly_zone_closes_default.commission is '傭金';
-
-comment on column dbo.game_wager_stat_hourly_zone_closes_default.turnover is '有效投注';
-
-comment on column dbo.game_wager_stat_hourly_zone_closes_default.win_loss is '玩家損益/淨利';
-
-comment on column dbo.game_wager_stat_hourly_zone_closes_default.created_on is '創建時間';
-
-comment on column dbo.game_wager_stat_hourly_zone_closes_default.updated_on is '修改時間';
-
-create table if not exists dbo.game_wager_stat_hourly_closes_default
-    partition of dbo.game_wager_stat_hourly_closes
-        DEFAULT;
-
-comment on column dbo.game_wager_stat_hourly_closes_default.reseller_id is '公司識別碼';
-
-comment on column dbo.game_wager_stat_hourly_closes_default.licensee_id is '分公司識別碼';
-
-comment on column dbo.game_wager_stat_hourly_closes_default.brand_id is '平台識別碼';
-
-comment on column dbo.game_wager_stat_hourly_closes_default.player_code is '玩家代碼';
-
-comment on column dbo.game_wager_stat_hourly_closes_default.game_provider_id is '遊戲供應商識別碼';
-
-comment on column dbo.game_wager_stat_hourly_closes_default.game_id is '遊戲識別碼';
-
-comment on column dbo.game_wager_stat_hourly_closes_default.stat_on is '統計時間';
-
-comment on column dbo.game_wager_stat_hourly_closes_default.stat_day_on is '統計日時間';
-
-comment on column dbo.game_wager_stat_hourly_closes_default.stat_hour_on is '統計小時時間';
-
-comment on column dbo.game_wager_stat_hourly_closes_default.stat_time_span is '統計時間跨度';
-
-comment on column dbo.game_wager_stat_hourly_closes_default.count is '筆數';
-
-comment on column dbo.game_wager_stat_hourly_closes_default.bet is '下注';
-
-comment on column dbo.game_wager_stat_hourly_closes_default.valid_bet is '實際/有效下注';
-
-comment on column dbo.game_wager_stat_hourly_closes_default.settle is '結算(包含本金)';
-
-comment on column dbo.game_wager_stat_hourly_closes_default.commission is '傭金';
-
-comment on column dbo.game_wager_stat_hourly_closes_default.turnover is '有效投注';
-
-comment on column dbo.game_wager_stat_hourly_closes_default.win_loss is '玩家損益/淨利';
-
-comment on column dbo.game_wager_stat_hourly_closes_default.created_on is '創建時間';
-
-comment on column dbo.game_wager_stat_hourly_closes_default.updated_on is '修改時間';
 
 create table if not exists dbo.brand_game_credits
 (
@@ -6215,8 +6087,7 @@ create table if not exists dbo.game_bets
     additional_data                jsonb                    default '{}'::jsonb                                        not null,
     constraint pk_game_bets
         primary key (external_created_on, game_provider_id, game_id, wallet_id, external_bet_id)
-)
-    partition by RANGE (external_created_on);
+);
 
 comment on column dbo.game_bets.game_provider_id is '遊戲供應商識別碼';
 
@@ -6342,84 +6213,6 @@ create index if not exists ix_game_bets_e_c_on_reseller_id
 
 create index if not exists ix_game_bets_e_c_on_wallet_id
     on dbo.game_bets (external_created_on, wallet_id);
-
-create table if not exists dbo.game_bets_default
-    partition of dbo.game_bets
-        DEFAULT;
-
-comment on column dbo.game_bets_default.game_provider_id is '遊戲供應商識別碼';
-
-comment on column dbo.game_bets_default.game_id is '遊戲識別碼';
-
-comment on column dbo.game_bets_default.wallet_id is '錢包識別碼';
-
-comment on column dbo.game_bets_default.external_bet_id is '三方投注單別碼';
-
-comment on column dbo.game_bets_default.external_created_on is '三方下注/創建時間';
-
-comment on column dbo.game_bets_default.id is '識別碼';
-
-comment on column dbo.game_bets_default.game_provider_configuration_id is '遊戲供應商設定識別碼';
-
-comment on column dbo.game_bets_default.reseller_id is '公司識別碼';
-
-comment on column dbo.game_bets_default.licensee_id is '分公司識別碼';
-
-comment on column dbo.game_bets_default.brand_id is '平台識別碼';
-
-comment on column dbo.game_bets_default.player_code is '玩家代碼';
-
-comment on column dbo.game_bets_default.currency_code is '貨幣代碼';
-
-comment on column dbo.game_bets_default.external_round_id is '三方局/回合識別碼';
-
-comment on column dbo.game_bets_default.external_closed_on is '三方結算/結束時間';
-
-comment on column dbo.game_bets_default.external_payoff_on is '三方派彩時間';
-
-comment on column dbo.game_bets_default.external_resettle_on is '三方重新結算時間';
-
-comment on column dbo.game_bets_default.bet_state is '注單狀態';
-
-comment on column dbo.game_bets_default.bet_type is '注單類型';
-
-comment on column dbo.game_bets_default.free_game_state is '免費遊戲狀態';
-
-comment on column dbo.game_bets_default.gamble_state is '博取遊戲狀態';
-
-comment on column dbo.game_bets_default.cashout_state is '兌現狀態';
-
-comment on column dbo.game_bets_default.resettle_state is '重新結算狀態';
-
-comment on column dbo.game_bets_default.jackpot_state is '彩金狀態';
-
-comment on column dbo.game_bets_default.currency_ratio is '貨幣比例';
-
-comment on column dbo.game_bets_default.bet is '下注';
-
-comment on column dbo.game_bets_default.valid_bet is '實際/有效下注';
-
-comment on column dbo.game_bets_default.settle is '結算(包含本金)';
-
-comment on column dbo.game_bets_default.commission is '傭金';
-
-comment on column dbo.game_bets_default.turnover is '有效投注';
-
-comment on column dbo.game_bets_default.win_loss is '玩家損益/淨利';
-
-comment on column dbo.game_bets_default.jackpot is '彩金';
-
-comment on column dbo.game_bets_default.created_on is '創建時間';
-
-comment on column dbo.game_bets_default.closed_on is '結束時間';
-
-comment on column dbo.game_bets_default.updated_on is '修改時間';
-
-comment on column dbo.game_bets_default.reset_state is '重置狀態';
-
-comment on column dbo.game_bets_default.reset_on is '重置時間';
-
-comment on column dbo.game_bets_default.additional_data is '附加數據';
 
 create table if not exists dbo.game_bet_firsts
 (
@@ -6680,186 +6473,6 @@ create table if not exists dbo.deposit_promotion_statistics
     constraint pk_deposit_promotion_statistics
         primary key (promotion_id, player_code)
 );
-
-create table if not exists dbo.game_wager_stat_closes2
-(
-    reseller_id      uuid                                               not null,
-    licensee_id      uuid                                               not null,
-    brand_id         uuid                                               not null,
-    player_code      varchar(16)                                        not null,
-    game_provider_id uuid                                               not null,
-    game_id          integer                                            not null,
-    stat_on          timestamp with time zone                           not null,
-    count            integer                  default 0                 not null,
-    bet              numeric(18, 6)           default 0.0               not null,
-    valid_bet        numeric(18, 6)           default 0.0               not null,
-    settle           numeric(18, 6)           default 0.0               not null,
-    commission       numeric(18, 6)           default 0.0               not null,
-    turnover         numeric(18, 6)           default 0.0               not null,
-    win_loss         numeric(18, 6)           default 0.0               not null,
-    created_on       timestamp with time zone default CURRENT_TIMESTAMP not null,
-    updated_on       timestamp with time zone default CURRENT_TIMESTAMP not null,
-    constraint pk_game_wager_stat_closes2
-        primary key (stat_on, reseller_id, licensee_id, brand_id, player_code, game_provider_id, game_id)
-);
-
-comment on column dbo.game_wager_stat_closes2.reseller_id is '公司識別碼';
-
-comment on column dbo.game_wager_stat_closes2.licensee_id is '分公司識別碼';
-
-comment on column dbo.game_wager_stat_closes2.brand_id is '平台識別碼';
-
-comment on column dbo.game_wager_stat_closes2.player_code is '玩家代碼';
-
-comment on column dbo.game_wager_stat_closes2.game_provider_id is '遊戲供應商識別碼';
-
-comment on column dbo.game_wager_stat_closes2.game_id is '遊戲識別碼';
-
-comment on column dbo.game_wager_stat_closes2.stat_on is '統計時間';
-
-comment on column dbo.game_wager_stat_closes2.count is '筆數';
-
-comment on column dbo.game_wager_stat_closes2.bet is '下注';
-
-comment on column dbo.game_wager_stat_closes2.valid_bet is '實際/有效下注';
-
-comment on column dbo.game_wager_stat_closes2.settle is '結算(包含本金)';
-
-comment on column dbo.game_wager_stat_closes2.commission is '傭金';
-
-comment on column dbo.game_wager_stat_closes2.turnover is '有效投注';
-
-comment on column dbo.game_wager_stat_closes2.win_loss is '玩家損益/淨利';
-
-comment on column dbo.game_wager_stat_closes2.created_on is '創建時間';
-
-comment on column dbo.game_wager_stat_closes2.updated_on is '修改時間';
-
-create table if not exists dbo.game_wager_stat_hourly_closes2
-(
-    reseller_id      uuid                                                                not null,
-    licensee_id      uuid                                                                not null,
-    brand_id         uuid                                                                not null,
-    player_code      varchar(16)                                                         not null,
-    game_provider_id uuid                                                                not null,
-    game_id          integer                                                             not null,
-    stat_on          timestamp with time zone                                            not null,
-    stat_day_on      date                     default '1990-01-01'::date                 not null,
-    stat_hour_on     time                     default '00:00:00'::time without time zone not null,
-    stat_time_span   interval                 default '00:00:00'::interval               not null,
-    count            integer                  default 0                                  not null,
-    bet              numeric(18, 6)           default 0.0                                not null,
-    valid_bet        numeric(18, 6)           default 0.0                                not null,
-    settle           numeric(18, 6)           default 0.0                                not null,
-    commission       numeric(18, 6)           default 0.0                                not null,
-    turnover         numeric(18, 6)           default 0.0                                not null,
-    win_loss         numeric(18, 6)           default 0.0                                not null,
-    created_on       timestamp with time zone default CURRENT_TIMESTAMP                  not null,
-    updated_on       timestamp with time zone default CURRENT_TIMESTAMP                  not null,
-    constraint pk_game_wager_stat_hourly_closes2
-        primary key (stat_on, reseller_id, licensee_id, brand_id, player_code, game_provider_id, game_id)
-);
-
-comment on column dbo.game_wager_stat_hourly_closes2.reseller_id is '公司識別碼';
-
-comment on column dbo.game_wager_stat_hourly_closes2.licensee_id is '分公司識別碼';
-
-comment on column dbo.game_wager_stat_hourly_closes2.brand_id is '平台識別碼';
-
-comment on column dbo.game_wager_stat_hourly_closes2.player_code is '玩家代碼';
-
-comment on column dbo.game_wager_stat_hourly_closes2.game_provider_id is '遊戲供應商識別碼';
-
-comment on column dbo.game_wager_stat_hourly_closes2.game_id is '遊戲識別碼';
-
-comment on column dbo.game_wager_stat_hourly_closes2.stat_on is '統計時間';
-
-comment on column dbo.game_wager_stat_hourly_closes2.stat_day_on is '統計日時間';
-
-comment on column dbo.game_wager_stat_hourly_closes2.stat_hour_on is '統計小時時間';
-
-comment on column dbo.game_wager_stat_hourly_closes2.stat_time_span is '統計時間跨度';
-
-comment on column dbo.game_wager_stat_hourly_closes2.count is '筆數';
-
-comment on column dbo.game_wager_stat_hourly_closes2.bet is '下注';
-
-comment on column dbo.game_wager_stat_hourly_closes2.valid_bet is '實際/有效下注';
-
-comment on column dbo.game_wager_stat_hourly_closes2.settle is '結算(包含本金)';
-
-comment on column dbo.game_wager_stat_hourly_closes2.commission is '傭金';
-
-comment on column dbo.game_wager_stat_hourly_closes2.turnover is '有效投注';
-
-comment on column dbo.game_wager_stat_hourly_closes2.win_loss is '玩家損益/淨利';
-
-comment on column dbo.game_wager_stat_hourly_closes2.created_on is '創建時間';
-
-comment on column dbo.game_wager_stat_hourly_closes2.updated_on is '修改時間';
-
-create table if not exists dbo.game_wager_stat_hourly_zone_closes2
-(
-    reseller_id      uuid                                                                not null,
-    licensee_id      uuid                                                                not null,
-    brand_id         uuid                                                                not null,
-    player_code      varchar(16)                                                         not null,
-    game_provider_id uuid                                                                not null,
-    game_id          integer                                                             not null,
-    stat_on          timestamp with time zone                                            not null,
-    stat_day_on      date                     default '1990-01-01'::date                 not null,
-    stat_hour_on     time                     default '00:00:00'::time without time zone not null,
-    stat_time_span   interval                 default '00:00:00'::interval               not null,
-    count            integer                  default 0                                  not null,
-    bet              numeric(18, 6)           default 0.0                                not null,
-    valid_bet        numeric(18, 6)           default 0.0                                not null,
-    settle           numeric(18, 6)           default 0.0                                not null,
-    commission       numeric(18, 6)           default 0.0                                not null,
-    turnover         numeric(18, 6)           default 0.0                                not null,
-    win_loss         numeric(18, 6)           default 0.0                                not null,
-    created_on       timestamp with time zone default CURRENT_TIMESTAMP                  not null,
-    updated_on       timestamp with time zone default CURRENT_TIMESTAMP                  not null,
-    constraint pk_game_wager_stat_hourly_zone_closes2
-        primary key (stat_on, reseller_id, licensee_id, brand_id, player_code, game_provider_id, game_id)
-);
-
-comment on column dbo.game_wager_stat_hourly_zone_closes2.reseller_id is '公司識別碼';
-
-comment on column dbo.game_wager_stat_hourly_zone_closes2.licensee_id is '分公司識別碼';
-
-comment on column dbo.game_wager_stat_hourly_zone_closes2.brand_id is '平台識別碼';
-
-comment on column dbo.game_wager_stat_hourly_zone_closes2.player_code is '玩家代碼';
-
-comment on column dbo.game_wager_stat_hourly_zone_closes2.game_provider_id is '遊戲供應商識別碼';
-
-comment on column dbo.game_wager_stat_hourly_zone_closes2.game_id is '遊戲識別碼';
-
-comment on column dbo.game_wager_stat_hourly_zone_closes2.stat_on is '統計時間';
-
-comment on column dbo.game_wager_stat_hourly_zone_closes2.stat_day_on is '統計日時間';
-
-comment on column dbo.game_wager_stat_hourly_zone_closes2.stat_hour_on is '統計小時時間';
-
-comment on column dbo.game_wager_stat_hourly_zone_closes2.stat_time_span is '統計時間跨度';
-
-comment on column dbo.game_wager_stat_hourly_zone_closes2.count is '筆數';
-
-comment on column dbo.game_wager_stat_hourly_zone_closes2.bet is '下注';
-
-comment on column dbo.game_wager_stat_hourly_zone_closes2.valid_bet is '實際/有效下注';
-
-comment on column dbo.game_wager_stat_hourly_zone_closes2.settle is '結算(包含本金)';
-
-comment on column dbo.game_wager_stat_hourly_zone_closes2.commission is '傭金';
-
-comment on column dbo.game_wager_stat_hourly_zone_closes2.turnover is '有效投注';
-
-comment on column dbo.game_wager_stat_hourly_zone_closes2.win_loss is '玩家損益/淨利';
-
-comment on column dbo.game_wager_stat_hourly_zone_closes2.created_on is '創建時間';
-
-comment on column dbo.game_wager_stat_hourly_zone_closes2.updated_on is '修改時間';
 
 create or replace view bet.vw_valid_game_actions
             (id, external_transaction_id, type, round_id, referenced_game_action_id, game_action_batch_id, recorded_on,
