@@ -2339,8 +2339,7 @@ create table if not exists log.log_records
     exception   text                     not null,
     constraint pk_log_records
         primary key (id, recorded_on)
-)
-    partition by RANGE (recorded_on);
+);
 
 create index if not exists ix_log_records_recorded_on
     on log.log_records (recorded_on desc);
@@ -2366,8 +2365,7 @@ create table if not exists log.api_logs
     recorded_on       timestamp with time zone not null,
     constraint pk_api_logs
         primary key (id, recorded_on)
-)
-    partition by RANGE (recorded_on);
+);
 
 create index if not exists ix_api_logs_recorded_on
     on log.api_logs (recorded_on desc);
@@ -2396,8 +2394,7 @@ create table if not exists log.admin_logs
     inner_exception   text,
     constraint pk_admin_logs
         primary key (id, recorded_on)
-)
-    partition by RANGE (recorded_on);
+);
 
 create index if not exists ix_admin_logs_recorded_on
     on log.admin_logs (recorded_on desc);
@@ -2429,8 +2426,7 @@ create table if not exists bet.game_actions
     stored_on                      timestamp with time zone default now() not null,
     constraint pk_game_actions
         primary key (id, recorded_on)
-)
-    partition by RANGE (recorded_on);
+);
 
 create index if not exists ix_game_actions_game_action_batch_id
     on bet.game_actions (game_action_batch_id);
@@ -2507,10 +2503,6 @@ create index if not exists ix_failed_game_record_operations_game_provider_id_aut
 
 create unique index if not exists ux_failed_game_record_operations_external_round_id_player_code_
     on bet.failed_game_record_operations (external_round_id, player_code, game_provider_id, game_id);
-
-create table if not exists bet.game_actions_default
-    partition of bet.game_actions
-        DEFAULT;
 
 create table if not exists report.player_game_rebate_aggregates
 (
@@ -6255,8 +6247,7 @@ create table if not exists dbo.game_bet_firsts
     additional_data                jsonb                    default '{}'::jsonb                                        not null,
     constraint pk_game_bet_firsts
         primary key (external_created_on, game_provider_id, game_id, wallet_id, external_bet_id)
-)
-    partition by RANGE (external_created_on);
+);
 
 comment on column dbo.game_bet_firsts.game_provider_id is '遊戲供應商識別碼';
 
@@ -6385,84 +6376,6 @@ create index if not exists ix_game_bet_firsts_e_c_on_reseller_id
 
 create index if not exists ix_game_bet_firsts_e_c_on_wallet_id
     on dbo.game_bet_firsts (external_created_on, wallet_id);
-
-create table if not exists dbo.game_bet_firsts_default
-    partition of dbo.game_bet_firsts
-        DEFAULT;
-
-comment on column dbo.game_bet_firsts_default.game_provider_id is '遊戲供應商識別碼';
-
-comment on column dbo.game_bet_firsts_default.game_id is '遊戲識別碼';
-
-comment on column dbo.game_bet_firsts_default.wallet_id is '錢包識別碼';
-
-comment on column dbo.game_bet_firsts_default.external_bet_id is '三方投注單別碼';
-
-comment on column dbo.game_bet_firsts_default.external_created_on is '三方下注/創建時間';
-
-comment on column dbo.game_bet_firsts_default.id is '識別碼';
-
-comment on column dbo.game_bet_firsts_default.game_bet_id is '遊戲注單識別碼';
-
-comment on column dbo.game_bet_firsts_default.game_provider_configuration_id is '遊戲供應商設定識別碼';
-
-comment on column dbo.game_bet_firsts_default.reseller_id is '公司識別碼';
-
-comment on column dbo.game_bet_firsts_default.licensee_id is '分公司識別碼';
-
-comment on column dbo.game_bet_firsts_default.brand_id is '平台識別碼';
-
-comment on column dbo.game_bet_firsts_default.player_code is '玩家代碼';
-
-comment on column dbo.game_bet_firsts_default.currency_code is '貨幣代碼';
-
-comment on column dbo.game_bet_firsts_default.external_round_id is '三方局/回合識別碼';
-
-comment on column dbo.game_bet_firsts_default.external_closed_on is '三方結算/結束時間';
-
-comment on column dbo.game_bet_firsts_default.external_payoff_on is '三方派彩時間';
-
-comment on column dbo.game_bet_firsts_default.external_resettle_on is '三方重新結算時間';
-
-comment on column dbo.game_bet_firsts_default.bet_state is '注單狀態';
-
-comment on column dbo.game_bet_firsts_default.bet_type is '注單類型';
-
-comment on column dbo.game_bet_firsts_default.free_game_state is '免費遊戲狀態';
-
-comment on column dbo.game_bet_firsts_default.gamble_state is '博取遊戲狀態';
-
-comment on column dbo.game_bet_firsts_default.cashout_state is '兌現狀態';
-
-comment on column dbo.game_bet_firsts_default.resettle_state is '重新結算狀態';
-
-comment on column dbo.game_bet_firsts_default.jackpot_state is '彩金狀態';
-
-comment on column dbo.game_bet_firsts_default.currency_ratio is '貨幣比例';
-
-comment on column dbo.game_bet_firsts_default.bet is '下注';
-
-comment on column dbo.game_bet_firsts_default.valid_bet is '實際/有效下注';
-
-comment on column dbo.game_bet_firsts_default.settle is '結算(包含本金)';
-
-comment on column dbo.game_bet_firsts_default.commission is '傭金';
-
-comment on column dbo.game_bet_firsts_default.turnover is '有效投注';
-
-comment on column dbo.game_bet_firsts_default.win_loss is '玩家損益/淨利';
-
-comment on column dbo.game_bet_firsts_default.jackpot is '彩金';
-
-comment on column dbo.game_bet_firsts_default.created_on is '創建時間';
-
-comment on column dbo.game_bet_firsts_default.closed_on is '結束時間';
-
-comment on column dbo.game_bet_firsts_default.updated_on is '修改時間';
-
-comment on column dbo.game_bet_firsts_default.first_on is '首筆時間';
-
-comment on column dbo.game_bet_firsts_default.additional_data is '附加數據';
 
 create table if not exists dbo.deposit_promotion_statistics
 (
