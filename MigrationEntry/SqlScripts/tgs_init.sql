@@ -2339,8 +2339,7 @@ create table if not exists log.log_records
     exception   text                     not null,
     constraint pk_log_records
         primary key (id, recorded_on)
-)
-    partition by RANGE (recorded_on);
+);
 
 create index if not exists ix_log_records_recorded_on
     on log.log_records (recorded_on desc);
@@ -2366,8 +2365,7 @@ create table if not exists log.api_logs
     recorded_on       timestamp with time zone not null,
     constraint pk_api_logs
         primary key (id, recorded_on)
-)
-    partition by RANGE (recorded_on);
+);
 
 create index if not exists ix_api_logs_recorded_on
     on log.api_logs (recorded_on desc);
@@ -2396,8 +2394,7 @@ create table if not exists log.admin_logs
     inner_exception   text,
     constraint pk_admin_logs
         primary key (id, recorded_on)
-)
-    partition by RANGE (recorded_on);
+);
 
 create index if not exists ix_admin_logs_recorded_on
     on log.admin_logs (recorded_on desc);
@@ -2429,8 +2426,7 @@ create table if not exists bet.game_actions
     stored_on                      timestamp with time zone default now() not null,
     constraint pk_game_actions
         primary key (id, recorded_on)
-)
-    partition by RANGE (recorded_on);
+);
 
 create index if not exists ix_game_actions_game_action_batch_id
     on bet.game_actions (game_action_batch_id);
@@ -2507,10 +2503,6 @@ create index if not exists ix_failed_game_record_operations_game_provider_id_aut
 
 create unique index if not exists ux_failed_game_record_operations_external_round_id_player_code_
     on bet.failed_game_record_operations (external_round_id, player_code, game_provider_id, game_id);
-
-create table if not exists bet.game_actions_default
-    partition of bet.game_actions
-        DEFAULT;
 
 create table if not exists report.player_game_rebate_aggregates
 (
@@ -6255,8 +6247,7 @@ create table if not exists dbo.game_bet_firsts
     additional_data                jsonb                    default '{}'::jsonb                                        not null,
     constraint pk_game_bet_firsts
         primary key (external_created_on, game_provider_id, game_id, wallet_id, external_bet_id)
-)
-    partition by RANGE (external_created_on);
+);
 
 comment on column dbo.game_bet_firsts.game_provider_id is '遊戲供應商識別碼';
 
@@ -6385,10 +6376,6 @@ create index if not exists ix_game_bet_firsts_e_c_on_reseller_id
 
 create index if not exists ix_game_bet_firsts_e_c_on_wallet_id
     on dbo.game_bet_firsts (external_created_on, wallet_id);
-
-create table if not exists dbo.game_bet_firsts_default
-    partition of dbo.game_bet_firsts
-        DEFAULT;
 
 comment on column dbo.game_bet_firsts_default.game_provider_id is '遊戲供應商識別碼';
 
