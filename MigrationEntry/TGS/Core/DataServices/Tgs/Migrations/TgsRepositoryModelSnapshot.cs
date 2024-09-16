@@ -11641,6 +11641,72 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.ToTable("promotion_groups", "dbo");
                 });
 
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.PromotionMilestone", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<decimal>("Bonus")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("bonus");
+
+                    b.Property<Guid>("BrandId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("brand_id");
+
+                    b.Property<decimal>("BucketAmount")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("bucket_amount");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_on");
+
+                    b.Property<decimal>("DepositAmount")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("deposit_amount");
+
+                    b.Property<int>("MilestoneLevel")
+                        .HasColumnType("integer")
+                        .HasColumnName("milestone_level");
+
+                    b.Property<string>("PlayerCode")
+                        .IsRequired()
+                        .HasMaxLength(16)
+                        .HasColumnType("character varying(16)")
+                        .HasColumnName("player_code");
+
+                    b.Property<Guid?>("PromotionDistributeId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("promotion_distribute_id");
+
+                    b.Property<Guid>("PromotionId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("promotion_id");
+
+                    b.Property<decimal>("ValidBetAmount")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("valid_bet_amount");
+
+                    b.HasKey("Id")
+                        .HasName("pk_promotion_milestones");
+
+                    b.HasIndex("PromotionDistributeId")
+                        .IsUnique()
+                        .HasDatabaseName("ix_promotion_milestones_promotion_distribute_id");
+
+                    b.HasIndex("BrandId", "PromotionId", "PlayerCode")
+                        .HasDatabaseName("ix_promotion_milestone_brand_id_promotion_id_player_code");
+
+                    b.ToTable("promotion_milestones", "dbo");
+                });
+
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.PromotionParticipant", b =>
                 {
                     b.Property<int>("Id")
@@ -15469,6 +15535,16 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.Navigation("GameProvider");
 
                     b.Navigation("Promotion");
+                });
+
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.PromotionMilestone", b =>
+                {
+                    b.HasOne("TGS.Core.DataServices.Tgs.Models.PromotionDistribute", "PromotionDistribute")
+                        .WithOne()
+                        .HasForeignKey("TGS.Core.DataServices.Tgs.Models.PromotionMilestone", "PromotionDistributeId")
+                        .HasConstraintName("fk_promotion_milestones_promotion_distributes_promotion_distri");
+
+                    b.Navigation("PromotionDistribute");
                 });
 
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.PromotionParticipant", b =>
