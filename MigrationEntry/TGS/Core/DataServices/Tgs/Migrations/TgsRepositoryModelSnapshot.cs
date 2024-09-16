@@ -5734,6 +5734,7 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasComment("三方投注單別碼");
 
                     b.Property<string>("AdditionalData")
+                        .IsRequired()
                         .ValueGeneratedOnAdd()
                         .HasColumnType("jsonb")
                         .HasColumnName("additional_data")
@@ -5799,6 +5800,7 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasComment("創建時間");
 
                     b.Property<string>("CurrencyCode")
+                        .IsRequired()
                         .HasMaxLength(16)
                         .HasColumnType("character varying(16)")
                         .HasColumnName("currency_code")
@@ -5811,6 +5813,7 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasComment("貨幣比例");
 
                     b.Property<string>("ExtendedData")
+                        .IsRequired()
                         .ValueGeneratedOnAdd()
                         .HasColumnType("jsonb")
                         .HasColumnName("extended_data")
@@ -5839,6 +5842,7 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasComment("三方重新結算時間");
 
                     b.Property<string>("ExternalRoundId")
+                        .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("character varying(255)")
                         .HasColumnName("external_round_id")
@@ -5887,6 +5891,7 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasComment("分公司識別碼");
 
                     b.Property<string>("PlayerCode")
+                        .IsRequired()
                         .HasMaxLength(16)
                         .HasColumnType("character varying(16)")
                         .HasColumnName("player_code")

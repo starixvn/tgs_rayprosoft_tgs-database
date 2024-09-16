@@ -66,7 +66,8 @@ internal class GameBetMajorMap : IEntityTypeConfiguration<GameBetMajor>
             .HasDefaultValueSql("'{}'::jsonb")
             .HasComment("附加數據")
             .HasColumnType("jsonb")
-            .HasColumnName("additional_data");
+            .HasColumnName("additional_data")
+            .IsRequired();
         _ = builder.Property(e => e.Bet)
             .HasPrecision(18, 6)
             .HasComment("下注")
@@ -105,7 +106,8 @@ internal class GameBetMajorMap : IEntityTypeConfiguration<GameBetMajor>
         _ = builder.Property(e => e.CurrencyCode)
             .HasMaxLength(16)
             .HasComment("貨幣代碼")
-            .HasColumnName("currency_code");
+            .HasColumnName("currency_code")
+            .IsRequired();
         _ = builder.Property(e => e.CurrencyRatio)
             .HasPrecision(18, 6)
             .HasComment("貨幣比例")
@@ -114,7 +116,8 @@ internal class GameBetMajorMap : IEntityTypeConfiguration<GameBetMajor>
             .HasDefaultValueSql("'{}'::jsonb")
             .HasComment("擴充數據")
             .HasColumnType("jsonb")
-            .HasColumnName("extended_data");
+            .HasColumnName("extended_data")
+            .IsRequired();
         _ = builder.Property(e => e.ExternalClosedOn)
             .HasDefaultValueSql("'1970-01-01 00:00:00+00'::timestamp with time zone")
             .HasComment("三方結算/結束時間")
@@ -130,7 +133,8 @@ internal class GameBetMajorMap : IEntityTypeConfiguration<GameBetMajor>
         _ = builder.Property(e => e.ExternalRoundId)
             .HasMaxLength(255)
             .HasComment("三方局/回合識別碼")
-            .HasColumnName("external_round_id");
+            .HasColumnName("external_round_id")
+            .IsRequired();
         _ = builder.Property(e => e.FreeGameState)
             .HasDefaultValue(0)
             .HasComment("免費遊戲狀態")
@@ -159,7 +163,8 @@ internal class GameBetMajorMap : IEntityTypeConfiguration<GameBetMajor>
         _ = builder.Property(e => e.PlayerCode)
             .HasMaxLength(16)
             .HasComment("玩家代碼")
-            .HasColumnName("player_code");
+            .HasColumnName("player_code")
+            .IsRequired();
         _ = builder.Property(e => e.ResellerId)
             .HasComment("公司識別碼")
             .HasColumnName("reseller_id");
