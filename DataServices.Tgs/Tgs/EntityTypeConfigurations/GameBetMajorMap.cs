@@ -71,7 +71,8 @@ internal class GameBetMajorMap : IEntityTypeConfiguration<GameBetMajor>
         _ = builder.Property(e => e.Bet)
             .HasPrecision(18, 6)
             .HasComment("下注")
-            .HasColumnName("bet");
+            .HasColumnName("bet")
+            .HasDefaultValue(0);
         _ = builder.Property(e => e.BetState)
             .HasDefaultValue(0)
             .HasComment("注單狀態")
@@ -94,11 +95,13 @@ internal class GameBetMajorMap : IEntityTypeConfiguration<GameBetMajor>
         _ = builder.Property(e => e.Commission)
             .HasPrecision(18, 6)
             .HasComment("傭金")
-            .HasColumnName("commission");
+            .HasColumnName("commission")
+            .HasDefaultValue(0);
         _ = builder.Property(e => e.Contribute)
             .HasPrecision(18, 6)
             .HasComment("貢獻/彩金貢獻")
-            .HasColumnName("contribute");
+            .HasColumnName("contribute")
+            .HasDefaultValue(0);
         _ = builder.Property(e => e.CreatedOn)
             .HasDefaultValueSql("CURRENT_TIMESTAMP")
             .HasComment("創建時間")
@@ -111,7 +114,8 @@ internal class GameBetMajorMap : IEntityTypeConfiguration<GameBetMajor>
         _ = builder.Property(e => e.CurrencyRatio)
             .HasPrecision(18, 6)
             .HasComment("貨幣比例")
-            .HasColumnName("currency_ratio");
+            .HasColumnName("currency_ratio")
+            .HasDefaultValue(0);
         _ = builder.Property(e => e.ExtendedData)
             .HasDefaultValueSql("'{}'::jsonb")
             .HasComment("擴充數據")
@@ -152,7 +156,8 @@ internal class GameBetMajorMap : IEntityTypeConfiguration<GameBetMajor>
         _ = builder.Property(e => e.Jackpot)
             .HasPrecision(18, 6)
             .HasComment("彩金")
-            .HasColumnName("jackpot");
+            .HasColumnName("jackpot")
+            .HasDefaultValue(0);
         _ = builder.Property(e => e.JackpotState)
             .HasDefaultValue(0)
             .HasComment("彩金狀態")
@@ -175,7 +180,8 @@ internal class GameBetMajorMap : IEntityTypeConfiguration<GameBetMajor>
         _ = builder.Property(e => e.Settle)
             .HasPrecision(18, 6)
             .HasComment("結算(包含本金)")
-            .HasColumnName("settle");
+            .HasColumnName("settle")
+            .HasDefaultValue(0);
         _ = builder.Property(e => e.UpdatedOn)
             .HasDefaultValueSql("CURRENT_TIMESTAMP")
             .HasComment("修改時間")
@@ -183,10 +189,12 @@ internal class GameBetMajorMap : IEntityTypeConfiguration<GameBetMajor>
         _ = builder.Property(e => e.ValidBet)
             .HasPrecision(18, 6)
             .HasComment("實際/有效下注")
-            .HasColumnName("valid_bet");
+            .HasColumnName("valid_bet")
+            .HasDefaultValue(0);
         _ = builder.Property(e => e.WinLoss)
             .HasPrecision(18, 6)
             .HasComment("玩家損益/淨利")
-            .HasColumnName("win_loss");
+            .HasColumnName("win_loss")
+            .HasDefaultValue(0);
     }
 }

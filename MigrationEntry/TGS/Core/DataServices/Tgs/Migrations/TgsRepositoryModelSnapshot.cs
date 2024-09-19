@@ -5742,8 +5742,10 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasComment("附加數據");
 
                     b.Property<decimal>("Bet")
+                        .ValueGeneratedOnAdd()
                         .HasPrecision(18, 6)
                         .HasColumnType("numeric(18,6)")
+                        .HasDefaultValue(0m)
                         .HasColumnName("bet")
                         .HasComment("下注");
 
@@ -5781,14 +5783,18 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasComment("結束時間");
 
                     b.Property<decimal>("Commission")
+                        .ValueGeneratedOnAdd()
                         .HasPrecision(18, 6)
                         .HasColumnType("numeric(18,6)")
+                        .HasDefaultValue(0m)
                         .HasColumnName("commission")
                         .HasComment("傭金");
 
                     b.Property<decimal>("Contribute")
+                        .ValueGeneratedOnAdd()
                         .HasPrecision(18, 6)
                         .HasColumnType("numeric(18,6)")
+                        .HasDefaultValue(0m)
                         .HasColumnName("contribute")
                         .HasComment("貢獻/彩金貢獻");
 
@@ -5807,8 +5813,10 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasComment("貨幣代碼");
 
                     b.Property<decimal>("CurrencyRatio")
+                        .ValueGeneratedOnAdd()
                         .HasPrecision(18, 6)
                         .HasColumnType("numeric(18,6)")
+                        .HasDefaultValue(0m)
                         .HasColumnName("currency_ratio")
                         .HasComment("貨幣比例");
 
@@ -5873,8 +5881,10 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasComment("識別碼");
 
                     b.Property<decimal>("Jackpot")
+                        .ValueGeneratedOnAdd()
                         .HasPrecision(18, 6)
                         .HasColumnType("numeric(18,6)")
+                        .HasDefaultValue(0m)
                         .HasColumnName("jackpot")
                         .HasComment("彩金");
 
@@ -5910,8 +5920,10 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasComment("重新結算狀態");
 
                     b.Property<decimal>("Settle")
+                        .ValueGeneratedOnAdd()
                         .HasPrecision(18, 6)
                         .HasColumnType("numeric(18,6)")
+                        .HasDefaultValue(0m)
                         .HasColumnName("settle")
                         .HasComment("結算(包含本金)");
 
@@ -5923,14 +5935,18 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasComment("修改時間");
 
                     b.Property<decimal>("ValidBet")
+                        .ValueGeneratedOnAdd()
                         .HasPrecision(18, 6)
                         .HasColumnType("numeric(18,6)")
+                        .HasDefaultValue(0m)
                         .HasColumnName("valid_bet")
                         .HasComment("實際/有效下注");
 
                     b.Property<decimal>("WinLoss")
+                        .ValueGeneratedOnAdd()
                         .HasPrecision(18, 6)
                         .HasColumnType("numeric(18,6)")
+                        .HasDefaultValue(0m)
                         .HasColumnName("win_loss")
                         .HasComment("玩家損益/淨利");
 
