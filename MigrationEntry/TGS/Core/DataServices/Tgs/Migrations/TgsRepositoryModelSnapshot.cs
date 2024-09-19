@@ -5927,6 +5927,14 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasColumnName("settle")
                         .HasComment("結算(包含本金)");
 
+                    b.Property<decimal>("Turnover")
+                        .ValueGeneratedOnAdd()
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasDefaultValue(0m)
+                        .HasColumnName("turnover")
+                        .HasComment("流水(依照遊戲商提供流水,如遊戲商未提供預設有效下注)");
+
                     b.Property<DateTimeOffset>("UpdatedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("timestamp with time zone")
