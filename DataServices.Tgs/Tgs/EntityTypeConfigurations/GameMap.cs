@@ -66,7 +66,7 @@ internal class GameMap : BaseConfiguration, IEntityTypeConfiguration<Game>
             .HasColumnType(ColumnTypes.Jsonb);
 
         _ = builder.Property(e => e.SubGameProviderCode)
-            .HasMaxLength(16);
+            .HasMaxLength(64);
 
         _ = builder.HasOne(e => e.GameProvider)
             .WithMany(e => e.Games)

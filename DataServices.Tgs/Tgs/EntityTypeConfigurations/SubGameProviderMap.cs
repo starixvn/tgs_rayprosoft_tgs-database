@@ -15,7 +15,7 @@ public class SubGameProviderMap : IEntityTypeConfiguration<SubGameProvider>
             .HasName("pk_sub_game_providers");
 
         _ = builder.Property(c => c.Code)
-            .HasMaxLength(16)
+            .HasMaxLength(64)
             .IsRequired();
 
         _ = builder.Property(c => c.Name)
