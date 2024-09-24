@@ -28,11 +28,14 @@ internal class GameBetRunningMap : IEntityTypeConfiguration<GameBetRunning>
             .HasDefaultValueSql("'{}'::jsonb")
             .HasComment("附加數據")
             .HasColumnType("jsonb")
-            .HasColumnName("additional_data");
+            .HasColumnName("additional_data")
+            .IsRequired();
         _ = builder.Property(e => e.Bet)
             .HasPrecision(18, 6)
+            .HasDefaultValue(0.0)
             .HasComment("下注")
-            .HasColumnName("bet");
+            .HasColumnName("bet")
+            .IsRequired();
         _ = builder.Property(e => e.BetType)
             .HasDefaultValue(0)
             .HasComment("注單類型")
@@ -46,27 +49,33 @@ internal class GameBetRunningMap : IEntityTypeConfiguration<GameBetRunning>
         _ = builder.Property(e => e.CurrencyCode)
             .HasMaxLength(16)
             .HasComment("貨幣代碼")
-            .HasColumnName("currency_code");
+            .HasColumnName("currency_code")
+            .IsRequired();
         _ = builder.Property(e => e.CurrencyRatio)
             .HasPrecision(18, 6)
+            .HasDefaultValue(0.0)
             .HasComment("貨幣比例")
-            .HasColumnName("currency_ratio");
+            .HasColumnName("currency_ratio")
+            .IsRequired();
         _ = builder.Property(e => e.ExtendedData)
             .HasDefaultValueSql("'{}'::jsonb")
             .HasComment("擴充數據")
             .HasColumnType("jsonb")
-            .HasColumnName("extended_data");
+            .HasColumnName("extended_data")
+            .IsRequired();
         _ = builder.Property(e => e.ExternalBetId)
             .HasMaxLength(255)
             .HasComment("三方投注單別碼")
-            .HasColumnName("external_bet_id");
+            .HasColumnName("external_bet_id")
+            .IsRequired();
         _ = builder.Property(e => e.ExternalCreatedOn)
             .HasComment("三方下注/創建時間")
             .HasColumnName("external_created_on");
         _ = builder.Property(e => e.ExternalRoundId)
             .HasMaxLength(255)
             .HasComment("三方局/回合識別碼")
-            .HasColumnName("external_round_id");
+            .HasColumnName("external_round_id")
+            .IsRequired();
         _ = builder.Property(e => e.GameId)
             .HasComment("遊戲識別碼")
             .HasColumnName("game_id");
@@ -82,7 +91,8 @@ internal class GameBetRunningMap : IEntityTypeConfiguration<GameBetRunning>
         _ = builder.Property(e => e.PlayerCode)
             .HasMaxLength(16)
             .HasComment("玩家代碼")
-            .HasColumnName("player_code");
+            .HasColumnName("player_code")
+            .IsRequired();
         _ = builder.Property(e => e.ResellerId)
             .HasComment("公司識別碼")
             .HasColumnName("reseller_id");
@@ -91,8 +101,10 @@ internal class GameBetRunningMap : IEntityTypeConfiguration<GameBetRunning>
             .HasColumnName("updated_on");
         _ = builder.Property(e => e.ValidBet)
             .HasPrecision(18, 6)
+            .HasDefaultValue(0.0)
             .HasComment("實際/有效下注")
-            .HasColumnName("valid_bet");
+            .HasColumnName("valid_bet")
+            .IsRequired();
         _ = builder.Property(e => e.WalletId)
             .HasComment("錢包識別碼")
             .HasColumnName("wallet_id");
