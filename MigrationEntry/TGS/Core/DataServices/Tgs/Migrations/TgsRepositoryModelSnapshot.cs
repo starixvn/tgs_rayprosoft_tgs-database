@@ -6012,6 +6012,136 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.ToTable("game_bet_majors", "dbo");
                 });
 
+            modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.GameBetRunning", b =>
+                {
+                    b.Property<Guid>("GameBetMajorId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("game_bet_major_id")
+                        .HasComment("遊戲投注主要識別碼");
+
+                    b.Property<string>("AdditionalData")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("jsonb")
+                        .HasColumnName("additional_data")
+                        .HasDefaultValueSql("'{}'::jsonb")
+                        .HasComment("附加數據");
+
+                    b.Property<decimal>("Bet")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("bet")
+                        .HasComment("下注");
+
+                    b.Property<int>("BetType")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasDefaultValue(0)
+                        .HasColumnName("bet_type")
+                        .HasComment("注單類型");
+
+                    b.Property<Guid>("BrandId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("brand_id")
+                        .HasComment("平台識別碼");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_on")
+                        .HasComment("創建時間");
+
+                    b.Property<string>("CurrencyCode")
+                        .HasMaxLength(16)
+                        .HasColumnType("character varying(16)")
+                        .HasColumnName("currency_code")
+                        .HasComment("貨幣代碼");
+
+                    b.Property<decimal>("CurrencyRatio")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("currency_ratio")
+                        .HasComment("貨幣比例");
+
+                    b.Property<string>("ExtendedData")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("jsonb")
+                        .HasColumnName("extended_data")
+                        .HasDefaultValueSql("'{}'::jsonb")
+                        .HasComment("擴充數據");
+
+                    b.Property<string>("ExternalBetId")
+                        .HasMaxLength(255)
+                        .HasColumnType("character varying(255)")
+                        .HasColumnName("external_bet_id")
+                        .HasComment("三方投注單別碼");
+
+                    b.Property<DateTime>("ExternalCreatedOn")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("external_created_on")
+                        .HasComment("三方下注/創建時間");
+
+                    b.Property<string>("ExternalRoundId")
+                        .HasMaxLength(255)
+                        .HasColumnType("character varying(255)")
+                        .HasColumnName("external_round_id")
+                        .HasComment("三方局/回合識別碼");
+
+                    b.Property<int>("GameId")
+                        .HasColumnType("integer")
+                        .HasColumnName("game_id")
+                        .HasComment("遊戲識別碼");
+
+                    b.Property<Guid>("GameProviderConfigurationId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("game_provider_configuration_id")
+                        .HasComment("遊戲供應商設定識別碼");
+
+                    b.Property<Guid>("GameProviderId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("game_provider_id")
+                        .HasComment("遊戲供應商識別碼");
+
+                    b.Property<Guid>("LicenseeId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("licensee_id")
+                        .HasComment("分公司識別碼");
+
+                    b.Property<string>("PlayerCode")
+                        .HasMaxLength(16)
+                        .HasColumnType("character varying(16)")
+                        .HasColumnName("player_code")
+                        .HasComment("玩家代碼");
+
+                    b.Property<Guid>("ResellerId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("reseller_id")
+                        .HasComment("公司識別碼");
+
+                    b.Property<DateTime>("UpdatedOn")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("updated_on")
+                        .HasComment("修改時間");
+
+                    b.Property<decimal>("ValidBet")
+                        .HasPrecision(18, 6)
+                        .HasColumnType("numeric(18,6)")
+                        .HasColumnName("valid_bet")
+                        .HasComment("實際/有效下注");
+
+                    b.Property<Guid>("WalletId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("wallet_id")
+                        .HasComment("錢包識別碼");
+
+                    b.HasKey("GameBetMajorId")
+                        .HasName("pk_game_bet_runnings");
+
+                    b.HasIndex(new[] { "GameProviderId", "GameId", "WalletId", "ExternalBetId" }, "uix_game_bet_runnings")
+                        .IsUnique()
+                        .HasDatabaseName("ix_game_bet_runnings_game_provider_id_game_id_wallet_id_extern");
+
+                    b.ToTable("game_bet_runnings", "dbo");
+                });
+
             modelBuilder.Entity("TGS.Core.DataServices.Tgs.Models.GameFundTransferTrace", b =>
                 {
                     b.Property<Guid>("GameProviderId")
