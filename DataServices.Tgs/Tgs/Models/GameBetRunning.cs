@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace TGS.Core.DataServices.Tgs.Models;
 
-namespace TGS.Core.DataServices.Tgs.Models;
-
-public class GameBetRunning
+public record GameBetRunning
 {
     /// <summary>
     /// 遊戲投注主要識別碼

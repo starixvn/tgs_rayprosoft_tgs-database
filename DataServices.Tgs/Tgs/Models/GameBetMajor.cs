@@ -1,6 +1,6 @@
 ﻿namespace TGS.Core.DataServices.Tgs.Models;
 
-public partial class GameBetMajor
+public record GameBetMajor
 {
     /// <summary>
     /// 遊戲供應商識別碼
