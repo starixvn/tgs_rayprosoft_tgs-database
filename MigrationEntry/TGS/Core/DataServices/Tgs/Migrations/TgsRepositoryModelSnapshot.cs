@@ -6020,6 +6020,7 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasComment("遊戲投注主要識別碼");
 
                     b.Property<string>("AdditionalData")
+                        .IsRequired()
                         .ValueGeneratedOnAdd()
                         .HasColumnType("jsonb")
                         .HasColumnName("additional_data")
@@ -6027,8 +6028,10 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasComment("附加數據");
 
                     b.Property<decimal>("Bet")
+                        .ValueGeneratedOnAdd()
                         .HasPrecision(18, 6)
                         .HasColumnType("numeric(18,6)")
+                        .HasDefaultValue(0m)
                         .HasColumnName("bet")
                         .HasComment("下注");
 
@@ -6050,18 +6053,22 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasComment("創建時間");
 
                     b.Property<string>("CurrencyCode")
+                        .IsRequired()
                         .HasMaxLength(16)
                         .HasColumnType("character varying(16)")
                         .HasColumnName("currency_code")
                         .HasComment("貨幣代碼");
 
                     b.Property<decimal>("CurrencyRatio")
+                        .ValueGeneratedOnAdd()
                         .HasPrecision(18, 6)
                         .HasColumnType("numeric(18,6)")
+                        .HasDefaultValue(0m)
                         .HasColumnName("currency_ratio")
                         .HasComment("貨幣比例");
 
                     b.Property<string>("ExtendedData")
+                        .IsRequired()
                         .ValueGeneratedOnAdd()
                         .HasColumnType("jsonb")
                         .HasColumnName("extended_data")
@@ -6069,6 +6076,7 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasComment("擴充數據");
 
                     b.Property<string>("ExternalBetId")
+                        .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("character varying(255)")
                         .HasColumnName("external_bet_id")
@@ -6080,6 +6088,7 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasComment("三方下注/創建時間");
 
                     b.Property<string>("ExternalRoundId")
+                        .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("character varying(255)")
                         .HasColumnName("external_round_id")
@@ -6106,6 +6115,7 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasComment("分公司識別碼");
 
                     b.Property<string>("PlayerCode")
+                        .IsRequired()
                         .HasMaxLength(16)
                         .HasColumnType("character varying(16)")
                         .HasColumnName("player_code")
@@ -6122,8 +6132,10 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                         .HasComment("修改時間");
 
                     b.Property<decimal>("ValidBet")
+                        .ValueGeneratedOnAdd()
                         .HasPrecision(18, 6)
                         .HasColumnType("numeric(18,6)")
+                        .HasDefaultValue(0m)
                         .HasColumnName("valid_bet")
                         .HasComment("實際/有效下注");
 
