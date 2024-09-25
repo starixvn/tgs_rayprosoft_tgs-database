@@ -38,4 +38,6 @@ public class User
     public DateTimeOffset UpdatedOn { get; set; }
 
     public string Username { get; set; }
+
+    public string ReferenceId { get; set; }
 }
