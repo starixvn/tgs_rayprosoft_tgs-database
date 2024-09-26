@@ -5973,39 +5973,42 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.HasKey("ClosedOn", "GameBetMajorId")
                         .HasName("pk_game_bet_closes");
 
-                    b.HasIndex("ClosedOn", "GameProviderId", "GameId", "PlayerCode", "ExternalBetId")
-                        .HasDatabaseName("ix_game_bet_closes_player_code_composite");
+                    b.HasIndex("ClosedOn")
+                        .HasDatabaseName("ix_game_bet_closes_closed_on");
+
+                    b.HasIndex("ClosedOn", "BrandId")
+                        .HasDatabaseName("ix_game_bet_closes_brand_id");
+
+                    b.HasIndex("ClosedOn", "CurrencyCode")
+                        .HasDatabaseName("ix_game_bet_closes_currency_code");
+
+                    b.HasIndex("ClosedOn", "ExternalBetId")
+                        .HasDatabaseName("ix_game_bet_closes_external_bet_id");
+
+                    b.HasIndex("ClosedOn", "ExternalClosedOn")
+                        .HasDatabaseName("ix_game_bet_closes_external_closed_on");
+
+                    b.HasIndex("ClosedOn", "ExternalCreatedOn")
+                        .HasDatabaseName("ix_game_bet_closes_external_created_on");
+
+                    b.HasIndex("ClosedOn", "ExternalRoundId")
+                        .HasDatabaseName("ix_game_bet_closes_external_round_id");
+
+                    b.HasIndex("ClosedOn", "GameId")
+                        .HasDatabaseName("ix_game_bet_closes_game_id");
+
+                    b.HasIndex("ClosedOn", "GameProviderId")
+                        .HasDatabaseName("ix_game_bet_closes_game_provider_id");
+
+                    b.HasIndex("ClosedOn", "PlayerCode")
+                        .HasDatabaseName("ix_game_bet_closes_player_code");
+
+                    b.HasIndex("ClosedOn", "UpdatedOn")
+                        .HasDatabaseName("ix_game_bet_closes_updated_on");
 
                     b.HasIndex("ClosedOn", "GameProviderId", "GameId", "WalletId", "ExternalBetId")
                         .IsUnique()
                         .HasDatabaseName("ux_game_bet_closes");
-
-                    b.HasIndex(new[] { "ClosedOn", "BetState" }, "ix_game_bet_closes_bet_state")
-                        .HasDatabaseName("ix_game_bet_closes_closed_on_bet_state");
-
-                    b.HasIndex(new[] { "ClosedOn", "BrandId" }, "ix_game_bet_closes_brand_id")
-                        .HasDatabaseName("ix_game_bet_closes_closed_on_brand_id");
-
-                    b.HasIndex(new[] { "ClosedOn", "ExternalClosedOn" }, "ix_game_bet_closes_external_closed_on")
-                        .HasDatabaseName("ix_game_bet_closes_closed_on_external_closed_on");
-
-                    b.HasIndex(new[] { "ClosedOn", "ExternalCreatedOn" }, "ix_game_bet_closes_external_created_on")
-                        .HasDatabaseName("ix_game_bet_closes_closed_on_external_created_on");
-
-                    b.HasIndex(new[] { "ClosedOn", "GameId" }, "ix_game_bet_closes_game_id")
-                        .HasDatabaseName("ix_game_bet_closes_closed_on_game_id");
-
-                    b.HasIndex(new[] { "ClosedOn", "GameProviderId" }, "ix_game_bet_closes_game_provider_id")
-                        .HasDatabaseName("ix_game_bet_closes_closed_on_game_provider_id");
-
-                    b.HasIndex(new[] { "ClosedOn", "Id" }, "ix_game_bet_closes_id")
-                        .HasDatabaseName("ix_game_bet_closes_closed_on_id");
-
-                    b.HasIndex(new[] { "ClosedOn", "PlayerCode" }, "ix_game_bet_closes_player_code")
-                        .HasDatabaseName("ix_game_bet_closes_closed_on_player_code");
-
-                    b.HasIndex(new[] { "ClosedOn", "UpdatedOn" }, "ix_game_bet_closes_updated_on")
-                        .HasDatabaseName("ix_game_bet_closes_closed_on_updated_on");
 
                     b.ToTable("game_bet_closes", "dbo");
                 });
