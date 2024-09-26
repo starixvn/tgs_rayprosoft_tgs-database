@@ -12,26 +12,38 @@ internal class GameBetCloseMap : IEntityTypeConfiguration<GameBetClose>
 
         _ = builder.HasKey(e => new { e.ClosedOn, e.GameBetMajorId }).HasName("pk_game_bet_closes");
 
-        _ = builder.HasIndex(e => new { e.ClosedOn, e.BrandId }, "ix_game_bet_closes_brand_id");
+        _ = builder.HasIndex(e => new { e.ClosedOn, e.BrandId })
+            .HasDatabaseName("ix_game_bet_closes_brand_id");
 
-        _ = builder.HasIndex(e => new { e.ClosedOn, e.ExternalClosedOn }, "ix_game_bet_closes_external_closed_on");
+        _ = builder.HasIndex(e => new { e.ClosedOn, e.CurrencyCode })
+            .HasDatabaseName("ix_game_bet_closes_currency_code");
 
-        _ = builder.HasIndex(e => new { e.ClosedOn, e.ExternalCreatedOn }, "ix_game_bet_closes_external_created_on");
+        _ = builder.HasIndex(e => new { e.ClosedOn, e.ExternalBetId })
+            .HasDatabaseName("ix_game_bet_closes_external_bet_id");
 
-        _ = builder.HasIndex(e => new { e.ClosedOn, e.GameId }, "ix_game_bet_closes_game_id");
+        _ = builder.HasIndex(e => new { e.ClosedOn, e.ExternalClosedOn })
+            .HasDatabaseName("ix_game_bet_closes_external_closed_on");
 
-        _ = builder.HasIndex(e => new { e.ClosedOn, e.GameProviderId }, "ix_game_bet_closes_game_provider_id");
+        _ = builder.HasIndex(e => new { e.ClosedOn, e.ExternalCreatedOn })
+            .HasDatabaseName("ix_game_bet_closes_external_created_on");
 
-        _ = builder.HasIndex(e => new { e.ClosedOn, e.Id }, "ix_game_bet_closes_id");
+        _ = builder.HasIndex(e => new { e.ClosedOn, e.ExternalRoundId })
+            .HasDatabaseName("ix_game_bet_closes_external_round_id");
 
-        _ = builder.HasIndex(e => new { e.ClosedOn, e.PlayerCode }, "ix_game_bet_closes_player_code");
+        _ = builder.HasIndex(e => new { e.ClosedOn, e.GameId })
+            .HasDatabaseName("ix_game_bet_closes_game_id");
 
-        _ = builder.HasIndex(e => new { e.ClosedOn, e.UpdatedOn }, "ix_game_bet_closes_updated_on");
+        _ = builder.HasIndex(e => new { e.ClosedOn, e.GameProviderId })
+            .HasDatabaseName("ix_game_bet_closes_game_provider_id");
 
-        _ = builder.HasIndex(e => new { e.ClosedOn, e.BetState }, "ix_game_bet_closes_bet_state");
+        _ = builder.HasIndex(e => new { e.ClosedOn, e.PlayerCode })
+            .HasDatabaseName("ix_game_bet_closes_player_code");
 
-        _ = builder.HasIndex(e => new { e.ClosedOn, e.GameProviderId, e.GameId, e.PlayerCode, e.ExternalBetId })
-            .HasDatabaseName("ix_game_bet_closes_player_code_composite");
+        _ = builder.HasIndex(e => new { e.ClosedOn, e.UpdatedOn })
+            .HasDatabaseName("ix_game_bet_closes_updated_on");
+
+        _ = builder.HasIndex(e => new { e.ClosedOn })
+            .HasDatabaseName("ix_game_bet_closes_closed_on");
 
         _ = builder.HasIndex(e => new { e.ClosedOn, e.GameProviderId, e.GameId, e.WalletId, e.ExternalBetId })
             .IsUnique()
