@@ -28,7 +28,14 @@ internal class GameBetCloseMap : IEntityTypeConfiguration<GameBetClose>
 
         _ = builder.HasIndex(e => new { e.ClosedOn, e.UpdatedOn }, "ix_game_bet_closes_updated_on");
 
-        _ = builder.HasIndex(e => new { e.ClosedOn, e.GameProviderId, e.GameId, e.WalletId, e.ExternalBetId }, "uix_game_bet_closes").IsUnique();
+        _ = builder.HasIndex(e => new { e.ClosedOn, e.BetState }, "ix_game_bet_closes_bet_state");
+
+        _ = builder.HasIndex(e => new { e.ClosedOn, e.GameProviderId, e.GameId, e.PlayerCode, e.ExternalBetId })
+            .HasDatabaseName("ix_game_bet_closes_player_code_composite");
+
+        _ = builder.HasIndex(e => new { e.ClosedOn, e.GameProviderId, e.GameId, e.WalletId, e.ExternalBetId })
+            .IsUnique()
+            .HasDatabaseName("ux_game_bet_closes");
 
         _ = builder.Property(e => e.ClosedOn)
             .HasComment("結束時間")
