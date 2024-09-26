@@ -61,7 +61,7 @@ public sealed class UserMap : IEntityTypeConfiguration<User>
 
         _ = builder.Property(c => c.ReferenceId)
             .HasMaxLength(30)
-            .IsRequired();
+            .IsRequired(false);
 
         _ = builder.HasOne(p => p.Role)
             .WithMany(p => p.Users)
