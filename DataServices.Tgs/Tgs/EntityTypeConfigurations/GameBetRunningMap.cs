@@ -12,7 +12,20 @@ internal class GameBetRunningMap : IEntityTypeConfiguration<GameBetRunning>
 
         _ = builder.HasKey(e => e.GameBetMajorId).HasName("pk_game_bet_runnings");
 
-        _ = builder.HasIndex(e => new { e.GameProviderId, e.GameId, e.WalletId, e.ExternalBetId }, "uix_game_bet_runnings").IsUnique();
+        _ = builder.HasIndex(e => new { e.BrandId }, "ix_game_bet_runnings_brand_id");
+
+        _ = builder.HasIndex(e => new { e.PlayerCode }, "ix_game_bet_runnings_player_code");
+
+        _ = builder.HasIndex(e => new { e.GameId }, "ix_game_bet_runnings_game_id");
+
+        _ = builder.HasIndex(e => new { e.GameProviderId }, "ix_game_bet_runnings_game_provider_id");
+
+        _ = builder.HasIndex(e => new { e.GameProviderId, e.GameId, e.PlayerCode, e.ExternalBetId })
+            .HasDatabaseName("ix_game_bet_runnings_player_code_composite");
+
+        _ = builder.HasIndex(e => new { e.GameProviderId, e.GameId, e.WalletId, e.ExternalBetId })
+            .IsUnique()
+            .HasDatabaseName("ux_game_bet_runnings");
 
         _ = builder.Property(e => e.GameBetMajorId)
             .ValueGeneratedNever()

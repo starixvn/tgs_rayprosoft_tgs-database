@@ -5973,6 +5973,16 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.HasKey("ClosedOn", "GameBetMajorId")
                         .HasName("pk_game_bet_closes");
 
+                    b.HasIndex("ClosedOn", "GameProviderId", "GameId", "PlayerCode", "ExternalBetId")
+                        .HasDatabaseName("ix_game_bet_closes_player_code_composite");
+
+                    b.HasIndex("ClosedOn", "GameProviderId", "GameId", "WalletId", "ExternalBetId")
+                        .IsUnique()
+                        .HasDatabaseName("ux_game_bet_closes");
+
+                    b.HasIndex(new[] { "ClosedOn", "BetState" }, "ix_game_bet_closes_bet_state")
+                        .HasDatabaseName("ix_game_bet_closes_closed_on_bet_state");
+
                     b.HasIndex(new[] { "ClosedOn", "BrandId" }, "ix_game_bet_closes_brand_id")
                         .HasDatabaseName("ix_game_bet_closes_closed_on_brand_id");
 
@@ -5996,10 +6006,6 @@ namespace TGS.Core.DataServices.Tgs.Migrations
 
                     b.HasIndex(new[] { "ClosedOn", "UpdatedOn" }, "ix_game_bet_closes_updated_on")
                         .HasDatabaseName("ix_game_bet_closes_closed_on_updated_on");
-
-                    b.HasIndex(new[] { "ClosedOn", "GameProviderId", "GameId", "WalletId", "ExternalBetId" }, "uix_game_bet_closes")
-                        .IsUnique()
-                        .HasDatabaseName("ix_game_bet_closes_closed_on_game_provider_id_game_id_wallet_i");
 
                     b.ToTable("game_bet_closes", "dbo");
                 });
@@ -6448,9 +6454,24 @@ namespace TGS.Core.DataServices.Tgs.Migrations
                     b.HasKey("GameBetMajorId")
                         .HasName("pk_game_bet_runnings");
 
-                    b.HasIndex(new[] { "GameProviderId", "GameId", "WalletId", "ExternalBetId" }, "uix_game_bet_runnings")
+                    b.HasIndex("GameProviderId", "GameId", "PlayerCode", "ExternalBetId")
+                        .HasDatabaseName("ix_game_bet_runnings_player_code_composite");
+
+                    b.HasIndex("GameProviderId", "GameId", "WalletId", "ExternalBetId")
                         .IsUnique()
-                        .HasDatabaseName("ix_game_bet_runnings_game_provider_id_game_id_wallet_id_extern");
+                        .HasDatabaseName("ux_game_bet_runnings");
+
+                    b.HasIndex(new[] { "BrandId" }, "ix_game_bet_runnings_brand_id")
+                        .HasDatabaseName("ix_game_bet_runnings_brand_id");
+
+                    b.HasIndex(new[] { "GameId" }, "ix_game_bet_runnings_game_id")
+                        .HasDatabaseName("ix_game_bet_runnings_game_id");
+
+                    b.HasIndex(new[] { "GameProviderId" }, "ix_game_bet_runnings_game_provider_id")
+                        .HasDatabaseName("ix_game_bet_runnings_game_provider_id");
+
+                    b.HasIndex(new[] { "PlayerCode" }, "ix_game_bet_runnings_player_code")
+                        .HasDatabaseName("ix_game_bet_runnings_player_code");
 
                     b.ToTable("game_bet_runnings", "dbo");
                 });
