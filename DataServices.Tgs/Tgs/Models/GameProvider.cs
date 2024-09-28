@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using TGS.Core.Models.Enums;
+﻿using TGS.Core.Models.Enums;
 
 namespace TGS.Core.DataServices.Tgs.Models;
 
@@ -47,4 +45,6 @@ public class GameProvider : BaseEntity<Guid>
     public bool TransferWallet { get; set; }
 
     public ushort UniqueId { get; set; }
+
+    public byte Type { get; set; }
 }

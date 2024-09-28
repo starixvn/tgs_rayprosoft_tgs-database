@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using TGS.Core.Models.Enums;
+﻿using TGS.Core.Models.Enums;
 
 namespace TGS.Core.DataServices.Tgs.Models;
 
@@ -33,4 +31,6 @@ public class BrandGameProvider
     public virtual ICollection<BrandGameProviderSchedule> Schedules { get; set; }
 
     public Status Status { get; set; }
+
+    public int DisplayOrder { get; set; }
 }
